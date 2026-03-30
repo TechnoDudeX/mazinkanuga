@@ -22,4 +22,4 @@ A single-page resume site built with vanilla HTML and CSS. No frameworks, no dep
 
 ## Live site
 
-[mazinkanuga.github.io](https://mazinkanuga.github.io)
+[mazinkanuga.ca](https://mazinkanuga.ca)
