@@ -7,7 +7,7 @@
 <meta name="description" content="Mazin Kanuga. Digital marketing in crypto, fintech, and compliance. Currently Lifecycle Marketing Manager at Kraken.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -65,7 +65,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
   background: var(--bg-base);
   color: var(--text-primary);
   overflow-x: hidden;
@@ -95,8 +95,8 @@ nav.scrolled {
 }
 
 .nav-logo {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -157,83 +157,39 @@ nav.scrolled {
 .hero-shape {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.18;
-  will-change: transform;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
 }
 
 .hero-shape-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,201,167,0.7) 0%, rgba(93,217,193,0.3) 60%, transparent 100%);
-  top: -15%; right: -5%;
-  animation: lava1 18s ease-in-out infinite;
+  width: 500px; height: 500px;
+  background: var(--kraken);
+  top: -100px; right: -100px;
+  animation-delay: 0s;
 }
 
 .hero-shape-2 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(123,97,255,0.6) 0%, rgba(184,168,255,0.25) 60%, transparent 100%);
-  bottom: -10%; left: -5%;
-  animation: lava2 22s ease-in-out infinite;
+  width: 400px; height: 400px;
+  background: var(--solidus-yellow);
+  bottom: -50px; left: 10%;
+  animation-delay: -3s;
 }
 
 .hero-shape-3 {
-  width: 450px; height: 450px;
-  background: radial-gradient(circle, rgba(184,216,107,0.5) 0%, rgba(232,212,77,0.2) 60%, transparent 100%);
-  top: 20%; right: 20%;
-  animation: lava3 20s ease-in-out infinite;
+  width: 300px; height: 300px;
+  background: var(--coinsquare-teal);
+  top: 40%; right: 20%;
+  animation-delay: -5s;
 }
 
-.hero-shape-4 {
-  width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(0,201,167,0.5) 0%, transparent 70%);
-  top: 55%; left: 30%;
-  animation: lava4 16s ease-in-out infinite;
-}
+.hero-shape-4 { display: none; }
+.hero-shape-5 { display: none; }
 
-.hero-shape-5 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(232,212,77,0.4) 0%, rgba(184,216,107,0.15) 60%, transparent 100%);
-  top: -5%; left: 35%;
-  animation: lava5 24s ease-in-out infinite;
-}
-
-@keyframes lava1 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  25%  { transform: translate(60px, 40px) scale(1.15) rotate(5deg); }
-  50%  { transform: translate(-30px, 80px) scale(0.9) rotate(-3deg); }
-  75%  { transform: translate(40px, -20px) scale(1.1) rotate(4deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-}
-
-@keyframes lava2 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  25%  { transform: translate(-50px, -60px) scale(1.1) rotate(-4deg); }
-  50%  { transform: translate(70px, -30px) scale(0.95) rotate(6deg); }
-  75%  { transform: translate(-20px, 50px) scale(1.08) rotate(-2deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-}
-
-@keyframes lava3 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  20%  { transform: translate(40px, -50px) scale(1.12) rotate(3deg); }
-  40%  { transform: translate(-60px, 20px) scale(0.88) rotate(-5deg); }
-  60%  { transform: translate(30px, 60px) scale(1.05) rotate(2deg); }
-  80%  { transform: translate(-40px, -30px) scale(0.92) rotate(-3deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-}
-
-@keyframes lava4 {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(-50px, -40px) scale(1.15); }
-  66%  { transform: translate(60px, 30px) scale(0.9); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes lava5 {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  30%  { transform: translate(50px, 50px) scale(1.1) rotate(4deg); }
-  60%  { transform: translate(-40px, -20px) scale(0.93) rotate(-3deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.05); }
+  66% { transform: translate(-15px, 20px) scale(0.95); }
 }
 
 .hero-content {
@@ -268,17 +224,16 @@ nav.scrolled {
   font-size: clamp(52px, 8vw, 96px);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
   margin-bottom: 24px;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeUp 0.6s ease forwards 0.4s;
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
 }
 
 .hero-name .highlight {
-  background: linear-gradient(135deg, #1a1a2e 0%, #00C9A7 35%, #5DD9C1 55%, #B8D86B 80%, #E8D44D 100%);
+  background: linear-gradient(135deg, var(--kraken) 0%, var(--coinsquare-teal) 50%, var(--solidus-yellow) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -553,7 +508,7 @@ section { padding: 100px 80px; position: relative; }
 /* ─── COINSQUARE CARD ─── */
 /* Brand: Teal/cyan gradient, immersive */
 .exp-card.coinsquare {
-  background: linear-gradient(135deg, #00C9A7 0%, #5DD9C1 40%, #8BE8E5 70%, #B5F0F0 100%);
+  background: linear-gradient(135deg, #00997F 0%, #00C9A7 40%, #3DCDB8 70%, #6DDDD0 100%);
   color: #FFFFFF;
   border: none;
   box-shadow: 0 4px 24px rgba(0,201,167,0.25);
@@ -571,13 +526,13 @@ section { padding: 100px 80px; position: relative; }
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-.exp-card.coinsquare .exp-company { color: rgba(255,255,255,0.85); }
+.exp-card.coinsquare .exp-company { color: #FFFFFF; opacity: 0.9; }
 .exp-card.coinsquare .exp-role { color: #FFFFFF; }
-.exp-card.coinsquare .exp-date { color: rgba(255,255,255,0.7); opacity: 1; }
-.exp-card.coinsquare .exp-summary { color: rgba(255,255,255,0.85); }
-.exp-card.coinsquare .exp-bullets li { color: rgba(255,255,255,0.8); }
-.exp-card.coinsquare .exp-bullets li::before { background: rgba(255,255,255,0.6); }
-.exp-card.coinsquare .exp-toggle { color: rgba(255,255,255,0.7); }
+.exp-card.coinsquare .exp-date { color: #FFFFFF; opacity: 0.75; }
+.exp-card.coinsquare .exp-summary { color: #FFFFFF; opacity: 0.92; }
+.exp-card.coinsquare .exp-bullets li { color: #FFFFFF; opacity: 0.88; }
+.exp-card.coinsquare .exp-bullets li::before { background: #FFFFFF; opacity: 0.7; }
+.exp-card.coinsquare .exp-toggle { color: #FFFFFF; opacity: 0.8; }
 .exp-card.coinsquare .exp-logo { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); }
 
 /* SHARED EXP STYLES */
