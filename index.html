@@ -1415,6 +1415,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     const el = document.createElement('div');
     el.style.cssText = `
       position: fixed;
+      top: 0;
+      left: 0;
       width: ${COIN_SIZE}px;
       height: ${COIN_SIZE}px;
       border-radius: 50%;
@@ -1431,7 +1433,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       user-select: none;
       font-family: 'Outfit', sans-serif;
       opacity: 0.85;
-      transition: transform 0.1s;
+      will-change: transform;
     `;
     el.textContent = coin.text;
     document.body.appendChild(el);
