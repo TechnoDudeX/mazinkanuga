@@ -276,6 +276,8 @@
   .tab-hero-inner { position: relative; }
   .tab-hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 18px; }
   .tab-hero-co { font-family: var(--display); font-size: 96px; font-weight: 900; letter-spacing: -3.2px; line-height: 0.85; margin-bottom: 18px; }
+  /* Coinsquare is the longest co name — scale down so it fits the column */
+  .tab-hero.c-coinsquare .tab-hero-co { font-size: clamp(36px, 3.4vw, 50px); letter-spacing: -1.6px; }
   .tab-hero-co .dot { opacity: 0.4; }
   .tab-hero-role { font-family: var(--sans); font-size: 22px; font-weight: 500; line-height: 1.2; max-width: 340px; }
   .tab-hero-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; position: relative; }
