@@ -248,6 +248,12 @@
   }
   .tab:last-child { border-right: none; }
   .tab:hover:not(.is-active) { background: #fafafa; }
+  .tab-logo {
+    width: 32px; height: 32px; border-radius: 6px; display: block;
+    margin-bottom: 14px; background: #fff;
+    box-shadow: 0 0 0 1px rgba(10,10,10,0.08);
+  }
+  .tab.is-active .tab-logo { box-shadow: 0 0 0 1px rgba(255,255,255,0.35); }
   .tab-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
   .tab-co { font-family: var(--display); font-size: 28px; font-weight: 900; letter-spacing: -0.8px; line-height: 1; }
   .tab-co .dot { opacity: 0.4; }
@@ -274,6 +280,13 @@
     color: rgba(0,0,0,0.06); line-height: 0.8; pointer-events: none;
   }
   .tab-hero-inner { position: relative; }
+  .tab-hero-logo {
+    width: 56px; height: 56px; border-radius: 10px; display: block;
+    margin-bottom: 22px; background: #fff;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.35), 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .tab-hero.c-solidus .tab-hero-logo { box-shadow: 0 0 0 1px rgba(10,10,10,0.15), 0 6px 20px rgba(0,0,0,0.08); }
+  .tab-hero.c-coinsquare .tab-hero-logo { box-shadow: 0 0 0 1px rgba(10,10,10,0.15), 0 6px 20px rgba(0,0,0,0.08); }
   .tab-hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 18px; }
   .tab-hero-co { font-family: var(--display); font-size: 96px; font-weight: 900; letter-spacing: -3.2px; line-height: 0.85; margin-bottom: 18px; }
   /* Coinsquare is the longest co name — scale down so it fits the column */
@@ -717,6 +730,7 @@
   <div class="tabs" id="tabs">
     <button class="tab is-active" data-co="kraken" data-target="kraken">
       <div>
+        <img class="tab-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true">
         <div class="tab-tag">2026 → · Current</div>
         <div class="tab-co">Kraken<span class="dot">.</span></div>
       </div>
@@ -724,6 +738,7 @@
     </button>
     <button class="tab" data-co="solidus" data-target="solidus">
       <div>
+        <img class="tab-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true">
         <div class="tab-tag">2023 — 26</div>
         <div class="tab-co">Solidus<span class="dot">.</span></div>
       </div>
@@ -731,6 +746,7 @@
     </button>
     <button class="tab" data-co="coinsquare" data-target="coinsquare">
       <div>
+        <img class="tab-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true">
         <div class="tab-tag">Earlier</div>
         <div class="tab-co">Coinsquare<span class="dot">.</span></div>
       </div>
@@ -961,6 +977,7 @@
         co: 'Kraken', role: 'Lifecycle Marketing Manager',
         date: 'Apr 2026 — Present', loc: 'Remote · Canada',
         tag: '2026 → · Currently',
+        logo: 'krakenfx_kraken_logo.jpeg',
         body: "Owning lifecycle for Kraken's futures and derivatives in the Pro trading pod. Converting spot traders into futures users — building the journeys, activation sequences, and campaign infrastructure to move people up the product ladder across multiple geos and regulatory environments.",
         bullets: [
           ['Braze', 'Welcome, spot-to-futures conversion, and incentive flows with geo-targeting and compliance logic baked in.'],
@@ -972,6 +989,7 @@
         co: 'Solidus', role: 'Senior Digital Marketing Manager · Solidus Labs',
         date: 'Sep 2023 — Mar 2026', loc: 'Remote · New York HQ',
         tag: '2023 — 26',
+        logo: 'soliduslabs_logo.jpeg',
         body: "Ran the full digital marketing operation for a crypto market-integrity platform. Grew organic 239%, drove 146K+ sessions, and built programs that generated over $6.5M in sales pipeline. If it touched marketing, I was probably in the room.",
         bullets: [
           ['Growth', '+239% organic · +275% top-3 keyword rankings · site health 26 → 75 · ~1,950 referring domains.'],
@@ -986,6 +1004,7 @@
         co: 'Coinsquare', role: 'Digital Marketing Specialist',
         date: 'Before 2023', loc: 'Toronto · Canada',
         tag: 'Earlier',
+        logo: 'coinsquare_logo.jpeg',
         body: "Consumer-facing digital marketing for one of Canada's biggest crypto exchanges. The job was getting people to sign up, start trading, and stick around — inside a heavily regulated market.",
         bullets: [
           ['B2C Lifecycle', 'Acquisition, onboarding, and the path to first trade.'],
@@ -1016,6 +1035,7 @@
           '<div class="tab-hero c-' + id + '">' +
             '<div class="tab-hero-watermark">' + esc(p.co[0]) + '.</div>' +
             '<div class="tab-hero-inner">' +
+              '<img class="tab-hero-logo" src="' + esc(p.logo) + '" alt="' + esc(p.co) + ' logo">' +
               '<div class="tab-hero-tag">' + esc(p.tag) + '</div>' +
               '<div class="tab-hero-co">' + esc(p.co) + '<span class="dot">.</span></div>' +
               '<div class="tab-hero-role">' + esc(p.role) + '</div>' +
