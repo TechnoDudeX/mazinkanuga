@@ -3,1395 +3,903 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mazin Kanuga | Digital Marketing</title>
-<meta name="description" content="Mazin Kanuga. Digital marketing in crypto, fintech, and compliance. Currently Lifecycle Marketing Manager at Kraken.">
+<title>Mazin Kanuga · Lifecycle Marketing</title>
+<meta name="description" content="Mazin Kanuga — Lifecycle Marketing Manager at Kraken. Crypto, fintech, and compliance marketing. Toronto, Canada.">
+<meta property="og:title" content="Mazin Kanuga · Lifecycle Marketing">
+<meta property="og:description" content="Lifecycle Marketing Manager at Kraken. Crypto, fintech, and compliance marketing.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #ffffff;
+    --ink: #0a0a0a;
+    --ink-dim: #404040;
+    --ink-mute: #8a8a8a;
+    --ink-faint: #c4c4c4;
+    --rule: #e8e8e8;
+    --kraken: #6B4EFF;
+    --solidus: #FFC933;
+    --coinsquare: #00D1A4;
+    --red: #E63946;
+    --accent: #E63946;
 
-:root {
-  /* Light mode base */
-  --bg-base: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --border: #E2E8F0;
-  --border-hover: #CBD5E1;
-
-  /* Text */
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
-
-  /* Global accent (neutral blue for nav/hero) */
-  --accent: #2563EB;
-  --accent-light: #EFF6FF;
-
-  /* Kraken brand */
-  --kraken: #7B61FF;
-  --kraken-dark: #5B41DF;
-  --kraken-bg: #F5F3FF;
-  --kraken-border: rgba(123,97,255,0.18);
-  --kraken-glow: rgba(123,97,255,0.08);
-
-  /* Solidus brand */
-  --solidus-yellow: #FFCD26;
-  --solidus-navy: #003165;
-  --solidus-bg: #F0F4F9;
-  --solidus-border: rgba(0,49,101,0.14);
-
-  /* Coinsquare brand */
-  --coinsquare-teal: #00C9A7;
-  --coinsquare-blue: #006B9E;
-  --coinsquare-bg: #F0FFFE;
-  --coinsquare-border: rgba(0,201,167,0.18);
-
-  /* Semantic aliases kept for compatibility */
-  --white: #FFFFFF;
-  --off-white: #F8FAFC;
-  --gray-100: #F1F5F9;
-  --gray-200: #E2E8F0;
-  --gray-400: #94A3B8;
-  --gray-600: #475569;
-  --gray-800: #1E293B;
-  --black: #0F172A;
-  --burger-red: #DC2626;
-  --green: #10B981;
-  --indigo: #2563EB;
-  --indigo-dark: #1D4ED8;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Outfit', sans-serif;
-  background: var(--bg-base);
-  color: var(--text-primary);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  padding: 16px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(248,250,252,0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
-}
-
-nav.scrolled {
-  padding: 12px 40px;
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 1px 0 var(--border), 0 4px 16px rgba(0,0,0,0.06);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.nav-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top;
-  border: 1.5px solid var(--border);
-  flex-shrink: 0;
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  transition: color 0.2s;
-  position: relative;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 2px;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover { color: var(--text-primary); }
-.nav-links a:hover::after { width: 100%; }
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 80px 80px;
-  justify-content: space-between;
-  gap: 60px;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg-base);
-}
-
-.hero::before {
-  display: none;
-}
-
-.hero-bg-shapes {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
-  animation: float 8s ease-in-out infinite;
-}
-
-.hero-shape-1 {
-  width: 500px; height: 500px;
-  background: var(--kraken);
-  top: -100px; right: -100px;
-  animation-delay: 0s;
-}
-
-.hero-shape-2 {
-  width: 400px; height: 400px;
-  background: var(--solidus-yellow);
-  bottom: -50px; left: 10%;
-  animation-delay: -3s;
-}
-
-.hero-shape-3 {
-  width: 300px; height: 300px;
-  background: var(--coinsquare-teal);
-  top: 40%; right: 20%;
-  animation-delay: -5s;
-}
-
-.hero-shape-4 { display: none; }
-.hero-shape-5 { display: none; }
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(20px, -30px) scale(1.05); }
-  66% { transform: translate(-15px, 20px) scale(0.95); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  flex: 1;
-}
-
-.hero-photo-wrap {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.7s ease forwards 0.5s;
-}
-
-.hero-photo {
-  width: 420px;
-  height: 420px;
-  border-radius: 24px;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
-  border: 1px solid var(--border);
-}
-
-@media (max-width: 900px) {
-  .hero {
-    flex-direction: column-reverse;
-    padding: 120px 32px 60px;
-    text-align: center;
-    gap: 32px;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
   }
-  .hero-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .hero-tag { justify-content: center; }
-  .hero-cta-row { justify-content: center; }
-  .hero-status { justify-content: center; }
-}
-
-.hero-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s ease forwards 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.hero-tag::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 1px;
-  background: var(--accent);
-}
-
-.hero-name {
-  font-size: clamp(52px, 8vw, 96px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.6s ease forwards 0.4s;
-  color: var(--text-primary);
-}
-
-.hero-name .highlight {
-  background: linear-gradient(135deg, var(--kraken) 0%, var(--coinsquare-teal) 50%, var(--solidus-yellow) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-desc {
-  font-size: 19px;
-  line-height: 1.75;
-  color: var(--text-secondary);
-  max-width: 620px;
-  margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.6s ease forwards 0.6s;
-}
-
-.hero-cta-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.6s ease forwards 0.8s;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  background: var(--text-primary);
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
-  border: 1px solid var(--text-primary);
-}
-
-.btn-primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,99,235,0.25);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  background: transparent;
-  color: var(--text-secondary);
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  border: 1px solid var(--border);
-  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
-}
-
-.btn-secondary:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-}
-
-.hero-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 48px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 1s;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-.status-dot {
-  width: 7px; height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-  50% { box-shadow: 0 0 0 5px rgba(16,185,129,0); }
-}
-
-.hero-status strong { color: var(--text-primary); font-weight: 600; }
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* SECTIONS */
-section { padding: 100px 80px; position: relative; }
-
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 18px; height: 2px;
-  background: var(--accent);
-}
-
-.section-title {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  margin-bottom: 60px;
-  line-height: 1.1;
-  color: var(--text-primary);
-  font-family: 'Orbitron', sans-serif;
-}
-
-/* ABOUT */
-.about {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.about-text {
-  font-size: 17px;
-  line-height: 1.85;
-  color: var(--text-secondary);
-}
-
-.about-text p + p { margin-top: 20px; }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.stat-card {
-  padding: 24px;
-  background: var(--bg-base);
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
-}
-
-.stat-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
-
-.stat-number {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 6px;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.stat-card:nth-child(1) .stat-number { color: var(--kraken); }
-.stat-card:nth-child(2) .stat-number { color: var(--solidus-navy); }
-.stat-card:nth-child(3) .stat-number { color: var(--coinsquare-teal); }
-.stat-card:nth-child(4) .stat-number { color: var(--burger-red); }
-
-.stat-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.5px;
-}
-
-/* EXPERIENCE */
-.experience-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.exp-card {
-  border-radius: 16px;
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-  cursor: default;
-}
-
-.exp-card:hover { transform: translateY(-3px); }
-
-/* ─── KRAKEN CARD ─── */
-/* Brand: purple gradient, immersive */
-.exp-card.kraken {
-  background: linear-gradient(135deg, #7B61FF 0%, #9B85FF 50%, #B8A5FF 100%);
-  color: #FFFFFF;
-  border: none;
-  box-shadow: 0 4px 24px rgba(123,97,255,0.25);
-}
-
-.exp-card.kraken::before { display: none; }
-
-.exp-card.kraken:hover {
-  box-shadow: 0 12px 40px rgba(123,97,255,0.35);
-}
-
-.exp-card.kraken .exp-tag {
-  background: rgba(255,255,255,0.2);
-  color: #FFFFFF;
-  border: 1px solid rgba(255,255,255,0.3);
-}
-
-.exp-card.kraken .exp-company { color: rgba(255,255,255,0.85); }
-.exp-card.kraken .exp-role { color: #FFFFFF; }
-.exp-card.kraken .exp-date { color: rgba(255,255,255,0.7); opacity: 1; }
-.exp-card.kraken .exp-summary { color: rgba(255,255,255,0.85); }
-.exp-card.kraken .exp-bullets li { color: rgba(255,255,255,0.8); }
-.exp-card.kraken .exp-bullets li::before { background: rgba(255,255,255,0.6); }
-.exp-card.kraken .exp-toggle { color: rgba(255,255,255,0.7); }
-.exp-card.kraken .exp-logo { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); }
-
-/* ─── SOLIDUS CARD ─── */
-/* Brand: Navy gradient, institutional */
-.exp-card.solidus {
-  background: linear-gradient(135deg, #001A3A 0%, #003165 50%, #004A8F 100%);
-  color: #FFFFFF;
-  border: none;
-  box-shadow: 0 4px 24px rgba(0,49,101,0.3);
-}
-
-.exp-card.solidus::before { display: none; }
-
-.exp-card.solidus:hover {
-  box-shadow: 0 12px 40px rgba(0,49,101,0.4);
-}
-
-.exp-card.solidus .exp-tag {
-  background: var(--solidus-yellow);
-  color: var(--solidus-navy);
-}
-
-.exp-card.solidus .exp-company { color: rgba(255,255,255,0.7); opacity: 1; }
-.exp-card.solidus .exp-role { color: #FFFFFF; }
-.exp-card.solidus .exp-date { color: rgba(255,255,255,0.55); opacity: 1; }
-.exp-card.solidus .exp-summary { color: rgba(255,255,255,0.82); }
-.exp-card.solidus .exp-bullets li { color: rgba(255,255,255,0.78); }
-.exp-card.solidus .exp-bullets li::before { background: var(--solidus-yellow); }
-.exp-card.solidus .exp-toggle { color: rgba(255,255,255,0.6); opacity: 1; }
-.exp-card.solidus .exp-logo { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
-
-/* ─── COINSQUARE CARD ─── */
-/* Brand: Teal/cyan gradient, immersive */
-.exp-card.coinsquare {
-  background: linear-gradient(135deg, #00997F 0%, #00C9A7 40%, #3DCDB8 70%, #6DDDD0 100%);
-  color: #FFFFFF;
-  border: none;
-  box-shadow: 0 4px 24px rgba(0,201,167,0.25);
-}
-
-.exp-card.coinsquare::before { display: none; }
-
-.exp-card.coinsquare:hover {
-  box-shadow: 0 12px 40px rgba(0,201,167,0.35);
-}
-
-.exp-card.coinsquare .exp-tag {
-  background: rgba(255,255,255,0.2);
-  color: #FFFFFF;
-  border: 1px solid rgba(255,255,255,0.3);
-}
-
-.exp-card.coinsquare .exp-company { color: #FFFFFF; opacity: 0.9; }
-.exp-card.coinsquare .exp-role { color: #FFFFFF; }
-.exp-card.coinsquare .exp-date { color: #FFFFFF; opacity: 0.75; }
-.exp-card.coinsquare .exp-summary { color: #FFFFFF; opacity: 0.92; }
-.exp-card.coinsquare .exp-bullets li { color: #FFFFFF; opacity: 0.88; }
-.exp-card.coinsquare .exp-bullets li::before { background: #FFFFFF; opacity: 0.7; }
-.exp-card.coinsquare .exp-toggle { color: #FFFFFF; opacity: 0.8; }
-.exp-card.coinsquare .exp-logo { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); }
-
-/* SHARED EXP STYLES */
-.exp-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  gap: 20px;
-}
-
-.exp-logo {
-  width: 48px; height: 48px;
-  border-radius: 10px;
-  object-fit: cover;
-  background: rgba(255,255,255,0.9);
-  padding: 4px;
-  flex-shrink: 0;
-  border: 1px solid rgba(0,0,0,0.08);
-}
-
-.exp-header-text { flex: 1; }
-
-.exp-company {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  opacity: 0.8;
-}
-
-.exp-role {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 6px;
-  letter-spacing: -0.5px;
-}
-
-.exp-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-}
-
-.exp-tag {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.exp-summary {
-  font-size: 15px;
-  line-height: 1.75;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
-
-.exp-bullets {
-  list-style: none;
-  display: grid;
-  gap: 10px;
-}
-
-.exp-bullets li {
-  padding-left: 18px;
-  position: relative;
-  font-size: 14px;
-  line-height: 1.65;
-  opacity: 0.78;
-}
-
-.exp-bullets li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 9px;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-}
-
-.exp-card-inner {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
-
-.exp-card.expanded .exp-card-inner { max-height: 600px; }
-
-.exp-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 700;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-  background: none;
-  border: none;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-.exp-toggle:hover { opacity: 1; }
-.exp-toggle svg { transition: transform 0.3s ease; }
-.exp-card.expanded .exp-toggle svg { transform: rotate(180deg); }
-
-/* PROJECTS */
-.projects {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.project-card {
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--bg-base);
-  border: 1px solid var(--border);
-  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--border-hover);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-}
-
-.project-img {
-  width: 100%; height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.project-img-container {
-  width: 100%; height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.project-body {
-  padding: 24px;
-  border-top: 1px solid var(--border);
-  background: var(--bg-surface);
-}
-
-.project-name {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-  letter-spacing: -0.3px;
-}
-
-.project-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-}
-
-.project-link-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* SKILLS */
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-chip {
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
-  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-  cursor: default;
-  color: var(--text-secondary);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.skill-chip:hover { transform: translateY(-2px); color: var(--text-primary); border-color: var(--border-hover); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-.skill-chip.purple:hover { border-color: rgba(123,97,255,0.4); color: var(--kraken); background: var(--kraken-bg); }
-.skill-chip.navy:hover { border-color: rgba(0,49,101,0.3); color: var(--solidus-navy); background: var(--solidus-bg); }
-.skill-chip.teal:hover { border-color: rgba(0,201,167,0.35); color: var(--coinsquare-teal); background: var(--coinsquare-bg); }
-.skill-chip.yellow:hover { border-color: rgba(255,205,38,0.5); color: #92640A; background: #FFFBEB; }
-.skill-chip.red:hover { border-color: rgba(220,38,38,0.3); color: var(--burger-red); background: #FEF2F2; }
-
-/* SIDE HUSTLES */
-.side-hustles-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.hustle-card {
-  border-radius: 16px;
-  padding: 36px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-  border: 1px solid var(--border);
-}
-
-.hustle-card:hover { transform: translateY(-3px); }
-
-.hustle-card.burgers {
-  background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%);
-  color: #FFFFFF;
-  border-color: rgba(127,29,29,0.4);
-}
-
-.hustle-card.burgers:hover {
-  box-shadow: 0 12px 40px rgba(185,28,28,0.2);
-}
-
-.hustle-card.volunteer {
-  background: linear-gradient(135deg, #14532D 0%, #166534 100%);
-  color: #FFFFFF;
-  border-color: rgba(20,83,45,0.4);
-}
-
-.hustle-card.volunteer:hover {
-  box-shadow: 0 12px 40px rgba(22,101,52,0.18);
-}
-
-.hustle-icon {
-  width: 56px; height: 56px;
-  border-radius: 12px;
-  object-fit: contain;
-  background: rgba(255,255,255,0.12);
-  padding: 6px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-.hustle-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.3px;
-}
-
-.hustle-desc {
-  font-size: 14px;
-  line-height: 1.75;
-  opacity: 0.75;
-}
-
-.hustle-cta {
-  margin-top: 16px;
-  font-size: 12px;
-  font-weight: 600;
-  opacity: 0.45;
-  transition: opacity 0.2s;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.hustle-card:hover .hustle-cta { opacity: 0.85; }
-
-/* FOOTER */
-footer {
-  padding: 60px 80px;
-  background: var(--text-primary);
-  color: #FFFFFF;
-  text-align: center;
-  border-top: 1px solid var(--border);
-}
-
-.footer-name {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.footer-tagline {
-  color: rgba(255,255,255,0.5);
-  font-size: 13px;
-  margin-bottom: 24px;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.footer-linkedin {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: rgba(10,102,194,0.2);
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.25s ease;
-  border: 1px solid rgba(10,102,194,0.35);
-}
-
-.footer-linkedin:hover {
-  background: rgba(10,102,194,0.35);
-  border-color: rgba(10,102,194,0.55);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(10,102,194,0.2);
-}
-
-.footer-copy {
-  margin-top: 40px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.3);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* SCROLL REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.7s cubic-bezier(0.16,1,0.3,1);
-}
-
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* MOBILE */
-@media (max-width: 1024px) {
-  section { padding: 80px 40px; }
-  .hero { padding: 120px 40px 80px; }
-  nav { padding: 14px 24px; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .side-hustles-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 768px) {
-  section { padding: 60px 20px; }
-  .hero { padding: 100px 20px 60px; }
-  nav { padding: 12px 16px; }
-  .nav-links { display: none; }
-  footer { padding: 40px 20px; }
-  .exp-card { padding: 24px; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .hero-cta-row { flex-direction: column; align-items: flex-start; }
-}
-
-/* MARQUEE */
-.marquee-strip {
-  padding: 14px 0;
-  background: var(--text-primary);
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 35s linear infinite;
-}
-
-.marquee-item {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  padding: 0 28px;
-}
-
-.marquee-item .dot {
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  margin-right: 14px;
-  vertical-align: middle;
-}
-
-.dot-purple { background: var(--kraken); }
-.dot-yellow { background: var(--solidus-yellow); }
-.dot-teal { background: var(--coinsquare-teal); }
-.dot-red { background: #F87171; }
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* UX: cursor-pointer */
-a, button, .exp-toggle, .skill-chip, .project-card, .hustle-card, .stat-card,
-.exp-card, .btn-primary, .btn-secondary, .footer-linkedin { cursor: pointer; }
-
-/* UX: focus states */
-a:focus-visible, button:focus-visible, .exp-toggle:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* UX: prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--red); color: #fff; }
+
+  /* ─── keyframes ─── */
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(10,10,10,0); } 50% { box-shadow: 0 0 0 5px rgba(10,10,10,0.06); } }
+  @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ticker-track { animation: none !important; }
+    .hero-title, .tab-card { animation: none !important; }
   }
-}
+
+  /* ─── nav ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ink);
+    transition: box-shadow .2s;
+  }
+  .nav.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04); }
+  .nav-grid { display: grid; grid-template-columns: 140px 1fr 160px; align-items: stretch; }
+  .nav-logo {
+    border-right: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--display); font-size: 26px; font-weight: 900; letter-spacing: -1.2px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo .dot { color: var(--accent); }
+  .nav-links { display: flex; }
+  .nav-link {
+    padding: 18px 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink);
+    border-right: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 10px;
+    transition: background .15s;
+  }
+  .nav-link:last-child { border-right: none; }
+  .nav-link:hover { background: #fafafa; }
+  .nav-link .num { color: var(--ink-mute); }
+  .nav-cta {
+    border-left: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--bg); background: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background .15s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ─── hero ─── */
+  .hero { border-bottom: 1px solid var(--ink); }
+  .hero-main { display: grid; grid-template-columns: 1.1fr 1fr; border-bottom: 1px solid var(--ink); }
+  .hero-left {
+    padding: 72px 56px 56px; border-right: 1px solid var(--ink);
+    position: relative; min-height: 620px;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-dim); margin-bottom: 36px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow .bar { width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+  .hero-eyebrow .live { color: var(--accent); }
+  .hero-title {
+    font-family: var(--display); font-size: 184px; font-weight: 900;
+    line-height: 0.82; letter-spacing: -7px; color: var(--ink);
+    animation: fadeUp .7s ease both;
+  }
+  .hero-title .dot { color: var(--accent); }
+  .hero-meta {
+    position: absolute; bottom: 56px; left: 56px; right: 56px;
+    border-top: 1px solid var(--ink); padding-top: 20px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  }
+  .hero-meta .label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+  .hero-meta .val { font-family: var(--sans); font-size: 14px; font-weight: 500; }
+
+  .hero-right { display: grid; grid-template-rows: 1.1fr 1fr; }
+  .kraken-block {
+    padding: 40px 48px; border-bottom: 1px solid var(--ink);
+    background: var(--kraken); color: var(--bg);
+    display: grid; grid-template-columns: 1fr 180px; gap: 28px;
+    align-items: stretch; position: relative; overflow: hidden;
+  }
+  .kraken-col {
+    display: flex; flex-direction: column; justify-content: space-between; position: relative;
+  }
+  .kraken-tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85;
+  }
+  .kraken-headline {
+    font-family: var(--display); font-size: 36px; font-weight: 900; letter-spacing: -1.2px;
+    line-height: 1.02; padding: 18px 0;
+  }
+  .status-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+  }
+  .status-chip .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.13);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .headshot-frame { align-self: stretch; position: relative; min-height: 220px; }
+  .headshot-frame::before {
+    content: ""; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.25);
+  }
+  .headshot-frame img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: grayscale(1) contrast(1.05); mix-blend-mode: luminosity;
+  }
+  .headshot-frame .caption {
+    position: absolute; bottom: 8px; left: 10px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); mix-blend-mode: difference;
+  }
+
+  .pitch-block { padding: 32px 48px; display: grid; grid-template-columns: 1fr 1fr; }
+  .pitch-col-a { padding-right: 28px; border-right: 1px solid var(--rule); }
+  .pitch-col-b { padding-left: 28px; display: flex; flex-direction: column; justify-content: space-between; }
+  .pitch-label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 10px; }
+  .pitch-body { font-family: var(--sans); font-size: 17px; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+  .pitch-open { font-family: var(--sans); font-size: 14px; line-height: 1.65; color: var(--ink); }
+  .pitch-actions { display: flex; gap: 10px; margin-top: 18px; }
+  .btn-dark, .btn-outline {
+    padding: 11px 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 600;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn-dark { background: var(--ink); color: var(--bg); }
+  .btn-dark:hover { background: var(--accent); }
+  .btn-outline { border: 1px solid var(--ink); color: var(--ink); background: transparent; }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .stat-cell { padding: 32px 36px; border-right: 1px solid var(--ink); position: relative; }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell.bg-solidus { background: var(--solidus); color: var(--ink); }
+  .stat-cell.bg-red { background: var(--red); color: var(--bg); }
+  .stat-num { font-family: var(--display); font-size: 64px; font-weight: 900; letter-spacing: -2.5px; line-height: 1; }
+  .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; margin-top: 12px; opacity: 0.7; }
+
+  /* ─── ticker ─── */
+  .ticker {
+    background: var(--ink); padding: 14px 0;
+    overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--ink);
+  }
+  .ticker-track { display: inline-flex; animation: tickerScroll 50s linear infinite; }
+  .ticker-item {
+    padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.15);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .ticker-item .diamond { color: var(--accent); margin-right: 10px; }
+
+  /* ─── sections (shared) ─── */
+  section { border-bottom: 1px solid var(--ink); }
+  .section-head {
+    padding: 64px 56px; border-bottom: 1px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
+  }
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 10px; }
+  .section-title { font-family: var(--display); font-size: 108px; font-weight: 900; letter-spacing: -4.5px; line-height: 0.88; }
+  .section-title .dot { color: var(--accent); }
+
+  /* ─── about ─── */
+  .about { padding: 88px 56px; }
+  .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; }
+  .about-aside { position: sticky; top: 90px; }
+  .about-aside-title { font-family: var(--display); font-size: 52px; font-weight: 900; letter-spacing: -1.8px; line-height: 0.92; }
+  .about-aside-title .dot { color: var(--accent); }
+  .about-read { margin-top: 28px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent); }
+  .about-read .bar { width: 18px; height: 1px; background: var(--accent); display: inline-block; }
+  .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .about-body p { font-family: var(--sans); font-size: 20px; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+  .dropcap { font-family: var(--display); font-size: 72px; font-weight: 900; float: left; line-height: 0.82; margin-right: 12px; margin-top: 4px; color: var(--accent); }
+
+  /* ─── positions ─── */
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ink); }
+  .tab {
+    text-align: left; padding: 22px 28px;
+    border-right: 1px solid var(--ink);
+    background: var(--bg); color: var(--ink);
+    transition: background .2s, color .2s;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px;
+  }
+  .tab:last-child { border-right: none; }
+  .tab:hover:not(.is-active) { background: #fafafa; }
+  .tab-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+  .tab-co { font-family: var(--display); font-size: 28px; font-weight: 900; letter-spacing: -0.8px; line-height: 1; }
+  .tab-co .dot { opacity: 0.4; }
+  .tab-indicator { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.4; }
+  .tab.is-active .tab-indicator { opacity: 0.85; }
+  .tab.is-active[data-co="kraken"] { background: var(--kraken); color: #fff; }
+  .tab.is-active[data-co="solidus"] { background: var(--solidus); color: var(--ink); }
+  .tab.is-active[data-co="coinsquare"] { background: var(--coinsquare); color: var(--ink); }
+
+  .tab-card {
+    display: grid; grid-template-columns: 420px 1fr; min-height: 520px;
+    animation: fadeUp .35s ease both;
+  }
+  .tab-hero {
+    padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid var(--ink); position: relative; overflow: hidden;
+  }
+  .tab-hero.c-kraken { background: var(--kraken); color: #fff; }
+  .tab-hero.c-solidus { background: var(--solidus); color: var(--ink); }
+  .tab-hero.c-coinsquare { background: var(--coinsquare); color: var(--ink); }
+  .tab-hero-watermark {
+    position: absolute; bottom: -40px; right: -30px;
+    font-family: var(--display); font-size: 380px; font-weight: 900;
+    color: rgba(0,0,0,0.06); line-height: 0.8; pointer-events: none;
+  }
+  .tab-hero-inner { position: relative; }
+  .tab-hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 18px; }
+  .tab-hero-co { font-family: var(--display); font-size: 96px; font-weight: 900; letter-spacing: -3.2px; line-height: 0.85; margin-bottom: 18px; }
+  .tab-hero-co .dot { opacity: 0.4; }
+  .tab-hero-role { font-family: var(--sans); font-size: 22px; font-weight: 500; line-height: 1.2; max-width: 340px; }
+  .tab-hero-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; position: relative; }
+  .tab-hero-meta .loc { margin-top: 4px; opacity: 0.7; }
+
+  .tab-detail { padding: 48px 52px; display: grid; grid-template-rows: auto 1fr; gap: 28px; }
+  .tab-detail-body { font-family: var(--sans); font-size: 19px; line-height: 1.52; color: var(--ink); text-wrap: pretty; max-width: 820px; }
+  .bullet {
+    display: grid; grid-template-columns: 160px 1fr; gap: 28px;
+    padding: 16px 0; border-top: 1px solid var(--rule);
+  }
+  .bullet-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; }
+  .bullet-label.c-kraken { color: var(--kraken); }
+  .bullet-label.c-solidus { color: #9a7400; }
+  .bullet-label.c-coinsquare { color: #008866; }
+  .bullet-detail { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--ink-dim); text-wrap: pretty; }
+
+  /* ─── campaigns ─── */
+  .campaigns-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .project {
+    display: block; min-height: 360px;
+    position: relative; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    transition: background .25s, color .25s;
+  }
+  .project:nth-child(odd) { border-right: 1px solid var(--ink); }
+  .project:nth-child(1), .project:nth-child(2) { border-bottom: 1px solid var(--ink); }
+  .project-head {
+    padding: 28px 36px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color .25s;
+  }
+  .project-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.55; transition: opacity .25s; }
+  .project-arrow { font-family: var(--mono); font-size: 14px; transition: transform .25s; }
+  .project-body {
+    padding: 32px 36px 36px;
+    display: grid; grid-template-columns: 1fr 140px; gap: 28px; align-items: end;
+  }
+  .project-title { font-family: var(--display); font-size: 40px; font-weight: 900; letter-spacing: -1.4px; line-height: 1; margin-bottom: 16px; }
+  .project-desc { font-family: var(--sans); font-size: 14.5px; line-height: 1.55; text-wrap: pretty; opacity: 0.65; transition: opacity .25s; }
+  .project-stat-col { padding-left: 14px; border-left: 3px solid; transition: border-color .25s; }
+  .project-stat-num { font-family: var(--display); font-size: 40px; font-weight: 900; letter-spacing: -1.6px; line-height: 1; }
+  .project-stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.65; margin-top: 6px; }
+
+  .project[data-color="solidus"] { --pc: var(--solidus); --pfg: var(--ink); }
+  .project[data-color="coinsquare"] { --pc: var(--coinsquare); --pfg: var(--ink); }
+  .project[data-color="red"] { --pc: var(--red); --pfg: #fff; }
+  .project[data-color="kraken"] { --pc: var(--kraken); --pfg: #fff; }
+  .project .project-stat-col { border-left-color: var(--pc); }
+
+  .project:hover { background: var(--pc); color: var(--pfg); }
+  .project:hover .project-head { border-bottom-color: rgba(0,0,0,0.15); }
+  .project:hover .project-meta,
+  .project:hover .project-desc { opacity: 0.9; }
+  .project:hover .project-arrow { transform: translate(4px, -4px); }
+  .project:hover .project-stat-col { border-left-color: currentColor; }
+
+  /* ─── toolkit ─── */
+  .toolkit-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .toolkit-col { border-right: 1px solid var(--ink); }
+  .toolkit-col:last-child { border-right: none; }
+  .toolkit-head {
+    padding: 28px 30px;
+    font-family: var(--display); font-size: 48px; font-weight: 900; letter-spacing: -1.6px; line-height: 0.95;
+    border-bottom: 1px solid var(--ink);
+  }
+  .toolkit-head .dot { opacity: 0.4; }
+  .toolkit-head.c-kraken { background: var(--kraken); color: var(--bg); }
+  .toolkit-head.c-solidus { background: var(--solidus); color: var(--ink); }
+  .toolkit-head.c-coinsquare { background: var(--coinsquare); color: var(--ink); }
+  .toolkit-head.c-red { background: var(--red); color: var(--bg); }
+  .toolkit-item {
+    padding: 14px 30px;
+    font-family: var(--sans); font-size: 15px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between;
+    transition: background .15s, padding .15s;
+  }
+  .toolkit-item:last-child { border-bottom: none; }
+  .toolkit-item:hover { background: #fafafa; padding-left: 36px; }
+  .toolkit-item .num { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); }
+
+  /* ─── beyond ─── */
+  .beyond-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .beyond-card {
+    padding: 48px 44px; min-height: 400px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .beyond-card.c-red { background: var(--red); color: var(--bg); border-right: 1px solid var(--ink); }
+  .beyond-card.c-ink { background: var(--ink); color: var(--bg); }
+  .beyond-watermark {
+    position: absolute; bottom: -60px; right: -30px;
+    font-family: var(--display); font-size: 320px; font-weight: 900;
+    line-height: 0.8; pointer-events: none;
+  }
+  .beyond-card.c-red .beyond-watermark { color: rgba(255,255,255,0.08); }
+  .beyond-card.c-ink .beyond-watermark { color: rgba(255,255,255,0.05); }
+  .beyond-inner { position: relative; }
+  .beyond-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .beyond-card.c-red .beyond-tag { opacity: 0.8; }
+  .beyond-card.c-ink .beyond-tag { color: var(--accent); opacity: 0.6; }
+  .beyond-title { font-family: var(--display); font-size: 80px; font-weight: 900; letter-spacing: -2.8px; line-height: 0.9; margin-bottom: 20px; }
+  .beyond-desc { font-family: var(--sans); font-size: 16px; line-height: 1.55; max-width: 440px; text-wrap: pretty; }
+  .beyond-card.c-red .beyond-desc { opacity: 0.92; }
+  .beyond-card.c-ink .beyond-desc { opacity: 0.75; }
+  .beyond-foot { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; position: relative; }
+  .beyond-card.c-ink .beyond-foot { opacity: 0.7; }
+
+  /* ─── footer ─── */
+  footer { border-bottom: none; }
+  .footer-inner { padding: 88px 56px 48px; }
+  .footer-top { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; margin-bottom: 48px; }
+  .footer-hello { font-family: var(--display); font-size: 192px; font-weight: 900; letter-spacing: -8px; line-height: 0.82; }
+  .footer-hello .dot { color: var(--accent); }
+  .footer-cta {
+    padding: 20px 32px; background: var(--ink); color: var(--bg);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    transition: background .15s;
+  }
+  .footer-cta:hover { background: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--ink); padding-top: 20px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; color: var(--ink-mute); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  /* ─── responsive ─── */
+  @media (max-width: 1024px) {
+    .nav-grid { grid-template-columns: 96px 1fr 120px; }
+    .nav-link { padding: 16px 14px; font-size: 10px; }
+    .nav-link .num { display: none; }
+    .nav-logo { padding: 16px; font-size: 22px; }
+    .nav-cta { padding: 16px 12px; font-size: 10px; }
+
+    .hero-main { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; border-bottom: 1px solid var(--ink); min-height: auto; padding: 48px 28px 40px; }
+    .hero-title { font-size: clamp(64px, 14vw, 120px); letter-spacing: -4px; }
+    .hero-meta { position: static; margin-top: 40px; }
+
+    .kraken-block { padding: 32px 28px; grid-template-columns: 1fr; }
+    .headshot-frame { min-height: 260px; }
+    .pitch-block { padding: 28px; grid-template-columns: 1fr; gap: 28px; }
+    .pitch-col-a { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+    .pitch-col-b { padding-left: 0; }
+
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 1px solid var(--ink); }
+    .stat-num { font-size: 48px; }
+
+    .section-head { padding: 48px 28px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .section-title { font-size: clamp(56px, 12vw, 96px); letter-spacing: -3px; }
+
+    .about { padding: 56px 28px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .about-aside { position: static; }
+    .about-body { grid-template-columns: 1fr; gap: 24px; }
+
+    .tabs { grid-template-columns: 1fr; }
+    .tab { border-right: none; border-bottom: 1px solid var(--ink); }
+    .tab:last-child { border-bottom: none; }
+    .tab-card { grid-template-columns: 1fr; }
+    .tab-hero { border-right: none; border-bottom: 1px solid var(--ink); padding: 36px 28px; }
+    .tab-hero-co { font-size: 64px; letter-spacing: -2px; }
+    .tab-detail { padding: 32px 28px; }
+
+    .campaigns-grid { grid-template-columns: 1fr; }
+    .project { border-right: none !important; border-bottom: 1px solid var(--ink) !important; }
+    .project:last-child { border-bottom: none !important; }
+    .project-body { grid-template-columns: 1fr; gap: 20px; }
+    .project-stat-col { border-left: none; border-top: 3px solid var(--pc); padding-left: 0; padding-top: 12px; }
+
+    .toolkit-grid { grid-template-columns: 1fr 1fr; }
+    .toolkit-col:nth-child(2n) { border-right: none; }
+    .toolkit-col:nth-child(1), .toolkit-col:nth-child(2) { border-bottom: 1px solid var(--ink); }
+    .toolkit-head { font-size: 36px; padding: 22px 24px; }
+    .toolkit-item { padding: 12px 24px; font-size: 14px; }
+    .toolkit-item:hover { padding-left: 30px; }
+
+    .beyond-grid { grid-template-columns: 1fr; }
+    .beyond-card.c-red { border-right: none; border-bottom: 1px solid var(--ink); }
+    .beyond-title { font-size: 56px; letter-spacing: -2px; }
+
+    .footer-inner { padding: 56px 28px 36px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-hello { font-size: clamp(80px, 18vw, 140px); letter-spacing: -4px; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+
+  @media (max-width: 640px) {
+    .toolkit-grid { grid-template-columns: 1fr; }
+    .toolkit-col { border-right: none; border-bottom: 1px solid var(--ink); }
+    .toolkit-col:last-child { border-bottom: none; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════ NAV ═══════════════════ -->
-<nav id="nav">
-  <a href="#" class="nav-logo">
-    <img src="headshot.webp" alt="Mazin Kanuga" class="nav-avatar">
-    MK
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#beyond">Beyond Work</a></li>
-  </ul>
+<nav class="nav" id="nav">
+  <div class="nav-grid">
+    <a href="#top" class="nav-logo">MK<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#index" class="nav-link"><span class="num">01</span>Index</a>
+      <a href="#work" class="nav-link"><span class="num">02</span>Work</a>
+      <a href="#shipped" class="nav-link"><span class="num">03</span>Shipped</a>
+      <a href="#toolkit" class="nav-link"><span class="num">04</span>Toolkit</a>
+      <a href="#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
+    </div>
+    <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
+  </div>
 </nav>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="hero">
-  <div class="hero-bg-shapes">
-    <div class="hero-shape hero-shape-1"></div>
-    <div class="hero-shape hero-shape-2"></div>
-    <div class="hero-shape hero-shape-3"></div>
-    <div class="hero-shape hero-shape-4"></div>
-    <div class="hero-shape hero-shape-5"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-tag">Marketing · Crypto · Compliance</div>
-    <h1 class="hero-name">
-      Mazin<br><span class="highlight">Kanuga</span>
-    </h1>
-    <p class="hero-desc">
-      I make crypto and fintech products make sense to people. Then I build the campaigns and programs that get those people to actually pay attention.
-    </p>
-    <div class="hero-cta-row">
-      <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Connect on LinkedIn
-      </a>
-      <a href="#experience" class="btn-secondary">
-        View my work ↓
-      </a>
+<section class="hero" id="top">
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="bar"></span>
+        No. 01 / Profile · <span class="live">Live</span>
+      </div>
+      <h1 class="hero-title">Mazin<br>Kanuga<span class="dot">.</span></h1>
+      <div class="hero-meta">
+        <div>
+          <div class="label">Discipline</div>
+          <div class="val">Lifecycle marketing · Crypto · Fintech</div>
+        </div>
+        <div>
+          <div class="label">Based</div>
+          <div class="val">Toronto, Canada</div>
+        </div>
+        <div>
+          <div class="label">Since</div>
+          <div class="val">2020 → Present</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-status">
-      <div class="status-dot"></div>
-      <span>Currently <strong>Lifecycle Marketing Manager</strong> at <strong style="color: var(--kraken);">Kraken</strong></span>
+
+    <div class="hero-right">
+      <div class="kraken-block">
+        <div class="kraken-col">
+          <div class="kraken-tag">Currently · <strong>Kraken</strong></div>
+          <div class="kraken-headline">Building lifecycle for futures &amp; derivatives in the Pro pod.</div>
+          <div class="status-chip"><span class="dot"></span><span>Active · Apr 2026 →</span></div>
+        </div>
+        <div class="headshot-frame">
+          <img src="mazinkanuga headshot.png" alt="Mazin Kanuga">
+          <div class="caption">MK · 2026</div>
+        </div>
+      </div>
+
+      <div class="pitch-block">
+        <div class="pitch-col-a">
+          <div class="pitch-label">The short pitch</div>
+          <p class="pitch-body">I make crypto and fintech products make sense to people — then build the campaigns that get those people to pay attention.</p>
+        </div>
+        <div class="pitch-col-b">
+          <div>
+            <div class="pitch-label">Open to</div>
+            <div class="pitch-open">Lifecycle &amp; growth roles · Advisory / consulting · Burger collabs (TO only)</div>
+          </div>
+          <div class="pitch-actions">
+            <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="btn-dark">LinkedIn →</a>
+            <a href="#work" class="btn-outline">Work ↓</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="hero-photo-wrap">
-    <img src="headshot.webp" alt="Mazin Kanuga" class="hero-photo">
+
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Years in digital</div>
+    </div>
+    <div class="stat-cell bg-solidus">
+      <div class="stat-num">$6.5M</div>
+      <div class="stat-label">Pipeline generated</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">+239%</div>
+      <div class="stat-label">Organic traffic</div>
+    </div>
+    <div class="stat-cell bg-red">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Smash burgers</div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════ MARQUEE ═══════════════════ -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="dot dot-purple"></span>Lifecycle Marketing</span>
-    <span class="marquee-item"><span class="dot dot-yellow"></span>Event Strategy</span>
-    <span class="marquee-item"><span class="dot dot-teal"></span>B2B + B2C</span>
-    <span class="marquee-item"><span class="dot dot-red"></span>Content & SEO</span>
-    <span class="marquee-item"><span class="dot dot-purple"></span>HubSpot Operations</span>
-    <span class="marquee-item"><span class="dot dot-yellow"></span>Crypto Compliance</span>
-    <span class="marquee-item"><span class="dot dot-teal"></span>Campaign Management</span>
-    <span class="marquee-item"><span class="dot dot-red"></span>Brand Building</span>
-    <span class="marquee-item"><span class="dot dot-purple"></span>Lifecycle Marketing</span>
-    <span class="marquee-item"><span class="dot dot-yellow"></span>Event Strategy</span>
-    <span class="marquee-item"><span class="dot dot-teal"></span>B2B + B2C</span>
-    <span class="marquee-item"><span class="dot dot-red"></span>Content & SEO</span>
-    <span class="marquee-item"><span class="dot dot-purple"></span>HubSpot Operations</span>
-    <span class="marquee-item"><span class="dot dot-yellow"></span>Crypto Compliance</span>
-    <span class="marquee-item"><span class="dot dot-teal"></span>Campaign Management</span>
-    <span class="marquee-item"><span class="dot dot-red"></span>Brand Building</span>
-  </div>
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track"></div>
 </div>
 
-<!-- ═══════════════════ ABOUT ═══════════════════ -->
-<section class="about" id="about">
-  <div class="reveal">
-    <div class="section-label">01 About</div>
-    <h2 class="section-title">The short version.</h2>
-  </div>
+<section class="about" id="index">
   <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I've spent the last several years doing marketing for crypto and fintech companies. B2B on the institutional side, B2C on the consumer side. The products are always technical, the regulations are always shifting, and the audience always needs things explained before they'll do anything.</p>
-      <p>That's meant lifecycle campaigns, global events, SEO, content, and a lot of time inside HubSpot. I've built things from zero more than once. I like the work that's hard to figure out, and I'd rather ship something imperfect than plan something forever.</p>
-    </div>
-    <div class="stats-grid reveal reveal-delay-2">
-      <div class="stat-card">
-        <div class="stat-number">6+</div>
-        <div class="stat-label">Years in Digital Marketing</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">$6.5M+</div>
-        <div class="stat-label">Pipeline Generated</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">+76%</div>
-        <div class="stat-label">YoY Website Traffic Growth</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">Smash Burgers Made</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
-<section id="experience">
-  <div class="reveal">
-    <div class="section-label">02 Experience</div>
-    <h2 class="section-title">Where I've been.</h2>
-  </div>
-  <div class="experience-cards">
-
-    <!-- KRAKEN -->
-    <div class="exp-card kraken reveal">
-      <div class="exp-card-header">
-        <div class="exp-header-text">
-          <div class="exp-company">Kraken</div>
-          <div class="exp-role">Lifecycle Marketing Manager</div>
-          <div class="exp-date">Apr 2026 – Present · Remote, Canada</div>
-        </div>
-        <img src="data:image/jpeg;base64,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5ZstpPrTOdLPDZFXhQrUkIfbNTgGrGUA5xj00cbxp9JQPCrlKO4kc5ZPwX7ZZR7v3Syf3ntllDBHOUBivlo43jT6SgeFXKUfijnLJ+C+Uso937pZO7z2yj8Ec5QGK+WjjeNPpKB4VcpR+KOcsn4L5Syj3fulk7vPbKPwRzlAYr5aOJhFmytypSO3fJpls2swmpRG/dKJhVmyp2oo7atkmGGzaLCTaq3nZ5SiIZZsqfAs17SK7vOUPDINpTANurYTVd5SeYcNkvpFkneNnnKGhUG0pqsr7K9mjCkmojURTNmOds43+MwQaiNopm+nO2cb/GdYuNM3052zjf40rN5nm+nO2cb/ABoSTWTtP8a//8QAKhABAAEACQQBBQEBAAAAAAAAAREAECEwMUFRofAgYXGRgXCxwdHh8UD/2gAIAQEAAT8h+j86zf6WfxNM+AxPYyu1CiR7l9tLOKMcy/Yfppk4aD3EJvSZQn/Wy+Y/4YjGllVMFpGLz6tvNAIALAOpyAhCODTHYDB/MbeKR+/LCr4GqDpU4FDmqRR5S53WkHZQ5Q0SeYKFGV6JIWvoPwnzeQpEAOFwfi89WPUuNItWD2Lw9Zd2JzoOMeSxi7NwkR5WNlvhHR9/HGt2OoUd/wCqpFUcNRivEnulsmmZfDiKFmMmo1HZqFaN7suxZ7KAWmzOx2KOMsYJyHZ/dRjLGCc12P1RSw2Z2OxQwo3qw7NvpqEBii/Ez7t3xGqrk9anCadSIG76DPgtLvxGqrk9anBadHPBUNx0FfBaXfiNVXJ61OC06OeCobjoK+C0u50bWtMw84Puo8s3BBtvwgqHiOdmlPlbs1HVkHIxsh7qGWjf9EjZUMtGv6JG6o7uoIzul6qHCONmhHlZuXaQHSiEaSyYxl/JvRZZbWp2zpEhGkm2OOSd6IlWVxWpCRC0TKnZXHJO9EZFLVc6hUIwmCUg2xxyTvR2zpUlX6a//9oADAMBAAIAAwAAABD333333333333333333333333333333333333333333zK9xj73333333Xzzzy/333332t/zzzzzj33333uo75j8nr33332nyv3z6ir33332qjzajL7X3333333333333333333333333333333333333333333333333333333/8QAHxEBAAIBBAMBAAAAAAAAAAAAAQARMSAhQfBQUXEw/9oACAEDAQE/EPFkbbplIBwp7RCb/A68HOrARjVb+kW99Va99WaCWCDoKSCWCDQKSGSxBoFVrGaYpmmDvE6Ps6Pk6PusE6jXEJXGvIKvmNfQVXMa28x//8QAJxEBAAEDAwMEAgMAAAAAAAAAAREAIUExUaEgYXFQgZGxwdEw4fD/2gAIAQIBAT8Q9KAqQFODMz+hnzY8lMnxhh8QKXhX/GaLDNls+w/I1o4NVqf13Le/8ENDWmX8DO746YGHJ2dxzViWbJsNT9bkPVvCyeccxTh5W71ItZh5/YeDqSHl+ijilypvAseJL0hBoICyhDGutGNLVTeEx7xerQhiAsiDGpeiElrJvCh7xereRiAsgRjUvTQs9S5n0Vw/srl9KmOqK5/UtDkQ7Iycl+1RWoIJZtLMYxzUdqOuyIj8lQ6oIJZIlmMTbmk8gOuyIj8hQ0KlCWSJZjC25p5oDrsjI/IUVDdhLJEs9ltfz6x//8QAJRABAAEDAwMFAQEAAAAAAAAAAREhMVEAEGEwQYEgcZGh8EBw/9oACAEBAAE/EP8AH55kiR90RPj0vJeGXCAOQ0GgN1/uFPgNYf8AJ8xOj5fZT7AT5HV3Nlk4jBymiL+QJLiQTPBT/CSJD9TsBqNcBUOwbFzRih0ckQKACwHqQe4eQaIjc0GujNG47OK+mTp2pG5lxG3Wa2IZVABdVDQ7fWQlZMHYu4DpUqx+Afczks0aNG2CaVQobIiR1TWRGKCSP79ri9Q1lNAFT8qc16h4SwJIiJcEy8DrKdbIAlyt17q9S2BnSgQDkYTkNReuBaUk4Yk6cituklMvl+OtIPBgpCfNQvTAYS1YAT5n4bVK8nhAmIUgRNUdp0YdZFGeGHtDzqYNsFICS1gRJsySxLqdgBUEJKQslA1QpV1kHRQ+DHbPOgAJbbcyagTRqIKxLpACW23MGqESFVRSZMAyKHwY++dSoAKkpJWUgoWjwOxGV/4XVAobDNLG0mOaWNlsU0s+diYJoLjamGabFMU0Wjz/ABxChkI/Azt+/wCjR/Gz/HEKGQj8DO37/o0fxs9WIjMx3EiBzBAwYbOTm1IZkyJMKlx2cHduCPLKChjYNL66RoyyEcUXHZmMuQIkOSoctnQwxIiC4Cpx2B76yBoSyEM0XTZzd25I9sAamOmGp82CZESomdOHGVApySeiMijKrKuxkIOAGREsmpBFSgGeOpGzlRKuXZ/IicKLI9nXkU9nx1P5FTlTdXu7O2dKIRyaiGCFQk8dTkIOEKqrdf8ANf/Z" alt="Kraken" class="exp-logo">
-      </div>
-      <span class="exp-tag">Current Role</span>
-      <p class="exp-summary">
-        Owning lifecycle marketing for Kraken's futures and derivatives products within the Pro trading pod. The job is converting spot traders into futures users, building the journeys, activation sequences, and campaign infrastructure to move people up the product ladder across multiple GEOs and regulatory environments.
+    <aside class="about-aside">
+      <div class="section-label">§ 01 · Index</div>
+      <div class="about-aside-title">Short<br>version<span class="dot">.</span></div>
+      <div class="about-read"><span class="bar"></span>Read · 40s</div>
+    </aside>
+    <div class="about-body">
+      <p>
+        <span class="dropcap">I</span>'ve spent the last several years doing marketing for crypto and fintech companies. B2B on the institutional side, B2C on the consumer side. The products are always technical, the regulations are always shifting, and the audience always needs things explained before they'll do anything.
       </p>
-      <button class="exp-toggle" onclick="toggleCard(this)">
-        More details
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="exp-card-inner">
-        <ul class="exp-bullets">
-          <li>Building intent-based lifecycle journeys from scratch in Braze: welcome series, spot-to-futures conversion flows, and incentive campaigns across email, push, and in-app, with geo-level targeting and compliance logic baked into every send.</li>
-          <li>Leading the campaign rollout for major product launches including US perpetual futures and retail margin, coordinating across product marketing, CRM ops, and compliance under tight timelines.</li>
-          <li>Running experimentation through Statsig with holdout groups to measure incremental revenue lift, not open rates. Focused on proving that lifecycle is a real growth lever for pro trading products.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SOLIDUS LABS -->
-    <div class="exp-card solidus reveal reveal-delay-1">
-      <div class="exp-card-header">
-        <div class="exp-header-text">
-          <div class="exp-company">Solidus Labs</div>
-          <div class="exp-role">Senior Digital Marketing Manager</div>
-          <div class="exp-date">Sep 2023 – Mar 2026 · 2 yrs 7 mos · Remote (New York HQ)</div>
-        </div>
-        <img src="data:image/jpeg;base64,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" alt="Solidus Labs" class="exp-logo">
-      </div>
-      <span class="exp-tag">B2B · RegTech · Crypto Compliance</span>
-      <p class="exp-summary">
-        Ran the full digital marketing operation for a crypto market integrity platform. Grew organic traffic 239%, drove 146K+ website sessions, and built programs that generated over $6.5M in sales pipeline. If it touched marketing, I was probably in the room for it.
+      <p>
+        That's meant lifecycle campaigns, global events, SEO, content, and a lot of time inside HubSpot. <strong>I've built things from zero more than once.</strong> I like the work that's hard to figure out, and I'd rather ship something imperfect than plan something forever.
       </p>
-      <button class="exp-toggle" onclick="toggleCard(this)">
-        More details
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="exp-card-inner">
-        <ul class="exp-bullets">
-          <li>Owned campaigns end to end across email, paid, organic, and events. Drove a 239% increase in organic traffic, grew top 3 keyword rankings by 275%, and improved the site health score from 26 to 75 after a full website overhaul. Nearly doubled referring domains to ~1,950 and got the brand picked up by LLMs like ChatGPT and Perplexity as a referral source, driving 900+ sessions from AI platforms alone.</li>
-          <li>Built and managed the entire HubSpot architecture, including lifecycle workflows, lead scoring, segmentation, consent logic, and dashboards. Set up RB2B for anonymous visitor identification, built Slack notification pipelines for real time lead alerts, and worked closely with the sales team on pipeline attribution and deal progression.</li>
-          <li>Produced 60+ podcast episodes, webinars, and video content that accumulated over 10,000 plays and 2,200+ hours of listen time. Grew the podcast audience by 999% in listeners and 521% in followers.</li>
-          <li>Helped grow the DACOM Summit into a global series across New York, Amsterdam, Paris, and Singapore, bringing together 196 companies, 295 attendees, and 60 speakers while generating $6.5M in attributed sales pipeline at a 1:57 MROI.</li>
-          <li>Built the Trade Surveillance Academy from scratch into an industry certification with 444 enrolled students, 170 graduates, and a 4.6/5 relevancy rating. Piloted the program with Fidelity's Financial Crimes team, achieving a 5/5 satisfaction score.</li>
-          <li>Launched gated reports and whitepapers with full HubSpot attribution workflows, driving hundreds of downloads and feeding qualified leads directly to sales. Also ran the "AI or Die" campaign and Compliance Survival Kit direct mail program, reaching 100+ CCOs at firms like Robinhood, RBC, and Barclays.</li>
-        </ul>
-      </div>
     </div>
+  </div>
+</section>
 
-    <!-- COINSQUARE -->
-    <div class="exp-card coinsquare reveal reveal-delay-2">
-      <div class="exp-card-header">
-        <div class="exp-header-text">
-          <div class="exp-company">Coinsquare</div>
-          <div class="exp-role">Digital Marketing Specialist</div>
-          <div class="exp-date">Toronto, Canada</div>
+<section id="work">
+  <div class="section-head">
+    <div>
+      <div class="section-label">§ 02 · Positions</div>
+      <h2 class="section-title">Work<span class="dot">.</span></h2>
+    </div>
+    <div style="font-family: var(--sans); font-size: 14px; color: var(--ink-dim); max-width: 380px; line-height: 1.55; text-wrap: pretty;">
+      Three companies. Two audiences. One through-line — making complicated products make sense to real people.
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab is-active" data-co="kraken" data-target="kraken">
+      <div>
+        <div class="tab-tag">2026 → · Current</div>
+        <div class="tab-co">Kraken<span class="dot">.</span></div>
+      </div>
+      <div class="tab-indicator">●</div>
+    </button>
+    <button class="tab" data-co="solidus" data-target="solidus">
+      <div>
+        <div class="tab-tag">2023 — 26</div>
+        <div class="tab-co">Solidus<span class="dot">.</span></div>
+      </div>
+      <div class="tab-indicator">○</div>
+    </button>
+    <button class="tab" data-co="coinsquare" data-target="coinsquare">
+      <div>
+        <div class="tab-tag">Earlier</div>
+        <div class="tab-co">Coinsquare<span class="dot">.</span></div>
+      </div>
+      <div class="tab-indicator">○</div>
+    </button>
+  </div>
+
+  <div id="tab-card-host"></div>
+</section>
+
+<section id="shipped">
+  <div class="section-head">
+    <div>
+      <div class="section-label">§ 03 · Shipped</div>
+      <h2 class="section-title">Shipped<span class="dot">.</span></h2>
+    </div>
+    <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 1.5px; text-align: right; text-transform: uppercase;">
+      <div>N = 04 · selected</div>
+      <div style="margin-top: 4px;">hover to reveal ↓</div>
+    </div>
+  </div>
+
+  <div class="campaigns-grid">
+    <a href="https://dacom.soliduslabs.com/" target="_blank" rel="noopener" class="project" data-color="solidus">
+      <div class="project-head">
+        <div class="project-meta">01 / Event · B2B</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <h3 class="project-title">DACOM Summit Series</h3>
+          <p class="project-desc">Global compliance summit in NY, Amsterdam, Paris, and Singapore. Grew into the flagship event for digital-asset market integrity.</p>
         </div>
-        <img src="data:image/jpeg;base64,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" alt="Coinsquare" class="exp-logo">
+        <div class="project-stat-col">
+          <div class="project-stat-num">$6.5M</div>
+          <div class="project-stat-label">Pipeline</div>
+        </div>
       </div>
-      <span class="exp-tag">B2C · Crypto Exchange</span>
-      <p class="exp-summary">
-        Handled consumer-facing digital marketing for one of Canada's biggest crypto exchanges. The job was getting people to sign up, start trading, and stick around.
-      </p>
-      <button class="exp-toggle" onclick="toggleCard(this)">
-        More details
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="exp-card-inner">
-        <ul class="exp-bullets">
-          <li>Ran B2C lifecycle campaigns focused on acquisition, onboarding, and getting users to their first trade.</li>
-          <li>Built regionalized campaign strategies with liquid logic for targeting different audience segments across Canada.</li>
-          <li>This is where I developed my consumer marketing instincts, specifically within a regulated crypto environment where you can't just say whatever you want.</li>
-        </ul>
+    </a>
+    <a href="https://academy.soliduslabs.com/" target="_blank" rel="noopener" class="project" data-color="coinsquare">
+      <div class="project-head">
+        <div class="project-meta">02 / Product · Cert</div>
+        <div class="project-arrow">↗</div>
       </div>
+      <div class="project-body">
+        <div>
+          <h3 class="project-title">Trade Surveillance Academy</h3>
+          <p class="project-desc">Educational platform built from scratch into an industry certification. Piloted with Fidelity Financial Crimes at 5/5.</p>
+        </div>
+        <div class="project-stat-col">
+          <div class="project-stat-num">444</div>
+          <div class="project-stat-label">Enrolled</div>
+        </div>
+      </div>
+    </a>
+    <a href="https://www.soliduslabs.com/ai-or-die" target="_blank" rel="noopener" class="project" data-color="red">
+      <div class="project-head">
+        <div class="project-meta">03 / Brand · Direct Mail</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <h3 class="project-title">"AI or Die" Campaign</h3>
+          <p class="project-desc">Content campaign + Compliance Survival Kit direct mail. Reached 100+ CCOs at Robinhood, RBC, Barclays. Booked meetings from the box.</p>
+        </div>
+        <div class="project-stat-col">
+          <div class="project-stat-num">100+</div>
+          <div class="project-stat-label">CCOs reached</div>
+        </div>
+      </div>
+    </a>
+    <a href="https://www.soliduslabs.com/digital-asset-compliance-careers" target="_blank" rel="noopener" class="project" data-color="kraken">
+      <div class="project-head">
+        <div class="project-meta">04 / Content · SEO</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <h3 class="project-title">Digital Asset Compliance Careers</h3>
+          <p class="project-desc">Content hub + aggregated job board. Positioned Solidus as the default destination for an emerging field.</p>
+        </div>
+        <div class="project-stat-col">
+          <div class="project-stat-num">3.2M</div>
+          <div class="project-stat-label">Impressions</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="section-head" style="border-bottom: 1px solid var(--ink);">
+    <div>
+      <div class="section-label">§ 04 · Toolkit</div>
+      <h2 class="section-title">Toolkit<span class="dot">.</span></h2>
     </div>
-
   </div>
-</section>
-
-<!-- ═══════════════════ PROJECTS ═══════════════════ -->
-<section class="projects" id="projects">
-  <div class="reveal">
-    <div class="section-label">03 Projects & Campaigns</div>
-    <h2 class="section-title">Things I've built and shipped.</h2>
-  </div>
-  <div class="projects-grid">
-
-    <a href="https://dacom.soliduslabs.com/" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-img-container" style="background: #000;">
-        <img src="dacom-logo.webp" alt="DACOM Summit Series" class="project-img" loading="lazy">
-      </div>
-      <div class="project-body">
-        <div class="project-name">DACOM Summit Series</div>
-        <p class="project-desc">Solidus Labs' flagship Digital Asset Compliance summit. I helped grow it into a global series across New York, Amsterdam, Paris, and Singapore, bringing together 196 companies, 295 attendees, and 60 speakers while generating over $6.5M in attributed pipeline at a 1:57 marketing ROI.</p>
-        <span class="project-link-tag">Visit DACOM →</span>
-      </div>
-    </a>
-
-    <a href="https://academy.soliduslabs.com/" target="_blank" rel="noopener" class="project-card reveal reveal-delay-1">
-      <div class="project-img-container" style="background: #000;">
-        <img src="tsa-badge.webp" alt="Trade Surveillance Academy" class="project-img" loading="lazy">
-      </div>
-      <div class="project-body">
-        <div class="project-name">Trade Surveillance Academy</div>
-        <p class="project-desc">Solidus Labs' educational platform for compliance professionals. I built this from nothing to 444 enrolled students and 170 certified graduates, with a 4.6/5 relevancy rating. Piloted with Fidelity's Financial Crimes team with a 5/5 satisfaction score, and led the expansion into an executive compliance track targeting TradFi leaders.</p>
-        <span class="project-link-tag">Visit TSA →</span>
-      </div>
-    </a>
-
-    <a href="https://www.soliduslabs.com/ai-or-die" target="_blank" rel="noopener" class="project-card reveal reveal-delay-2">
-      <div class="project-img-container" style="background: #000;">
-        <img src="ai-or-die-full.webp" alt="AI or Die Campaign" class="project-img" loading="lazy">
-      </div>
-      <div class="project-body">
-        <div class="project-name">AI or Die Campaign</div>
-        <p class="project-desc">A content campaign about AI's role in crypto compliance and market surveillance. Paired with the Compliance Survival Kit direct mail program that reached 100+ CCOs at firms like Robinhood, RBC, and Barclays, booking meetings directly from the mailers. The creative was intentionally loud because the topic deserved more than another boring whitepaper.</p>
-        <span class="project-link-tag">View Campaign →</span>
-      </div>
-    </a>
-
-    <a href="https://www.soliduslabs.com/digital-asset-compliance-careers" target="_blank" rel="noopener" class="project-card reveal reveal-delay-3">
-      <div class="project-img-container" style="background: #000;">
-        <img src="wanted-poster.webp" alt="Digital Asset Compliance Careers" class="project-img" loading="lazy">
-      </div>
-      <div class="project-body">
-        <div class="project-name">Digital Asset Compliance Careers</div>
-        <p class="project-desc">A content hub and job board aimed at people building careers in digital asset compliance, aggregating roles from LinkedIn, CryptocurrencyJobs, and Web3Careers. Positioned Solidus Labs as the go-to destination for an emerging field, part of a broader content strategy that drove 3.2M LinkedIn impressions and 146K+ website sessions.</p>
-        <span class="project-link-tag">View Page →</span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ═══════════════════ SKILLS ═══════════════════ -->
-<section id="skills">
-  <div class="reveal">
-    <div class="section-label">04 Skills & Tools</div>
-    <h2 class="section-title">What I work with.</h2>
-  </div>
-  <div class="skills-container reveal">
-    <span class="skill-chip purple">Lifecycle Marketing</span>
-    <span class="skill-chip navy">Campaign Strategy</span>
-    <span class="skill-chip teal">B2B Marketing</span>
-    <span class="skill-chip yellow">B2C Marketing</span>
-    <span class="skill-chip purple">HubSpot (Admin)</span>
-    <span class="skill-chip navy">Email Marketing</span>
-    <span class="skill-chip teal">Event & Field Marketing</span>
-    <span class="skill-chip red">SEO & AEO</span>
-    <span class="skill-chip purple">Content Strategy</span>
-    <span class="skill-chip navy">Lead Generation</span>
-    <span class="skill-chip teal">Webinar Production</span>
-    <span class="skill-chip yellow">Podcast Production</span>
-    <span class="skill-chip red">Paid Media</span>
-    <span class="skill-chip purple">Marketing Ops</span>
-    <span class="skill-chip navy">ABM</span>
-    <span class="skill-chip teal">Sales Enablement</span>
-    <span class="skill-chip yellow">Figma</span>
-    <span class="skill-chip red">Webflow</span>
-    <span class="skill-chip purple">Google Analytics</span>
-    <span class="skill-chip navy">LinkedIn Ads</span>
-    <span class="skill-chip teal">Cross-Functional Collab</span>
-    <span class="skill-chip yellow">Crypto & Compliance</span>
-  </div>
-</section>
-
-<!-- ═══════════════════ BEYOND WORK ═══════════════════ -->
-<section class="about" id="beyond">
-  <div class="reveal">
-    <div class="section-label">05 Beyond Work</div>
-    <h2 class="section-title">The stuff that keeps me going.</h2>
-  </div>
-  <div class="side-hustles-grid">
-
-    <a href="https://mazsburgers.ca" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
-    <div class="hustle-card burgers reveal">
-      <img src="maz-burgers.webp" alt="Maz's Burgers" class="hustle-icon">
-      <div class="hustle-title">Maz's Burgers 🍔</div>
-      <div class="hustle-desc">
-        I run a smash burger pop-up on the side. Double-stacked, crispy-edged patties with my own custom seasoning blend. What started as cooking for friends turned into a real thing with actual lineups. We sell out pretty much every time 😅
-      </div>
-      <div class="hustle-cta">Check out Maz's Burgers →</div>
+  <div class="toolkit-grid">
+    <div class="toolkit-col">
+      <div class="toolkit-head c-kraken">Lifecycle<span class="dot">.</span></div>
+      <div class="toolkit-item"><span>Lifecycle Marketing</span><span class="num">/01</span></div>
+      <div class="toolkit-item"><span>HubSpot (Admin)</span><span class="num">/02</span></div>
+      <div class="toolkit-item"><span>Braze</span><span class="num">/03</span></div>
+      <div class="toolkit-item"><span>Email Marketing</span><span class="num">/04</span></div>
+      <div class="toolkit-item"><span>Marketing Ops</span><span class="num">/05</span></div>
+      <div class="toolkit-item"><span>Statsig</span><span class="num">/06</span></div>
     </div>
-    </a>
-
-    <a href="https://ramadansammich.ca" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
-    <div class="hustle-card volunteer reveal reveal-delay-1">
-      <img src="ramadan-sammich.webp" alt="Ramadan Sammich" class="hustle-icon">
-      <div class="hustle-title">Ramadan Sammich</div>
-      <div class="hustle-desc">
-        Every Ramadan, I handle the marketing for Ramadan Sammich, a community initiative that feeds people in need. Social content, outreach, whatever gets more people involved. It's the kind of work that puts everything else in perspective.
-      </div>
-      <div class="hustle-cta">Check out Ramadan Sammich →</div>
+    <div class="toolkit-col">
+      <div class="toolkit-head c-solidus">Growth<span class="dot">.</span></div>
+      <div class="toolkit-item"><span>SEO &amp; AEO</span><span class="num">/01</span></div>
+      <div class="toolkit-item"><span>Content Strategy</span><span class="num">/02</span></div>
+      <div class="toolkit-item"><span>Paid Media</span><span class="num">/03</span></div>
+      <div class="toolkit-item"><span>LinkedIn Ads</span><span class="num">/04</span></div>
+      <div class="toolkit-item"><span>Webinar Prod.</span><span class="num">/05</span></div>
+      <div class="toolkit-item"><span>Podcast Prod.</span><span class="num">/06</span></div>
     </div>
-    </a>
-
+    <div class="toolkit-col">
+      <div class="toolkit-head c-coinsquare">GTM<span class="dot">.</span></div>
+      <div class="toolkit-item"><span>B2B · B2C</span><span class="num">/01</span></div>
+      <div class="toolkit-item"><span>ABM</span><span class="num">/02</span></div>
+      <div class="toolkit-item"><span>Event &amp; Field</span><span class="num">/03</span></div>
+      <div class="toolkit-item"><span>Lead Gen</span><span class="num">/04</span></div>
+      <div class="toolkit-item"><span>Sales Enablement</span><span class="num">/05</span></div>
+      <div class="toolkit-item"><span>Campaign Strategy</span><span class="num">/06</span></div>
+    </div>
+    <div class="toolkit-col">
+      <div class="toolkit-head c-red">Craft<span class="dot">.</span></div>
+      <div class="toolkit-item"><span>Figma</span><span class="num">/01</span></div>
+      <div class="toolkit-item"><span>Webflow</span><span class="num">/02</span></div>
+      <div class="toolkit-item"><span>Google Analytics</span><span class="num">/03</span></div>
+      <div class="toolkit-item"><span>Crypto &amp; Compliance</span><span class="num">/04</span></div>
+      <div class="toolkit-item"><span>Cross-Functional</span><span class="num">/05</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<section id="beyond">
+  <div class="section-head">
+    <div>
+      <div class="section-label">§ 05 · Beyond</div>
+      <h2 class="section-title">Off-hours<span class="dot">.</span></h2>
+    </div>
+  </div>
+  <div class="beyond-grid">
+    <a href="https://mazsburgers.ca" target="_blank" rel="noopener" class="beyond-card c-red">
+      <div class="beyond-watermark">B.</div>
+      <div class="beyond-inner">
+        <div class="beyond-tag">Weekend pop-up</div>
+        <h3 class="beyond-title">Maz's<br>Burgers.</h3>
+        <p class="beyond-desc">Smash pop-up I run on the side. Double-stacked, crispy-edged patties with my own seasoning blend. Started cooking for friends. Now we sell out pretty much every time.</p>
+      </div>
+      <div class="beyond-foot">→ mazsburgers.ca</div>
+    </a>
+    <a href="https://ramadansammich.ca" target="_blank" rel="noopener" class="beyond-card c-ink">
+      <div class="beyond-watermark">R.</div>
+      <div class="beyond-inner">
+        <div class="beyond-tag">Every Ramadan</div>
+        <h3 class="beyond-title">Ramadan<br>Sammich.</h3>
+        <p class="beyond-desc">Every Ramadan I handle marketing for Ramadan Sammich — a community initiative that feeds people in need. The kind of work that puts everything else in perspective.</p>
+      </div>
+      <div class="beyond-foot">→ ramadansammich.ca</div>
+    </a>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-name">Mazin Kanuga</div>
-  <div class="footer-tagline">Marketing guy. Crypto native. Makes burgers on the side.</div>
-  <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="footer-linkedin">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    Say Hello
-  </a>
-  <div class="footer-copy">© 2026 Mazin Kanuga</div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="section-label">§ 06 · Contact</div>
+        <h3 class="footer-hello">Hello<span class="dot">?</span></h3>
+      </div>
+      <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="footer-cta">LinkedIn →</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mazin Kanuga</span>
+      <span>Marketing · Crypto · Burgers</span>
+      <span>Toronto, CA</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-// Nav scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+  // Nav drop-shadow on scroll
+  (function () {
+    var nav = document.getElementById('nav');
+    var onScroll = function () {
+      if (window.scrollY > 20) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+  // Ticker — duplicate strip for seamless loop
+  (function () {
+    var items = ['Lifecycle Marketing','HubSpot (Admin)','Braze','Event Strategy','B2B + B2C','SEO & AEO','Content Strategy','Crypto Compliance','Campaign Management','Brand Building','Paid Media','Podcast Production'];
+    var track = document.getElementById('ticker-track');
+    var build = function () {
+      return items.map(function (x) {
+        return '<span class="ticker-item"><span class="diamond">◆</span>' + x + '</span>';
+      }).join('');
+    };
+    track.innerHTML = build() + build();
+  })();
+
+  // Positions tabs
+  (function () {
+    var POSITIONS = {
+      kraken: {
+        co: 'Kraken', role: 'Lifecycle Marketing Manager',
+        date: 'Apr 2026 — Present', loc: 'Remote · Canada',
+        tag: '2026 → · Currently',
+        body: "Owning lifecycle for Kraken's futures and derivatives in the Pro trading pod. Converting spot traders into futures users — building the journeys, activation sequences, and campaign infrastructure to move people up the product ladder across multiple geos and regulatory environments.",
+        bullets: [
+          ['Braze', 'Welcome, spot-to-futures conversion, and incentive flows with geo-targeting and compliance logic baked in.'],
+          ['Launches', 'Campaign rollout for US perp futures and retail margin, across PMM, CRM ops, and compliance.'],
+          ['Statsig', 'Holdouts to measure incremental revenue lift — proving lifecycle is a real growth lever for pro trading.'],
+        ],
+      },
+      solidus: {
+        co: 'Solidus', role: 'Senior Digital Marketing Manager · Solidus Labs',
+        date: 'Sep 2023 — Mar 2026', loc: 'Remote · New York HQ',
+        tag: '2023 — 26',
+        body: "Ran the full digital marketing operation for a crypto market-integrity platform. Grew organic 239%, drove 146K+ sessions, and built programs that generated over $6.5M in sales pipeline. If it touched marketing, I was probably in the room.",
+        bullets: [
+          ['Growth', '+239% organic · +275% top-3 keyword rankings · site health 26 → 75 · ~1,950 referring domains.'],
+          ['HubSpot', 'Full lifecycle, scoring, segmentation, consent, attribution dashboards · RB2B + Slack lead alerts.'],
+          ['DACOM Summit', 'NY / AMS / PAR / SIN. 196 companies · 295 attendees · $6.5M pipeline @ 1:57 MROI.'],
+          ['TSA', 'Built from zero — 444 enrolled, 170 graduates, 4.6/5 relevancy, Fidelity pilot 5/5.'],
+          ['AI or Die', 'Content + Compliance Survival Kit direct mail to 100+ CCOs at Robinhood, RBC, Barclays.'],
+          ['Podcast', '60+ eps · 10K+ plays · 2,200+ listen hours · +999% listeners.'],
+        ],
+      },
+      coinsquare: {
+        co: 'Coinsquare', role: 'Digital Marketing Specialist',
+        date: 'Before 2023', loc: 'Toronto · Canada',
+        tag: 'Earlier',
+        body: "Consumer-facing digital marketing for one of Canada's biggest crypto exchanges. The job was getting people to sign up, start trading, and stick around — inside a heavily regulated market.",
+        bullets: [
+          ['B2C Lifecycle', 'Acquisition, onboarding, and the path to first trade.'],
+          ['Regional', 'Campaign strategies with liquid logic for segments across Canada.'],
+          ['Reg context', 'Where my consumer-marketing instincts got built — under real constraints.'],
+        ],
+      },
+    };
+
+    var host = document.getElementById('tab-card-host');
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+      });
     }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Experience card expand/collapse
-function toggleCard(btn) {
-  const card = btn.closest('.exp-card');
-  card.classList.toggle('expanded');
-  btn.firstChild.textContent = card.classList.contains('expanded') ? 'Less details' : 'More details';
-}
-
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function render(id) {
+      var p = POSITIONS[id];
+      var bullets = p.bullets.map(function (b) {
+        return '<div class="bullet">' +
+          '<div class="bullet-label c-' + id + '">' + esc(b[0]) + '</div>' +
+          '<div class="bullet-detail">' + esc(b[1]) + '</div>' +
+        '</div>';
+      }).join('');
+      host.innerHTML =
+        '<div class="tab-card">' +
+          '<div class="tab-hero c-' + id + '">' +
+            '<div class="tab-hero-watermark">' + esc(p.co[0]) + '.</div>' +
+            '<div class="tab-hero-inner">' +
+              '<div class="tab-hero-tag">' + esc(p.tag) + '</div>' +
+              '<div class="tab-hero-co">' + esc(p.co) + '<span class="dot">.</span></div>' +
+              '<div class="tab-hero-role">' + esc(p.role) + '</div>' +
+            '</div>' +
+            '<div class="tab-hero-meta">' +
+              '<div>' + esc(p.date) + '</div>' +
+              '<div class="loc">' + esc(p.loc) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="tab-detail">' +
+            '<p class="tab-detail-body">' + esc(p.body) + '</p>' +
+            '<div>' + bullets + '</div>' +
+          '</div>' +
+        '</div>';
     }
-  });
-});
+
+    var tabs = document.querySelectorAll('#tabs .tab');
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-target');
+        tabs.forEach(function (b) {
+          b.classList.toggle('is-active', b === btn);
+          var ind = b.querySelector('.tab-indicator');
+          if (ind) ind.textContent = (b === btn) ? '●' : '○';
+        });
+        render(target);
+      });
+    });
+
+    render('kraken');
+  })();
 </script>
 
 </body>
