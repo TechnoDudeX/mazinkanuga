@@ -265,39 +265,16 @@
   .tab.is-active[data-co="coinsquare"] { background: var(--coinsquare); color: var(--ink); }
 
   .tab-card {
-    display: grid; grid-template-columns: 420px 1fr; min-height: 520px;
     animation: fadeUp .35s ease both;
   }
-  .tab-hero {
-    padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between;
-    border-right: 1px solid var(--ink); position: relative; overflow: hidden;
-  }
-  .tab-hero.c-kraken { background: var(--kraken); color: #fff; }
-  .tab-hero.c-solidus { background: var(--solidus); color: var(--ink); }
-  .tab-hero.c-coinsquare { background: var(--coinsquare); color: var(--ink); }
-  .tab-hero-watermark {
-    position: absolute; bottom: -40px; right: -30px;
-    font-family: var(--display); font-size: 380px; font-weight: 900;
-    color: rgba(0,0,0,0.06); line-height: 0.8; pointer-events: none;
-  }
-  .tab-hero-inner { position: relative; }
-  .tab-hero-logo {
-    width: 56px; height: 56px; border-radius: 10px; display: block;
-    margin-bottom: 22px; background: #fff;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.35), 0 6px 20px rgba(0,0,0,0.12);
-  }
-  .tab-hero.c-solidus .tab-hero-logo { box-shadow: 0 0 0 1px rgba(10,10,10,0.15), 0 6px 20px rgba(0,0,0,0.08); }
-  .tab-hero.c-coinsquare .tab-hero-logo { box-shadow: 0 0 0 1px rgba(10,10,10,0.15), 0 6px 20px rgba(0,0,0,0.08); }
-  .tab-hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 18px; }
-  .tab-hero-co { font-family: var(--display); font-size: 96px; font-weight: 900; letter-spacing: -3.2px; line-height: 0.85; margin-bottom: 18px; }
-  /* Coinsquare is the longest co name — scale down so it fits the column */
-  .tab-hero.c-coinsquare .tab-hero-co { font-size: clamp(36px, 3.4vw, 50px); letter-spacing: -1.6px; }
-  .tab-hero-co .dot { opacity: 0.4; }
-  .tab-hero-role { font-family: var(--sans); font-size: 22px; font-weight: 500; line-height: 1.2; max-width: 340px; }
-  .tab-hero-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; position: relative; }
-  .tab-hero-meta .loc { margin-top: 4px; opacity: 0.7; }
 
-  .tab-detail { padding: 48px 52px; display: grid; grid-template-rows: auto 1fr; gap: 28px; }
+  .tab-detail { padding: 48px 52px; display: grid; gap: 28px; align-content: start; }
+  .tab-detail-head { display: grid; gap: 10px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .tab-detail-role { font-family: var(--display); font-size: 40px; font-weight: 900; letter-spacing: -1.2px; line-height: 1.05; color: var(--ink); }
+  .tab-detail-head.c-kraken .tab-detail-role { color: var(--kraken); }
+  .tab-detail-head.c-solidus .tab-detail-role { color: #9a7400; }
+  .tab-detail-head.c-coinsquare .tab-detail-role { color: #008866; }
+  .tab-detail-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-dim); }
   .tab-detail-body { font-family: var(--sans); font-size: 19px; line-height: 1.52; color: var(--ink); text-wrap: pretty; max-width: 820px; }
   .bullet {
     display: grid; grid-template-columns: 160px 1fr; gap: 28px;
@@ -434,10 +411,8 @@
     .pitch-block { padding: 28px 36px; }
     .section-head { padding: 56px 40px; }
     .about { padding: 72px 40px; }
-    .tab-hero { padding: 40px 36px; }
-    .tab-hero-co { font-size: clamp(56px, 8vw, 96px); letter-spacing: -2.4px; }
-    .tab-hero-watermark { font-size: clamp(220px, 30vw, 380px); }
     .tab-detail { padding: 40px 40px; }
+    .tab-detail-role { font-size: 34px; letter-spacing: -1px; }
     .tab-detail-body { font-size: 17px; }
     .beyond-card { padding: 40px 36px; }
     .beyond-title { font-size: clamp(56px, 8vw, 80px); letter-spacing: -2.4px; }
@@ -470,11 +445,8 @@
     .tabs { grid-template-columns: repeat(3, 1fr); border-right: none; border-bottom: 1px solid var(--ink); }
     .tab { border-bottom: none; border-right: 1px solid var(--ink); }
     .tab:last-child { border-right: none; }
-    .tab-card { grid-template-columns: 340px 1fr; min-height: auto; }
-    .tab-hero { padding: 36px 32px; }
-    .tab-hero-co { font-size: 64px; letter-spacing: -2px; }
-    .tab-hero-watermark { font-size: 260px; }
     .tab-detail { padding: 36px 32px; }
+    .tab-detail-role { font-size: 30px; letter-spacing: -0.8px; }
 
     .toolkit-head { font-size: 40px; padding: 24px 26px; }
     .toolkit-item { padding: 13px 26px; font-size: 14px; }
@@ -541,12 +513,8 @@
     .tab { border-right: none; border-bottom: 1px solid var(--ink); padding: 18px 24px; }
     .tab:last-child { border-bottom: none; }
     .tab-co { font-size: 24px; }
-    .tab-card { grid-template-columns: 1fr; }
-    .tab-hero { border-right: none; border-bottom: 1px solid var(--ink); padding: 36px 24px; }
-    .tab-hero-co { font-size: clamp(48px, 11vw, 72px); letter-spacing: -1.8px; }
-    .tab-hero-role { font-size: 18px; }
-    .tab-hero-watermark { font-size: 200px; bottom: -20px; right: -20px; }
     .tab-detail { padding: 32px 24px; }
+    .tab-detail-role { font-size: 26px; letter-spacing: -0.6px; }
     .tab-detail-body { font-size: 16px; }
     .bullet { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
     .bullet-label { font-size: 10px; }
@@ -1015,20 +983,11 @@
       }).join('');
       host.innerHTML =
         '<div class="tab-card">' +
-          '<div class="tab-hero c-' + id + '">' +
-            '<div class="tab-hero-watermark">' + esc(p.co[0]) + '.</div>' +
-            '<div class="tab-hero-inner">' +
-              '<img class="tab-hero-logo" src="' + esc(p.logo) + '" alt="' + esc(p.co) + ' logo">' +
-              '<div class="tab-hero-tag">' + esc(p.tag) + '</div>' +
-              '<div class="tab-hero-co">' + esc(p.co) + '<span class="dot">.</span></div>' +
-              '<div class="tab-hero-role">' + esc(p.role) + '</div>' +
-            '</div>' +
-            '<div class="tab-hero-meta">' +
-              '<div>' + esc(p.date) + '</div>' +
-              '<div class="loc">' + esc(p.loc) + '</div>' +
-            '</div>' +
-          '</div>' +
           '<div class="tab-detail">' +
+            '<header class="tab-detail-head c-' + id + '">' +
+              '<div class="tab-detail-role">' + esc(p.role) + '</div>' +
+              '<div class="tab-detail-meta">' + esc(p.date) + ' · ' + esc(p.loc) + '</div>' +
+            '</header>' +
             '<p class="tab-detail-body">' + esc(p.body) + '</p>' +
             '<div>' + bullets + '</div>' +
           '</div>' +
