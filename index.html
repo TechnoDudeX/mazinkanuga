@@ -482,9 +482,25 @@
     }
     .nav.is-open .nav-cta { display: flex; }
 
+    .hero-main { position: relative; }
     .hero-left { padding: 48px 24px 40px; }
     .hero-title { line-height: 0.88; }
     .hero-meta { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; padding-top: 20px; }
+
+    .hero-right {
+      position: absolute; top: 40px; right: 24px;
+      width: 96px; border-bottom: none;
+    }
+    .hero-right .headshot-frame {
+      width: 96px; height: 96px; min-height: 0; aspect-ratio: 1 / 1;
+      border: 1px solid var(--ink);
+    }
+    .hero-right .headshot-frame::before { display: none; }
+    .hero-right .headshot-frame img {
+      filter: none; mix-blend-mode: normal;
+      object-position: center 15%;
+    }
+    .hero-right .headshot-frame .caption { display: none; }
 
     .kraken-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
     .headshot-frame { min-height: 280px; }
