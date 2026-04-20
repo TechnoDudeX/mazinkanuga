@@ -359,6 +359,7 @@
     display: flex; flex-direction: column; justify-content: space-between;
     position: relative; overflow: hidden;
   }
+  .beyond-card.c-skincare { background: #c8e6cf; color: var(--ink); border-bottom: 1px solid var(--ink); grid-column: 1 / -1; }
   .beyond-card.c-red { background: var(--red); color: var(--bg); border-right: 1px solid var(--ink); }
   .beyond-card.c-ink { background: var(--ink); color: var(--bg); }
   .beyond-watermark {
@@ -366,6 +367,7 @@
     font-family: var(--display); font-size: 320px; font-weight: 900;
     line-height: 0.8; pointer-events: none;
   }
+  .beyond-card.c-skincare .beyond-watermark { color: rgba(10,10,10,0.07); }
   .beyond-card.c-red .beyond-watermark { color: rgba(255,255,255,0.08); }
   .beyond-card.c-ink .beyond-watermark { color: rgba(255,255,255,0.05); }
   .beyond-inner { position: relative; }
@@ -374,6 +376,7 @@
   .beyond-card.c-ink .beyond-tag { color: var(--accent); opacity: 0.6; }
   .beyond-title { font-family: var(--display); font-size: 80px; font-weight: 900; letter-spacing: -2.8px; line-height: 0.9; margin-bottom: 20px; }
   .beyond-desc { font-family: var(--sans); font-size: 16px; line-height: 1.55; max-width: 440px; text-wrap: pretty; }
+  .beyond-card.c-skincare .beyond-desc { opacity: 0.85; }
   .beyond-card.c-red .beyond-desc { opacity: 0.92; }
   .beyond-card.c-ink .beyond-desc { opacity: 0.75; }
   .beyond-foot { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; position: relative; }
@@ -844,6 +847,15 @@
     </div>
   </div>
   <div class="beyond-grid">
+    <a href="https://trackmyskincare.app/" target="_blank" rel="noopener" class="beyond-card c-skincare">
+      <div class="beyond-watermark">S.</div>
+      <div class="beyond-inner">
+        <div class="beyond-tag">Side project · AI</div>
+        <h3 class="beyond-title">Track My<br>Skincare.</h3>
+        <p class="beyond-desc">A personalized skincare routine generator. Answer a few questions about your skin, and Claude builds a 7-day AM/PM routine using the products you already own — then you track your streak day-by-day.</p>
+      </div>
+      <div class="beyond-foot">→ trackmyskincare.app</div>
+    </a>
     <a href="https://mazsburgers.ca" target="_blank" rel="noopener" class="beyond-card c-red">
       <div class="beyond-watermark">B.</div>
       <div class="beyond-inner">
