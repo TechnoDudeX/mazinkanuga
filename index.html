@@ -238,31 +238,39 @@
   .dropcap { font-family: var(--display); font-size: 72px; font-weight: 900; float: left; line-height: 0.82; margin-right: 12px; margin-top: 4px; color: var(--accent); }
 
   /* ─── positions ─── */
-  .positions { display: grid; grid-template-columns: 260px 1fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-  .tabs { display: grid; grid-template-columns: 1fr; grid-auto-rows: max-content; border-right: 1px solid var(--ink); }
-  .tab {
-    text-align: left; padding: 22px 28px;
-    border-bottom: 1px solid var(--ink);
+  .positions { display: block; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .accordion { display: block; }
+  .acc-row { border-bottom: 1px solid var(--ink); }
+  .acc-row:last-child { border-bottom: none; }
+  .acc-head {
+    width: 100%; text-align: left; padding: 22px 28px;
     background: var(--bg); color: var(--ink);
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px;
     transition: background .2s, color .2s;
-    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px;
+    cursor: pointer; border: none; font: inherit;
   }
-  .tab:last-child { border-bottom: none; }
-  .tab:hover:not(.is-active) { background: #fafafa; }
-  .tab-logo {
-    width: 32px; height: 32px; border-radius: 6px; display: block;
-    margin-bottom: 14px; background: #fff;
+  .acc-head:hover { background: #fafafa; }
+  .acc-row.is-open[data-co="kraken"] .acc-head { background: var(--kraken); color: #fff; }
+  .acc-row.is-open[data-co="solidus"] .acc-head { background: var(--solidus); color: var(--ink); }
+  .acc-row.is-open[data-co="coinsquare"] .acc-head { background: var(--coinsquare); color: var(--ink); }
+  .acc-row.is-open .acc-head:hover { filter: brightness(0.97); }
+  .acc-logo {
+    width: 36px; height: 36px; border-radius: 6px; display: block; background: #fff;
     box-shadow: 0 0 0 1px rgba(10,10,10,0.08);
   }
-  .tab.is-active .tab-logo { box-shadow: 0 0 0 1px rgba(255,255,255,0.35); }
-  .tab-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
-  .tab-co { font-family: var(--display); font-size: 28px; font-weight: 900; letter-spacing: -0.8px; line-height: 1; }
-  .tab-co .dot { opacity: 0.4; }
-  .tab-indicator { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.4; }
-  .tab.is-active .tab-indicator { opacity: 0.85; }
-  .tab.is-active[data-co="kraken"] { background: var(--kraken); color: #fff; }
-  .tab.is-active[data-co="solidus"] { background: var(--solidus); color: var(--ink); }
-  .tab.is-active[data-co="coinsquare"] { background: var(--coinsquare); color: var(--ink); }
+  .acc-row.is-open .acc-logo { box-shadow: 0 0 0 1px rgba(255,255,255,0.35); }
+  .acc-head-main { display: grid; gap: 6px; min-width: 0; }
+  .acc-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; opacity: 0.7; }
+  .acc-co { font-family: var(--display); font-size: 24px; font-weight: 900; letter-spacing: -0.6px; line-height: 1.1; }
+  .acc-co .dot { opacity: 0.4; }
+  .acc-role { font-family: var(--sans); font-size: 14px; font-weight: 500; opacity: 0.75; margin-left: 10px; letter-spacing: 0; }
+  .acc-head-right { display: flex; align-items: center; gap: 18px; }
+  .acc-meta { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; opacity: 0.7; text-align: right; }
+  .acc-chev { font-family: var(--mono); font-size: 20px; opacity: 0.6; transition: transform .25s ease; display: inline-block; line-height: 1; }
+  .acc-row.is-open .acc-chev { transform: rotate(45deg); opacity: 0.9; }
+  .acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+  .acc-row.is-open .acc-body { grid-template-rows: 1fr; }
+  .acc-body-inner { overflow: hidden; }
 
   .tab-card {
     animation: fadeUp .35s ease both;
@@ -444,10 +452,8 @@
     .about-grid { grid-template-columns: 220px 1fr; gap: 40px; }
     .about-aside-title { font-size: 44px; letter-spacing: -1.4px; }
 
-    .positions { grid-template-columns: 1fr; }
-    .tabs { grid-template-columns: repeat(3, 1fr); border-right: none; border-bottom: 1px solid var(--ink); }
-    .tab { border-bottom: none; border-right: 1px solid var(--ink); }
-    .tab:last-child { border-right: none; }
+    .acc-head { padding: 20px 24px; gap: 18px; }
+    .acc-co { font-size: 22px; }
     .tab-detail { padding: 36px 32px; }
     .tab-detail-role { font-size: 30px; letter-spacing: -0.8px; }
 
@@ -514,10 +520,10 @@
     .about-body p { font-size: 17px; }
     .dropcap { font-size: 60px; margin-right: 10px; }
 
-    .tabs { grid-template-columns: 1fr; }
-    .tab { border-right: none; border-bottom: 1px solid var(--ink); padding: 18px 24px; }
-    .tab:last-child { border-bottom: none; }
-    .tab-co { font-size: 24px; }
+    .acc-head { padding: 18px 24px; grid-template-columns: auto 1fr auto; gap: 14px; }
+    .acc-meta { display: none; }
+    .acc-co { font-size: 20px; }
+    .acc-role { display: block; margin-left: 0; font-size: 13px; }
     .tab-detail { padding: 32px 24px; }
     .tab-detail-role { font-size: 26px; letter-spacing: -0.6px; }
     .tab-detail-body { font-size: 16px; }
@@ -562,7 +568,7 @@
     .kraken-block, .pitch-block, .stat-cell, .section-head, .about,
     .tab-hero, .tab-detail, .project-head, .project-body,
     .beyond-card, .footer-inner { padding-left: 20px; padding-right: 20px; }
-    .tab { padding: 16px 20px; }
+    .acc-head { padding: 16px 20px; }
     .toolkit-grid { grid-template-columns: 1fr; }
     .toolkit-col { border-right: none; border-bottom: 1px solid var(--ink); }
     .toolkit-col:last-child { border-bottom: none; }
@@ -682,34 +688,56 @@
   </div>
 
   <div class="positions">
-  <div class="tabs" id="tabs">
-    <button class="tab is-active" data-co="kraken" data-target="kraken">
-      <div>
-        <img class="tab-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true">
-        <div class="tab-tag">2026 → · Current</div>
-        <div class="tab-co">Kraken<span class="dot">.</span></div>
-      </div>
-      <div class="tab-indicator">●</div>
-    </button>
-    <button class="tab" data-co="solidus" data-target="solidus">
-      <div>
-        <img class="tab-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true">
-        <div class="tab-tag">2023 — 26</div>
-        <div class="tab-co">Solidus<span class="dot">.</span></div>
-      </div>
-      <div class="tab-indicator">○</div>
-    </button>
-    <button class="tab" data-co="coinsquare" data-target="coinsquare">
-      <div>
-        <img class="tab-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true">
-        <div class="tab-tag">Earlier</div>
-        <div class="tab-co">Coinsquare<span class="dot">.</span></div>
-      </div>
-      <div class="tab-indicator">○</div>
-    </button>
-  </div>
-
-  <div id="tab-card-host"></div>
+    <div class="accordion" id="positions-accordion">
+      <article class="acc-row is-open" data-co="kraken">
+        <button class="acc-head" type="button" aria-expanded="true">
+          <img class="acc-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true">
+          <div class="acc-head-main">
+            <div class="acc-tag">2026 → · Current</div>
+            <div class="acc-co">Kraken<span class="dot">.</span><span class="acc-role">Lifecycle Marketing Manager</span></div>
+          </div>
+          <div class="acc-head-right">
+            <span class="acc-meta">Apr 2026 — Present · Remote · Canada</span>
+            <span class="acc-chev" aria-hidden="true">+</span>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" data-host="kraken"></div>
+        </div>
+      </article>
+      <article class="acc-row" data-co="solidus">
+        <button class="acc-head" type="button" aria-expanded="false">
+          <img class="acc-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true">
+          <div class="acc-head-main">
+            <div class="acc-tag">2023 — 26</div>
+            <div class="acc-co">Solidus<span class="dot">.</span><span class="acc-role">Senior Digital Marketing Manager</span></div>
+          </div>
+          <div class="acc-head-right">
+            <span class="acc-meta">Sep 2023 — Mar 2026 · Remote · New York HQ</span>
+            <span class="acc-chev" aria-hidden="true">+</span>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" data-host="solidus"></div>
+        </div>
+      </article>
+      <article class="acc-row" data-co="coinsquare">
+        <button class="acc-head" type="button" aria-expanded="false">
+          <img class="acc-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true">
+          <div class="acc-head-main">
+            <div class="acc-tag">Earlier</div>
+            <div class="acc-co">Coinsquare<span class="dot">.</span><span class="acc-role">Digital Marketing Specialist</span></div>
+          </div>
+          <div class="acc-head-right">
+            <span class="acc-meta">Before 2023 · Toronto · Canada</span>
+            <span class="acc-chev" aria-hidden="true">+</span>
+          </div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" data-host="coinsquare"></div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -951,7 +979,7 @@
         ],
       },
       solidus: {
-        co: 'Solidus', role: 'Senior Digital Marketing Manager · Solidus Labs',
+        co: 'Solidus', role: 'Senior Digital Marketing Manager',
         date: 'Sep 2023 — Mar 2026', loc: 'Remote · New York HQ',
         tag: '2023 — 26',
         logo: 'soliduslabs_logo.jpeg',
@@ -979,15 +1007,13 @@
       },
     };
 
-    var host = document.getElementById('tab-card-host');
-
     function esc(s) {
       return String(s).replace(/[&<>"']/g, function (c) {
         return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
       });
     }
 
-    function render(id) {
+    function render(host, id) {
       var p = POSITIONS[id];
       var bullets = p.bullets.map(function (b) {
         return '<div class="bullet">' +
@@ -998,30 +1024,31 @@
       host.innerHTML =
         '<div class="tab-card">' +
           '<div class="tab-detail">' +
-            '<header class="tab-detail-head c-' + id + '">' +
-              '<div class="tab-detail-role">' + esc(p.role) + '</div>' +
-              '<div class="tab-detail-meta">' + esc(p.date) + ' · ' + esc(p.loc) + '</div>' +
-            '</header>' +
             '<p class="tab-detail-body">' + esc(p.body) + '</p>' +
             '<div>' + bullets + '</div>' +
           '</div>' +
         '</div>';
     }
 
-    var tabs = document.querySelectorAll('#tabs .tab');
-    tabs.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var target = btn.getAttribute('data-target');
-        tabs.forEach(function (b) {
-          b.classList.toggle('is-active', b === btn);
-          var ind = b.querySelector('.tab-indicator');
-          if (ind) ind.textContent = (b === btn) ? '●' : '○';
-        });
-        render(target);
-      });
+    document.querySelectorAll('#positions-accordion .acc-body-inner').forEach(function (el) {
+      render(el, el.getAttribute('data-host'));
     });
 
-    render('kraken');
+    var rows = document.querySelectorAll('#positions-accordion .acc-row');
+    rows.forEach(function (row) {
+      var head = row.querySelector('.acc-head');
+      head.addEventListener('click', function () {
+        var willOpen = !row.classList.contains('is-open');
+        rows.forEach(function (r) {
+          r.classList.remove('is-open');
+          r.querySelector('.acc-head').setAttribute('aria-expanded', 'false');
+        });
+        if (willOpen) {
+          row.classList.add('is-open');
+          head.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
   })();
 </script>
 
