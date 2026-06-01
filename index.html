@@ -5,12 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mazin Kanuga · Lifecycle Marketing</title>
 <meta name="description" content="Mazin Kanuga — Lifecycle Marketing Manager at Kraken. Crypto, fintech, and compliance marketing. Toronto, Canada.">
+<meta name="author" content="Mazin Kanuga">
+<link rel="canonical" href="https://mazinkanuga.ca/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
 <meta property="og:title" content="Mazin Kanuga · Lifecycle Marketing">
 <meta property="og:description" content="Lifecycle Marketing Manager at Kraken. Crypto, fintech, and compliance marketing.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://mazinkanuga.ca/">
+<meta property="og:image" content="https://mazinkanuga.ca/headshot.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mazin Kanuga · Lifecycle Marketing">
+<meta name="twitter:description" content="Lifecycle Marketing Manager at Kraken. Crypto, fintech, and compliance marketing.">
+<meta name="twitter:image" content="https://mazinkanuga.ca/headshot.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mazin Kanuga",
+  "url": "https://mazinkanuga.ca/",
+  "image": "https://mazinkanuga.ca/headshot.webp",
+  "jobTitle": "Lifecycle Marketing Manager",
+  "worksFor": { "@type": "Organization", "name": "Kraken" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressCountry": "CA" },
+  "sameAs": ["https://www.linkedin.com/in/mazinkanuga/"]
+}
+</script>
 <style>
   :root {
     /* ─── Surface ─── */
@@ -18,7 +40,7 @@
     --bg-hover: #fafafa;
     --ink: #0a0a0a;
     --ink-dim: #404040;
-    --ink-mute: #8a8a8a;
+    --ink-mute: #767676;
     --ink-faint: #c4c4c4;
     --rule: #e8e8e8;
 
@@ -87,6 +109,16 @@
   button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
   img { max-width: 100%; display: block; }
   ::selection { background: var(--red); color: var(--bg); }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 0; z-index: 100;
+    background: var(--ink); color: var(--bg);
+    padding: 12px 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: top .15s;
+  }
+  .skip-link:focus { top: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* ─── keyframes ─── */
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(10,10,10,0); } 50% { box-shadow: 0 0 0 5px rgba(10,10,10,0.06); } }
@@ -649,10 +681,12 @@
 </head>
 <body>
 
+<a href="#index" class="skip-link">Skip to content</a>
+
 <nav class="nav" id="nav">
   <div class="nav-grid">
     <a href="#top" class="nav-logo">MK<span class="dot">.</span></a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#index" class="nav-link"><span class="num">01</span>Index</a>
       <a href="#work" class="nav-link"><span class="num">02</span>Work</a>
       <a href="#shipped" class="nav-link"><span class="num">03</span>Shipped</a>
@@ -660,7 +694,7 @@
       <a href="#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
     </div>
     <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span class="nav-burger-icon"><span></span><span></span><span></span></span>
     </button>
   </div>
@@ -692,7 +726,7 @@
 
     <div class="hero-right">
       <div class="headshot-frame">
-        <img src="mazinkanuga headshot.png" alt="Mazin Kanuga">
+        <img src="headshot.webp" alt="Mazin Kanuga" width="600" height="600" fetchpriority="high" decoding="async">
         <div class="caption">MK · 2026</div>
       </div>
     </div>
@@ -755,7 +789,7 @@
     <div class="accordion" id="positions-accordion">
       <article class="acc-row is-open" data-co="kraken">
         <button class="acc-head" type="button" aria-expanded="true">
-          <img class="acc-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true">
+          <img class="acc-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
             <div class="acc-tag">2026 → · Current</div>
             <div class="acc-co">Kraken<span class="dot">.</span><span class="acc-role">Lifecycle Marketing Manager</span></div>
@@ -771,7 +805,7 @@
       </article>
       <article class="acc-row" data-co="solidus">
         <button class="acc-head" type="button" aria-expanded="false">
-          <img class="acc-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true">
+          <img class="acc-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
             <div class="acc-tag">2023 — 26</div>
             <div class="acc-co">Solidus<span class="dot">.</span><span class="acc-role">Senior Digital Marketing Manager</span></div>
@@ -781,13 +815,13 @@
             <span class="acc-chev" aria-hidden="true">+</span>
           </div>
         </button>
-        <div class="acc-body">
+        <div class="acc-body" aria-hidden="true">
           <div class="acc-body-inner" data-host="solidus"></div>
         </div>
       </article>
       <article class="acc-row" data-co="coinsquare">
         <button class="acc-head" type="button" aria-expanded="false">
-          <img class="acc-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true">
+          <img class="acc-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
             <div class="acc-tag">Earlier</div>
             <div class="acc-co">Coinsquare<span class="dot">.</span><span class="acc-role">Digital Marketing Specialist</span></div>
@@ -797,7 +831,7 @@
             <span class="acc-chev" aria-hidden="true">+</span>
           </div>
         </button>
-        <div class="acc-body">
+        <div class="acc-body" aria-hidden="true">
           <div class="acc-body-inner" data-host="coinsquare"></div>
         </div>
       </article>
@@ -1106,10 +1140,12 @@
         rows.forEach(function (r) {
           r.classList.remove('is-open');
           r.querySelector('.acc-head').setAttribute('aria-expanded', 'false');
+          r.querySelector('.acc-body').setAttribute('aria-hidden', 'true');
         });
         if (willOpen) {
           row.classList.add('is-open');
           head.setAttribute('aria-expanded', 'true');
+          row.querySelector('.acc-body').setAttribute('aria-hidden', 'false');
         }
       });
     });
