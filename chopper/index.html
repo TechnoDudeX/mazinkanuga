@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>gotcha 😂</title>
+<meta name="description" content="i can't believe you fell for it hahaha">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%98%82%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="gotcha 😂">
+<meta property="og:description" content="i can't believe you fell for it hahaha">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --ink: #ffffff;
+    --red: #E63946;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: max(28px, env(safe-area-inset-top)) 24px max(28px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    position: relative;
+  }
+
+  .emoji-rain {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .emoji-rain span {
+    position: absolute;
+    top: -10%;
+    font-size: 28px;
+    will-change: transform;
+    animation: fall linear infinite;
+    opacity: .9;
+  }
+  @keyframes fall {
+    to { transform: translateY(120vh) rotate(360deg); }
+  }
+
+  .stage { position: relative; z-index: 1; max-width: 480px; width: 100%; }
+
+  /* ─── On-load reveal: each element rises + fades in, staggered ─── */
+  .reveal { opacity: 0; transform: translateY(24px); }
+  body.go .reveal {
+    animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  /* face does a bouncy pop-in, then hands off to the idle wobble */
+  body.go .face-wrap {
+    animation: popIn .7s cubic-bezier(.2,1.3,.4,1) both,
+               wobble 1.6s ease-in-out 1.1s infinite;
+  }
+  @keyframes popIn {
+    0%   { opacity: 0; transform: scale(.4) rotate(-12deg); }
+    70%  { opacity: 1; transform: scale(1.12) rotate(5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-4deg); }
+  }
+  /* punchline gets a punchy zoom + shake when it lands */
+  body.go .haha { animation: slam .55s cubic-bezier(.2,1.4,.3,1) .95s both; }
+  @keyframes slam {
+    0%   { opacity: 0; transform: scale(2.4) rotate(-6deg); }
+    60%  { opacity: 1; transform: scale(.92) rotate(2deg); }
+    80%  { transform: scale(1.05) rotate(-1deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+  }
+
+  .face-wrap {
+    width: min(58vw, 220px);
+    aspect-ratio: 1;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--red);
+    box-shadow: 0 0 0 6px rgba(230,57,70,.18), 0 24px 60px rgba(0,0,0,.6);
+    background: #1a1a1a;
+  }
+  .face-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    50% { transform: rotate(4deg) scale(1.04); }
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    font-size: clamp(34px, 11vw, 64px);
+  }
+  h1 .pop { color: var(--red); display: inline-block; animation: pop 1.1s ease-in-out infinite; }
+  @keyframes pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  .haha {
+    margin-top: 18px;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(40px, 16vw, 90px);
+    line-height: 1;
+    color: var(--ink);
+    text-transform: lowercase;
+    letter-spacing: -2px;
+  }
+
+  .sub {
+    margin-top: 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255,255,255,.62);
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .home {
+    margin-top: 30px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .3px;
+    color: var(--bg);
+    background: var(--ink);
+    padding: 14px 26px;
+    border-radius: 999px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .home:active { transform: scale(.96); }
+
+  a { text-decoration: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .face-wrap, h1 .pop, .emoji-rain span,
+    body.go .reveal, body.go .face-wrap, body.go .haha { animation: none; }
+    .reveal, .haha { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="emoji-rain" aria-hidden="true"></div>
+
+  <main class="stage">
+    <div class="face-wrap">
+      <img src="/headshot.webp" alt="Mazin Kanuga laughing at you" width="600" height="600">
+    </div>
+
+    <p class="kicker reveal" style="--d:.35s">🚨 you've been pranked 🚨</p>
+    <h1 class="reveal" style="--d:.5s">I can't believe you <span class="pop">fell for it</span></h1>
+    <p class="haha">hahaha</p>
+
+    <p class="sub reveal" style="--d:1.3s">there was never a link in bio. there was never a kidan situation. there is only me, laughing. 😂</p>
+
+    <a class="home reveal" href="/" style="--d:1.5s">fine, take me to the real site →</a>
+  </main>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // kick off the staggered reveal on next frame
+      requestAnimationFrame(function () { document.body.classList.add('go'); });
+
+      if (reduce) return;
+
+      // raining emojis — start them once the "hahaha" punchline has landed
+      function startRain() {
+        var rain = document.querySelector('.emoji-rain');
+        var emojis = ['😂', '🤣', '💀', '🤡', '😭', '🫵'];
+        for (var i = 0; i < 18; i++) {
+          var s = document.createElement('span');
+          s.textContent = emojis[i % emojis.length];
+          s.style.left = Math.random() * 100 + 'vw';
+          s.style.fontSize = (20 + Math.random() * 26) + 'px';
+          s.style.animationDuration = (4 + Math.random() * 5) + 's';
+          s.style.animationDelay = (-Math.random() * 6) + 's';
+          rain.appendChild(s);
+        }
+      }
+      setTimeout(startRain, 1500);
+
+      // tap the face for an extra giggle
+      var face = document.querySelector('.face-wrap');
+      face.style.cursor = 'pointer';
+      face.addEventListener('click', function () {
+        face.animate(
+          [{ transform: 'rotate(-4deg) scale(1)' },
+           { transform: 'rotate(8deg) scale(1.15)' },
+           { transform: 'rotate(-8deg) scale(1.15)' },
+           { transform: 'rotate(-4deg) scale(1)' }],
+          { duration: 450, easing: 'ease-in-out' }
+        );
+      });
+    })();
+  </script>
+</body>
+</html>
