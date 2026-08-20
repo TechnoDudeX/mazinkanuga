@@ -179,6 +179,76 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Fresh Fettuccine",
+  "description": "Egg pasta dough rolled to a 1.0mm sheet and cut into fettuccine.",
+  "author": { "@type": "Person", "name": "Mazin Kanuga" },
+  "recipeCategory": "Pasta",
+  "recipeYield": "About 440 g dough, 2-3 servings",
+  "prepTime": "PT30M",
+  "recipeIngredient": [
+    "2 cups (300 g) all-purpose flour, plus extra for dusting",
+    "3 eggs",
+    "1 tsp salt",
+    "1 tbsp + 1 tsp olive oil",
+    "1 tbsp water"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mix", "text": "Whisk flour and salt, mound it, and hollow a well in the center. Add eggs, oil, and water to the well." },
+    { "@type": "HowToStep", "name": "Bring it together", "text": "Beat the eggs with a fork, pulling in flour from the inner wall. When too stiff to fork, switch to hands and press into a shaggy ball." },
+    { "@type": "HowToStep", "name": "Knead", "text": "Knead 8-10 minutes with the heel of your hand, folding and turning a quarter each time, until smooth and a poke springs back slowly." },
+    { "@type": "HowToStep", "name": "Rest", "text": "Rest 30 minutes minimum, wrapped tight at room temperature. An hour is better." },
+    { "@type": "HowToStep", "name": "Roll", "text": "Divide into 4. Mixer at speed 5-6. Flatten to about 1 cm and run at level 8 six to eight times, folding and rotating between passes, then single passes at 7, 6, 5, and 4." },
+    { "@type": "HowToStep", "name": "Rest the sheets", "text": "Rest 15 minutes on a floured towel until the surface feels like soft leather - dry to the touch but still flexible." },
+    { "@type": "HowToStep", "name": "Cut", "text": "Run through the fettuccine cutter, flour the ribbons immediately, and coil into loose nests." }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Creamy Cajun-Style Sausage Fettuccine",
+  "description": "Jalapeno cheddar chicken sausage, mushrooms, and peppers in a half-cream half-milk pan sauce over fresh fettuccine.",
+  "author": { "@type": "Person", "name": "Mazin Kanuga" },
+  "recipeCategory": "Main",
+  "recipeYield": "2 servings",
+  "totalTime": "PT25M",
+  "recipeIngredient": [
+    "1 batch fresh fettuccine",
+    "2 jalapeno cheddar chicken sausage, sliced into coins",
+    "5 cremini mushrooms, sliced thick",
+    "1/2 green bell pepper, strips",
+    "1/2 red bell pepper, strips",
+    "1/2 yellow onion, sliced",
+    "3 garlic cloves, minced",
+    "1 tbsp olive oil",
+    "1 tbsp butter",
+    "1/2 cup heavy cream",
+    "1/2 cup milk",
+    "1 1/2 tsp salt",
+    "1 tsp onion powder",
+    "1 tsp garlic powder",
+    "1 tsp adobo",
+    "1/2 tsp red chili flakes",
+    "1/2 cup grated parmesan",
+    "Black pepper"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Pasta water on", "text": "Large pot, salted, rolling boil. Leave it going." },
+    { "@type": "HowToStep", "name": "Mushrooms", "text": "Olive oil in a wide skillet over medium-high. Single layer, no stirring, no salt. Flip when the undersides are browned, 4-5 minutes." },
+    { "@type": "HowToStep", "name": "Sausage", "text": "Push the mushrooms aside and brown the sausage coins 2-3 minutes, leaving the fond in the pan." },
+    { "@type": "HowToStep", "name": "Onion and peppers", "text": "Cook 3-4 minutes until the onion is translucent and the peppers are softened but still snappy." },
+    { "@type": "HowToStep", "name": "Garlic and seasoning", "text": "Lower to medium. Add garlic, onion powder, garlic powder, adobo, chili flakes, and black pepper, stirring constantly for 45 seconds." },
+    { "@type": "HowToStep", "name": "Cream sauce", "text": "Add cream and milk, scrape up the fond, and hold a barely-trembling simmer 6-7 minutes until it coats the back of a spoon." },
+    { "@type": "HowToStep", "name": "Pasta", "text": "Cook the fresh fettuccine 2-3 minutes until it floats and turns slightly translucent. Reserve a mug of pasta water before draining." },
+    { "@type": "HowToStep", "name": "Combine", "text": "Off the heat, stir in butter and parmesan until smooth, add the pasta, and toss hard 30-60 seconds with splashes of pasta water until the sauce clings." }
+  ]
+}
+</script>
 <style>
   :root {
     --bg: #ffffff;
@@ -191,6 +261,8 @@
     --solidus: #FFC933;
     --coinsquare: #00D1A4;
     --kraken: #6B4EFF;
+    --wheat: #E8DCC0;
+    --paprika: #C1440E;
     --red: #E63946;
     --accent: #E63946;
 
@@ -333,6 +405,8 @@
   .recipe-head.c-green { background: var(--coinsquare); color: var(--ink); }
   .recipe-head.c-purple { background: var(--kraken); color: var(--bg); }
   .recipe-head.c-ink { background: var(--ink); color: var(--bg); }
+  .recipe-head.c-wheat { background: var(--wheat); color: var(--ink); }
+  .recipe-head.c-paprika { background: var(--paprika); color: var(--bg); }
   .recipe-credit {
     margin-top: var(--s-5);
     font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -412,6 +486,7 @@
     color: var(--accent); margin-bottom: var(--s-3);
   }
   .callout p { font-family: var(--sans); font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+  .callout p + p { margin-top: var(--s-4); }
 
   /* ─── footer ─── */
   footer { background: var(--ink); color: var(--bg); }
@@ -1227,6 +1302,317 @@
             All-coconut liquid means there's nothing thin in the pot to protect the base, so the
             deglaze in step 2 isn't optional. If the pot still throws a burn warning, it's fond you
             missed, not the ratio.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article class="recipe" id="fettuccine">
+    <div class="recipe-head c-wheat">
+      <div class="recipe-index">Recipe 06 · Pasta · Stand mixer</div>
+      <h2 class="recipe-title">Fresh&nbsp;Fettuccine</h2>
+      <p class="recipe-note">
+        Makes ~440g of dough — two generous or three modest servings. A dry-looking dough that
+        comes good on the bench, rolled to a thin 1.0mm sheet.
+      </p>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Makes</div>
+        <div class="meta-val">~440g</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Knead</div>
+        <div class="meta-val">8–10 min</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Rest</div>
+        <div class="meta-val">30 min +</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Final sheet</div>
+        <div class="meta-val">Level 4 · ~1mm</div>
+      </div>
+    </div>
+
+    <div class="recipe-body">
+      <section class="ingredients">
+        <div class="block-label">§ Ingredients</div>
+        <ul class="ing-list">
+          <li><span class="ing-name">All-purpose flour<span class="opt">Plus extra for dusting</span></span><span class="ing-qty">2 cups · 300g</span></li>
+          <li><span class="ing-name">Eggs</span><span class="ing-qty">3</span></li>
+          <li><span class="ing-name">Salt</span><span class="ing-qty">1 tsp</span></li>
+          <li><span class="ing-name">Olive oil</span><span class="ing-qty">1 tbsp + 1 tsp</span></li>
+          <li><span class="ing-name">Water</span><span class="ing-qty">1 tbsp</span></li>
+        </ul>
+      </section>
+
+      <section class="method">
+        <div class="block-label">§ Method</div>
+
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Mix</div>
+            <p class="step-body">
+              Whisk the flour and salt, mound it, and hollow a well in the center. Eggs, oil, and
+              water into the well.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Bring it together</div>
+            <p class="step-body">
+              Beat the eggs with a fork, pulling in flour from the inner wall a bit at a time.
+              When it's too stiff to fork, switch to hands and press into a shaggy ball.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Knead 8–10 minutes</div>
+            <p class="step-body">
+              Heel of your hand, fold, quarter turn, repeat. Done when it's smooth and a poke
+              springs back slowly.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Rest</div>
+            <p class="step-body">
+              30 minutes minimum, wrapped tight at room temp. An hour is better.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Roll</div>
+            <p class="step-body">
+              Divide into 4 and cover what you're not using. Mixer at speed 5–6. Flatten a piece
+              to ~1cm and run it at level 8 six to eight times, folding in half and rotating 90°
+              between passes. Then single passes: 7 → 6 → 5 → 4. Halve the sheet crosswise once
+              it's longer than your forearm.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">06</div>
+          <div>
+            <div class="step-title">Rest the sheets</div>
+            <p class="step-body">
+              15 minutes on a floured towel. The surface should feel like soft leather — dry to
+              the touch but still flexible.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">07</div>
+          <div>
+            <div class="step-title">Cut</div>
+            <p class="step-body">
+              Through the fettuccine cutter. Flour the ribbons immediately and coil them into
+              loose nests.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Notes</div>
+          <p>
+            With only 1 tbsp of water, the dough will look too dry when you first bring it
+            together. Don't add water back yet — knead for 2–3 minutes first and let the flour
+            hydrate. Only add liquid a teaspoon at a time if it still won't come together after that.
+          </p>
+          <p>
+            Level 4 gives you a ~1.0mm sheet, which is more fragile than 1.3mm was. Support it with
+            your free hand coming off the roller and cut it in half sooner than you think.
+          </p>
+          <p>
+            Cook time drops slightly at this thickness — start checking at 90 seconds.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article class="recipe">
+    <div class="recipe-head c-paprika">
+      <div class="recipe-index">Recipe 07 · Main · Skillet</div>
+      <h2 class="recipe-title">Creamy Cajun-Style<br>Sausage Fettuccine</h2>
+      <p class="recipe-note">
+        What the <a href="#fettuccine" style="text-decoration:underline">fresh fettuccine</a> is for.
+        A half-cream, half-milk sauce that needs a gentler hand than an all-cream one, built on
+        the fond from browning everything else first.
+      </p>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Serves</div>
+        <div class="meta-val">2</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Sauce</div>
+        <div class="meta-val">½ cream ½ milk</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Pasta</div>
+        <div class="meta-val">2–3 min</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Total</div>
+        <div class="meta-val">~25 min</div>
+      </div>
+    </div>
+
+    <div class="recipe-body">
+      <section class="ingredients">
+        <div class="block-label">§ Ingredients</div>
+        <ul class="ing-list">
+          <li><span class="ing-name">Fresh fettuccine<span class="opt">Recipe 06</span></span><span class="ing-qty">1 batch</span></li>
+
+          <li class="ing-group">Skillet</li>
+          <li><span class="ing-name">Jalapeño cheddar chicken sausage<span class="opt">Sliced into coins</span></span><span class="ing-qty">2</span></li>
+          <li><span class="ing-name">Cremini mushrooms<span class="opt">Sliced thick</span></span><span class="ing-qty">5</span></li>
+          <li><span class="ing-name">Green bell pepper<span class="opt">Strips</span></span><span class="ing-qty">½</span></li>
+          <li><span class="ing-name">Red bell pepper<span class="opt">Strips</span></span><span class="ing-qty">½</span></li>
+          <li><span class="ing-name">Yellow onion<span class="opt">Sliced</span></span><span class="ing-qty">½</span></li>
+          <li><span class="ing-name">Garlic<span class="opt">Minced</span></span><span class="ing-qty">3 cloves</span></li>
+          <li><span class="ing-name">Olive oil</span><span class="ing-qty">1 tbsp</span></li>
+
+          <li class="ing-group">Seasoning</li>
+          <li><span class="ing-name">Salt</span><span class="ing-qty">1½ tsp</span></li>
+          <li><span class="ing-name">Onion powder</span><span class="ing-qty">1 tsp</span></li>
+          <li><span class="ing-name">Garlic powder</span><span class="ing-qty">1 tsp</span></li>
+          <li><span class="ing-name">Adobo</span><span class="ing-qty">1 tsp</span></li>
+          <li><span class="ing-name">Red chili flakes</span><span class="ing-qty">½ tsp</span></li>
+          <li><span class="ing-name">Black pepper</span><span class="ing-qty">To taste</span></li>
+
+          <li class="ing-group">Sauce</li>
+          <li><span class="ing-name">Heavy cream</span><span class="ing-qty">½ cup</span></li>
+          <li><span class="ing-name">Milk</span><span class="ing-qty">½ cup</span></li>
+          <li><span class="ing-name">Butter</span><span class="ing-qty">1 tbsp</span></li>
+          <li><span class="ing-name">Grated parmesan</span><span class="ing-qty">½ cup</span></li>
+        </ul>
+      </section>
+
+      <section class="method">
+        <div class="block-label">§ Method</div>
+
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Pasta water on</div>
+            <p class="step-body">
+              Large pot, salted, rolling boil. Leave it going.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Mushrooms · 4–5 min</div>
+            <p class="step-body">
+              Olive oil in a wide skillet, medium-high. Single layer, don't stir, don't salt. Flip
+              when the undersides are properly browned.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Sausage · 2–3 min</div>
+            <p class="step-body">
+              Push the mushrooms aside and add the coins. They're already cooked, so you're just
+              after browned edges. Leave the fond in the pan.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Onion and peppers · 3–4 min</div>
+            <p class="step-body">
+              Onion translucent, peppers softened but still snappy.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Garlic and seasoning · 45 sec</div>
+            <p class="step-body">
+              Heat to medium. Garlic, onion powder, garlic powder, adobo, chili flakes, black
+              pepper. Stir constantly — garlic burns fast.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">06</div>
+          <div>
+            <div class="step-title">Cream sauce · 6–7 min</div>
+            <p class="step-body">
+              Cream and milk in, scrape up the fond. Barely-trembling simmer, no real bubbles.
+              Reduce until it coats the back of a spoon. This takes longer than a straight-cream
+              sauce because half of it is milk.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">07</div>
+          <div>
+            <div class="step-title">Pasta · 2–3 min</div>
+            <p class="step-body">
+              Into the boiling water, stir immediately. Done when it floats and turns slightly
+              translucent. Reserve a mug of pasta water before draining.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">08</div>
+          <div>
+            <div class="step-title">Combine</div>
+            <p class="step-body">
+              Heat completely off. Butter and parmesan in, stir until smooth. Pasta in, toss hard
+              30–60 seconds with splashes of pasta water until the sauce clings to the strands.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Notes</div>
+          <p>
+            The half-and-half dairy split means less fat holding the emulsion — keep the heat low,
+            and the butter and parmesan at the end are doing real structural work, not just flavor.
+          </p>
+          <p>
+            Adobo is salt-based, so it's stacking on the 1½ tsp. Taste before each splash of pasta
+            water rather than after, and use plain hot water to loosen if it's getting salty.
+          </p>
+          <p>
+            Fix sauce thickness before the pasta goes in. Fresh pasta keeps drinking liquid and
+            won't wait.
           </p>
         </div>
       </section>
