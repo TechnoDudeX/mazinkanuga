@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Operating Manual · Mazin Kanuga</title>
+<meta name="description" content="Wanyi Chow to Mazin Kanuga handover operating manual — plain text and tables, ready to copy into Google Docs.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #0a0a0a;
+    --ink-dim: #333333;
+    --ink-mute: #6c6c6c;
+    --rule: #e6e6e6;
+    --rule-strong: #d0d0d0;
+    --wash: #f7f7f5;
+    --teal: #0b5b63;
+    --teal-wash: #f0f6f6;
+    --red: #E63946;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ---------- toolbar ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar-in {
+    max-width: 1000px; margin: 0 auto;
+    padding: 12px 24px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .home {
+    font-family: var(--display); font-weight: 900;
+    letter-spacing: -.02em; font-size: 18px; text-decoration: none;
+  }
+  .home .dot { color: var(--red); }
+  .bar-note {
+    font-size: 12px; color: var(--ink-mute);
+    margin-right: auto; flex: 1 1 auto; min-width: 0;
+    letter-spacing: .01em;
+  }
+  .btn {
+    border: 1px solid var(--ink);
+    background: var(--ink); color: #fff;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 600; letter-spacing: .01em;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  /* ---------- page ---------- */
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 24px 96px; }
+  .page > * { overflow-wrap: break-word; }
+
+  h1 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -.03em; line-height: 1.04;
+    margin: 8px 0 20px;
+  }
+  h2 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(23px, 3vw, 30px);
+    letter-spacing: -.02em; line-height: 1.18;
+    margin: 56px 0 8px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    scroll-margin-top: 72px;
+  }
+  hr { border: 0; border-top: 2px solid var(--ink); margin: 56px 0 0; }
+  hr + h2 { border-top: none; margin-top: 0; }
+  hr + h3 { margin-top: 28px; }
+  h3 {
+    font-size: 19px; font-weight: 700; letter-spacing: -.01em;
+    margin: 34px 0 8px; scroll-margin-top: 72px;
+  }
+  h4 {
+    font-size: 15.5px; font-weight: 700;
+    margin: 24px 0 6px; scroll-margin-top: 72px;
+  }
+  p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 12px 0; max-width: 82ch; }
+  p strong, li strong, td strong, th strong { color: var(--ink); font-weight: 700; }
+  ul, ol { margin: 12px 0 12px 22px; max-width: 82ch; }
+  li { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 7px 0; }
+  li > ul, li > ol { margin-top: 6px; margin-bottom: 6px; }
+  li.task { list-style: none; }
+
+  blockquote {
+    border-left: 3px solid var(--teal);
+    background: var(--teal-wash);
+    padding: 12px 18px;
+    margin: 18px 0;
+    max-width: 82ch;
+  }
+  blockquote p { margin: 8px 0; }
+  blockquote > p:first-child { margin-top: 0; }
+  blockquote > p:last-child { margin-bottom: 0; }
+  li blockquote { margin: 10px 0; }
+
+  code {
+    font-family: var(--mono); font-size: .88em;
+    background: var(--wash);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--ink);
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap { margin: 18px 0 26px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  th, td {
+    border: 1px solid var(--rule-strong);
+    padding: 10px 12px;
+    font-size: 14.5px; line-height: 1.5;
+    text-align: left; vertical-align: top;
+    color: var(--ink-dim);
+  }
+  th { background: var(--wash); color: var(--ink); font-weight: 700; }
+  tbody tr:nth-child(even) td { background: #fbfbfa; }
+  td code, th code { white-space: nowrap; }
+
+  .copybtn {
+    margin: 0 0 8px;
+    border: 1px solid var(--rule-strong);
+    background: #fff; color: var(--ink-mute);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px; font-weight: 600;
+  }
+  .copybtn:hover { border-color: var(--ink); color: var(--ink); }
+  .copybtn.done { border-color: var(--teal); color: var(--teal); }
+
+  /* ---------- toc ---------- */
+  .toc {
+    border: 1px solid var(--rule);
+    background: var(--wash);
+    padding: 20px 24px;
+    margin: 28px 0 8px;
+  }
+  .toc h4 { margin: 0 0 10px; }
+  .toc ul { margin: 0 0 0 18px; list-style: none; }
+  .toc li { margin: 4px 0; font-size: 15px; }
+  .toc a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+  .toc a:hover { color: var(--ink); border-color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .page { padding: 28px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .bar-note { flex-basis: 100%; order: 3; }
+  }
+
+  @media print {
+    .bar, .copybtn { display: none; }
+    .page { max-width: none; padding: 0; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar no-copy">
+  <div class="bar-in">
+    <a href="/" class="home">MK<span class="dot">.</span></a>
+    <span class="bar-note">Headings, tables and lists survive the paste into Google Docs.</span>
+    <button class="btn ghost" id="copy-plain" type="button">Copy as plain text</button>
+    <button class="btn" id="copy-all" type="button">Copy whole document</button>
+  </div>
+</div>
+
+<main class="page" id="doc">
+
+<h1 id="wanyi-chow-mazin-kanuga-operating-manual">Wanyi Chow → Mazin Kanuga — Operating Manual</h1>
+<p><strong>v8 · FINAL · Fri 14 Aug 2026 — her last day.</strong> <em>(v7 Thu 13 Aug; v6 Wed 12 Aug; v5 Tue 11 Aug; v4 Mon 10 Aug; v3 Fri 7 Aug.)</em></p>
+<p>Built from <strong>eight handover calls (~5 hours, Aug 5 → Aug 14)</strong>, Wanyi's own written handover doc, and every cross-check against the 1:1s and team meetings of weeks 1–2. <strong>Her final doc is preserved verbatim in <a href="#appendix-b-wanyis-final-handover-doc-verbatim">Appendix B</a> — nothing was dropped.</strong></p>
+<blockquote>
+<p>🔴 <strong>She is gone as of 5pm today, and she is not available afterwards.</strong> Hod asked her to be reachable next week and got <em>"<strong>I'm going to charge you per hour. I'm not going to volunteer for you.</strong>"</em> She plans to delete Signal. ✅ <strong>The one exception she volunteered is Mazin, on WhatsApp</strong> — use it sparingly, and never for something a colleague inside the company could answer.</p>
+<p>🆕 <strong>v8 adds:</strong> 🎯 the <strong>doc-as-tracker method</strong> (§8c — the most valuable thing in eight calls) · ✅ the <strong>Growth intake form + SLA</strong> (§8d) · the <strong>Link NYC three-move playbook</strong> (§4b) · the <strong>CL Agent reset</strong> (§5a) · the <strong>build-method release</strong> (§8) · and her <strong>closing assessment of Mazin</strong> (§13).</p>
+</blockquote>
+<p><strong>Legend:</strong> 🔴 blocking / has a date · 🟠 active · 🟡 recurring · ⚪ background · 🟥 lost with her · ✅ confirmed · ⚠️ contested or unverified · 🎯 do this · ⛔ never · 🔒 record only, do not repeat</p>
+
+<nav class="toc no-copy" aria-label="Contents">
+  <h4>Contents</h4>
+  <ul>
+      <li><a href="#0-the-calendar-what-ships-when">0. The calendar — what ships when</a></li>
+      <li><a href="#1-token-relations-ir-chainlink-connect-priority-1">1. 🔴 Token Relations / IR — Chainlink Connect · PRIORITY #1</a></li>
+      <li><a href="#2-webinars-priority-2-understand-the-workflow">2. 🟠 Webinars · PRIORITY #2 — understand the workflow</a></li>
+      <li><a href="#3-evergreen-newsletters">3. 🟡 Evergreen newsletters</a></li>
+      <li><a href="#4-events">4. 🟠 Events</a></li>
+      <li><a href="#5-developers-basically-on-life-support">5. 🔴 Developers — "basically on life support"</a></li>
+      <li><a href="#6-government-wyoming">6. 🔴 Government — Wyoming</a></li>
+      <li><a href="#7-the-three-use-case-reorg-the-frame-everything-sits-inside">7. 🟡 The three-use-case reorg — the frame everything sits inside</a></li>
+      <li><a href="#7b-paid-media-it-exists-it-is-funded-and-it-is-arriving">7b. 🔴 Paid media — it exists, it is funded, and it is arriving</a></li>
+      <li><a href="#8-the-email-build-method-the-craft-handover">8. 🎯 The email build method — the craft handover</a></li>
+      <li><a href="#8b-the-metrics-pushback-script">8b. 🎯 The metrics pushback script</a></li>
+      <li><a href="#8c-the-doc-as-tracker-method-the-most-valuable-thing-in-eight-calls">8c. 🎯🎯 The doc-as-tracker method — the most valuable thing in eight calls</a></li>
+      <li><a href="#8d-the-growth-intake-form-your-gatekeeper">8d. ✅ The Growth intake form — your gatekeeper</a></li>
+      <li><a href="#9-distribution-lists-crm">9. 🔴 Distribution lists &amp; CRM</a></li>
+      <li><a href="#9b-crm-access-exports-the-hard-rule">9b. 🔒 🔴 CRM access &amp; exports — the hard rule</a></li>
+      <li><a href="#10-reference-tech-stack-tickets-channels">10. Reference — tech stack, tickets, channels</a></li>
+      <li><a href="#11-campaign-email-watchlist">11. 🎯 Campaign &amp; email watchlist</a></li>
+      <li><a href="#12-what-went-with-her">12. 🟥 What went with her</a></li>
+      <li><a href="#13-the-one-page-version">13. The one-page version</a></li>
+      <li><a href="#14-the-unwritten-rules">14. The unwritten rules</a></li>
+      <li><a href="#appendix-a-cast-list">Appendix A — cast list</a></li>
+      <li><a href="#appendix-b-wanyis-final-handover-doc-verbatim">Appendix B — Wanyi's final handover doc, verbatim</a></li>
+  </ul>
+</nav>
+<hr />
+<h2 id="0-the-calendar-what-ships-when">0. The calendar — what ships when</h2>
+<p><strong>Read this every Monday.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Date</th>
+<th>What</th>
+<th>Owner</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ <strong>Sat 15 Aug, morning</strong></td>
+<td><strong>Missing Link 247</strong> — ✅ <strong>self-QA, no test send, no approver.</strong> ⚠️ asset name <code>Missing Link Aug 14th</code> is wrong</td>
+<td>Mazin</td>
+<td>🟠 images + placeholder links</td>
+</tr>
+<tr>
+<td>🔴 <strong>Mon 17 Aug</strong></td>
+<td><strong>Sibos recipient list due</strong> — delegate list × T0–T3, <strong>plus the inverse list</strong></td>
+<td>Jason Aarni</td>
+<td>🔴 gated on Hod + Frank sign-off</td>
+</tr>
+<tr>
+<td>🔴 <strong>Tue 18 Aug</strong> <em>(19th fine)</em></td>
+<td><strong>Sibos Miami — invite #1</strong> ⚠️ <strong>do not let the date rush it: <em>"you can't send it until they sign off the list"</em></strong></td>
+<td>Mazin</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>🔴 <strong>w/c 17 Aug</strong></td>
+<td><strong>CL Agent re-engagement</strong> — 🆕 <strong>fresh draft, reviewed by Michael Imperiale before sending</strong></td>
+<td>Mazin → Michael</td>
+<td>🟠 <strong>not a clone job</strong></td>
+</tr>
+<tr>
+<td>⚠️ <strong>w/c 17 Aug</strong></td>
+<td><strong>Hod is away</strong> — covers Sibos invite #2. <strong>Ashley is on PTO too</strong></td>
+<td>—</td>
+<td>⚠️ decide what you can this week</td>
+</tr>
+<tr>
+<td>🟠 <strong>w/c 17 Aug</strong></td>
+<td><strong>Link NYC promo — the agenda</strong>, on Hod's approved <strong>V5</strong> banner. Cadence: <strong>2 weeks proposed, agree with Hod</strong></td>
+<td>Mazin</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td>🟠 <strong>~Mon 17 Aug</strong></td>
+<td><strong>Sam Ewing starts (VP Brand)</strong> — expected to reset the Sibos creative</td>
+<td>—</td>
+<td>get decisions made before</td>
+</tr>
+<tr>
+<td>🟠 <strong>~Aug 17</strong></td>
+<td><strong>Social H2 OKRs commit</strong> — on metrics that partly no longer exist</td>
+<td>Justin Alper</td>
+<td>flag before signing</td>
+</tr>
+<tr>
+<td>🟡 <strong>weekly, Mon</strong></td>
+<td><strong>Chainlink Connect</strong> — Alkesh drafts Sunday night, ships Monday, <strong>same-day turnaround</strong></td>
+<td>Mazin builds + sends</td>
+<td>🔴 <strong>priority #1</strong></td>
+</tr>
+<tr>
+<td>🟠 <strong>Thu 27 Aug</strong></td>
+<td>Sibos <strong>CCIP 2.0 exec roundtable print deadline</strong></td>
+<td>⚠️ Lily on mat leave</td>
+<td>🔴 no owner</td>
+</tr>
+<tr>
+<td>🟠 <strong>Mon 31 Aug</strong></td>
+<td><strong>Caroline</strong> starts (Head of PMM)</td>
+<td>—</td>
+<td>⚠️ verify</td>
+</tr>
+<tr>
+<td>🟠 <strong>September</strong></td>
+<td><strong>Dev newsletter — next issue, and Wanyi is gone.</strong> Monthly, ⚠️ <em>"never regular"</em></td>
+<td>Sofia drafts · Mazin sends</td>
+<td>write the build up now</td>
+</tr>
+<tr>
+<td>🟡 <strong>first Wed monthly</strong></td>
+<td><strong>BCM Newsletter</strong></td>
+<td>Conlan drafts · Mazin sends</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>🟠 <strong>Mon 28 Sep – Thu 1 Oct</strong></td>
+<td><strong>SIBOS 2026</strong> · Miami Beach Convention Center</td>
+<td>Ashley O'Brien</td>
+<td>🔴 <strong>no event owner</strong></td>
+</tr>
+<tr>
+<td>🟠 <strong>Thu 29 Oct</strong></td>
+<td><strong>LINK NYC</strong></td>
+<td>Amal Hijazi</td>
+<td>email layer is yours</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-number-rule">⛔ The number rule</h3>
+<p><strong>Confirmed twice — Amal (Aug 5), then Wanyi with the source (Aug 12).</strong></p>
+<blockquote>
+<p><em>"<strong>Sergey is paranoid. Sergey hates number 13.</strong> So try to avoid work[ing] with number 13. <strong>No email going on 13.</strong>"</em><br />
+🆕 <em>"And go with <strong>seven</strong>. No 13, good with 7. You can do like [the] 7th, <strong>7:00am. I'm not joking.</strong>"</em></p>
+</blockquote>
+<ul>
+<li>⛔ <strong>Never schedule a send on a 13th</strong> — use the 12th or 14th.</li>
+<li>Write <em><em>"12 + 1"</em></em> in exec-facing docs rather than the numeral.</li>
+<li>🆕 <strong>When the date or time is a free choice, pick a 7.</strong> ⚠️ Only Wanyi has said this half; apply it where it costs nothing.</li>
+</ul>
+<h3 id="the-five-things-that-break-if-nothing-else-gets-done">The five things that break if nothing else gets done</h3>
+<ol>
+<li>🔴 <strong>Sibos invite #1 cannot send until Hod and Frank sign off the list.</strong> The date is not the constraint; the sign-off is. <strong>Ask status with a date; stay out of the politics.</strong></li>
+<li>🔴 <strong>Chainlink Connect runs weekly with a same-day turnaround and legal wants 1–3 days.</strong> That gap is the recurring failure. <strong>Build the buffer into the calendar, not into heroics.</strong></li>
+<li>🔴 <strong>Link NYC needs 1,300–1,400 invites to land ~400 and has sent ~260</strong> — and the invite list is deliberately capped at Tier 0/1. <strong>The fix is expanding to Tier 2/3, and it needs Hod.</strong></li>
+<li>🔴 <strong>Nobody but Wanyi could describe the distribution lists.</strong> §9 is now the only written record. <strong>Keep it current.</strong></li>
+<li>🆕 🎯 <strong>You are three people's workstreams.</strong> Marirose (paid), Ben + Kevin (webinars), Wanyi (email). <strong>Have the capacity conversation with Hod before something slips, not after.</strong></li>
+</ol>
+<hr />
+<h2 id="1-token-relations-ir-chainlink-connect-priority-1">1. 🔴 Token Relations / IR — Chainlink Connect · <strong>PRIORITY #1</strong></h2>
+<p>🎯 <strong>Highest priority because Johann Eid and Sergey Nazarov care about it.</strong></p>
+<p><strong>Cadence: weekly.</strong> <strong>Alkesh Shah drafts Sunday night; it ships Monday. Same-day turnaround.</strong></p>
+<h3 id="people">People</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workstream driver + Signal group owner</td>
+<td><strong>Liam Fox</strong></td>
+</tr>
+<tr>
+<td>Writer</td>
+<td><strong>Alkesh Shah</strong></td>
+</tr>
+<tr>
+<td>Point of contact</td>
+<td><strong>Joshua Azar</strong></td>
+</tr>
+<tr>
+<td>Content draft / review</td>
+<td><strong>Conlan E Wall</strong></td>
+</tr>
+<tr>
+<td>Build + send</td>
+<td><strong>Mazin Kanuga</strong>, with Joshua Azar for the assist</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-process">The process</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alkesh drafts, sends internally Sunday</td>
+<td><strong>Alkesh Shah</strong></td>
+</tr>
+<tr>
+<td><strong>Copy into the Google Doc template by duplicating last week's, so the checklist survives</strong></td>
+<td><strong>Mazin</strong></td>
+</tr>
+<tr>
+<td>Submit the Asana content request form</td>
+<td><strong>Mazin</strong></td>
+</tr>
+<tr>
+<td>Approval from Hod Klein</td>
+<td><strong>Mazin</strong> <em>(chase)</em></td>
+</tr>
+<tr>
+<td>Content review + second reviewer</td>
+<td><strong>Conlan E Wall</strong></td>
+</tr>
+<tr>
+<td>Route to the legal form</td>
+<td><strong>Mazin</strong></td>
+</tr>
+<tr>
+<td>Build in HubSpot + send</td>
+<td><strong>Mazin</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-two-facts-that-explain-every-slip">🔴 The two facts that explain every slip</h3>
+<ul>
+<li><strong>Legal wants 1–3 days.</strong> <em>"Usually legal review, they want at least like two days. One day, two days, three days. <strong>People want lead time.</strong>"</em> Against a publication everyone expects same-day. ⚠️ <em>"You can push, but there's only so much you can do."</em></li>
+<li><strong>Hod answers fastest on Signal.</strong> <em>"Hod [is] more responsive on Signal — put it on [the] channel, ask him to review."</em></li>
+</ul>
+<p>🎯 <strong>Together they turn a weekly escalation into a schedule change: move the internal deadline back three days, and chase Hod where he actually replies.</strong></p>
+<h3 id="the-escalation-rule-post-publicly-attach-a-date">🎯 The escalation rule — post publicly, attach a date</h3>
+<blockquote>
+<p><em>"Sometimes <strong>[Hod] is your own blocker</strong>… <strong>if you post it on Signal, everyone sees it. It gives them a little bit [of] pressure to prioritize.</strong>"</em><br />
+<em>"'Hey Hod, I'm trying to send this out next week. <strong>If [by] end of week, can you review this?</strong>' — <strong>give him a time.</strong>"</em></p>
+</blockquote>
+<p>✅ <strong>Two elements make it work: post where others read, and attach a date.</strong> 🎯 It passes the forward-to-anyone test, and it matches Hod's own <em>"be the adults in the room and be like, what are you trying to accomplish?"</em></p>
+<h3 id="important-links">Important links</h3>
+<ul>
+<li><strong>ACPRIV: Tokenholder Relations | Team Charter</strong></li>
+<li><strong>CL Connect #6 draft</strong> · <strong>#5</strong> · <strong>#4</strong> · <strong>#3</strong> · <strong>#2</strong> · <strong>#1</strong></li>
+<li><strong>Legal content review form</strong></li>
+<li><strong>HubSpot setup link</strong></li>
+</ul>
+<h3 id="known-failure-modes">Known failure modes</h3>
+<ul>
+<li>⚠️ <strong>Zach</strong> <em>(sp?)</em> covers content when Conlan is on PTO — <strong>he was the blocker on Aug 10.</strong> Identify him properly.</li>
+<li>🔴 <strong>Aug 11: the send missed its slot on a legal step, and Mazin was named as the owner of the fix out loud</strong> — <em>"So, Mazin… can you take a look?"</em></li>
+<li>⚠️ <strong>Roman cannot see the legal ticket.</strong> Screenshot the requested changes to him.</li>
+<li>⚠️ <strong>Do not resolve Conlan's comments.</strong> He wants <strong>Scott</strong> to review them first — <em>"he did the same to me even though I'm here four and a half years… <strong>let him take the lead. Don't approve.</strong>"</em></li>
+</ul>
+<hr />
+<h2 id="2-webinars-priority-2-understand-the-workflow">2. 🟠 Webinars · <strong>PRIORITY #2 — understand the workflow</strong></h2>
+<h3 id="people_1">People</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Owner, including running the live room</strong></td>
+<td><strong>Natalie Chakar</strong></td>
+</tr>
+<tr>
+<td>Landing pages</td>
+<td><strong>Brandon Harrison</strong> — <em>DM him directly</em></td>
+</tr>
+<tr>
+<td>Point of contact</td>
+<td><strong>Joshua Azar</strong></td>
+</tr>
+<tr>
+<td>Email workflow build</td>
+<td><strong>Mazin Kanuga</strong></td>
+</tr>
+<tr>
+<td>Social / LinkedIn Live</td>
+<td><strong>Justin Alper</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="deliverables-per-webinar">Deliverables per webinar</h3>
+<ol>
+<li><strong>Confirmation email</strong> (registration → confirmation)</li>
+<li><strong>Promo email</strong></li>
+<li>🆕 <strong>Pre-webinar reminder — 5 minutes before, not 1 hour.</strong> Her recommendation: <em>you can optimise engagement better with 5 minutes.</em></li>
+<li><strong>Post-webinar email</strong></li>
+<li><strong>The webinar workflow in HubSpot</strong> — clone the previous one, change dates and copy</li>
+</ol>
+<h3 id="the-qa-checklist-quadruple-check-everything">🔴 The QA checklist — <strong>quadruple-check everything</strong></h3>
+<ul>
+<li class="task">☐ <strong>Date</strong> — does it match the actual event?</li>
+<li class="task">☐ <strong>Registration link</strong> — correct, live, and pointing at <strong>the platform actually being used</strong>?</li>
+<li class="task">☐ <strong>Join link</strong> — click it. <strong>Actually click it.</strong></li>
+<li class="task">☐ <strong>CTA</strong> — the right action for this email? <em>(e.g. "add to calendar")</em></li>
+<li class="task">☐ <strong>Subject line</strong> — trimmed to fit fully on one line</li>
+<li class="task">☐ <strong>Landing page</strong> — is it live? ⚠️ <strong>Never assume readiness because you were asked to promote</strong></li>
+<li class="task">☐ 🔴 <strong>Do the platform, the registration page and the join link all agree?</strong> — <strong>this is what failed on Aug 12</strong></li>
+</ul>
+<h3 id="the-ftse-russell-result-the-first-hard-webinar-number-you-hold">🔴 The FTSE Russell result — the first hard webinar number you hold</h3>
+<blockquote>
+<p><em>"That webinar was a flop… <strong>maybe 75 people sign up, only 15 show up.</strong> So that's, what, like <strong>20% show up</strong>?"</em><br />
+<em>"And then you have 40, 60 people sign up and then <strong>you can't see everybody's name</strong>… <strong>you can only opt in [to] 40%.</strong>"</em></p>
+</blockquote>
+<p>⚠️ <strong>Her own mitigation: it was never meant to be a LinkedIn webinar</strong> — the format changed late.<br />
+✅ 🎯 <strong>And her closing position, offered unprompted on her last day:</strong> <em>"<strong>The email performed fine. It's [the] webinar</strong> [that] was a flop, because it's a mess. … <strong>The campaign was solid.</strong>"</em> — she took the list question herself.<br />
+⚠️ <strong>The warning attached:</strong> <em>"<strong>You're gonna be the easy target</strong>, because they can't point [the] finger at her."</em><br />
+🎯 <strong>If it is raised: answer with the two numbers and the format change. Never with a characterisation of anyone.</strong></p>
+<p>🎯 <strong>The ~40% identification rate is the LinkedIn Live attendee-data gap Hod asked you to solve for Frank on Aug 10, now quantified.</strong></p>
+<h3 id="links">Links</h3>
+<ul>
+<li><strong>FTSE Russell Privacy Campaign</strong> <em>(BCM INTERNAL doc)</em></li>
+<li><strong>"Why Interoperability and Privacy Matter" — Chainlink Labs × FTSE Russell</strong>, LinkedIn page</li>
+<li><strong>FTSE (Aug 12, LIVE)</strong> · <strong>FIL (Jul 28, ON-DEMAND)</strong> — doc links in <a href="#appendix-b-wanyis-final-handover-doc-verbatim">Appendix B</a></li>
+</ul>
+<h3 id="two-open-strategic-questions">⚠️ Two open strategic questions</h3>
+<ul>
+<li><strong>Who actually owns webinar outcomes?</strong> Natalie runs the room; Mazin builds the funnel; the failure lands ambiguously. 🎯 <strong>Get the ownership line written down before the next one.</strong></li>
+<li>⚠️ <strong>Mazin is told to train Natalie but holds no authority over her.</strong> <em>"You have to train her — [and then] 'you didn't train her.'"</em> 🎯 <strong>Put the training plan in writing and agree it with Hod. The record is the defence.</strong></li>
+</ul>
+<hr />
+<h2 id="3-evergreen-newsletters">3. 🟡 Evergreen newsletters</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Publication</th>
+<th>Cadence</th>
+<th>Drafted by</th>
+<th>Inputs</th>
+<th>Mazin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TR / Chainlink Connect</strong></td>
+<td><strong>Weekly</strong></td>
+<td>Alkesh Shah</td>
+<td>—</td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td><strong>BCM Newsletter</strong></td>
+<td>Monthly, <strong>first Wednesday</strong></td>
+<td>Conlan E Wall</td>
+<td>George Chivi + Ashley O'Brien</td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td><strong>Dev</strong></td>
+<td>Monthly</td>
+<td>Sofia Duarte</td>
+<td>—</td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td><strong>Missing Link</strong></td>
+<td>Monthly</td>
+<td>Content</td>
+<td>Check the <strong>CL reserve #</strong> at <code>metrics.chain.link/reserve</code></td>
+<td>Build + send</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-bcm-newsletter-build-her-actual-method">🎯 The BCM newsletter build — her actual method</h3>
+<ol>
+<li>🔴 <strong>Legal review first.</strong> Everything locked. <strong>Nothing is assembled before that clears.</strong></li>
+<li><strong>Clone the original doc — never start from blank.</strong></li>
+<li><strong>Assemble every link into the doc first</strong>, so the build is copy-paste rather than research.</li>
+<li><strong>Speaker headshots can be scraped from the LinkedIn profile</strong> — works ~99% of the time. Use a PNG compressor.</li>
+<li><strong>HubSpot builds are custom HTML</strong> — get Claude to make the code adjustments <em>(see §8)</em>.</li>
+<li>✅ <strong>Close out every comment on the doc before sending.</strong></li>
+</ol>
+<h3 id="missing-link-who-approves-it-and-when-it-sends">✅ Missing Link — who approves it, and when it sends</h3>
+<blockquote>
+<p><strong>Mazin:</strong> <em>"Who's supposed to QA and test and approve the Missing Link?"</em><br />
+<strong>Wanyi:</strong> <em>"By the time the copy [is] sent to you, in the ideal world it's all locked. <strong>No one needs to curate anything.</strong> … Missing Link — <strong>no one really gives a shit</strong>, if I have to be honest. So <strong>you can just queue it on your own. You don't need to send me a test email, or [to] anyone.</strong>"</em></p>
+</blockquote>
+<p>✅ <strong>No approver. No test send.</strong> <strong>Send is Saturday morning</strong> — ⚠️ the asset name <code>Missing Link Aug 14th</code> is wrong.</p>
+<ul>
+<li>⚠️ <strong>Cadence was every two weeks; she pushed it to monthly</strong> — <em>"we're running out of announcements."</em></li>
+<li>🔴 <strong>Placeholder links are the norm.</strong> <em>"Most of the time they will put [a] placeholder link… you can ask them, or <strong>you go chase the link down</strong>."</em></li>
+<li>🎯 <strong>Audience note:</strong> it is <em>"<strong>web3 random people</strong>"</em> — ⚠️ <strong>the wrong vehicle for institutional event promo.</strong> <em>"I don't get why Conlan dropped that Missing Link to promote Link NYC. It's weird."</em> ✅ Already corrected.</li>
+</ul>
+<h3 id="where-the-newsletter-images-come-from-the-craft">🎯 Where the newsletter images come from — the craft</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static image in the tweet / post</strong></td>
+<td>Click it → <strong>right-click → Save As</strong>. <em>"Just save it from the tweet"</em> — no Figma or Drive hunt</td>
+</tr>
+<tr>
+<td><strong>The post is a video</strong></td>
+<td>🎯 <strong>Play the video and screen-grab a frame</strong>, then resize. <em>"I play the video and screen grab. I do that."</em></td>
+</tr>
+<tr>
+<td><strong>Neither, or you want something cleaner</strong></td>
+<td><strong>Search the keyword in the Asana ticket</strong> and use a <strong>generic brand logo</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>✅ <strong>And the permission, stated outright:</strong> <em>"<strong>You have the autonomy to do that</strong>, by the way."</em> ⚠️ Sizes vary — resize after grabbing.</p>
+<h3 id="the-conlan-comment-gate-do-not-resolve">⚠️ The Conlan comment gate — do not resolve</h3>
+<blockquote>
+<p><em>"<strong>He did the same to me even though I'm here four and a half years</strong>… he wants <strong>Scott</strong> to look at his comments before you close it out. <strong>Which is fine.</strong> … <strong>Let him take the lead. Don't approve.</strong>"</em></p>
+</blockquote>
+<p>✅ A norm, not a slight — <em>"I'm glad he got you early."</em></p>
+<hr />
+<h2 id="4-events">4. 🟠 Events</h2>
+<h3 id="4a-sibos-2026-the-biggest-exposure-on-this-list">4a. 🔴 SIBOS 2026 — the biggest exposure on this list</h3>
+<p><strong>Mon 28 Sep – Thu 1 Oct 2026 · Miami Beach Convention Center.</strong><br />
+<strong>Partner with GTM Ops — Jason, Ashish, Frankie — and Ashley / George on all things Sibos.</strong></p>
+<h4 id="the-location-rule-read-this-before-sending-anything">🔴🔴 THE LOCATION RULE — read this before sending anything</h4>
+<p><strong>Aug 11.</strong> Wanyi called back specifically to stop Mazin replying to a Sibos thread, and gave the reason: <strong>last year the executive roundtable breakfast never happened.</strong></p>
+<blockquote>
+<p><em>"<strong>Sergey was pissed and yelling at people</strong>… someone messed up the location, the time, and the [attendees] never showed up."</em><br />
+🔴 <em>"<strong>Anything with Sibos, the contentious part is location confirmed.</strong> Whatever email they want you to send — <strong>if the location is messed up, who the fuck is gonna be responsible?</strong>"</em></p>
+</blockquote>
+<p>⛔ <strong>No Sibos email states a venue, room, date or time that Mazin has not personally seen validated by a named person, in writing.</strong></p>
+<h4 id="inbound-meeting-request-the-entry-point">Inbound meeting request — the entry point</h4>
+<p><strong>Email drip campaigns → the Schedule a Meeting page:</strong><br />
+<code>https://pages.chain.link/hubfs/chainlink-sibos-2026-meeting-request.html</code></p>
+<p><strong>Campaign &amp; tracking setup:</strong> HubSpot workflow tags leads to the <strong>SFDC campaign</strong> → <strong>lead handling by GTM Ops.</strong></p>
+<p>✅ <strong>The boundary, agreed in person with Jason Aarni before she left:</strong> <strong>marketing owns the front end</strong> (landing page → HubSpot form → workflow → Salesforce campaign tag); <strong>GTM Ops owns the downstream</strong> (lead routing, account owner, arranging the meeting), with <strong>Frankie</strong>. 🎯 <strong>Say it in exactly those words every time it comes up.</strong></p>
+<h4 id="what-wanyi-built">What Wanyi built</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Detail</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Meeting request page</strong></td>
+<td>HubSpot native form <em>(replacing Typeform)</em></td>
+<td>✅ Built — needs mapping back to the SFDC campaign once GTM Ops set it up</td>
+</tr>
+<tr>
+<td><strong>Front-end landing page</strong></td>
+<td>Edits go through the <strong>HubSpot file manager</strong></td>
+<td>✅ <strong>DM Joshua Azar for help</strong></td>
+</tr>
+<tr>
+<td><strong>Inbound sales flow</strong></td>
+<td>HS workflow inbound</td>
+<td>🔴 Needs GTM Ops to connect</td>
+</tr>
+<tr>
+<td><strong>Contact lead assignment</strong></td>
+<td>Aligning GTM Ops / Jason Aarni's team</td>
+<td>🟠 In flight</td>
+</tr>
+<tr>
+<td><strong>Email drips</strong></td>
+<td>See strategy doc</td>
+<td><strong>Mazin</strong></td>
+</tr>
+<tr>
+<td><strong>Website copy wireframe</strong></td>
+<td><em>Sibos 2026 / Website Copy Wireframe</em></td>
+<td>✅ Declared good to go</td>
+</tr>
+<tr>
+<td><strong>Design banner ticket</strong></td>
+<td><strong>Sean</strong> mocked it up same day</td>
+<td>✅ Filed</td>
+</tr>
+<tr>
+<td><strong>Headline copy</strong></td>
+<td>Wanyi made recommendations</td>
+<td>🎯 <strong>Take all four to Hod</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="the-recipient-list-settled">✅ The recipient list — settled</h4>
+<ul>
+<li><strong>The list = the delegate list × T0–T3 target accounts</strong>, <strong>plus the inverse list</strong> of T0–T3 accounts absent from the delegate list. <strong>Frankie proposed it; Hod: <em>"I love that."</em></strong> <strong>GTM Ops runs the VLOOKUP; Hod sends the ask.</strong></li>
+<li><strong>The BCM target list definition, for Jason:</strong> it is <strong>the sales BCM account list</strong> — Tier 0 → 1 → 2 → 3.</li>
+<li>🔑 <strong>In HubSpot that is <code>Sales Unit = CAPM</code> (contact property) plus the Salesforce-synced <code>Tier</code> of <code>0</code>–<code>3</code>.</strong> See §9.</li>
+<li>⚠️ <strong>Sanctioned countries already filtered</strong> per Frank's standing direction.</li>
+<li>⚠️ <strong>The delegate list is sourced from Meridian, weekly.</strong> 🔴 Only <strong>Lily</strong> holds the raw file, and she is handing off.</li>
+</ul>
+<h4 id="what-is-blocking">🔴 What is blocking</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Blocker</th>
+<th>Owner</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 <strong>Hod + Frank sign-off on the list</strong></td>
+<td><strong>Hod</strong>, prompted by <strong>Frankie</strong></td>
+<td>🔴 <strong>Gates the send.</strong> ⚠️ <strong>Stay out of the politics</strong> — <em>"let Frankie deal with Hod and work it out with Frank."</em> 🎯 Ask status with a date only.</td>
+</tr>
+<tr>
+<td>🔴 <strong>Salesforce logic rejecting contacts on sync</strong></td>
+<td><strong>Josh + Jason</strong>, with <strong>Priyanka</strong></td>
+<td><em>"You get everything right on HubSpot and <strong>they reject the contact</strong> because of whatever Salesforce logic — <strong>let them figure it out</strong>."</em> ✅ Outside your control. ⚠️ Keep it to the technical thread.</td>
+</tr>
+<tr>
+<td>🔴 <strong>The copy</strong></td>
+<td><strong>Alex Heitman</strong></td>
+<td><em>"just a lot of AI fluff"</em> · <em>"right now what's in there makes us look dumb."</em> Framed as <strong>sales enablement, not a content initiative.</strong> Final review: <strong>Hod + Frank Seibold</strong>, plus Ada and Ashley.</td>
+</tr>
+<tr>
+<td>⚠️ <strong>Fernando's review</strong> — the invite goes out from him</td>
+<td><strong>Ashley + Frankie</strong></td>
+<td>He did not know it existed as of Aug 12. ✅ His photo has been removed from the template.</td>
+</tr>
+<tr>
+<td>⚠️ <strong>The email template</strong></td>
+<td><strong>Mazin</strong></td>
+<td>🆕 <strong>The drag-and-drop version is stale</strong> — <em>"the photos are off… everything is outdated in the photo."</em> <strong>Rebuild it.</strong></td>
+</tr>
+<tr>
+<td>🟠 <strong>Legal</strong></td>
+<td>Legal</td>
+<td><strong>Optional</strong> — <em>"there's nothing crazy in there"</em> — but <strong>submit the ticket anyway.</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>🔴 <strong>And the pacing instruction:</strong> <em>"If you really need to send it on Wednesday, <strong>you'd rather send it later. Don't let them rush you.</strong>"</em></p>
+<h4 id="the-sibos-cast">🔴 The Sibos cast</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ashley O'Brien</strong></td>
+<td>The single best-informed person in the building on Sibos — ex-Citi, ex-Swift, 20+ years, <strong>14 Sibos</strong>, ran Citi's &gt;$1M programme</td>
+</tr>
+<tr>
+<td><strong>Hod Klein</strong></td>
+<td>Owns it. Banner, copy messaging, list sign-off</td>
+</tr>
+<tr>
+<td><strong>Frank Seibold</strong></td>
+<td>Reviews the list</td>
+</tr>
+<tr>
+<td><strong>Fernando</strong></td>
+<td>🔴 <strong>The invite goes out from him</strong></td>
+</tr>
+<tr>
+<td><strong>Frankie Ball</strong></td>
+<td>Coordination, downstream meeting requests. ⚠️ <strong>Not Frank Seibold</strong></td>
+</tr>
+<tr>
+<td><strong>Jason Aarni</strong> · <strong>Ashish Aryal</strong></td>
+<td>GTM Ops — the downstream</td>
+</tr>
+<tr>
+<td><strong>Priyanka</strong></td>
+<td>Salesforce campaign setup</td>
+</tr>
+<tr>
+<td><strong>Alex Heitman</strong></td>
+<td>The invite #1 copy</td>
+</tr>
+<tr>
+<td><strong>George Chivi</strong> · <strong>Justin Alper</strong></td>
+<td>Social promo with sales</td>
+</tr>
+<tr>
+<td><strong>Lily</strong></td>
+<td>Held the raw delegate list — 🔴 <strong>mat leave.</strong> Source is <strong>Meridian</strong>, weekly</td>
+</tr>
+<tr>
+<td><strong>Sean</strong></td>
+<td>Design — fast</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>The events team has collapsed underneath this:</strong> the Director of Events left <strong>Mon Aug 3</strong>, the one remaining IC with Sibos experience was let go <strong>w/c Jul 27</strong>, and <strong>Lily went on mat leave w/c Aug 10.</strong> What is left is <em>"two people on events — ish."</em> Ashley's diagnosis: <strong><em>"No one's taking ownership. And ownership has passed back and forth a few times."</em></strong><br />
+🎯 <strong>Read that carefully: the marketing side is not the blocker. Offering to take the email layer costs nobody anything and threatens no one.</strong></p>
+<h4 id="the-emails">The emails</h4>
+<ul>
+<li><strong>Invite #1</strong> — goal = <strong>meeting request</strong>. <strong>CTA = "Schedule a meeting" → the meeting form page</strong>, <em>not</em> the landing page.</li>
+<li><strong>Invite #2 onward</strong> — same email, <strong>revised copy, new subject line.</strong> <strong>Cadence weekly.</strong> ⚠️ <strong>Hod is away the week of the 17th.</strong></li>
+<li>✅ <strong>The landing page is not a blocker</strong> — <em>"let's not wait for it."</em></li>
+</ul>
+<hr />
+<h3 id="4b-link-nyc-thu-29-oct">4b. 🟠 LINK NYC — Thu 29 Oct</h3>
+<p><strong>Owner: Amal Hijazi</strong>, also Mazin's onboarding buddy. <strong>The email layer is already Mazin's.</strong></p>
+<ul>
+<li><strong>Tracking sheet</strong> and <strong>BCM Invites</strong> sheet — links in <a href="#appendix-b-wanyis-final-handover-doc-verbatim">Appendix B</a></li>
+<li>✅ <strong>Design ticket submitted for the next promo / agenda</strong>, Mazin added</li>
+<li>✅ <strong>Hod chose the banner: V5 — <em>"on-chain finance, next era."</em></strong></li>
+<li><strong>Invite list:</strong> she opened a thread and CC'd Mazin to follow up with GTM Ops <strong>regarding Tier 2</strong></li>
+<li>🔴 <strong>Exclude registered contacts</strong> — HubSpot list <code>objectLists/5344</code></li>
+<li>🔑 <strong>To build the Tier 2 / Tier 3 segments:</strong> filter HubSpot on <strong><code>Sales Unit = CAPM</code></strong> + <strong><code>Tier = 2</code> or <code>3</code></strong> (tier synced from Salesforce). See §9.</li>
+<li>
+<p>⛔ <strong>Avoid the number 13. Use 12+1.</strong></p>
+</li>
+<li>
+<p>💰 <strong>A $12,000 Bizzabo badge-printing quote has not been submitted.</strong> ⚠️ Offer the walkthrough, not the critique — it is Amal's purchase order.</p>
+</li>
+</ul>
+<h4 id="the-funnel-does-not-close">🔴 The funnel does not close</h4>
+<p><strong>1,300–1,400 invites are needed to land ~400 in the room. ~260 have been sent. Registration is gated.</strong></p>
+<h4 id="the-three-move-playbook-her-last-call">🎯 The three-move playbook — her last call</h4>
+<p><strong>Move 1 — the next email is the agenda.</strong> <em>"The high level is the agenda. You can go to the agenda page… <strong>promote [the] agenda</strong>."</em> <strong>Cadence: two weeks proposed — ⚠️ agree one vs two with Hod.</strong></p>
+<p><strong>Move 2 — put the speaker gap back on the workstream that owns it.</strong></p>
+<blockquote>
+<p><em>"The next one [after that] should be going out <strong>with speakers</strong>. <strong>That's why Frank [is] freaking out</strong> — they care about who's speaking. <strong>How do you tell people to come when you don't have your speakers lined up?</strong>"</em><br />
+🎯 <strong>The line to use:</strong> <em>"<strong>Hey, what can I promote? You don't have speakers for me to promote.</strong>"</em></p>
+</blockquote>
+<p><strong>Move 3 — argue for expanding the invite list to Tier 2 and 3.</strong></p>
+<blockquote>
+<p><em>"Realistically <strong>you will [need to] expand to BCM Tier 2.</strong> They can be too arrogant about 'we only invite [Tier] 0 and 1.' Well, guess what — <strong>look at the conversion projection that I did. No one listened.</strong> … <strong>You can't be picky.</strong>"</em><br />
+🎯 <strong>The script for Hod:</strong> <em>"<strong>Right now we only invite T0/T1. If you don't expand to Tier 2 and 3, I'm afraid we're going to run into the problem of not having enough BCM people.</strong>"</em></p>
+</blockquote>
+<p>🔴 <strong>This is the third independent statement of the same diagnosis in four days</strong> — the Aug 11 BCM room chose more volume from the same list; Aug 13: <em>"they keep it too small… you need to widen your net"</em>; Aug 14: <strong>expand to Tier 2/3.</strong> ✅ <strong>Mazin is the only person who has heard all three.</strong> 🎯 <strong>Say it once, in writing, with the projection attached — so that if it is declined, the record shows it was raised.</strong></p>
+<h4 id="working-with-amal">⚠️ Working with Amal</h4>
+<ul>
+<li>✅ <em>"<strong>Amal is nice. I like her. She has really good people skills.</strong>"</em> ⚠️ <em>"<strong>But she can be messy.</strong>"</em> ⚠️ <em>"The logical part can be very weak with that team."</em></li>
+<li>🔴 <strong>Set a 48-hour lead-time SLA.</strong> <em>"Why does Amal always send messages saying 'can we send an email out in 30 minutes'?"</em> → <em>"<strong>Actually, you should push back.</strong> Tell her: <strong>'I need 48 hours lead time.'</strong> And you can also say <strong>there's an SLA here.</strong>"</em></li>
+<li>🎯 <strong>Do not ask her for copy feedback.</strong> <em>"<strong>You should take the lead, because you're the expert here — the subject-matter expert. If she takes the lead, it will be a nightmare.</strong>"</em></li>
+<li>🎯 <strong>Hold the event-planning boundary.</strong> <em>"<strong>I'm not the event planner. You're the event planner. I wouldn't know what the check-in process is — you need to tell me.</strong>"</em></li>
+<li>✅ <strong>She will supply "know before you go" reminder copy</strong> one week out.</li>
+<li>🎯 <strong>The angle for getting on the ground at the event:</strong> <em>"<strong>Your angle is not to come from Hod. Your angle is Amal</strong> — 'you need me on the ground; if you need to send email comms on the spot, I'm here for you.' Because George and Resham can do that. <strong>So Amal will have the power and budget to include you.</strong>"</em> ⚠️ <strong>And tell her about the event-logistics background</strong> — Singapore, Hong Kong, London, end to end.</li>
+</ul>
+<h4 id="history-worth-having">History worth having</h4>
+<ul>
+<li>⚠️ <strong>Aug 11: Frank Seibold convened a crisis meeting.</strong> <em>"The Link NYC story is scary"</em> · <em>"a train wreck of epic proportions"</em> · <em>"this is a shit show"</em> · <em>"a call to arms."</em> <strong>12.5% subscribed two months out.</strong></li>
+<li>🎯 Wanyi's read: salespeople at Frank's level normally decline to get involved. <strong>Him convening it means Link NYC has escalated past marketing.</strong></li>
+<li>⚠️ <strong>The event workstream is <em>"notoriously messy"</em></strong> — <em>"I was the one who had to do the projection, and then they realised 'oh, we need a projection,' and worked off what I had."</em></li>
+<li><strong>Last year the event was SmartCon.</strong> People were unhappy at the rename — <em>"this brand equity… millions."</em></li>
+</ul>
+<hr />
+<h2 id="5-developers-basically-on-life-support">5. 🔴 Developers — <em>"basically on life support"</em></h2>
+<p>⚠️ <em>"Right now <strong>no one's really giving a shit about developer</strong>."</em> · <em>"Usually hackathon, bootcamp, product usage — <strong>it's really life support</strong>, because you can only do so much. And <strong>they put you on BCM</strong> — why do you have to touch developer? <strong>Sofia is supposed to be developer.</strong>"</em><br />
+🎯 <strong>Her instruction: work very closely with Scott Gillespie on this.</strong> ⚠️ <em>"The reporting structure is weird in this company."</em></p>
+<h3 id="5a-chainlink-for-agents-cl-agent">5a. Chainlink for Agents (CL Agent)</h3>
+<p><strong>Counterpart: Michael Imperiale</strong> <em>(first 1:1 Fri 7 Aug)</em>.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chainlink for Agents — Marketing Launch</strong></td>
+<td>Needs cleaning up</td>
+</tr>
+<tr>
+<td><strong>Market Intel &amp; User Feedback</strong></td>
+<td>Research input</td>
+</tr>
+<tr>
+<td><strong>Quick-win campaign</strong></td>
+<td>Follow-up to the original comms, to unopened contacts</td>
+</tr>
+<tr>
+<td><strong>CL Agent campaign 1 · campaign 2</strong></td>
+<td>HubSpot past campaigns — <strong>pull the engaged segment for the re-engagement list</strong> ✅ Michael green-lit this</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="the-re-engagement-email-reset-on-aug-14">🔴 The re-engagement email — reset on Aug 14</h4>
+<blockquote>
+<p><em>"<strong>Let's not rush this one.</strong> He obviously wants his input and feedback. If we just send it today, <strong>he might be annoyed</strong> — 'I never looked at the copy, I want to give feedback.'"</em><br />
+🎯 <strong>So: new draft → Michael Imperiale reviews → then send.</strong></p>
+</blockquote>
+<p>⚠️ 🔴 <strong>And the correction that saves real rework:</strong></p>
+<blockquote>
+<p><strong>Mazin:</strong> <em>"It's an easy draft, because it's just the same version as the first one, slightly updated?"</em><br />
+<strong>Wanyi:</strong> <em>"<strong>No.</strong> … The last one I cloned over was <strong>Data Streams / Polymarket-specific</strong>. <strong>The copy was specific to those people. You have to adjust it.</strong>"</em></p>
+</blockquote>
+<p>✅ <strong>The CTA links to the landing page</strong> — she clarified that on the Michael/Bradley thread.</p>
+<h3 id="5b-polymarket-data-streams-stand-down-reversed">5b. ✅ Polymarket Data Streams — stand-down REVERSED</h3>
+<p><strong>Product-led self-serve. PM: Joshua Neuroth.</strong> Channel: <code>polymarket-data-streams-sponsorship-program</code>.<br />
+✅ <strong>Hod reversed the stand-down on Aug 10</strong> — <em>"on Friday it was like, we need to do everything on this."</em></p>
+<h3 id="5c-developer-onboarding">5c. Developer onboarding</h3>
+<ul>
+<li><strong>Dev newsletter onboarding</strong> — ✅ <strong>she updated it and replaced the old community email</strong> <em>(no more in-person community events)</em></li>
+<li><strong>CRE / API trigger</strong> — a <strong>CRE onboarding workflow</strong> she built under developer. <em>"<strong>You don't have to worry about it</strong> — if you have any questions, <strong>ask Josh.</strong>"</em></li>
+</ul>
+<h3 id="5d-the-sofia-intake-rule-the-dev-newsletter">5d. 🔴 The Sofia intake rule — the Dev newsletter</h3>
+<p>🔴 <strong>Copy must be locked before the build starts.</strong> The Aug 10 incident — unlocked copy, an unapproved thumbnail, placeholder links — cost a day and was documented on the Asana ticket.<br />
+✅ <strong>It resolved itself within 24 hours and the record should say so:</strong> Sofia unblocked the video herself, dropped the unpublished item, and the send went clean. 🎯 <strong>One bad day is not a pattern.</strong><br />
+🎯 <strong>The standing process message to her is drafted</strong> — see <code>SOFIA-MESSAGES-2026-08-10.md</code>.</p>
+<hr />
+<h2 id="6-government-wyoming">6. 🔴 Government — Wyoming</h2>
+<ul>
+<li><strong>Owner: Mark Gaal.</strong> Channel <code>#wyomingccip</code>.</li>
+<li>🔴 <strong>Her written instruction:</strong> <em>before sending this out, make sure </em><em>ALL stakeholders, the legal team, and Mark Gaal's approval are documented</em><em>. Do not send until all the notes in the doc are addressed.</em></li>
+<li>✅ <strong>Aug 14: she uploaded the list, and it was approved.</strong> <em>"I uploaded the list already. If you go in the doc, it's going to that list."</em> + <em>"<strong>this was approved</strong> — you can double-check on the doc."</em></li>
+<li>✅ <strong>She opened a group DM with Mazin and Christina.</strong></li>
+<li>⚠️ <strong>Status: go / no-go, and currently no-go.</strong> <em>"That thing is annoying — it's like go or no go."</em> 🎯 <strong>Her pushback line: <em>"let's add buffer."</em></strong></li>
+<li>⚠️ <strong>This is the one item where you have zero background.</strong> Get the story from Mark Gaal before it resurfaces.</li>
+</ul>
+<hr />
+<h2 id="7-the-three-use-case-reorg-the-frame-everything-sits-inside">7. 🟡 The three-use-case reorg — the frame everything sits inside</h2>
+<p>Three use cases, three leads, three-month roadmaps; announcements demoted to <em>"purely reactive."</em> 🔴 <strong>The email schedule for all three runs through Mazin, and nobody has said so out loud.</strong></p>
+<h2 id="7b-paid-media-it-exists-it-is-funded-and-it-is-arriving">7b. 🔴 Paid media — it exists, it is funded, and it is arriving</h2>
+<ul>
+<li>✅ <strong>~$175–200K for the rest of 2026</strong>, from Hod's own discretionary pot — <em>"as of now, I don't have to ask permission [from] anyone."</em></li>
+<li>✅ <strong>Paid / sponsored webinars transfer to Mazin</strong> — Funds Europe, 12–15K a placement, <em>the publisher brings the speaker.</em></li>
+<li>🎯 <strong>The lesson that unlocked it:</strong> <em>"is there budget?"</em> is ambiguous here. <strong>Always ask "whose budget, and for what?"</strong> — BCM event spend (zero) ≠ Margaux's operational spend ≠ Hod's media budget.</li>
+</ul>
+<hr />
+<h2 id="8-the-email-build-method-the-craft-handover">8. 🎯 The email build method — the craft handover</h2>
+<h3 id="the-method">The method</h3>
+<ol>
+<li><strong>Clone an existing email</strong> — never start from a blank template.</li>
+<li><strong>Open the HTML.</strong> Copy it out.</li>
+<li><strong>Paste it into Claude / ChatGPT with the change you want.</strong> Paste the result back.</li>
+<li><strong>Send a test. Check it.</strong></li>
+</ol>
+<p>✅ <strong>Mazin worked this out himself from her demo:</strong> <em>"copy, paste, tell ChatGPT or Claude to update it, paste back in, do the test."</em> Wanyi: <em>"<strong>Nice job.</strong>"</em></p>
+<h3 id="drag-and-drop-is-now-allowed-his-call">🆕 ✅ Drag-and-drop is now allowed — his call</h3>
+<blockquote>
+<p><strong>Mazin:</strong> <em>"Are you okay with me moving from HTML to just drag and drop?"</em><br />
+<strong>Wanyi:</strong> <em>"<strong>Yeah, I don't care. Whatever [works] for you</strong> — <strong>you just need to make sure everything checks out.</strong> … Honestly, <strong>you can do whatever you want</strong>, as long as <strong>you manage it</strong>."</em></p>
+</blockquote>
+<p>⚠️ 🔴 <strong>But the shared drag-and-drop footer is broken:</strong> <em>"that <strong>Twitter icon</strong> is [wrong]… and also <strong>the footer and the year</strong>."</em> <strong>Fix it before shipping anything on it.</strong></p>
+<h3 id="the-trap-that-silently-breaks-every-send">🔴 The trap that silently breaks every send</h3>
+<p><strong>Chainlink wraps outbound URLs.</strong> ⛔ <strong>Never copy a link out of a doc. Always open it and copy the clean URL from the browser address bar.</strong></p>
+<h3 id="landing-pages-without-a-web-ticket">🆕 Landing pages without a web ticket</h3>
+<p><strong>HubSpot can host a landing page on a selected domain.</strong> Wanyi built and hosted the Sibos meeting-request page herself with no web ticket. ✅ <strong>That removes a dependency you were assuming you had.</strong></p>
+<hr />
+<h2 id="8b-the-metrics-pushback-script">8b. 🎯 The metrics pushback script</h2>
+<blockquote>
+<p><em>"We usually report campaign metrics after <strong>24, 48 hours</strong>. Given the time zone — we have audiences all over the world — <strong>if you want accurate campaign metrics, give me at least 24, 48 hours.</strong> And then <strong>you circle back when it's ready to report.</strong>"</em></p>
+</blockquote>
+<p>✅ <em>"<strong>You can push back a little bit on that.</strong>"</em> 🎯 <strong>It is a standard, not a refusal</strong> — and it protects the Dev-newsletter send-time analysis from being scored on half a day of data.</p>
+<hr />
+<h2 id="8c-the-doc-as-tracker-method-the-most-valuable-thing-in-eight-calls">8c. 🎯🎯 The doc-as-tracker method — the most valuable thing in eight calls</h2>
+<p><strong>Mazin named his own weak spot:</strong> <em>"I'm not used to processes — doing tickets and all this kind of stuff. When you work on a small marketing team, nobody cares about tickets, you just get the work done… so <strong>I might have trouble working with people on managing different tasks.</strong>"</em></p>
+<p><strong>Her answer was not "learn Asana." It was an alternative system:</strong></p>
+<blockquote>
+<p><em>"In the ideal [world], <strong>you honestly don't need [an] Asana ticket.</strong> … [An] Asana ticket is just — <strong>if Margaux [and] Sherin want to measure your output, they will ask you [for] an Asana ticket. But obviously you can push back.</strong>"</em><br />
+🎯 <em>"What you do is <strong>you just manage your process in the doc</strong>. <strong>You consolidate the review process and the stakeholder alignment in the copy document. So that means you don't have to have [an] Asana ticket.</strong>"</em><br />
+<em>"<strong>You just put everything in this doc so you don't need so many tickets.</strong> Email copy — this part, put it on Hod; whether he approves, then he can check it off."</em><br />
+🎯 <em>"<strong>Everyone can see who owes you things.</strong> 'Oh, Fernando hasn't seen it.' 'Frankie, you owe me this.'"</em><br />
+✅ <strong>And the reason:</strong> <em>"<strong>Just to back yourself up</strong> — you don't want people [to] ask you [about] a problem [later]."</em></p>
+</blockquote>
+<p>⚠️ <strong>The one exception, stated flatly:</strong> <em>"<strong>But content — you do need a ticket.</strong> Content is very strict: <strong>if you don't submit them a ticket, they won't [do] it.</strong>"</em></p>
+<h3 id="how-to-run-it">How to run it</h3>
+<ol>
+<li><strong>One copy doc per send.</strong> Clone last week's so the checklist survives.</li>
+<li><strong>A stakeholder checklist inside it</strong> — one line per approver, with a checkbox they tick themselves.</li>
+<li><strong>Every link, asset and decision assembled in the doc</strong> before the build starts.</li>
+<li><strong>Comments closed out before send</strong> — that is the audit trail.</li>
+<li><strong>The doc is the status report.</strong> When someone asks where it is, send the doc.</li>
+</ol>
+<p>✅ <strong>This is what she was doing on Sibos all week, and Mazin had already noticed:</strong> <em>"That's what you're doing right now — check off, check off, check off."</em> → <em>"<strong>Exactly.</strong>"</em></p>
+<hr />
+<h2 id="8d-the-growth-intake-form-your-gatekeeper">8d. ✅ The Growth intake form — your gatekeeper</h2>
+<p><strong>She handed this over on her last day and put the link in the handover doc.</strong> ⚠️ <em>"I don't know if it still works. <strong>You should test it out.</strong>"</em></p>
+<ul>
+<li>🎯 <em>"<strong>You should use it as a gatekeeper.</strong>"</em> → <em>"Tell these people: <strong>get your [act] together, and I have an SLA.</strong>"</em></li>
+<li><strong>SLA: originally 7 days.</strong> ⚠️ <em>"Now you're lucky if you get 48 [hours] — but at least <strong>I baked an SLA in here.</strong>"</em></li>
+<li>🔴 🎯 <strong>The events gate she built after being burned:</strong><blockquote>
+<p><em>"If you put the request in for <strong>events</strong>, <strong>I have extra questions</strong>: 'Have all stakeholders approved proceeding with the budget?' <strong>'The event budget has been fully approved — yes / no.' The ticket will proceed only if it's yes.</strong>"</em><br />
+<strong>Why:</strong> <em>"There was a time she asked me to help her send an invite, and then <strong>she went backward and said 'why did you send this email? The event was not approved.'</strong> … By the time you tell me to send the invite, <strong>you should have your ducks in a row.</strong>"</em></p>
+</blockquote>
+</li>
+<li>✅ <strong>The growth request calendar view survives her</strong> — it is, in effect, the send calendar Sherin said did not exist. <em>"You can't send anything on the 13th, so you schedule it to go on the 15th, morning. And the next one I put at the 18th."</em></li>
+</ul>
+<p>🎯 <strong>This form is the single highest-leverage inherited asset: it converts <em>"can you send this in 30 minutes"</em> into a form with a timestamp.</strong></p>
+<h3 id="margaux-and-sherin-the-usable-version-of-a-read-she-gave-five-times">⚠️ Margaux and Sherin — the usable version of a read she gave five times</h3>
+<blockquote>
+<p><em>"Anything related to an <strong>Asana ticket</strong> and you need help — <strong>Sherin and Margaux. They're good at Asana tickets.</strong> So if you want to not deal with Asana tickets, <strong>they will do it for you.</strong> ⚠️ <strong>But there's no ownership from that.</strong>"</em><br />
+🔴 <em>"<strong>Use them for Asana. If you don't need anything, don't get them involved — because most likely they will give you more work to do just to justify themselves.</strong>"</em></p>
+</blockquote>
+<p>✅ <strong>Keep the routing rule; discard the character verdict.</strong> ⚠️ <strong>Her person-reads have softened on first contact five times</strong> — Resham, Margaux, Sofia, Frankie, and the working relationship generally. <strong>Margaux is the Asana and Figma admin, owns the budget and the marketing tech stack, and offered API keys. Sherin offered authority rather than work.</strong></p>
+<hr />
+<h2 id="9-distribution-lists-crm">9. 🔴 Distribution lists &amp; CRM</h2>
+<p><strong>CRM admin owners: Jason Aarni / Josh Azar.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>List</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BCM List</strong></td>
+<td>🔑 <strong>Definition: contact property <code>Sales Unit = CAPM</code>, plus the Salesforce-synced <code>Tier</code> = <code>0</code>–<code>3</code>.</strong> ✅ 🆕 <strong>A union of many lists.</strong> <em>"When you do the BCM newsletter, <strong>just clone over — the list will take care of itself.</strong> <strong>You don't have to worry about the overlapping.</strong>"</em> Salesforce <strong>Tier 1</strong> list supplied separately; <strong>Tier 0 and everything</strong> held</td>
+</tr>
+<tr>
+<td><strong>TR</strong></td>
+<td>Chainlink Connect audience</td>
+</tr>
+<tr>
+<td><strong>Dev</strong></td>
+<td>Dev newsletter audience</td>
+</tr>
+<tr>
+<td><strong>Hackathon</strong> · <strong>Bootcamps</strong></td>
+<td>Developer segments</td>
+</tr>
+<tr>
+<td><strong>Product usage</strong></td>
+<td><code>cre.chain.link</code> · <strong>Data Streams</strong></td>
+</tr>
+<tr>
+<td><strong>Govt List</strong></td>
+<td>🔴 <strong>Legal approval required before any outreach</strong> — <em>"given the sensitive nature of these relationships, a thorough review upfront… is the optimal approach to mitigate risks"</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="how-to-identify-bcm-accounts-in-hubspot-the-capm-property">🆕 🔑 How to identify BCM accounts in HubSpot — the CAPM property</h3>
+<p><strong>This is the field that turns "the BCM list" into something you can rebuild yourself.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Where</th>
+<th>Value</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sales Unit</strong> <em>(contact property)</em></td>
+<td><strong>HubSpot</strong></td>
+<td><strong><code>CAPM</code></strong></td>
+<td>✅ <strong>The contact belongs to a BCM account</strong></td>
+</tr>
+<tr>
+<td><strong>Tier</strong> <em>(account/company property, synced from Salesforce)</em></td>
+<td><strong>Salesforce → HubSpot</strong></td>
+<td><strong><code>0</code> · <code>1</code> · <code>2</code> · <code>3</code></strong></td>
+<td>The BCM account tier</td>
+</tr>
+</tbody>
+</table></div>
+<p>🎯 <strong>So the BCM audience definition is: <code>Sales Unit = CAPM</code> <em>and</em> <code>Tier = 0–3</code>.</strong> That is the same Tier 0→3 structure Jason means by <em>"the BCM target account list"</em>, and the same tiers the Link NYC and Sibos invite lists are cut from.</p>
+<p>✅ <strong>Practical uses:</strong><br />
+- <strong>Rebuilding the BCM list</strong> from first principles instead of cloning.<br />
+- <strong>Building the Tier 2 / Tier 3 segments</strong> for the Link NYC expansion (§4b) — filter <code>Sales Unit = CAPM</code>, then <code>Tier = 2</code> or <code>3</code>.<br />
+- <strong>Sanity-checking any list someone hands you</strong> — if the contacts aren't <code>CAPM</code>, they aren't BCM.</p>
+<p>⚠️ <strong>The tier value originates in Salesforce</strong>, so it is only as current as the sync — which is exactly what the section below is about.</p>
+<h3 id="the-tier-sync-that-may-already-exist-a-free-win">🆕 🎯 The tier sync that may already exist — a free win</h3>
+<blockquote>
+<p><strong>Mazin:</strong> <em>"How do I create the Tier 2 and Tier 3 list in HubSpot?"</em><br />
+<strong>Jason:</strong> <em>"You can do it yourself"</em> — and <em>"<strong>we have tier sync in HubSpot at [the] company level.</strong>"</em><br />
+<strong>Wanyi:</strong> ⚠️ <em>"<strong>I don't even know what that means.</strong> … <strong>I did the old-school way</strong> — I just <strong>dumped the email domain</strong>, because <strong>there was no data sent back from Salesforce to HubSpot</strong>. <strong>But it seems like there is</strong> [now]."</em></p>
+</blockquote>
+<p>🎯 <strong>Worth an hour.</strong> If it works, <strong>tiered list building stops being manual</strong> — retiring a process the predecessor ran by hand for four years, in exactly the SFDC↔HubSpot territory Hod named on day one.</p>
+<h3 id="the-cleanup-mandate">⚠️ The cleanup mandate</h3>
+<p>Hod briefed ~157K "trash" contacts; ✅ <strong>a 45,000-contact delete was approved on Aug 14.</strong> 🔴 <strong>Work in segments, prefer suppression, and keep it inside HubSpot</strong> — see §9b.</p>
+<hr />
+<h2 id="9b-crm-access-exports-the-hard-rule">9b. 🔒 🔴 CRM access &amp; exports — the hard rule</h2>
+<p><strong>Established by a real incident. 🔒 The narrative stays in the meeting note; these rules are the part you use.</strong></p>
+<ul>
+<li>⛔ <strong>Never bulk-export the HubSpot CRM.</strong> A full-database export triggered a <strong>security page the same night</strong> and a formal interview the next day.</li>
+<li>⛔ <strong>Never ask for Super Admin.</strong> It is a multi-year trust milestone here: <strong>Wanyi received it in year 2–3, unrequested. Josh in year 3–4, after five years.</strong> <em>"<strong>Super Admin doesn't come [in] week three. They need to trust that person.</strong>"</em></li>
+<li>⚠️ <strong>Assume large exports are alerted in real time</strong> — and that both the exporter <em>and whoever granted the access</em> carry the consequence.</li>
+<li>✅ <strong>The craft rule:</strong> <em>"You don't download the whole list and label it data cleanup. Real data cleanup touches <strong>5 to 10% at most</strong> — not 100%."</em></li>
+</ul>
+<hr />
+<h2 id="10-reference-tech-stack-tickets-channels">10. Reference — tech stack, tickets, channels</h2>
+<h3 id="tech-stack">Tech stack</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HubSpot CRM</strong></td>
+<td><strong>Jason Aarni / Josh Azar</strong> — CRM admin owners</td>
+</tr>
+<tr>
+<td><strong>Bizzabo</strong></td>
+<td><strong>Amal / Josh Azar</strong></td>
+</tr>
+<tr>
+<td><strong>Typeform</strong></td>
+<td><strong>Josh Azar</strong> ⚠️ <em>being retired in favour of HubSpot native forms</em></td>
+</tr>
+<tr>
+<td><strong>Zapier</strong></td>
+<td><strong>Josh Azar</strong></td>
+</tr>
+<tr>
+<td><strong>Luma</strong></td>
+<td>Community</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="request-forms-tickets">Request forms &amp; tickets</h3>
+<ul>
+<li><strong>Growth intake form (Asana)</strong> — 🎯 <strong>your gatekeeper.</strong> SLA baked in; events branch gated on budget approval. §8d</li>
+<li><strong>Asana content request form</strong> — 🔴 <strong>required; content will not act without it</strong></li>
+<li><strong>Legal content review form</strong> — 🔴 <strong>1–3 days lead time</strong></li>
+<li><strong>Design tickets</strong> — <strong>Sean</strong> turns them fast</li>
+<li><strong>Help desk</strong> — Salesforce access, HubSpot permissions</li>
+</ul>
+<h3 id="who-to-actually-go-to">Who to actually go to</h3>
+<ul>
+<li>🎯 <strong>Josh Azar</strong> — <em>"the person that most likely can actually help you."</em> HubSpot, HTML, workflows, permissions</li>
+<li>🎯 <strong>Jason Aarni</strong> — <em>"anything with GTM you can loop in Jason. <strong>I like Jason.</strong>"</em> ⚠️ Very busy; expect a delay</li>
+<li><strong>Brandon Harrison</strong> — landing pages, direct DM</li>
+<li><strong>Scott Gillespie</strong> — the person to be candid with</li>
+<li><strong>Sherin Harrington</strong> — authority, access, procurement, escalation</li>
+</ul>
+<hr />
+<h2 id="11-campaign-email-watchlist">11. 🎯 Campaign &amp; email watchlist</h2>
+<p>⛔ <strong>Nothing may be scheduled for a 13th.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Campaign / send</th>
+<th>HubSpot asset</th>
+<th>Owner</th>
+<th>Ships</th>
+<th>Blocker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Missing Link — 247</strong></td>
+<td><code>Missing Link Aug 14th</code> ⚠️ misnamed</td>
+<td>Mazin</td>
+<td>✅ <strong>Sat 15 Aug, morning</strong></td>
+<td>Images + placeholder links. ✅ <strong>No approver, no test send</strong></td>
+</tr>
+<tr>
+<td><strong>Sibos Miami — invite #1</strong></td>
+<td><code>BCM Sibos Miami Invite #1</code></td>
+<td>Mazin</td>
+<td>🔴 <strong>Tue 18 Aug</strong> <em>(19th fine)</em></td>
+<td>🔴 <strong>Hod + Frank sign-off on the list</strong> · copy with Alex Heitman · SFDC sync bug · ⚠️ <strong>rebuild the stale template</strong></td>
+</tr>
+<tr>
+<td><strong>CL Agent — re-engagement</strong></td>
+<td><code>Developer CL Agent – Reengage</code></td>
+<td>Mazin</td>
+<td>🔴 <strong>w/c 17 Aug</strong></td>
+<td>🆕 <strong>Fresh draft, then Michael Imperiale's review.</strong> ⚠️ Not a clone — the last version was Polymarket-specific</td>
+</tr>
+<tr>
+<td><strong>Link NYC — agenda promo</strong></td>
+<td>—</td>
+<td>Mazin</td>
+<td>w/c 17 Aug</td>
+<td>Hod's <strong>V5</strong> banner approved. Cadence 1 vs 2 weeks to agree</td>
+</tr>
+<tr>
+<td><strong>FTSE / Confidential Workflows</strong></td>
+<td><code>EA Confidential Workflows CW Outreach</code></td>
+<td><strong>Wanyi</strong></td>
+<td>before Fri 14</td>
+<td>✅ <strong>She took it.</strong> ⚠️ If it did not go out before her account was cut, <strong>it reverts to Mazin</strong></td>
+</tr>
+<tr>
+<td><strong>Chainlink Connect (IR)</strong></td>
+<td>—</td>
+<td>Mazin builds · Alkesh drafts</td>
+<td><strong>weekly, Mon</strong></td>
+<td>🔴 Legal 1–3 days; Hod's review. 🎯 Chase on Signal, publicly, with a date</td>
+</tr>
+<tr>
+<td><strong>BCM Newsletter</strong></td>
+<td>—</td>
+<td>Conlan drafts · Mazin sends</td>
+<td>first Wed</td>
+<td>🔴 Legal first, then assemble</td>
+</tr>
+<tr>
+<td><strong>Dev newsletter</strong></td>
+<td>—</td>
+<td>Sofia drafts · Mazin sends</td>
+<td><strong>September</strong></td>
+<td>⚠️ <em>"never regular"</em> · 🔴 <strong>Wanyi is gone</strong></td>
+</tr>
+<tr>
+<td><strong>Wyoming / Govt</strong></td>
+<td>—</td>
+<td>Mazin</td>
+<td>⛔ <strong>no-go</strong></td>
+<td>✅ List uploaded and approved. Nothing to do until someone says go</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="explicitly-not-yours">✅ Explicitly NOT yours</h3>
+<ul>
+<li><strong>The Sibos social banner</strong> — <em>"it's <strong>not on you or me</strong>… let them figure it out."</em> → <strong>George / Ashley / Justin</strong>, with sales.</li>
+<li><strong>The Sibos downstream</strong> — lead routing, account owner, arranging meetings. <strong>GTM Ops + Frankie.</strong></li>
+<li><strong>Bitly link requests</strong> — <em>"I told them to self-serve, so they won't bother you."</em></li>
+<li><strong>Event logistics</strong> — <em>"I'm not the event planner. You're the event planner."</em></li>
+</ul>
+<hr />
+<h2 id="12-what-went-with-her">12. 🟥 What went with her</h2>
+<p><strong>She is gone at 5pm and she is not answering Signal.</strong> These were never written down anywhere but in her head, and are now only as good as this document:</p>
+<ul>
+<li><strong>Which routes exist because of personal contacts</strong> — the social banner went to Justin <em>"because I have historical contacts."</em></li>
+<li><strong>The historical rationale behind list definitions</strong> — why a segment is drawn the way it is.</li>
+<li><strong>The conversion projections</strong> she built for Link NYC that <em>"no one listened"</em> to.</li>
+<li><strong>Institutional memory of what has already failed</strong> — the Sibos location fiasco, the Amal invite incident, the webinar format changes.</li>
+<li>⚠️ <strong>Anything she still owed when her account was cut.</strong> She warned it could be <em>"any time"</em> and that people here are often cut <strong>48 hours before</strong> their last day. 🔴 <strong>Assume the CL Agent draft and the Confidential Workflows send did not happen, and verify.</strong></li>
+</ul>
+<hr />
+<h2 id="13-the-one-page-version">13. The one-page version</h2>
+<p><strong>Do this, in this order, every week:</strong></p>
+<ol>
+<li><strong>Chainlink Connect first.</strong> Priority #1 because Johann Eid and Sergey care. Alkesh drafts Sunday, it ships Monday, legal needs 1–3 days — so the buffer goes in the calendar, not in your evenings.</li>
+<li><strong>Sibos second.</strong> The biggest exposure, and the one thing Hod is unambiguously supposed to own. ⛔ <strong>Never state a venue, date or time you have not seen validated in writing.</strong></li>
+<li><strong>Link NYC third.</strong> The funnel does not close at the current list size. Push the agenda, put the speaker gap back on its owners, and make the Tier 2/3 case to Hod once, in writing.</li>
+<li><strong>Everything arrives through the intake form.</strong> SLA attached. Events do not proceed without confirmed budget.</li>
+<li><strong>Process lives in the copy doc, not in tickets</strong> — except content, which requires one.</li>
+<li><strong>Post publicly and attach a date</strong> when you need an answer from Hod.</li>
+<li>⛔ <strong>No sends on a 13th.</strong> Prefer a 7.</li>
+<li>🔒 <strong>Never put a judgement about a colleague in writing.</strong></li>
+</ol>
+<h3 id="her-closing-assessment-asked-for-directly">✅ Her closing assessment, asked for directly</h3>
+<blockquote>
+<p><strong>Mazin:</strong> <em>"How do you feel about me? Be honest. Any red flags? Any concerns?"</em><br />
+<strong>Wanyi:</strong> <em>"<strong>No, I think you're great</strong> — you have a <strong>good vibe</strong> and <strong>you're very versatile</strong>: you can handle webinar, you can handle paid and email."</em><br />
+⚠️ <em>"<strong>The only thing is, you don't want to feel burned out.</strong> … I think you will do great. <strong>But the question is [whether] Hod is gonna ask you to do all of it, and how sustainable it's gonna be.</strong> Because it used to be <strong>Marirose doing paid</strong>, <strong>Ben and Kevin doing webinar</strong>, [and] <strong>I'm doing email.</strong>"</em></p>
+</blockquote>
+<p>🎯 <strong>That is the one risk she flagged, and it is a capacity conversation to have proactively — with a proposed priority order — not one to have after something slips.</strong></p>
+<h3 id="the-lesson-that-cost-nothing-and-is-worth-the-most">🎯 The lesson that cost nothing and is worth the most</h3>
+<p>Same departing colleague, same week, two very different outcomes.</p>
+<p><strong>Hod</strong> asked for help next week and got <em>"I'm going to charge you per hour… <strong>he never took me out for lunch</strong> in four and a half years… <strong>you catch more flies with honey. You had your chance.</strong>"</em> She planned to delete Signal.</p>
+<p><strong>Mazin</strong> asked for nothing and received <strong>eight calls, filed tickets, a written handover doc, a defence in a live thread, work taken off his plate twice, and a personal WhatsApp line after her last day.</strong></p>
+<p>🎯 <strong>The difference was attention paid before it was needed. The hours spent listening were the highest-return thing he did in week two.</strong></p>
+<hr />
+<h2 id="14-the-unwritten-rules">14. The unwritten rules</h2>
+<ul>
+<li>⛔ <strong>The number 13</strong> — never a send, write <em>"12 + 1"</em>, prefer 7.</li>
+<li>🎯 <strong>Clarify before you build.</strong> <em>"Your job basically is to come in and clarify."</em></li>
+<li>🎯 <strong>Assume permission.</strong> <em>"You have the autonomy to do that, by the way."</em></li>
+<li>🎯 <strong>Read priorities off headcount</strong>, not off announcements. <em>"See where they put the money."</em></li>
+<li>🔴 <strong>Outbound URLs are wrapped</strong> — always copy clean links from the address bar.</li>
+<li>🔴 <strong>Content reviews all external copy.</strong> No exceptions, and it needs a ticket.</li>
+<li>✅ <strong>Chasing Hod is pre-authorised</strong> — <em>"sometimes I need two or three pings."</em> Post publicly, attach a date.</li>
+<li>🔒 <strong>Never put a personnel judgement in writing.</strong> <em>"One thing to vent — but you don't want to vent on Slack like that."</em></li>
+<li>⚠️ <strong>Work redistributes silently to whoever stays.</strong> Name it early or absorb it.</li>
+<li><strong>Ship at 80% — except on webinars, where you quadruple-check.</strong></li>
+<li>🎯 <em><em>"Output marketing, not process marketing."</em></em></li>
+<li>🎯 <strong>Don't manufacture coordination problems.</strong> <em>"Don't even bring up this overlap."</em></li>
+<li>🎯 <strong>Take the lead on copy.</strong> You are the subject-matter expert. <em>"If she takes the lead, it will be a nightmare."</em></li>
+</ul>
+<hr />
+<h2 id="appendix-a-cast-list">Appendix A — cast list</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+<th>Why they matter to you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hod Klein</strong></td>
+<td>Director of Marketing, BCM</td>
+<td>Your manager. Approval bottleneck. Runs two functions. ⚠️ <strong>Away w/c Aug 17</strong></td>
+</tr>
+<tr>
+<td><strong>Liam Fox</strong></td>
+<td>Runs Token Holder Relations</td>
+<td>🔴 Workstream driver and <strong>Signal group owner</strong> for Chainlink Connect</td>
+</tr>
+<tr>
+<td><strong>Alkesh Shah</strong></td>
+<td>Capital-markets strategist, ex-BofA</td>
+<td>Writes Chainlink Connect. Your Sunday-night dependency</td>
+</tr>
+<tr>
+<td><strong>Joshua Azar</strong></td>
+<td>Sr Data Scientist, Growth &amp; AI</td>
+<td>🎯 <strong>The person most likely to actually help you.</strong> CRM admin, HubSpot, HTML, workflows. ⚠️ Overutilised</td>
+</tr>
+<tr>
+<td><strong>Conlan E Wall</strong></td>
+<td>Content Manager</td>
+<td>Reviews all external copy. ⚠️ <strong>Do not resolve his comments — Scott sees them first</strong></td>
+</tr>
+<tr>
+<td><strong>Scott Gillespie</strong></td>
+<td>Head of Content</td>
+<td>🎯 <strong>The person to be candid with.</strong> Also the developer-marketing ally</td>
+</tr>
+<tr>
+<td><strong>Ashley O'Brien</strong></td>
+<td>BCM announcements + Sibos</td>
+<td>✅ The TradFi oracle. Ex-Citi, ex-Swift, 14 Sibos. ⚠️ <strong>PTO w/c Aug 17</strong></td>
+</tr>
+<tr>
+<td><strong>Amal Hijazi</strong></td>
+<td>Events — LINK NYC</td>
+<td>Your buddy. ✅ Good people skills. ⚠️ Messy — <strong>set the 48h SLA</strong></td>
+</tr>
+<tr>
+<td><strong>Margaux Franco</strong></td>
+<td>Project Manager, Marketing</td>
+<td>Asana + Figma admin, owns the budget and the marketing tech stack. 🎯 <strong>Use for Asana execution, not ownership</strong></td>
+</tr>
+<tr>
+<td><strong>Sherin Harrington</strong></td>
+<td>Chief of Staff</td>
+<td>Offers authority, not work. Escalation route for access, tools, legal, procurement</td>
+</tr>
+<tr>
+<td><strong>Natalie Chakar</strong></td>
+<td>Webinars — owns the live room</td>
+<td>🔴 You inherit her email layer. ⚠️ You are told to train her without authority over her</td>
+</tr>
+<tr>
+<td><strong>Sofia Duarte</strong></td>
+<td>Developer marketing</td>
+<td>Dev newsletter owner. 🔴 <strong>Copy must be locked before you build</strong></td>
+</tr>
+<tr>
+<td><strong>Michael Imperiale</strong></td>
+<td>AI narrative · CL Agent</td>
+<td>🔴 <strong>Reviews the CL Agent copy before it sends</strong></td>
+</tr>
+<tr>
+<td><strong>Justin Alper</strong></td>
+<td>Head of Social</td>
+<td>LinkedIn Live. Also handed you the social dashboard build</td>
+</tr>
+<tr>
+<td><strong>Brandon Harrison</strong></td>
+<td>Web / landing pages</td>
+<td>DM him directly</td>
+</tr>
+<tr>
+<td><strong>Jason Aarni</strong></td>
+<td><strong>GTM Ops lead</strong> · CRM</td>
+<td>🎯 Inbound flow, lead assignment, SFDC↔HubSpot. <em>"I like Jason."</em> ⚠️ Busy</td>
+</tr>
+<tr>
+<td><strong>Ashish Aryal</strong></td>
+<td>GTM Ops, London</td>
+<td>Sibos downstream — route via Jason</td>
+</tr>
+<tr>
+<td><strong>Priyanka</strong></td>
+<td>Salesforce team</td>
+<td>Anything touching SFDC campaign setup or the sync bug</td>
+</tr>
+<tr>
+<td><strong>Mark Gaal</strong></td>
+<td>Government</td>
+<td>Owns the Wyoming email · <strong>Christina</strong> on the group DM</td>
+</tr>
+<tr>
+<td><strong>Joshua Neuroth</strong></td>
+<td>PM — Polymarket Data Streams</td>
+<td>✅ Stand-down reversed</td>
+</tr>
+<tr>
+<td><strong>Sean</strong></td>
+<td>Design</td>
+<td>Fast. Sibos and Link NYC banners</td>
+</tr>
+<tr>
+<td><strong>Alex Heitman</strong></td>
+<td>Copy — Sibos</td>
+<td>🔴 Owns the invite #1 copy rewrite</td>
+</tr>
+<tr>
+<td><strong>Fernando</strong></td>
+<td>🔴 <strong>The Sibos invite goes out from him</strong></td>
+<td>Must approve. Route via Ashley + Frankie</td>
+</tr>
+<tr>
+<td><strong>Frankie Ball</strong></td>
+<td>Sibos coordination · downstream meeting requests</td>
+<td>⚠️ <strong>Not Frank Seibold.</strong> 🎯 Produced the best idea in the Sibos room — take the routing advice, not the verdict</td>
+</tr>
+<tr>
+<td><strong>Frank Seibold</strong></td>
+<td>Senior sales</td>
+<td>Convened the Link NYC crisis meeting. Reviews the Sibos list</td>
+</tr>
+<tr>
+<td><strong>Lily</strong></td>
+<td>Sibos delegate list</td>
+<td>🔴 <strong>Mat leave.</strong> Source is <strong>Meridian</strong>, weekly</td>
+</tr>
+<tr>
+<td><strong>Sam Ewing</strong></td>
+<td>VP Brand — starts ~Aug 17</td>
+<td>Expected to reset the Sibos creative</td>
+</tr>
+<tr>
+<td><strong>George Chivi</strong></td>
+<td>BCM Marketing Lead, EMEA</td>
+<td>Supplies BCM newsletter announcements. Sibos social promo</td>
+</tr>
+<tr>
+<td><strong>Marirose George</strong></td>
+<td>Paid media <em>(departed)</em></td>
+<td>Her workstream is now partly yours</td>
+</tr>
+<tr>
+<td><strong>Ben · Kevin</strong></td>
+<td>Webinars <em>(departed)</em></td>
+<td>Their workstream is now partly yours</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="appendix-b-wanyis-final-handover-doc-verbatim">Appendix B — Wanyi's final handover doc, verbatim</h2>
+<p><em>(Preserved exactly as delivered on Aug 14. Where this manual and the appendix disagree, the manual reflects a later correction from one of the eight calls — check the source note before acting.)</em></p>
+<h3 id="token-relations-ir-chainlink-connect">Token Relations / IR - Chainlink Connect</h3>
+<p><strong>Priority #1:</strong> Highest priority because Johann Eid and Sergey Nazarov care about it<br />
+<strong>Cadence:</strong> Weekly! Alkesh Shah drafts Sunday night and it ships Monday. Same day turnaround</p>
+<p><strong>People</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workstream driver and signal group owner</td>
+<td>Liam Fox</td>
+</tr>
+<tr>
+<td>Writer</td>
+<td>Alkesh Shah</td>
+</tr>
+<tr>
+<td>Point of contact</td>
+<td>Joshua Azar</td>
+</tr>
+<tr>
+<td>Content draft / review</td>
+<td>Conlan E Wall</td>
+</tr>
+<tr>
+<td>Build + send</td>
+<td>Mazin Kanuga with Joshua Azar for the assist</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The Process</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alkesh drafts, sends internally Sunday</td>
+<td>Alkesh Shah</td>
+</tr>
+<tr>
+<td>Copy into the Google doc template by duplicating last weeks so the checklist survives.</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Submit the Asana content request form</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Approval from Hod Klein</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Content review + second reviewer</td>
+<td>Conlan E Wall</td>
+</tr>
+<tr>
+<td>Route to legal form</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Build in HubSpot + send</td>
+<td>Mazin Kanuga</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Important Links:</strong> ACPRIV: Tokenholder Relations | Team Charter · CL Connect #6 draft · CL Connect #5 draft · CL Connect #4 · CL Connect #3 · CL Connect #2 · CL Connect #1 · Legal content review form · HubSpot setup link</p>
+<h3 id="webinars">Webinars</h3>
+<p><strong>Priority #2:</strong> Understand the workflow</p>
+<p><strong>People</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner including running the live room</td>
+<td>Natalie Chakar</td>
+</tr>
+<tr>
+<td>Landing pages</td>
+<td>Brandon Harrison</td>
+</tr>
+<tr>
+<td>Point of contact</td>
+<td>Joshua Azar</td>
+</tr>
+<tr>
+<td>Email workflow build</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Social / LinkedIn Live</td>
+<td>Justin Alper</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Links:</strong> FTSE Russell Privacy Campaign · Why Interoperability and Privacy Matter | Chainlink Labs x FTSE Russell LinkedIn page</p>
+<p><strong>Deliverables per webinar:</strong> Confirmation email (registration to confirmation) · Promo email · Pre-webinar reminder. Wanyi Chow recommends 5 minutes before not 1 hour as you can optimize engagement better with 5 minutes · Post-webinar email · The webinar workflow in HubSpot. Clone the previous one, change dates, and copy</p>
+<p><strong>QA checklist — Wanyi Chow: Quadruple-check everything!</strong><br />
+- Date: does it match the actual event?<br />
+- Registration link: correct, live, and pointing at the platform that is actually being used?<br />
+- Join link: click it, actually click it<br />
+- CTA: right action for the email? For example: the CTA could be "add to calendar"<br />
+- Subject line: Trim it to fit fully in line<br />
+- Landing page: Is it live? Never assume readiness because you were asked to promote<br />
+- Do the platform, registration page, and join link all agree? This is what failed on Aug 12.</p>
+<h3 id="evergreen-newsletters">Evergreen newsletters</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Publication</th>
+<th>Cadence</th>
+<th>Drafted by</th>
+<th>Inputs</th>
+<th>Mazin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TR / Chainlink Connect</td>
+<td>Weekly</td>
+<td>Alkesh Shah</td>
+<td></td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td>BCM Newsletter</td>
+<td>Monthly, first Wednesday</td>
+<td>Conlan E Wall</td>
+<td>George Chivi + Ashley O'Brien</td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td>Dev</td>
+<td>Monthly</td>
+<td>Sofia Duarte</td>
+<td></td>
+<td>Build + send</td>
+</tr>
+<tr>
+<td>Missing Link</td>
+<td>Monthly</td>
+<td>Content</td>
+<td>Check CL reserve # here: https://metrics.chain.link/reserve</td>
+<td>Build + send</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>BCM newsletter build</strong><br />
+- Legal review first. Everything locked. Nothing is assembled before that clears<br />
+- Clone the original doc, never start from blank<br />
+- Assemble every link into the doc first so the build is copy-paste rather than research<br />
+- Speaker headshots can be scraped from the linkedin profile and 99% of the time it works. Maybe use a PNG compressor.<br />
+- HubSpot builds are custom HTML used by getting Claude to make the code adjustments<br />
+- Make sure to close out every comment on the doc before sending.</p>
+<h3 id="events">Events</h3>
+<p><strong>Sibos 2026</strong> which is the biggest exposure on the list. Monday 28 Sept - Thursday 1 Oct 2026 at the Miami Beach Convention Center. Partner with GTM ops, Jason, Ashish, Frankie, Ashley/George on all things Sibos</p>
+<p><strong>Inbound meeting request / Entry Point:</strong> Email drip campaigns directing to the Schedule a Meeting page: https://pages.chain.link/hubfs/chainlink-sibos-2026-meeting-request.html</p>
+<p><strong>Campaign &amp; Tracking Setup:</strong> HubSpot workflow: Tag leads to the SFDC campaign · Lead Handling by the GTM ops team</p>
+<p><strong>What Wanyi Chow built</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Detail</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meeting request page</td>
+<td>HubSpot native form</td>
+<td>Built by Wanyi Chow and needs mapping back to the SFDC campaign once GTM ops set it up. Tagged for context here.</td>
+</tr>
+<tr>
+<td>Front end landing page</td>
+<td>Edits go through the HubSpot file manager</td>
+<td>DM Joshua Azar for help</td>
+</tr>
+<tr>
+<td>Inbound sales flow</td>
+<td>HS workflow inbound</td>
+<td>Needs GTM ops to connect</td>
+</tr>
+<tr>
+<td>Contact lead assignment</td>
+<td>Wanyi Chow is aligning GTM ops / Jason Aarni's team</td>
+<td>In flight, she'll report back</td>
+</tr>
+<tr>
+<td>Email drips</td>
+<td>See strategy doc</td>
+<td>Mazin Kanuga</td>
+</tr>
+<tr>
+<td>Website copy wireframe</td>
+<td>Sibos 2026 / Website Copy Wireframe</td>
+<td>Declared good to go</td>
+</tr>
+<tr>
+<td>Design banner ticket</td>
+<td>Sean mocked it up same day</td>
+<td>Filed</td>
+</tr>
+<tr>
+<td>Headline copy</td>
+<td>Wanyi Chow made some recommendations</td>
+<td>Take all four to Hod Klein</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Link NYC</strong> — Thursday 29 Oct. Owner: Amal Hijazi who is also my onboarding buddy. Tracking sheet available here. The next promo/Agenda: Design ticket submitted for you for the next promo/Agenda, added you here. Workstream team notes. Invite list: To stay two steps ahead of the game, I created a thread and cc'd you so you can follow up with the GTM Ops team regarding Tier 2. Thanks! https://chainlink-core.slack.com/archives/C0BPQPKAE85/p1786562636834699 · XFN Workbook</p>
+<blockquote>
+<p><strong>Important note:</strong> We need 1300-1400 invites to land about 400 in the room. We've sent 260 so far and the registration is gated.<br />
+Please exclude registered contacts here: https://app.hubspot.com/contacts/20755222/objectLists/5344/filters<br />
+As per Amal Hijazi, please avoid the number 13! Use 12+1 instead. Never schedule a send on a 13th.</p>
+</blockquote>
+<h3 id="developer-marketing">Developer Marketing</h3>
+<p>Needs marketing resource as it's own life support. Work very closely with Scott Gillespie on this.</p>
+<p><strong>Chainlink for Agents (CL Agent)</strong> — The counterpart is Michael Imperiale who we had a meeting with on Fri 7 Aug</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marketing Launch</td>
+<td>Needs to be cleaned up</td>
+</tr>
+<tr>
+<td>Market Intel &amp; User Feedback</td>
+<td>Research input</td>
+</tr>
+<tr>
+<td>Quick win campaign</td>
+<td>Discussed this to be a quick follow up to original comms to unopened contacts for this week I'm hoping</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="appendix-original-doc">Appendix (original doc)</h3>
+<p><strong>Webinar</strong> 🛑🚧 — Natalie Chakar is the owner; Brandon Harrison is the landing page person. DM him if you have any questions on LP. Webinar deliverables - you will need to quadruple-check every single detail, assuming the info is not accurate, and drive all the copy/questions on the user flow? Registration page and so on… please feel free to override any of it in the doc provided, for example, BCM <em>INTERNAL</em> FTSE Russell Privacy Campaign: Confirmation email · Promo email · Pre-webinar email · Post-webinar · Webinar workflow<br />
+- FTSE (August 12, LIVE): https://docs.google.com/document/d/1neHJwuCqbXsOjX7mrQnA44YaHyfi86yEPhNMzNr1bQI/edit?tab=t.fyh0tjfee1t4<br />
+- FIL (July 28, ON-DEMAND): https://docs.google.com/document/d/1RY-qH8gPfgSwEt0uDKryyhjVrbp2EdiA2LlsIYHGnQ8/edit?tab=t.eebup51ch19</p>
+<p><strong>Evergreen newsletter</strong> — BCM Newsletter - monthly, first week of Wed, Conlan is the owner to draft; George and Ashley O'Brien will provide some announcements · Dev - monthly - Sofia - Dev marketing to draft · Missing link - monthly - Content to draft · TR - weekly - Alkesh Shah will provide draft on Sunday night for Monday to execute</p>
+<p><strong>Developers</strong> — Context: Sofia is the Developer marketing owner<br />
+- CL Agent Re-engagement · Chainlink for Agents | Marketing Launch · Chainlink for Agents Market Intel &amp; User Feedback · Quick win campaign<br />
+- HubSpot past campaigns to pull for re-engagement lists and build re-engagement campaign as discussed with Michael Imperiale: CL agent campaign 2 · CL agent campaign 1<br />
+- <strong>Polymarket data streams</strong> — Product-led self-serve, PM Joshua Neuroth. Added you to the channel: polymarket-data-streams-sponsorship-program · Polymarket Data streams<br />
+- Developer Onboarding Flow · Dev Newsletter onboarding - i just updated this and replaced the old community email for context, no more community in person events · CRE/API trigger</p>
+<p><strong>Events</strong> — Sibos (partner with Ashley on all things Sibos): Meeting request page — for context, i just set up this meeting request form (HubSpot native) as we move away from Typeform. I'll need to map it back to the SFDC campaign (after the GTM ops team sets it up on SFDC, cc'd you on this for viz) · front end landing page — If you need edits, please use the link below to update the HTML file (if you need any help, you can DM Josh Azar about the HTML file/email :) https://app.hubspot.com/files/20755222/?sortDirection=descending&amp;orderBy=updated&amp;page=2&amp;showDetails=218952547941 · Inbound sales flow — HS workflow inbound · Contact lead assignment: I will get GTM ops/Jason Aarni's team to align · Email drips · Sibos 2026 | Website Copy Wireframe · Design banner ticket<br />
+- LINK NYC — Amal is the owner https://docs.google.com/spreadsheets/d/1-rKwuMLTw3ZaetTfaXn0Od-VOW7FzT0k9ajZSzlDH1g/edit?gid=1446122234#gid=1446122234<br />
+- BCM Invites https://docs.google.com/spreadsheets/d/1imN6PZfwAla4Niy2xahXimSgbsQxzT573gXl6IqzrBY/edit?usp=comment_email_document&amp;ts=6a622969&amp;usp_dm=false</p>
+<p><strong>Govt</strong> — Channel #wyomingccip · Mark Gaal is the owner · Blocked - Wyoming Email · Critical: before sending this out, please make sure ALL stakeholders, legal team, and Mark Gaal's approval are documented · Do not send until all the notes in the doc are addressed appropriately, thanks · Imported HubSpot list</p>
+<p><strong>TechStack</strong> — HubSpot CRM - Jason Aarni/Josh Azar is the CRM admin owner · Bizzabo - Amal/Josh Azar · Typeform - Josh Azar · Zapier - Josh Azar · Luma - community</p>
+<p><strong>Distro list:</strong> BCM List · TR · Dev · Hackathon · Bootcamps · Product usage page: Cre.chain.link, Data streams · Govt List - Before proceeding with any outreach to this contact list, I'd suggest securing legal's approval first. Given the sensitive nature of these relationships, I think a thorough review upfront, while it may take a bit longer, is the optimal approach to mitigate risks.</p>
+</main>
+
+<script>
+(function () {
+  var doc = document.getElementById('doc');
+
+  function cleanClone(node) {
+    var c = node.cloneNode(true);
+    c.querySelectorAll('.no-copy').forEach(function (n) { n.remove(); });
+    return c;
+  }
+
+  function flash(btn, msg) {
+    var old = btn.textContent;
+    btn.textContent = msg;
+    btn.classList.add('done');
+    setTimeout(function () {
+      btn.textContent = old;
+      btn.classList.remove('done');
+    }, 1600);
+  }
+
+  // Rich copy: put both text/html and text/plain on the clipboard so a paste
+  // into Google Docs keeps headings, tables and lists.
+  function copyRich(node, btn, label) {
+    var clone = cleanClone(node);
+    var html = '<meta charset="utf-8">' + clone.innerHTML;
+    var text = clone.innerText;
+
+    function fallback() {
+      // Selection-based copy also carries rich text in every major browser.
+      var holder = document.createElement('div');
+      holder.style.cssText = 'position:fixed;left:-9999px;top:0;white-space:normal;';
+      holder.appendChild(clone);
+      document.body.appendChild(holder);
+      var range = document.createRange();
+      range.selectNodeContents(holder);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      sel.removeAllRanges();
+      holder.remove();
+      flash(btn, ok ? (label || 'Copied') : 'Press Cmd/Ctrl+C');
+    }
+
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })
+      ]).then(function () { flash(btn, label || 'Copied'); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function copyPlain(node, btn, label) {
+    var text = cleanClone(node).innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash(btn, label || 'Copied'); },
+        function () { flash(btn, 'Press Cmd/Ctrl+C'); }
+      );
+    } else {
+      flash(btn, 'Press Cmd/Ctrl+C');
+    }
+  }
+
+  document.getElementById('copy-all').addEventListener('click', function () {
+    copyRich(doc, this, 'Copied — paste into Docs');
+  });
+
+  document.getElementById('copy-plain').addEventListener('click', function () {
+    copyPlain(doc, this, 'Copied as text');
+  });
+
+  // A copy button on every table, so one table can go across on its own.
+  document.querySelectorAll('.tablewrap').forEach(function (wrap) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copybtn no-copy';
+    btn.textContent = 'Copy table';
+    btn.addEventListener('click', function () {
+      copyRich(wrap, btn, 'Copied');
+    });
+    wrap.insertBefore(btn, wrap.firstChild);
+  });
+})();
+</script>
+
+</body>
+</html>
