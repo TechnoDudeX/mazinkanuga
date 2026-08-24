@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Webinar Playbook · Mazin Kanuga</title>
+<meta name="description" content="Webinar Playbook, version 2.0 — plain text and tables, ready to copy into Google Docs.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #0a0a0a;
+    --ink-dim: #333333;
+    --ink-mute: #6c6c6c;
+    --rule: #e6e6e6;
+    --rule-strong: #d0d0d0;
+    --wash: #f7f7f5;
+    --teal: #0b5b63;
+    --teal-wash: #f0f6f6;
+    --red: #E63946;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ---------- toolbar ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar-in {
+    max-width: 1000px; margin: 0 auto;
+    padding: 12px 24px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .home {
+    font-family: var(--display); font-weight: 900;
+    letter-spacing: -.02em; font-size: 18px; text-decoration: none;
+  }
+  .home .dot { color: var(--red); }
+  .bar-note {
+    font-size: 12px; color: var(--ink-mute);
+    margin-right: auto; flex: 1 1 auto; min-width: 0;
+    letter-spacing: .01em;
+  }
+  .btn {
+    border: 1px solid var(--ink);
+    background: var(--ink); color: #fff;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 600; letter-spacing: .01em;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  /* ---------- page ---------- */
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 24px 96px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: .16em;
+    color: var(--ink-mute);
+  }
+  h1 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(38px, 6vw, 60px);
+    letter-spacing: -.03em; line-height: 1;
+    margin: 14px 0 16px;
+  }
+  .lede { font-size: 18px; line-height: 1.6; color: var(--ink-dim); max-width: 68ch; }
+
+  h2 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(24px, 3.2vw, 32px);
+    letter-spacing: -.02em; line-height: 1.15;
+    margin: 64px 0 8px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    scroll-margin-top: 72px;
+  }
+  h3 {
+    font-size: 19px; font-weight: 700; letter-spacing: -.01em;
+    margin: 36px 0 10px;
+  }
+  h4 {
+    font-size: 15px; font-weight: 700;
+    margin: 24px 0 6px;
+  }
+  p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 12px 0; max-width: 78ch; }
+  p strong, li strong { color: var(--ink); font-weight: 700; }
+  ul, ol { margin: 12px 0 12px 22px; max-width: 78ch; }
+  li { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 7px 0; }
+
+  .callout {
+    border-left: 3px solid var(--teal);
+    background: var(--teal-wash);
+    padding: 14px 18px;
+    margin: 20px 0;
+    max-width: 78ch;
+  }
+  .callout .label {
+    color: var(--teal); font-weight: 700;
+    letter-spacing: .04em;
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap { margin: 20px 0 28px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  caption {
+    caption-side: top; text-align: left;
+    font-size: 12px; font-family: var(--mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-mute); padding-bottom: 8px;
+  }
+  th, td {
+    border: 1px solid var(--rule-strong);
+    padding: 10px 12px;
+    font-size: 14.5px; line-height: 1.5;
+    text-align: left; vertical-align: top;
+    color: var(--ink-dim);
+  }
+  th { background: var(--wash); color: var(--ink); font-weight: 700; }
+  tbody tr:nth-child(even) td { background: #fbfbfa; }
+
+  .copybtn {
+    margin: 0 0 8px;
+    border: 1px solid var(--rule-strong);
+    background: #fff; color: var(--ink-mute);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px; font-weight: 600;
+  }
+  .copybtn:hover { border-color: var(--ink); color: var(--ink); }
+  .copybtn.done { border-color: var(--teal); color: var(--teal); }
+
+  /* ---------- toc ---------- */
+  .toc {
+    border: 1px solid var(--rule);
+    background: var(--wash);
+    padding: 20px 24px;
+    margin: 32px 0 8px;
+  }
+  .toc h4 { margin: 0 0 10px; }
+  .toc ol { margin-left: 18px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+  .toc a:hover { color: var(--ink); border-color: var(--ink); }
+
+  .signoff {
+    margin-top: 56px; padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 14px; color: var(--ink-mute);
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 28px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .bar-note { flex-basis: 100%; order: 3; }
+  }
+
+  @media print {
+    .bar, .copybtn { display: none; }
+    .page { max-width: none; padding: 0; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar no-copy">
+  <div class="bar-in">
+    <a href="/" class="home">MK<span class="dot">.</span></a>
+    <span class="bar-note">Headings, tables and lists survive the paste into Google Docs.</span>
+    <button class="btn ghost" id="copy-plain" type="button">Copy as plain text</button>
+    <button class="btn" id="copy-all" type="button">Copy whole document</button>
+  </div>
+</div>
+
+<main class="page" id="doc">
+
+  <p class="eyebrow">CHAINLINK LABS&nbsp;&nbsp;|&nbsp;&nbsp;GROWTH MARKETING&nbsp;&nbsp;|&nbsp;&nbsp;INTERNAL</p>
+  <h1>Webinar Playbook</h1>
+  <p class="lede">How the webinar programme runs today, what is broken in it, the marketing we are leaving on the table, and how a webinar is turned into pipeline.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Field</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Owner</td><td>Mazin Kanuga, Growth Marketing Manager</td></tr>
+        <tr><td>Workstream</td><td>Natalie Chakar, Digital Marketing Specialist</td></tr>
+        <tr><td>Version</td><td>2.0, 21 August 2026</td></tr>
+        <tr><td>Audience</td><td>Web3, IR and BCM marketing managers</td></tr>
+        <tr><td>Next webinar</td><td>Truflation, Wednesday 16 September, 09:30 to 10:30 ET, Zoom, live</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="callout"><span class="label">CREDIT</span>&nbsp; The process map in Section 01 was recorded from Natalie Chakar, who runs the workstream and described the whole sequence end to end. The strategy layer is the addition, not the description.</p>
+
+  <nav class="toc no-copy" aria-label="Contents">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#s01">Section 01. How the programme works today</a></li>
+      <li><a href="#s02">Section 02. What is broken</a></li>
+      <li><a href="#s03">Section 03. The marketing we are not doing</a></li>
+      <li><a href="#s04">Section 04. Roles and ownership</a></li>
+      <li><a href="#s05">Section 05. The new process</a></li>
+      <li><a href="#s06">Section 06. How a webinar generates leads</a></li>
+      <li><a href="#s07">Section 07. Risks, dependencies and open questions</a></li>
+      <li><a href="#appendix">Appendix. House rules for every webinar send</a></li>
+    </ol>
+  </nav>
+
+  <!-- ================= SECTION 01 ================= -->
+  <h2 id="s01">Section 01. How the programme works today</h2>
+
+  <h3>1.1&nbsp; The eleven steps</h3>
+  <p>This is the process as it actually runs, not as anyone would design it.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Step</th><th>What happens</th><th>Owner</th><th>Tool</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>A stakeholder asks for a webinar</td><td>Marketing lead on the account</td><td>Slack</td></tr>
+        <tr><td>2</td><td>Planning meeting sets objectives, speaker and date</td><td>Natalie</td><td>Zoom</td></tr>
+        <tr><td>3</td><td>The speaker is usually already confirmed, and the topic is usually tied to a product or an announcement</td><td>Stakeholder</td><td>None</td></tr>
+        <tr><td>4</td><td>Advertisement copy and landing page copy drafted</td><td>Natalie with the stakeholder</td><td>Docs</td></tr>
+        <tr><td>5</td><td>Creative requests raised and built in parallel</td><td>Natalie</td><td>Asana</td></tr>
+        <tr><td>6</td><td>The email brief is handed to growth</td><td>Natalie to growth</td><td>Slack or doc</td></tr>
+        <tr><td>7</td><td>Registration workflow built: form fills, contact captured and set as a marketing contact, instant confirmation carrying the Zoom link</td><td>Growth</td><td>HubSpot</td></tr>
+        <tr><td>8</td><td>Promotion email sent. Growth chooses the list, Natalie writes the copy</td><td>Growth and Natalie</td><td>HubSpot</td></tr>
+        <tr><td>9</td><td>Speaker briefing call, 15 to 30 minutes, one to two weeks before</td><td>Natalie with the stakeholder</td><td>Zoom</td></tr>
+        <tr><td>10</td><td>The recording chain, covered in 1.2</td><td>Legal, Natalie, video</td><td>Zoom, Frame.io, Vidyard</td></tr>
+        <tr><td>11</td><td>Replay email, newsletter inclusion and targeted advertising</td><td>Growth and content</td><td>HubSpot, LinkedIn</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Two further steps exist but sit in nobody's plan: the speaker social kit, which currently goes out only after the event, and the client debrief and analytics on partner sessions.</p>
+
+  <h3>1.2&nbsp; The production chain, and its real clock</h3>
+  <p>This is the constraint that governs every promise made about content.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Step</th><th>Owner</th><th>Elapsed</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Zoom renders the recording</td><td>None</td><td>About 2 hours</td></tr>
+        <tr><td>Recording downloaded</td><td>Natalie</td><td>Minutes</td></tr>
+        <tr><td>Legal review, before any edit</td><td>Legal</td><td>Not known</td></tr>
+        <tr><td>Cut list written</td><td>Natalie</td><td>Minutes</td></tr>
+        <tr><td>The edit</td><td>Video team, one editor</td><td>3 to 4 days</td></tr>
+        <tr><td>Delivery by Frame.io link, copied to Drive</td><td>Video team</td><td>Same day</td></tr>
+        <tr><td>Upload to Vidyard</td><td>Natalie</td><td>Same day</td></tr>
+        <tr><td>Replay email</td><td>Growth</td><td>Same day</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Legal reviews first because live copy is pre cleared while a recording is a durable published asset. There is one named editor in this chain, and the workstream owner does not know what tools he uses. Every content idea in Section 03 that involves video passes through him.</p>
+  <p class="callout"><span class="label">WORTH CHECKING</span>&nbsp; A separate real time clipping capability is being stood up for Sibos. If that capacity exists in late September, some of it may be borrowable for webinars. Ask before assuming a single editor ceiling.</p>
+
+  <h3>1.3&nbsp; Formats, and where they landed</h3>
+  <p>The record holds the sequence but not the transition dates, and the formats overlapped. Treat this as directional.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Order</th><th>Default format</th><th>Why it moved on</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>First</td><td>On demand</td><td>It was the quickest way to publish volume, with far less planning</td></tr>
+        <tr><td>Then</td><td>LinkedIn Live</td><td>Used heavily until the measurement failure in 2.4</td></tr>
+        <tr><td>Now</td><td>Zoom, live</td><td>LinkedIn Live cannot report attendance, so it was paused and then dropped</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The cadence target also moved. The original objective was one webinar a week. It is now at least two a month, because the internal pace and the partner pace do not match.</p>
+  <p>Live sessions capture more valuable registrants than on demand, and that view is held independently across the marketing team. On demand has poor lead generation capacity against an objective of growing the CRM. LinkedIn Live is out.</p>
+
+  <h3>1.4&nbsp; The pipeline as it stands</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Webinar</th><th>Date</th><th>Format</th><th>Status and what is missing</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>FTSE Russell</td><td>12 Aug, ran</td><td>LinkedIn Live</td><td>Recording cleared by legal on 13 Aug. The cut list and the edit are unconfirmed since. Lead list rejected as poor quality</td></tr>
+        <tr><td>SGX FX</td><td>Ran</td><td>On demand</td><td>Recording approved and advertisement copy written. Promotion deliberately held pending a view on the best angle</td></tr>
+        <tr><td>Insights with Experts 1</td><td>End of July</td><td>Zoom, live</td><td>Source of the reported signup lift from a personalised email, which is still unverified</td></tr>
+        <tr><td>Truflation</td><td>Wed 16 Sept, 09:30 to 10:30 ET</td><td>Zoom, live</td><td>Landing page in build. Form name not supplied. Promotion email due 2 Sept, inside a planned absence. Speaker briefing unbooked. Partner confirmation of the moved slot is not recorded</td></tr>
+        <tr><td>Insights with Experts 2</td><td>Fri 25 Sept, 10:00 to 10:45 ET</td><td>Zoom, live, eToro</td><td>Scheduled. Promotion controlled elsewhere and the brief has not been issued</td></tr>
+        <tr><td>Sibos week</td><td>28 Sept to 1 Oct</td><td>None</td><td>Deliberately quiet for webinars</td></tr>
+        <tr><td>AI agents</td><td>Mid October</td><td>To be decided</td><td>Blocked on the product owner. Narratives angle removed</td></tr>
+        <tr><td>Wyoming Frontier Token</td><td>October</td><td>To be decided</td><td>Unblocked, the release is out. Date to be set with the account team</td></tr>
+        <tr><td>Infosys</td><td>To be decided</td><td>To be decided</td><td>Awaiting the partner</td></tr>
+        <tr><td>ACE</td><td>About end November</td><td>Record and distribute</td><td>Ideation. APAC audience, invitations routed through the regional lead</td></tr>
+        <tr><td>Paid and sponsored</td><td>None</td><td>Vendor run</td><td>Sourcing not started. About $12,000 to $15,000 per placement. See 3.8, this is now a decision rather than a build</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>1.5&nbsp; The stack, and what each tool cannot do</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>Tool</th><th>Known limitation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Intake and creative</td><td>Asana</td><td>The growth intake service level was seven days and is now closer to 48 hours, and it is untested</td></tr>
+        <tr><td>Landing page</td><td>Webflow or HubSpot</td><td>HubSpot can host a page on a selected domain with no web ticket, which has already been done once</td></tr>
+        <tr><td>Registration and email</td><td>HubSpot</td><td>No template system. Every email is a hand built HTML clone. The shared drag and drop footer is broken</td></tr>
+        <tr><td>Delivery</td><td>Zoom</td><td>About two hours to render. A platform failure is on record, where the host could not end a session and participants were logged off</td></tr>
+        <tr><td>Streaming, discontinued</td><td>LinkedIn Live</td><td>Cannot report who attended. Identification runs at roughly 40 percent of registrants</td></tr>
+        <tr><td>Video edit</td><td>Frame.io</td><td>One editor, 3 to 4 days</td></tr>
+        <tr><td>Hosting and replay</td><td>Vidyard</td><td>Only resolves contacts already known to HubSpot. Renewal status unconfirmed</td></tr>
+        <tr><td>CRM of record</td><td>Salesforce</td><td>70,031 HubSpot records blocked by a validation rule</td></tr>
+        <tr><td>Paid</td><td>LinkedIn and X</td><td>The LinkedIn advertising account is fully paused. The X account status is unknown</td></tr>
+        <tr><td>Reporting</td><td>HubSpot, BigQuery, Looker</td><td>A cross platform impressions measure cannot be built</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>1.6&nbsp; Who owns what</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Person or function</th><th>Owns</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Digital marketing, webinars</td><td>The webinar board and sync, planning meetings, landing page and creative coordination, speaker briefings, hosting the live session, the recording chain into Vidyard, client debriefs, and email copy</td></tr>
+        <tr><td>Growth marketing</td><td>Paid, email and webinars. Registration workflows, list selection and segmentation, the send calendar, measurement, the lead generation model, sponsored webinar sourcing, and the programme overhaul</td></tr>
+        <tr><td>Marketing director</td><td>Approval, budget, format decisions, and the trade against announcement work</td></tr>
+        <tr><td>Regional and narrative marketing managers</td><td>What goes on the board in practice, partner relationships, and speaker confirmation</td></tr>
+        <tr><td>EMEA marketing lead</td><td>The webinar library page request, and the institutional memory on why performance marketing has reverted before</td></tr>
+        <tr><td>Website team</td><td>The site, landing pages, forms, and the webinar library page</td></tr>
+        <tr><td>Video team</td><td>All video editing</td></tr>
+        <tr><td>Legal</td><td>The first gate on every recording</td></tr>
+        <tr><td>Content review</td><td>All external copy, from the Asana queue, turned around in hours</td></tr>
+        <tr><td>GTM Operations</td><td>Salesforce, the sync, the contact fit score, and the inbound representatives who qualify leads</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================= SECTION 02 ================= -->
+  <h2 id="s02">Section 02. What is broken</h2>
+  <p>Ordered by where in the funnel each problem bites.</p>
+
+  <h3>2.1&nbsp; The audience does not exist as an artefact</h3>
+  <p>This is the most serious problem in the programme. The HubSpot list used to promote webinars cannot be found, and neither of the two people who own webinar email can say who receives a webinar invite. The only recovery handle is a post event send on 31 July to about 1,700 contacts, still visible in HubSpot, whose composition is unknown.</p>
+  <p>This is the second motion orphaned by one departure inside three days. The first was the past attendee invite, which was a manual habit rather than a workflow and stopped when the person who did it left.</p>
+  <p><strong>Consequence.</strong> The 2 September Truflation promotion has no defined audience. Everything downstream of a wrong list is wasted.</p>
+
+  <h3>2.2&nbsp; Registration friction</h3>
+  <ul>
+    <li>An apply to attend gate against a cold list of 1,800 names failed. Traction only came once the session was opened up through organic social.</li>
+    <li>The workstream owner has asked for the flow to be simplified to the smallest possible number of places and steps.</li>
+    <li>Registrations may have been collected across up to three paths on one recent webinar. Two are reportedly dead and it has never been verified where that registrant list actually lives.</li>
+    <li>Signups are the stated pain across the team.</li>
+  </ul>
+
+  <h3>2.3&nbsp; Promotion runway is half what it should be</h3>
+  <p>One to two weeks is the house standard. Three or more weeks with multiple touches is what the programme needs, and it is what the team has asked for on the next webinar.</p>
+
+  <h3>2.4&nbsp; The platform could not measure the thing it was bought for</h3>
+  <p>LinkedIn Live reports registrants but not attendees, whatever third party streaming tool is used. The representatives did not disclose that before the contract, and the internal requirement had been stated up front. Attendance was visible only by monitoring the comments, and the workaround was screenshotting them. Identification ran at roughly 40 percent of registrants.</p>
+  <p>This is now resolved by decision. LinkedIn Live is out. The leads it produced, however, are still the leads the organisation is judging the channel on.</p>
+
+  <h3>2.5&nbsp; Production quality has failed in front of clients</h3>
+  <ul>
+    <li>A platform failure logged participants off immediately before a session. A debrief was called for and never assigned.</li>
+    <li>A live session opened with roughly two minutes of silence, with no holding slide and no hold music, in front of senior internal attendees.</li>
+    <li>A recording opened with a minute of unaired behind the scenes conversation.</li>
+    <li>Every published asset queues behind one editor for 3 to 4 days, after a legal step with no known turnaround.</li>
+  </ul>
+  <p class="callout"><span class="label">WHY THIS IS NOW FIRST</span>&nbsp; These are the failures that moved production quality ahead of the value layer in Section 05. No amount of downstream content repairs a webinar that starts badly in front of a client.</p>
+
+  <h3>2.6&nbsp; Lead quality is why the channel is on trial</h3>
+  <p>A recent webinar lead list was rejected outright as poor quality, with two usable names out of the whole session. The reading in the room was that the wrong people were attending from organic promotion.</p>
+  <p>The paid half of the explanation is already in hand. A quarterly advertising review shows three developer retargeting advertisements taking about 30 percent of impressions on about 10 percent of spend at a $0.68 CPM, against roughly $8 to $28 for video in the same quarter. A sixteen times gap inside one account is a placement signature, not a content one. The most reached companies rank by headcount rather than intent: roughly 67,000 employees at one bank at a frequency of 6.5, and five of the top thirty accounts are Indian retail banks. There is no seniority or job function filter.</p>
+  <p class="callout"><span class="label">THE DIAGNOSIS</span>&nbsp; LinkedIn Live could not tell us who attended, and LinkedIn paid was buying the wrong people cheaply. The webinar did not fail. The targeting did.</p>
+  <p>Two caveats travel with those figures. There is no meeting record for the advertising review, so it should be written up. And the source carries its own warning that row alignment in the lead column is ambiguous, so quote the CPM and the headcount skew but not the per row lead counts.</p>
+
+  <h3>2.7&nbsp; The intake list is out of date</h3>
+  <p>Webinar requests are described as coming from three named people. One of them is currently absent, another marketing manager is co running the next webinar, and a third function controls promotion for the one after it. A process defined by three names breaks at the next departure. Intake should be defined by function.</p>
+
+  <h3>2.8&nbsp; The funnel has never been measured</h3>
+  <p>Five separate meetings across six days decided a channel's value with no measurement in any of them. The only webinar figure spoken aloud in any of the five was 1,700, once, and the person who said it did not know its composition.</p>
+  <p>The channel was put on trial in one meeting on the basis that nobody appeared to be listening live or watching recordings, the verdict was parked for a later session, and at that session it was never raised. The channel was acquitted from the other direction, with no figure produced on either side.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Measurement hole</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>No attendance data on LinkedIn Live</td><td>Covered in 2.4</td></tr>
+        <tr><td>Replay links sent without the tracking parameter</td><td>Three replay emails went out untagged, so the views were anonymous and follow up was impossible</td></tr>
+        <tr><td>Vidyard cannot identify cold traffic</td><td>It resolves contacts already known to HubSpot. Ungating the replay removes the only mechanism that identified paid social visitors</td></tr>
+        <tr><td>The advertising conversion event is undefined</td><td>54 conversions are logged and nobody can say what fires them</td></tr>
+        <tr><td>No funnel definition at all</td><td>There is no agreed definition of registration, attendance, replay and qualified lead</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2.9&nbsp; A qualified lead cannot reliably reach a salesperson</h3>
+  <p>The Salesforce to HubSpot direction is fixed. The HubSpot to Salesforce direction, which is the direction a new registrant travels, still refuses 70,031 records against a validation rule requiring a website, a primary means of contact, and a contact handle. Nobody owns it.</p>
+  <p>There is also a conceptual gap. The organisation has never elevated a lead that was not an explicit hand raiser, and a webinar attendee is not a hand raiser.</p>
+
+  <h3>2.10&nbsp; The bottleneck is sales capacity, not lead volume</h3>
+  <ul>
+    <li>A salesperson could not meet all the leads a previous campaign produced.</li>
+    <li>Replies from another campaign were reportedly ignored.</li>
+    <li>The team preference is a small number of well chosen names rather than twenty.</li>
+  </ul>
+  <p>A programme that delivers two hundred qualified leads into a team that cannot work twenty fails visibly.</p>
+
+  <h3>2.11&nbsp; Governance and reporting</h3>
+  <ul>
+    <li>A live webinar ran and the director did not know it had happened.</li>
+    <li>A date, time and duration changed without the workstream owner in the decision, and the rework was absorbed silently. Landing page, creative, mailing list, calendar invite and duration all changed.</li>
+    <li>Recurring invites are stale. A colleague who left months ago is still on the webinar sync.</li>
+    <li>Two gating decisions collide and the collision has not been named out loud. See 5.6.</li>
+  </ul>
+
+  <h3>2.12&nbsp; The dependency on announcements</h3>
+  <p>Webinar topics today are largely derived from product announcements. The internal view is that announcements no longer move the market as they once did, and that there is less pipeline in the second half of the year and therefore fewer deals to announce.</p>
+  <p>If topics are sourced from announcements and there are fewer announcements, the pipeline dries up unless the programme learns to source its own topics. That is the strongest argument for the evergreen layer in Section 03.</p>
+
+  <!-- ================= SECTION 03 ================= -->
+  <h2 id="s03">Section 03. The marketing we are not doing</h2>
+  <p>This is the value checklist. Every item here is approved in principle and none of it is built.</p>
+
+  <h3>3.1&nbsp; Micro content, one recording into many assets</h3>
+  <p>Today the recording is cut once, uploaded once, emailed once, and then it stops working. The workstream owner has been trying to start clipping for months and has never had the capacity.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Asset from one 45 minute session</th><th>Count</th><th>Destination</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Short clips, 30 to 90 seconds, captioned</td><td>6 to 10 realistic</td><td>LinkedIn, X, the library page</td></tr>
+        <tr><td>Pull quote cards</td><td>5 to 8</td><td>Social, speaker kits</td></tr>
+        <tr><td>One page summary</td><td>1</td><td>The gated asset bundle</td></tr>
+        <tr><td>Transcript</td><td>1</td><td>Search and the bundle</td></tr>
+        <tr><td>Newsletter items</td><td>2 to 3</td><td>The internal newsletters</td></tr>
+        <tr><td>Sales enablement snippet</td><td>1</td><td>Inbound representatives and sales</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="callout"><span class="label">THE HONEST CONSTRAINT</span>&nbsp; At 3 to 4 days per edit through one editor, during two major events, thirty clips per webinar is not deliverable in September. Phase it, and do not commit a number before the capacity conversation.</p>
+
+  <h3>3.2&nbsp; The past attendee engine</h3>
+  <p>Everyone who has ever registered for a Chainlink webinar should be invited to the next one automatically. Today this was one person's manual habit and it stopped when they left. A workflow does not resign.</p>
+
+  <h3>3.3&nbsp; The nurture sequence</h3>
+  <p>There is one post event email carrying a recording link, and then nothing. No sequence, no branching, no next action. Vidyard already reports full watch behaviour to the contact record, so a sequence can branch on whether someone attended live, watched the replay, or did neither. That capability was bought in 2023 and is not being used.</p>
+  <p>What it should be: replay, then a one page summary, then a related asset, then a soft meeting offer.</p>
+
+  <h3>3.4&nbsp; The webinar library page</h3>
+  <p>The request is for every webinar to be listed in chronological order with the recording playable on the page, with Vidyard remaining as the player. The current page is dead weight. Filters and categories have been added to the brief.</p>
+  <p>The value beyond the request is a search surface, a link sales can use, a destination for every clip, and the natural home for the asset bundle.</p>
+  <p class="callout"><span class="label">SCOPE CHANGE</span>&nbsp; The library page now sits inside a full website rebuild, which changes both its timing and who controls it. Do not let the replay destination wait for the rebuild. An interim page carrying the Vidyard embeds is worth having by October.</p>
+
+  <h3>3.5&nbsp; Pre event speaker amplification</h3>
+  <p>Speaker social kits currently go out only after the webinar. The speaker's audience is the target audience, and asking after the event converts nobody. One extra asset in the same creative batch is the cheapest registration lift available.</p>
+
+  <h3>3.6&nbsp; Partner list co promotion</h3>
+  <p>Partners are described as having large relevant audiences, and the reason for running with them is to reach new names. Nobody has ever asked a partner for their list size or agreed a reciprocal send. The same question is open and unasked for the next two partner sessions.</p>
+
+  <h3>3.7&nbsp; The personalised send</h3>
+  <p>A personalised email is reported to have produced a 60 percent increase in signups on one webinar. It is the most promising tactic on record, and it has not been repeated.</p>
+  <p class="callout"><span class="label">HANDLE CAREFULLY</span>&nbsp; That figure is second hand, relayed rather than pulled, with no baseline, denominator or date. It is on the reconstruction list in 6.7. Verify it in HubSpot before it is quoted upward. A document whose central charge is that nobody measures the funnel cannot rest its best evidence on an unconfirmed number.</p>
+
+  <h3>3.8&nbsp; Paid and sponsored webinars, now a decision rather than a build</h3>
+  <p>There is about $175,000 to $200,000 of paid media left for the year, and the current position is that webinars are probably not the right place for it. That position is explicitly provisional and the evidence that would change it has been named: the recent history of paid advertising around webinars, and the quality of the leads it produced.</p>
+  <p>Four steps answer it.</p>
+  <ol>
+    <li>Pull the recent paid history from the demand generation calendar that holds it.</li>
+    <li>Score the leads it produced against the target account list.</li>
+    <li>Pair the result with the placement finding in 2.6, which explains poor leads without blaming the channel.</li>
+    <li>Bring a verdict before the September spend decision, not an opinion.</li>
+  </ol>
+  <p>The reason for the doubt is the organic target in 3.10, not the tactic. A paid case that arrives before the organic baseline exists will lose. The original argument stands if the evidence supports it: sponsored placements at $12,000 to $15,000 each generate new names, allow a real cost per lead to be calculated, and the vendor supplies speakers, which solves a real sourcing problem.</p>
+
+  <h3>3.9&nbsp; A target account attendance flag</h3>
+  <p>The request is simple: when someone from a named target account registers or attends, flag it to the account owner. That is a HubSpot workflow combining target list membership, a form submission and a representative notification. It belongs to whoever owns HubSpot workflows.</p>
+
+  <h3>3.10&nbsp; The organic path to 100 to 400 registrations</h3>
+  <p>The programme now has a registration target: 100 to 400 people per webinar, or more, reached organically through targeted email, brand social, the brand handle, and executive social posting. Four channels. Three have owners.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Channel</th><th>Owner today</th><th>Gap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Targeted email</td><td>Growth</td><td>The segmented list is the primary lever</td></tr>
+        <tr><td>Brand social</td><td>Content team</td><td>Scheduled per webinar, but not sequenced against the send</td></tr>
+        <tr><td>Speaker amplification</td><td>Digital marketing</td><td>Currently post event only, see 3.5</td></tr>
+        <tr><td>Executive social posting</td><td>Nobody</td><td>Named as a channel and never asked for. No brief, no assets, no list of which executives, no cadence</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Executive posting is the cheapest unclaimed item in this document. One short brief per webinar, carrying a line of copy, an image, the link and a date, sent to a named handful of executives.</p>
+  <p class="callout"><span class="label">THE HONEST PROBLEM</span>&nbsp; No webinar in the record has a registration figure, so nobody can say whether 100 to 400 is a stretch or a floor. That converts the funnel baseline in 6.7 from useful to urgent.</p>
+
+  <h3>3.11&nbsp; What is not measured is itself an opportunity</h3>
+  <ul>
+    <li>No cost per lead for any webinar, ever.</li>
+    <li>No show rate tracked as a series. The only datapoint is a hedged recollection of one session, roughly 75 registered and 15 attended, about a webinar on a platform that has since been dropped.</li>
+    <li>No replay to meeting path.</li>
+    <li>No comparison between formats, despite three format changes in eight months.</li>
+  </ul>
+
+  <!-- ================= SECTION 04 ================= -->
+  <h2 id="s04">Section 04. Roles and ownership</h2>
+
+  <h3>4.1&nbsp; The scope of the growth role on webinars</h3>
+  <p>Growth marketing drives paid, email and webinars. The programme is to be fixed and professionalised, and the addition being made is the strategy layer, not the execution layer. The gap being filled was described as work getting done in HubSpot without anyone bringing an email strategy to the table.</p>
+
+  <h3>4.2&nbsp; The line between the two roles</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Growth marketing owns</th><th>Digital marketing owns</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Which audience: list selection, segmentation built in HubSpot, suppression</td><td>What it says: email copy, advertisement copy, landing page copy</td></tr>
+        <tr><td>Registration workflows and the confirmation path</td><td>The landing page brief to the website team</td></tr>
+        <tr><td>The send calendar, cadence and runway</td><td>The board, the planning meeting, the speaker briefing</td></tr>
+        <tr><td>Measurement, attribution and the funnel definition</td><td>Hosting the live session, the recording chain, Vidyard</td></tr>
+        <tr><td>The lead generation model, scoring and routing</td><td>Client debrief and partner analytics</td></tr>
+        <tr><td>Programme strategy, format decisions and paid</td><td>Execution against the plan</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>List selection was handed over directly by the workstream owner. Copy stays with her, audience moves to growth.</p>
+  <p>The dependency on GTM Operations for list building has also been removed. The contact data now sits in HubSpot, so segmentation is a build rather than a request to another team.</p>
+  <p class="callout"><span class="label">ONE INPUT STILL COMES FROM OUTSIDE</span>&nbsp; The account's marketing manager defines who the audience should be: the segment, the market, the product and the geography. For the next webinar that person has not yet been identified. See 7.3.</p>
+
+  <h3>4.3&nbsp; What sits outside this workstream</h3>
+  <ul>
+    <li>Video editing. The video team owns it. Growth owns the brief and the priority order.</li>
+    <li>Content review. Growth owns submitting on time with copy locked.</li>
+    <li>Lead routing downstream of Salesforce. Marketing owns the front end, meaning the landing page, the form, the workflow and the campaign tag. GTM Operations owns routing, account ownership and arranging the meeting. That split was agreed for one event flow and should be confirmed as general before it is asserted in a forum.</li>
+    <li>Influencer marketing, which now sits with the Web3 team.</li>
+  </ul>
+
+  <!-- ================= SECTION 05 ================= -->
+  <h2 id="s05">Section 05. The new process</h2>
+  <p>Staged deliberately, and organised by webinar rather than by capability. Nothing in the first phase needs new budget, new headcount or a new tool.</p>
+
+  <h3>5.1&nbsp; Before the webinar</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>When</th><th>Step</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>T minus 4 weeks</td><td>Intake. Topic, business objective, target audience, target accounts, speaker, success measure</td><td>Requester and growth</td></tr>
+        <tr><td>T minus 4 weeks</td><td>Go or no go against the value checklist in 5.7. A webinar with no defined audience does not get a date</td><td>Growth and the director</td></tr>
+        <tr><td>T minus 3.5 weeks</td><td>Planning meeting. Copy and creative briefs raised. Legal ticket filed for anything that will be published</td><td>Digital marketing</td></tr>
+        <tr><td>T minus 3.5 weeks</td><td>Landing page and form built. The form name goes to growth the same day</td><td>Website team</td></tr>
+        <tr><td>T minus 3 weeks</td><td>Registration workflow live and tested in a private window with an address not already in Salesforce</td><td>Growth</td></tr>
+        <tr><td>T minus 3 weeks</td><td>Invite 1 to the segmented list</td><td>Growth</td></tr>
+        <tr><td>T minus 3 weeks</td><td>Speaker kit issued, before the event and not after</td><td>Digital marketing</td></tr>
+        <tr><td>T minus 2 weeks</td><td>Partner send from the partner's own list</td><td>Digital marketing and partner</td></tr>
+        <tr><td>T minus 2 weeks</td><td>Organic social begins. Paid begins against the target account list if it is running</td><td>Growth</td></tr>
+        <tr><td>T minus 2 weeks</td><td>Speaker briefing, 30 minutes, run of show and technical check</td><td>Digital marketing</td></tr>
+        <tr><td>T minus 1 week</td><td>Invite 2, the same email with a new subject line, registrants suppressed</td><td>Growth</td></tr>
+        <tr><td>T minus 3 days</td><td>The personalised send</td><td>Growth</td></tr>
+        <tr><td>T minus 1 day</td><td>Reminder and dress rehearsal with the speakers</td><td>Digital marketing</td></tr>
+        <tr><td>T minus 5 minutes</td><td>Final reminder. Five minutes, not one hour</td><td>Growth</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5.2&nbsp; The show</h3>
+  <p>This is the first priority. Two sessions have had visible problems in front of clients, so the standard below applies from the next webinar onward.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Element</th><th>Standard</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Platform</td><td>Zoom, live. Not LinkedIn Live</td></tr>
+        <tr><td>Pre roll visual</td><td>A Zoom waiting room carrying a branded card with speakers, titles, the agenda, a QR code for remote viewers, and a video loop or logo card</td></tr>
+        <tr><td>Pre roll audio</td><td>A short voiceover announcing that the webinar is about to begin</td></tr>
+        <tr><td>Start</td><td>Live ten minutes early with the pre roll running</td></tr>
+        <tr><td>Moderator</td><td>Named in advance</td></tr>
+        <tr><td>Kickoff</td><td>Named in advance. Who opens the session is decided before the day, not on it</td></tr>
+        <tr><td>Talking points</td><td>Written and circulated before the day</td></tr>
+        <tr><td>Technical check</td><td>A dry run with the speakers, with logins tested</td></tr>
+        <tr><td>Interactivity</td><td>Polls, audience prompts and live questions. At least one engagement moment, so intent is observable</td></tr>
+        <tr><td>Capture</td><td>Registration and attendance captured at source. A named person watches the room</td></tr>
+        <tr><td>Follow up</td><td>The report or next asset finished before the session, not after</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="callout"><span class="label">REHEARSE ON THE RIGHT SESSION</span>&nbsp; Run this standard on the next partner preparation call rather than on the Truflation webinar. Do it once there, so 16 September is the second time it is used and not the first.</p>
+
+  <h3>5.3&nbsp; After the webinar</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>When</th><th>Step</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Plus 2 hours</td><td>Recording downloaded and submitted to legal immediately</td><td>Digital marketing</td></tr>
+        <tr><td>Plus 2 hours</td><td>Attendee list reconciled against registrants. The four funnel numbers recorded</td><td>Growth</td></tr>
+        <tr><td>Plus 1 day</td><td>Replay email to registrants and attendees. Ungated Vidyard link with the tracking parameter on every link</td><td>Growth</td></tr>
+        <tr><td>Plus 1 day</td><td>Cut list to the video team with timestamps and a priority order</td><td>Digital marketing</td></tr>
+        <tr><td>Plus 3 to 4 days</td><td>Edited master returned, hosted on Vidyard, placed on the library page</td><td>Digital marketing</td></tr>
+        <tr><td>Plus 4 days</td><td>Clips published in the agreed priority order</td><td>Digital marketing and content</td></tr>
+        <tr><td>Plus 5 days</td><td>Asset bundle live: deck, one page summary and transcript, behind a form</td><td>Growth</td></tr>
+        <tr><td>Plus 5 days</td><td>Speaker post event kit, including the clip that features them</td><td>Digital marketing</td></tr>
+        <tr><td>Plus 7 days</td><td>Second nurture email, branched on watch behaviour</td><td>Growth</td></tr>
+        <tr><td>Plus 10 days</td><td>Post webinar report: the four numbers, qualified leads and cost per lead</td><td>Growth</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5.4&nbsp; Always on</h3>
+  <ul>
+    <li>Every past registrant is enrolled automatically in the invite for the next webinar, with existing registrants suppressed.</li>
+    <li>The library page carries every recording, chronologically and ungated.</li>
+    <li>Clips recirculate on a standing content rota.</li>
+    <li>Target account attendance alerts fire to the owning representative.</li>
+  </ul>
+
+  <h3>5.5&nbsp; The staging</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Phase</th><th>Window</th><th>Scope</th><th>Proves it on</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Phase 0, the show</td><td>Now to the next partner preparation call</td><td>The production standard in 5.2. Run of show, named moderator and kickoff, talking points, waiting room asset, pre roll audio, technical check and dry run. Plus platform admin access</td><td>The preparation call, as the rehearsal</td></tr>
+        <tr><td>Phase 0b, one webinar end to end</td><td>Now to 16 September</td><td>The segmented list built in HubSpot. The list rebuilt from the 31 July send. Gated registration. Instant confirmation. Scheduled promotion. A three week runway. The personalised send. The four funnel numbers recorded for the first time. Ungated replay with tracking</td><td>Truflation, 16 September</td></tr>
+        <tr><td>Phase 1, the evergreen engine</td><td>October</td><td>Past attendee workflow. Asset bundle behind a form. A realistic clip volume agreed with the video team. The nurture sequence. Speaker kits moved before the event. The executive posting brief. An interim library page</td><td>Insights with Experts 2, AI agents, Wyoming</td></tr>
+        <tr><td>Phase 2, routing and scoring</td><td>November to December</td><td>Webinar registration and attendance as HubSpot properties. Fit score adopted and reweighted. HubSpot to Salesforce routing proven. Target account alerts. Cost per lead reported. The paid verdict rather than a paid build</td><td>ACE</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="callout"><span class="label">THE HOLE IN PHASE 0B</span>&nbsp; The promotion email sends on Wednesday 2 September, inside a planned absence of 2 to 9 September. It must be built, checked and scheduled by Friday 28 August, with cover briefed. The absence has been described two different ways in two meetings, and 2 to 9 September is the correct set. State it once, in writing.</p>
+
+  <h3>5.6&nbsp; The gating rule</h3>
+  <p>Three data points exist and they do not add up to a decision. The replay was ruled ungated in one meeting. Gating was proposed in a second and drew no comment either way. In a third, gating was mentioned inside a list of ten items and the whole list was agreed. That is a blanket agreement, not a ruling: stronger than silence and weaker than a decision. The rule below should go into the document so that anyone who disagrees is disagreeing with something specific.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Asset</th><th>Gated</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Live registration</td><td>Yes, HubSpot form</td><td>It is the only reliable identity capture in the whole programme</td></tr>
+        <tr><td>Asset bundle: deck, one page summary, transcript</td><td>Yes</td><td>High intent, low friction, and it re identifies replay viewers</td></tr>
+        <tr><td>The replay recording</td><td>No</td><td>Already ruled, and Vidyard resolves known contacts anyway</td></tr>
+        <tr><td>Clips and social</td><td>No</td><td>Top of funnel</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="callout"><span class="label">WHAT UNGATING COSTS</span>&nbsp; Vidyard only resolves contacts already known to HubSpot, so cold paid social traffic to an ungated replay is invisible. The asset bundle is what replaces that capture, and it should be said in the same breath.</p>
+
+  <h3>5.7&nbsp; The value checklist, before a date is booked</h3>
+  <p>A webinar that cannot answer these does not get a date.</p>
+  <ol>
+    <li>Who is this for? A named audience or target account segment, not a business unit.</li>
+    <li>How many of them can we actually reach? A list size, from HubSpot, before the invite is written.</li>
+    <li>What do we want them to do next? Book a meeting, download the bundle, join a follow up.</li>
+    <li>Who receives the lead, and will they work it? A named person.</li>
+    <li>What does the partner bring? List size, a reciprocal send, speaker amplification.</li>
+    <li>What are the six assets we will get out of the recording, and does the video team have room?</li>
+    <li>What is the success measure, agreed with the requester before the date is booked?</li>
+    <li>Would we run this if there were no announcement attached to it? If not, it is an announcement rather than a webinar.</li>
+    <li>Can this reach 100 to 400 registrations organically? If the reachable segment is two hundred people, say so before the date is booked.</li>
+    <li>Who is the marketing manager on this account? They define the audience, the segment, the product and the geography.</li>
+    <li>Which executives will post about it? Named, with a brief and a date.</li>
+  </ol>
+
+  <h3>5.8&nbsp; The production checklist</h3>
+
+  <h4>Four weeks out</h4>
+  <ul>
+    <li>Business objective and target audience written down</li>
+    <li>Target account list named</li>
+    <li>Success measure agreed with the requester</li>
+    <li>Legal ticket filed for anything that will be published</li>
+  </ul>
+
+  <h4>Three weeks out</h4>
+  <ul>
+    <li>Landing page live, and clicked personally</li>
+    <li>Form name received and the workflow built</li>
+    <li>Workflow tested in a private window with an address not already in Salesforce</li>
+    <li>Confirmation email fires instantly and carries the correct joining link</li>
+    <li>Invite 1 scheduled, and not on a thirteenth</li>
+    <li>Speaker kit issued</li>
+  </ul>
+
+  <h4>One week out</h4>
+  <ul>
+    <li>Invite 2 built as the same email with a new subject line, registrants suppressed</li>
+    <li>Every link clicked, copied from the browser address bar and never from the document</li>
+    <li>First name merge token tested</li>
+    <li>Dark mode and mobile rendering checked</li>
+    <li>Speaker briefing and technical check done</li>
+    <li>Platform, registration page and joining link all agree</li>
+  </ul>
+
+  <h4>The show</h4>
+  <ul>
+    <li>Moderator named</li>
+    <li>Kickoff speaker named</li>
+    <li>Talking points written and circulated</li>
+    <li>Waiting room asset built, carrying speakers, titles, agenda and QR code</li>
+    <li>Pre roll voiceover recorded or scripted</li>
+    <li>Dry run with the speakers, logins tested</li>
+    <li>Polls written</li>
+    <li>Follow up asset finished before the session</li>
+  </ul>
+
+  <h4>Day of, and after</h4>
+  <ul>
+    <li>Live ten minutes early with the pre roll running</li>
+    <li>Reminder at five minutes before</li>
+    <li>Someone named is watching the room</li>
+    <li>Recording to legal within two hours</li>
+    <li>Registrations, attendance, replay views and qualified leads recorded</li>
+    <li>Tracking parameter on every replay link</li>
+    <li>Cut list to the video team with a priority order</li>
+    <li>Post webinar report at plus ten days</li>
+  </ul>
+
+  <h3>5.9&nbsp; The clip plan, resourced honestly</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Phase</th><th>Clips per webinar</th><th>Precondition</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Phase 0b</td><td>3</td><td>One hero clip and two shorts, inside the existing 3 to 4 day turnaround with no new capacity</td></tr>
+        <tr><td>Phase 1</td><td>6 to 10</td><td>A conversation with the video team about batch cutting, and a priority order supplied with the cut list</td></tr>
+        <tr><td>Phase 2</td><td>20 to 30</td><td>A second editor, an agency, an assisted first pass the editor approves, or borrowed capacity from the event clipping setup</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>State the constraint before someone else discovers it. A plan that names its own cost survives review.</p>
+
+  <!-- ================= SECTION 06 ================= -->
+  <h2 id="s06">Section 06. How a webinar generates leads</h2>
+
+  <h3>6.1&nbsp; The funnel, defined</h3>
+  <p>Nobody in the company has written this down. This is the definition to standardise on.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>Definition</th><th>Source of truth</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Reached</td><td>Delivered emails plus paid impressions against the target list</td><td>HubSpot and the advertising platform</td></tr>
+        <tr><td>Registered</td><td>Form submission on the webinar landing page</td><td>HubSpot form</td></tr>
+        <tr><td>Attended</td><td>Joined the live session</td><td>Zoom into HubSpot</td></tr>
+        <tr><td>Engaged</td><td>Attended more than half, asked a question, or watched more than half the replay</td><td>Zoom and Vidyard</td></tr>
+        <tr><td>Qualified</td><td>Fit score at or above threshold and an engagement signal</td><td>HubSpot contact fit score</td></tr>
+        <tr><td>Accepted</td><td>An inbound representative worked it</td><td>Salesforce</td></tr>
+        <tr><td>Meeting</td><td>A meeting happened</td><td>Salesforce</td></tr>
+        <tr><td>Opportunity</td><td>Pipeline created</td><td>Salesforce</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The target is 100 to 400 registrations per webinar, reached organically. It is the only number the programme is held to, it was set without a stated basis, and there is nothing in the record to compare it against. Report the full sequence for every webinar, with cost per lead at the bottom.</p>
+
+  <h3>6.2&nbsp; The capture architecture</h3>
+  <p>Traffic arrives from four sources: paid, organic social, the partner list, and past attendees. All of it lands on the landing page, and the HubSpot form is the identity capture.</p>
+  <p>The workflow then does five things in order. It sets the contact as a marketing contact. It stamps the three Salesforce guard fields described in 6.3. It sets the Salesforce campaign. It sends an instant confirmation carrying the joining link. It enrols the contact in the pre event reminder sequence.</p>
+  <p>After the session the audience splits in two. Attendees receive the replay and the asset bundle. Non attendees receive the replay and a short apology note. Both paths rejoin at Vidyard watch data, which writes back to the contact record through the tracking parameter. Fit score combined with engagement then decides the outcome: at or above threshold the contact becomes a marketing qualified lead in Salesforce and reaches an inbound representative, and below threshold it stays in nurture and is invited to the next webinar.</p>
+
+  <h3>6.3&nbsp; The routing specification</h3>
+  <p>The verified field guard, proven on a recent event build.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Field</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Website</td><td>A placeholder domain, confirmed working by GTM Operations</td></tr>
+        <tr><td>Primary means of contact</td><td>Email, from the picklist</td></tr>
+        <tr><td>Primary means of contact handle</td><td>The contact email token</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li>Only stamp a field when it is empty. The picklist still holds older channel values from a previous era, and overwriting a real handle destroys data.</li>
+    <li>Order matters. The three fields must be stamped before the qualification flag, because that flag is what places the contact on the sync inclusion list.</li>
+    <li>Keep re enrolment off on two way synced properties, or the two systems will overwrite each other repeatedly.</li>
+  </ul>
+  <p class="callout"><span class="label">DO THIS BEFORE CLAIMING ROUTING WORKS</span>&nbsp; Create a brand new HubSpot contact that does not exist in Salesforce, in a private window, run it through the workflow, and look for it in Salesforce. If it does not arrive, the validation rule blocking 70,031 records is still live and no webinar lead reaches sales.</p>
+
+  <h3>6.4&nbsp; Scoring, and the threshold</h3>
+  <p>A contact fit score already exists, built inside GTM Operations, with edit rights offered. The proposed threshold sends anything above 75 to Salesforce as a marketing qualified lead. Three things must be fixed before it routes anybody.</p>
+  <ol>
+    <li>The weights have never been checked by anyone. One review found a penalty of only eight points for an obviously disqualifying signal.</li>
+    <li>It is capped by enrichment gaps. Seniority, business area and company category are empty on new contacts, which holds the score down. A brand new webinar registrant is exactly the population this breaks on.</li>
+    <li>It has no engagement dimension. Fit describes who someone is. Webinars produce intent: attended, stayed, asked a question, watched the replay. There is also a concrete reason the engagement half does not exist, which is that webinar registration and attendance are not HubSpot properties, so the score cannot see them and the organisation is scoring on email opens instead.</li>
+  </ol>
+  <p class="callout"><span class="label">THE PROPOSAL</span>&nbsp; Qualify on fit multiplied by engagement, not fit alone. A director at a tier one bank who registered and never appeared is not a lead. A vice president who attended, stayed to the end and downloaded the bundle is, even at a lower fit score. Making registration and attendance into properties is the build that turns this from an argument into a score.</p>
+
+  <h3>6.5&nbsp; Lead quality, and whether off profile registrants belong in the CRM</h3>
+  <p>The open question is whether registrants who are not the right profile should be kept at all. The answer proposed here has three parts.</p>
+  <ul>
+    <li>Yes to the CRM. Off profile registrants cost almost nothing to hold now that marketing contacts sit at about 261,000, down from about 360,000 and comfortably below the 360,000 to 370,000 warning band, and they are the audience for retail and community programmes.</li>
+    <li>No to sales. Only fit combined with engagement crosses the threshold.</li>
+    <li>They are a targeting signal rather than a verdict on the channel. Fix the targeting and the same channel produces different people.</li>
+  </ul>
+
+  <h3>6.6&nbsp; The sales hand off</h3>
+  <p>A qualified lead lands with junior salespeople inside GTM Operations, who qualify any inbound lead and route it onward by business line.</p>
+  <p>Design for capacity rather than volume. Per webinar, hand over the top five to ten leads with the evidence attached: what they attended, how long they stayed, what they downloaded, and what their account is.</p>
+  <p>Close the loop as well. The unit of proof is one named opportunity traceable to one webinar, which is exactly what a previous account based email campaign produced.</p>
+
+  <h3>6.7&nbsp; The first numbers to publish</h3>
+  <p>These are reconstructable this week, without running a new webinar. They matter more now that a target exists and there is nothing to compare it against.</p>
+  <ol>
+    <li>The 31 July send: size, opens, clicks, and who was on it.</li>
+    <li>The most recent live session: registrations, attendance, and the reported personalised email lift.</li>
+    <li>The most recent registrant list, scored against the target account list.</li>
+    <li>Show rate across every session for which data exists.</li>
+    <li>Cost per registration on the paid spend that has already run.</li>
+  </ol>
+  <p>Five separate meetings have now decided the value of this channel from assertion. Whoever brings the first credible funnel sets the terms of all five.</p>
+
+  <!-- ================= SECTION 07 ================= -->
+  <h2 id="s07">Section 07. Risks, dependencies and open questions</h2>
+
+  <h3>7.1&nbsp; What could stop this working</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Risk</th><th>Evidence</th><th>Mitigation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>The show fails again in front of a client</td><td>Two failures already: a platform failure, and a live session that opened with about two minutes of silence</td><td>This is why production quality is now first. Rehearse on the partner preparation call rather than on the Truflation webinar</td></tr>
+        <tr><td>100 to 400 turns out to be far above what the channel does</td><td>The target was set with no stated basis, and no registration figure exists in the record</td><td>Publish the baseline first. A target met halfway with evidence beats a target missed with none</td></tr>
+        <tr><td>The paid decision is made before the evidence arrives</td><td>The current position is explicitly a first instinct, and September spend starts soon</td><td>Read the demand generation calendar the day it is shared</td></tr>
+        <tr><td>Reversion to announcement work</td><td>Performance marketing has been attempted repeatedly and has reverted to announcements every time</td><td>Make the colleague who has watched it fail a named reviewer. The counter argument is structural: less pipeline in the second half means fewer deals to announce</td></tr>
+        <tr><td>Nobody knows why lead scoring died last time</td><td>Two people remember the failure and neither remembers the cause</td><td>Find the cause before proposing the score, or the same objection kills it again</td></tr>
+        <tr><td>The 2 September send falls inside an absence</td><td>The absence runs 2 to 9 September</td><td>Build, check and schedule by Friday 28 August, with a written handover</td></tr>
+        <tr><td>One editor, two major events</td><td>3 to 4 days per edit during Sibos and the New York event</td><td>Phase the clip volume. Agree a batch process and a priority order with the editor directly</td></tr>
+        <tr><td>HubSpot to Salesforce still refuses 70,031 records</td><td>A validation rule that nobody owns</td><td>Run the end to end test in 6.3 before claiming routing works</td></tr>
+        <tr><td>Replay hosting renewal unconfirmed</td><td>The tool renewal has been described as uncertain</td><td>Confirm with the owner of the marketing technology stack</td></tr>
+        <tr><td>Sales capacity</td><td>Leads from previous campaigns went unworked</td><td>Hand over five to ten evidenced leads, not two hundred</td></tr>
+        <tr><td>Legal turnaround unknown, and it sits ahead of everything</td><td>No service level on record</td><td>Ask for the number. Build the buffer into the calendar rather than into heroics</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7.2&nbsp; Dependencies on other people</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Need</th><th>From</th><th>Blocks</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>The landing page form name</td><td>Website team</td><td>The Truflation registration workflow</td></tr>
+        <tr><td>The Truflation landing page</td><td>Website team</td><td>The 2 September promotion email</td></tr>
+        <tr><td>Email copy and the central brief</td><td>Digital marketing</td><td>The 2 September send</td></tr>
+        <tr><td>The webinar library page</td><td>Website team, on the EMEA request</td><td>The clip destination and the replay home</td></tr>
+        <tr><td>Edit capacity and tooling</td><td>Video team</td><td>The whole micro content plan</td></tr>
+        <tr><td>Legal review turnaround</td><td>Legal</td><td>The post event calendar</td></tr>
+        <tr><td>Fit score fields and enrichment</td><td>GTM Operations</td><td>Scoring</td></tr>
+        <tr><td>Advertising account access</td><td>Marketing director</td><td>Paid targeting fixes</td></tr>
+        <tr><td>The account marketing manager for the next webinar</td><td>Marketing director, currently being chased</td><td>The segmented invite list for 16 September</td></tr>
+        <tr><td>Platform admin access</td><td>Marketing director and IT, granted</td><td>Waiting rooms, pre roll, polls, attendance export</td></tr>
+        <tr><td>The demand generation calendar</td><td>Digital marketing, re sharing</td><td>The paid verdict. It holds the paid history and statistics</td></tr>
+        <tr><td>A date for the next partner preparation call</td><td>Digital marketing</td><td>The dry run, and therefore Phase 0</td></tr>
+        <tr><td>The paid and social budget for webinars</td><td>Marketing director, deferred</td><td>Any paid plan at all</td></tr>
+        <tr><td>Promotion instructions for the September session</td><td>The owning function</td><td>The 25 September promotion</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7.3&nbsp; Open questions</h3>
+  <ul>
+    <li>Who is the marketing manager on the Truflation account? Five candidate names were considered and none confirmed. The audience definition for 16 September depends on the answer.</li>
+    <li>What was actually on the 31 July list of about 1,700 contacts? Everything in Phase 0b depends on it.</li>
+    <li>Was there ever a webinar list, or was it assembled by hand each time? If the latter, the deliverable is to build one.</li>
+    <li>Where does the 100 to 400 target come from? No basis was given for the number that now defines success.</li>
+    <li>When exactly is the next partner preparation call? It is the rehearsal, and no date has been fixed.</li>
+    <li>Does the ungated replay ruling apply to all webinars or only to the one it was made about?</li>
+    <li>Is the SGX FX recording still gated? If it is, finished advertisement copy is promoting a wall.</li>
+    <li>What is the actual legal turnaround on a recording?</li>
+    <li>What does the video team edit with, and what is the weekly capacity?</li>
+    <li>Is the replay hosting tool being renewed?</li>
+    <li>What is the advertising conversion event? 54 conversions are logged and nobody can say what fires them.</li>
+    <li>What did the three webinar platform evaluations conclude? They were run and never raised again.</li>
+    <li>Who owns the platform failure debrief? It was called for and never assigned.</li>
+    <li>Why do speaker social kits go out after the event rather than before?</li>
+    <li>What is the partner list size, for every future partner?</li>
+    <li>Which function does the IR audience for this document refer to, and who are its named marketing managers?</li>
+  </ul>
+
+  <!-- ================= APPENDIX ================= -->
+  <h2 id="appendix">Appendix. House rules for every webinar send</h2>
+  <ul>
+    <li>Nothing sends on a thirteenth of the month.</li>
+    <li>Never copy a link from a document. Outbound URLs are wrapped and it breaks sends silently. Open the link and copy the clean address from the browser bar.</li>
+    <li>Test the first name merge token. It has previously resolved to nothing across a send of about four thousand contacts.</li>
+    <li>Test forms in a private window with an address that is not already in Salesforce. A recognised contact passes regardless and proves nothing.</li>
+    <li>Never bulk export the CRM to build a list. It triggers a security alert the same night.</li>
+    <li>Reminders go five minutes before, not one hour. Confirmations send instantly, not on a delay.</li>
+    <li>Content review and legal review are two separate gates. Content review comes from the Asana queue and turns around in hours. Legal review is a ticket and takes one to three days, and copy must be locked before it is submitted.</li>
+    <li>Quadruple check webinar assets: the date, the registration link, the joining link clicked personally, the call to action, the subject line length, and whether the landing page is actually live.</li>
+    <li>One canonical campaign value per campaign. Free text campaign names are why reporting breaks.</li>
+  </ul>
+
+  <p class="signoff">Webinar Playbook, version 2.0. Internal. Every finding traces to a meeting record.</p>
+
+</main>
+
+<script>
+(function () {
+  var doc = document.getElementById('doc');
+
+  function cleanClone(node) {
+    var c = node.cloneNode(true);
+    c.querySelectorAll('.no-copy').forEach(function (n) { n.remove(); });
+    return c;
+  }
+
+  function flash(btn, msg) {
+    var old = btn.textContent;
+    btn.textContent = msg;
+    btn.classList.add('done');
+    setTimeout(function () {
+      btn.textContent = old;
+      btn.classList.remove('done');
+    }, 1600);
+  }
+
+  // Rich copy: put both text/html and text/plain on the clipboard so a paste
+  // into Google Docs keeps headings, tables and lists.
+  function copyRich(node, btn, label) {
+    var clone = cleanClone(node);
+    var html = '<meta charset="utf-8">' + clone.innerHTML;
+    var text = clone.innerText;
+
+    function fallback() {
+      // Selection-based copy also carries rich text in every major browser.
+      var holder = document.createElement('div');
+      holder.style.cssText = 'position:fixed;left:-9999px;top:0;white-space:normal;';
+      holder.appendChild(clone);
+      document.body.appendChild(holder);
+      var range = document.createRange();
+      range.selectNodeContents(holder);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      sel.removeAllRanges();
+      holder.remove();
+      flash(btn, ok ? (label || 'Copied') : 'Press Cmd/Ctrl+C');
+    }
+
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })
+      ]).then(function () { flash(btn, label || 'Copied'); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function copyPlain(node, btn, label) {
+    var text = cleanClone(node).innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash(btn, label || 'Copied'); },
+        function () { flash(btn, 'Press Cmd/Ctrl+C'); }
+      );
+    } else {
+      flash(btn, 'Press Cmd/Ctrl+C');
+    }
+  }
+
+  document.getElementById('copy-all').addEventListener('click', function () {
+    copyRich(doc, this, 'Copied — paste into Docs');
+  });
+
+  document.getElementById('copy-plain').addEventListener('click', function () {
+    copyPlain(doc, this, 'Copied as text');
+  });
+
+  // A copy button on every table, so one table can go across on its own.
+  document.querySelectorAll('.tablewrap').forEach(function (wrap) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copybtn no-copy';
+    btn.textContent = 'Copy table';
+    btn.addEventListener('click', function () {
+      copyRich(wrap, btn, 'Copied');
+    });
+    wrap.insertBefore(btn, wrap.firstChild);
+  });
+})();
+</script>
+
+</body>
+</html>
