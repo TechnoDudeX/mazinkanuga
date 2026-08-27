@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Link NYC — Growth &amp; Marketing slide · Mazin Kanuga</title>
+<meta name="description" content="Working doc: the Link NYC all-hands Growth &amp; Marketing slide, tables and script, laid out for copy and paste.">
+<meta name="author" content="Mazin Kanuga">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-hover: #fafafa;
+    --ink: #0a0a0a;
+    --ink-dim: #404040;
+    --ink-mute: #767676;
+    --rule: #e8e8e8;
+
+    --solidus: #FFC933;
+    --coinsquare: #00D1A4;
+    --kraken: #6B4EFF;
+    --wheat: #E8DCC0;
+    --red: #E63946;
+    --accent: #E63946;
+
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --fw-display: 900;
+
+    --s-1: 4px;  --s-2: 8px;  --s-3: 10px; --s-4: 12px;
+    --s-5: 16px; --s-6: 20px; --s-7: 24px; --s-8: 28px;
+    --s-9: 32px; --s-10: 36px; --s-11: 40px; --s-12: 48px;
+    --s-13: 56px; --s-14: 64px;
+
+    --o-high: 0.7;
+    --o-strong: 0.85;
+
+    --pad-section: 64px 56px;
+    --pad-block: 40px 56px;
+    --pad-footer: 88px 56px 48px;
+    --gut: 56px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--red); color: var(--bg); }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 0; z-index: 100;
+    background: var(--ink); color: var(--bg);
+    padding: 12px 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: top .15s;
+  }
+  .skip-link:focus { top: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .page-title { animation: none !important; }
+  }
+
+  /* ─── nav ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ink);
+    transition: box-shadow .2s;
+  }
+  .nav.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04); }
+  .nav-grid { display: grid; grid-template-columns: 140px 1fr 160px; align-items: stretch; }
+  .nav-burger {
+    display: none;
+    border-left: 1px solid var(--ink);
+    padding: 0 22px;
+    background: var(--bg);
+    align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    gap: var(--s-3);
+  }
+  .nav-burger-icon { display: inline-flex; flex-direction: column; gap: var(--s-1); }
+  .nav-burger-icon span { width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+  .nav.is-open .nav-burger-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav.is-open .nav-burger-icon span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .nav-logo {
+    border-right: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--display); font-size: 26px; font-weight: var(--fw-display); letter-spacing: -1.2px;
+    display: flex; align-items: center; gap: var(--s-2);
+  }
+  .nav-logo .dot { color: var(--accent); }
+  .nav-links { display: flex; }
+  .nav-link {
+    padding: 18px var(--s-7);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink);
+    border-right: 1px solid var(--rule);
+    display: flex; align-items: center; gap: var(--s-3);
+    transition: background .15s;
+  }
+  .nav-link:last-child { border-right: none; }
+  .nav-link:hover { background: var(--bg-hover); }
+  .nav-link .num { color: var(--ink-mute); }
+  .nav-link.is-current { background: var(--ink); color: var(--bg); }
+  .nav-link.is-current .num { color: rgba(255,255,255,.55); }
+  .nav-cta {
+    border-left: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--bg); background: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+    transition: background .15s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ─── page head ─── */
+  .page-head {
+    padding: var(--pad-section);
+    border-bottom: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr 340px; gap: var(--s-12); align-items: end;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-dim); margin-bottom: var(--s-8);
+    display: inline-flex; align-items: center; gap: var(--s-3);
+  }
+  .eyebrow .bar { width: var(--s-7); height: 1px; background: var(--accent); display: inline-block; }
+  .page-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(56px, 11vw, 148px); letter-spacing: clamp(-3px, -0.55vw, -6px);
+    line-height: 0.84;
+    animation: fadeUp .7s ease both;
+  }
+  .page-title .dot { color: var(--accent); }
+  .page-lede {
+    font-family: var(--sans); font-size: 15px; line-height: 1.6; color: var(--ink-dim);
+    border-top: 1px solid var(--ink); padding-top: var(--s-6); text-wrap: pretty;
+  }
+  .page-lede strong { color: var(--ink); font-weight: 600; }
+  .head-actions { margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+  /* ─── buttons ─── */
+  .btn {
+    border: 1px solid var(--ink);
+    padding: var(--s-3) var(--s-5);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    background: var(--bg); color: var(--ink);
+    transition: background .15s, color .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn.is-solid { background: var(--ink); color: var(--bg); }
+  .btn.is-solid:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.is-done, .btn.is-solid.is-done { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .btn.is-fail, .btn.is-solid.is-fail { background: var(--wheat); border-color: var(--ink); color: var(--ink); }
+
+  /* ─── toc ─── */
+  .toc { padding: var(--s-9) var(--gut); border-bottom: 1px solid var(--ink); background: var(--bg-hover); }
+  .toc-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-5);
+  }
+  .toc-list { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; }
+  .toc-list a {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    border: 1px solid var(--rule); background: var(--bg);
+    padding: var(--s-3) var(--s-5);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    transition: border-color .15s, background .15s;
+  }
+  .toc-list a:hover { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+  .toc-list a .n { color: var(--accent); font-weight: 700; }
+  .toc-list a:hover .n { color: var(--bg); }
+
+  /* ─── blocks ─── */
+  .blk { border-bottom: 1px solid var(--ink); scroll-margin-top: 70px; }
+  .blk:last-of-type { border-bottom: none; }
+  .blk-bar {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-7);
+    padding: var(--s-9) var(--gut) var(--s-7);
+  }
+  .blk-index {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-4);
+    display: flex; align-items: center; gap: var(--s-3);
+  }
+  .blk-index .n { color: var(--accent); font-weight: 700; }
+  .blk-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(28px, 4.4vw, 50px); letter-spacing: clamp(-1px, -0.2vw, -2px);
+    line-height: 0.96;
+  }
+  .blk-intro {
+    padding: 0 var(--gut) var(--s-7);
+    font-size: 15px; line-height: 1.65; color: var(--ink-dim); max-width: 760px; text-wrap: pretty;
+  }
+  .blk-body { padding: 0 var(--gut) var(--s-12); }
+
+  /* ─── tables ─── */
+  .tw { overflow-x: auto; border: 1px solid var(--ink); -webkit-overflow-scrolling: touch; }
+  table.t { width: 100%; border-collapse: collapse; min-width: 720px; }
+  table.t th, table.t td {
+    border: 1px solid var(--rule);
+    padding: var(--s-5) var(--s-6);
+    text-align: left; vertical-align: top;
+    font-size: 14px; line-height: 1.55; text-wrap: pretty;
+  }
+  table.t thead th {
+    background: var(--ink); color: var(--bg);
+    border-color: var(--ink);
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 1.6px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  table.t tbody th {
+    font-weight: 700; background: var(--bg-hover); color: var(--ink);
+    width: 190px;
+  }
+  table.t tbody tr:hover td { background: var(--bg-hover); }
+  table.t td.mono, table.t th.mono {
+    font-family: var(--mono); font-size: 13px; letter-spacing: .3px; white-space: nowrap;
+  }
+  table.t td.fig {
+    font-family: var(--display); font-weight: var(--fw-display); font-size: 24px;
+    letter-spacing: -.8px; line-height: 1.1; white-space: nowrap;
+  }
+  table.t td.q { font-style: italic; }
+  table.t .w-num { width: 46px; text-align: center; }
+  .t-hint {
+    margin-top: var(--s-4);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ─── prose ─── */
+  .prose p { font-size: 16px; line-height: 1.65; color: var(--ink); max-width: 800px; text-wrap: pretty; }
+  .prose p + p { margin-top: var(--s-6); }
+  .prose .quote { color: var(--ink-dim); }
+
+  .beat { display: grid; grid-template-columns: 200px 1fr; gap: var(--s-8); padding: var(--s-7) 0; border-top: 1px solid var(--rule); }
+  .beat:first-of-type { border-top: 1px solid var(--ink); }
+  .beat-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--accent); line-height: 1.5; padding-top: 3px;
+  }
+  .beat-body { font-size: 16px; line-height: 1.65; max-width: 720px; text-wrap: pretty; }
+  .beat-body p + p { margin-top: var(--s-5); }
+  .beat-sub { list-style: none; margin-top: var(--s-6); border-top: 1px solid var(--rule); }
+  .beat-sub li { padding: var(--s-5) 0; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.6; }
+  .beat-sub li:last-child { border-bottom: none; }
+  .beat-sub .k {
+    display: block;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-2);
+  }
+
+  .asks { list-style: none; }
+  .ask { display: grid; grid-template-columns: 72px 1fr; gap: var(--s-7); padding: var(--s-8) 0; border-top: 1px solid var(--rule); }
+  .ask:first-child { border-top: 1px solid var(--ink); }
+  .ask-num {
+    font-family: var(--display); font-size: 46px; font-weight: var(--fw-display);
+    letter-spacing: -2px; line-height: .9; color: var(--accent);
+  }
+  .ask-who {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: var(--s-3);
+  }
+  .ask-body { font-size: 16px; line-height: 1.6; max-width: 720px; text-wrap: pretty; }
+
+  .callout {
+    margin-top: var(--s-9);
+    border: 1px solid var(--ink); border-left: 4px solid var(--accent);
+    padding: var(--s-6) var(--s-7);
+  }
+  .callout-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--s-3);
+  }
+  .callout p { font-size: 14px; line-height: 1.6; color: var(--ink-dim); max-width: 780px; }
+  .callout p + p { margin-top: var(--s-4); }
+
+  .lane { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ink); }
+  .lane-cell { padding: var(--s-6); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .lane-cell:nth-child(4n) { border-right: none; }
+  .lane-cell:nth-last-child(-n+4) { border-bottom: none; }
+  .lane-who { font-family: var(--display); font-size: 20px; font-weight: var(--fw-display); letter-spacing: -.6px; }
+  .lane-what { font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-mute); margin-top: var(--s-2); line-height: 1.6; }
+  .lane-cell.is-you { background: var(--ink); color: var(--bg); }
+  .lane-cell.is-you .lane-what { color: var(--solidus); }
+
+  /* Text is read for the clipboard with CSS casing neutralised, so mono labels
+     and table headers paste in their natural case rather than shouting. */
+  html.is-copying * { text-transform: none !important; }
+
+  /* ─── toast ─── */
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px);
+    background: var(--ink); color: var(--bg);
+    padding: var(--s-4) var(--s-7);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 200;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ─── footer ─── */
+  footer { background: var(--ink); color: var(--bg); }
+  .footer-inner { padding: var(--pad-footer); }
+  .footer-top {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: var(--s-11);
+    margin-bottom: var(--s-13);
+  }
+  .footer-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,var(--o-high)); margin-bottom: var(--s-3); }
+  .footer-hello {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(64px, 14vw, 148px); letter-spacing: clamp(-3px, -0.6vw, -6px); line-height: 0.86;
+  }
+  .footer-hello .dot { color: var(--accent); }
+  .footer-cta {
+    border: 1px solid var(--bg); padding: var(--s-6) var(--s-8);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: background .15s, color .15s;
+  }
+  .footer-cta:hover { background: var(--bg); color: var(--ink); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.2); padding-top: var(--s-6);
+    display: flex; justify-content: space-between; gap: var(--s-5);
+    font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,.55); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  /* ─── responsive ─── */
+  @media (max-width: 1200px) {
+    :root { --pad-section: 56px 40px; --pad-footer: 72px 40px 40px; --gut: 40px; }
+  }
+  @media (max-width: 1024px) {
+    :root { --pad-section: 48px 32px; --pad-footer: 64px 32px 36px; --gut: 32px; }
+    .nav-grid { grid-template-columns: 110px 1fr 130px; }
+    .nav-link { padding: var(--s-5) var(--s-5); font-size: 10px; }
+    .nav-link .num { display: none; }
+    .nav-logo { padding: var(--s-5) 18px; font-size: 22px; }
+    .nav-cta { padding: var(--s-5) 14px; font-size: 10px; }
+    .page-head { grid-template-columns: 1fr; gap: var(--s-8); align-items: start; }
+    .lane { grid-template-columns: repeat(2, 1fr); }
+    .lane-cell:nth-child(4n) { border-right: 1px solid var(--rule); }
+    .lane-cell:nth-child(2n) { border-right: none; }
+    .lane-cell:nth-last-child(-n+4) { border-bottom: 1px solid var(--rule); }
+    .lane-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .beat { grid-template-columns: 1fr; gap: var(--s-4); }
+  }
+  @media (max-width: 768px) {
+    :root { --pad-section: 40px 24px; --pad-footer: 56px 24px 32px; --gut: 24px; }
+    .nav-grid { display: flex; flex-wrap: wrap; align-items: stretch; }
+    .nav-logo { flex: 1; border-right: none; padding: var(--s-5) var(--s-6); font-size: 22px; }
+    .nav-burger { display: flex; order: 2; }
+    .nav-links {
+      display: none; flex-basis: 100%; order: 3;
+      flex-direction: column; border-top: 1px solid var(--ink);
+    }
+    .nav.is-open .nav-links { display: flex; }
+    .nav-link {
+      border-right: none; border-bottom: 1px solid var(--rule);
+      padding: var(--s-5) 22px; font-size: 12px;
+    }
+    .nav-link:last-child { border-bottom: none; }
+    .nav-link .num { display: inline; }
+    .nav-cta {
+      display: none; flex-basis: 100%; order: 4;
+      border-left: none; border-top: 1px solid var(--ink);
+      padding: var(--s-5) 22px; font-size: 11px;
+    }
+    .nav.is-open .nav-cta { display: flex; }
+
+    .blk-bar { flex-direction: column; align-items: flex-start; gap: var(--s-5); }
+    .ask { grid-template-columns: 44px 1fr; gap: var(--s-5); }
+    .ask-num { font-size: 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: var(--s-8); margin-bottom: var(--s-10); }
+    .footer-cta { justify-self: start; padding: var(--s-5) var(--s-7); }
+    .footer-bottom { flex-direction: column; gap: var(--s-2); }
+  }
+  @media (max-width: 480px) {
+    :root { --pad-section: 40px 20px; --pad-footer: 56px 20px 32px; --gut: 20px; }
+    .lane { grid-template-columns: 1fr; }
+    .lane-cell { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+    .lane-cell:last-child { border-bottom: none !important; }
+  }
+
+  @media print {
+    .nav, footer, .skip-link, .toc, .btn, .toast, .t-hint { display: none !important; }
+    .tw { overflow: visible; }
+    table.t { min-width: 0; }
+    .blk { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#doc" class="skip-link">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-grid">
+    <a href="/" class="nav-logo">MK<span class="dot">.</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#index" class="nav-link"><span class="num">01</span>Index</a>
+      <a href="/#work" class="nav-link"><span class="num">02</span>Work</a>
+      <a href="/#shipped" class="nav-link"><span class="num">03</span>Shipped</a>
+      <a href="/#toolkit" class="nav-link"><span class="num">04</span>Toolkit</a>
+      <a href="/#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
+      <a href="/recipes/" class="nav-link"><span class="num">06</span>Recipes</a>
+    </div>
+    <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-burger-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div>
+    <div class="eyebrow">
+      <span class="bar"></span>
+      Working doc · Unlisted · Prepared 26 August 2026
+    </div>
+    <h1 class="page-title">Link&nbsp;NYC<span class="dot">.</span></h1>
+  </div>
+  <div>
+    <p class="page-lede">
+      The <strong>Growth &amp; Marketing</strong> slide for the all-hands — every table and the
+      walkthrough script, laid out so any piece of it lifts cleanly into a deck, a doc or an email.
+      Prepared from the Sibos&nbsp;+&nbsp;Link&nbsp;NYC cadence sync of the same morning, in Simplified
+      Technical English.
+    </p>
+    <div class="head-actions">
+      <button class="btn is-solid" data-copy="#doc" data-label="Copy whole doc">Copy whole doc</button>
+      <button class="btn" onclick="window.print()">Print / PDF</button>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="toc-label">Jump to</div>
+  <ul class="toc-list">
+    <li><a href="#lane"><span class="n">01</span> Your lane</a></li>
+    <li><a href="#t1"><span class="n">02</span> Two audiences</a></li>
+    <li><a href="#t2"><span class="n">03</span> Seven kinds of email</a></li>
+    <li><a href="#t3"><span class="n">04</span> Three panel emails</a></li>
+    <li><a href="#t4"><span class="n">05</span> Transactional sends</a></li>
+    <li><a href="#t5"><span class="n">06</span> Post-event</a></li>
+    <li><a href="#script"><span class="n">07</span> Walkthrough script</a></li>
+    <li><a href="#asks"><span class="n">08</span> The two asks</a></li>
+    <li><a href="#challenge"><span class="n">09</span> If challenged</a></li>
+    <li><a href="#numbers"><span class="n">10</span> Numbers &amp; sources</a></li>
+  </ul>
+</nav>
+
+<main id="doc">
+
+  <!-- 01 ─────────────────────────────────────────── -->
+  <section class="blk" id="lane">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">01</span> · Scope</div>
+        <h2 class="blk-title">Your lane</h2>
+      </div>
+      <button class="btn" data-copy="#lane-body">Copy section</button>
+    </div>
+    <div class="blk-body prose" id="lane-body">
+      <div class="lane">
+        <div class="lane-cell"><div class="lane-who">Amal</div><div class="lane-what">Logistics</div></div>
+        <div class="lane-cell"><div class="lane-who">Rory</div><div class="lane-what">Speakers &amp; agenda</div></div>
+        <div class="lane-cell"><div class="lane-who">Justin</div><div class="lane-what">Social</div></div>
+        <div class="lane-cell"><div class="lane-who">Nancy</div><div class="lane-what">Design</div></div>
+        <div class="lane-cell"><div class="lane-who">Hod</div><div class="lane-what">Announcements &amp; marketing content</div></div>
+        <div class="lane-cell"><div class="lane-who">Chris &amp; Travis</div><div class="lane-what">Press</div></div>
+        <div class="lane-cell"><div class="lane-who">Kalya</div><div class="lane-what">Security</div></div>
+        <div class="lane-cell"><div class="lane-who">Luis</div><div class="lane-what">IT</div></div>
+        <div class="lane-cell is-you" style="grid-column: 1 / -1;">
+          <div class="lane-who">You</div>
+          <div class="lane-what">How a name becomes a person in the room — and what happens to that person afterwards</div>
+        </div>
+      </div>
+      <p style="margin-top: var(--s-7);">
+        That leaves you one thing, and it is a good one: how a name becomes a person in the room, and
+        what happens to that person afterwards. Stay inside it. Do not talk about creative, speakers
+        or announcements.
+      </p>
+      <div class="callout">
+        <div class="callout-label">Slide assets</div>
+        <p>
+          Two slide images accompany this file: <em>LinkNYC-email-workflow-calendar.png</em> and
+          <em>LinkNYC-message-types.png</em>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ─────────────────────────────────────────── -->
+  <section class="blk" id="t1">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">02</span> · Table 1</div>
+        <h2 class="blk-title">The two audiences</h2>
+      </div>
+      <button class="btn" data-copy="#t1-table">Copy table</button>
+    </div>
+    <p class="blk-intro">Everything else follows from this split. A person is in one column or the other, never both.</p>
+    <div class="blk-body" id="t1-body">
+      <div class="tw" id="t1-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Not yet registered</th>
+              <th scope="col">Registered</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">How many emails</th><td class="mono">11</td><td class="mono">12, one of them optional</td></tr>
+            <tr><th scope="row">The job</th><td>Give a reason to act, then make it urgent</td><td>Keep them warm, get them through the door, then convert</td></tr>
+            <tr><th scope="row">Suppression</th><td>Everyone who has registered, every unsubscribe, every hard bounce</td><td>Nobody — but logistics must sit outside the marketing subscription</td></tr>
+            <tr><th scope="row">Geography filter</th><td>Yes, always. One room, one day, New York</td><td>Not needed. They already said yes</td></tr>
+            <tr><th scope="row">A/B tested</th><td>Yes, on the marketing sends</td><td>No. Never split-test a logistics email</td></tr>
+            <tr><th scope="row">Ends when</th><td>They register, or registration closes on 26 October</td><td>They are handed to sales on 9 November</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Say it out loud</div>
+        <p>
+          “A person is in one of these two columns and never both. The moment somebody registers they
+          stop getting invitations and start getting the day itself.”
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ─────────────────────────────────────────── -->
+  <section class="blk" id="t2">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">03</span> · Table 2</div>
+        <h2 class="blk-title">Seven kinds of email</h2>
+      </div>
+      <button class="btn" data-copy="#t2-table">Copy table</button>
+    </div>
+    <p class="blk-intro">This is the slide. Walk it top to bottom — it is deliberately in the order the audience meets them.</p>
+    <div class="blk-body" id="t2-body">
+      <div class="tw" id="t2-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col" class="w-num">#</th>
+              <th scope="col">Type</th>
+              <th scope="col">The one job it does</th>
+              <th scope="col">Who gets it</th>
+              <th scope="col">Where it lands</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono w-num">1</td><th scope="row">Programme</th><td>A reason to care about the day. One panel or one speaker set per email, never the whole agenda</td><td>Not registered</td><td class="mono">9, 15, 29 Sep · 7, 12 Oct</td></tr>
+            <tr><td class="mono w-num">2</td><th scope="row">Peer &amp; networking</th><td>The room is the product. Name institutions, never individuals</td><td>Not registered</td><td class="mono">22 Sep · 1 Oct</td></tr>
+            <tr><td class="mono w-num">3</td><th scope="row">Regional &amp; sender-matched</th><td>Relevance, not volume. A named human in their region, their time zone, a case study from their market</td><td>Both</td><td class="mono">Every Sibos wave is three sends</td></tr>
+            <tr><td class="mono w-num">4</td><th scope="row">Scarcity &amp; deadline</th><td>Force the decision with a number that is true</td><td>Not registered</td><td class="mono">15, 22, 26 Oct</td></tr>
+            <tr><td class="mono w-num">5</td><th scope="row">Personal / VIP</th><td>Remove every marketing signal. Plain text, three lines, one person, asking for a reply</td><td>Both</td><td class="mono">Sibos 17 Sep (Sergey) · 24 Sep final call</td></tr>
+            <tr><td class="mono w-num">6</td><th scope="row">Logistics</th><td>Remove every practical reason not to turn up. No selling, no argument, no test</td><td>Registered</td><td class="mono">26, 28, 29 Oct</td></tr>
+            <tr><td class="mono w-num">7</td><th scope="row">Post-event conversion</th><td>Turn attention into a meeting, and split honestly — came, or did not come</td><td>Both</td><td class="mono">30 Oct · 2, 5, 9 Nov</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────── -->
+  <section class="blk" id="t3">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">04</span> · Table 3</div>
+        <h2 class="blk-title">The three panel emails</h2>
+      </div>
+      <button class="btn" data-copy="#t3-table">Copy table</button>
+    </div>
+    <p class="blk-intro">Named in the room by Ashley O’Brien and Hod Klein. One panel per email. Do not combine them.</p>
+    <div class="blk-body" id="t3-body">
+      <div class="tw" id="t3-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col">Panel</th>
+              <th scope="col">The argument</th>
+              <th scope="col">Aimed at</th>
+              <th scope="col">Send</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">The Road Ahead</th><td>Our most senior executives on what the market looks like in 2030. Future-facing and prestigious</td><td>Everyone; the widest appeal</td><td class="mono">Tue 15 Sep</td></tr>
+            <tr><th scope="row">From market hours to market infrastructure</th><td>We are moving to 24/7 real-time transactions. This is what changes in your operation</td><td>Banking and capital markets</td><td class="mono">Tue 29 Sep</td></tr>
+            <tr><th scope="row">Liquidity standards for on-chain markets</th><td>How does a tokenized asset actually make you money?</td><td>Anyone who has to justify the trip</td><td class="mono">Mon 12 Oct</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Hod’s own summary</div>
+        <p>“one is future looking and the other two are utility and direct.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ─────────────────────────────────────────── -->
+  <section class="blk" id="t4">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">05</span> · Table 4</div>
+        <h2 class="blk-title">What each transactional<br>email must contain</h2>
+      </div>
+      <button class="btn" data-copy="#t4-table">Copy table</button>
+    </div>
+    <p class="blk-intro">These carry no argument. They exist so that nobody has a reason not to arrive.</p>
+    <div class="blk-body" id="t4-body">
+      <div class="tw" id="t4-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col">Send</th>
+              <th scope="col">Day</th>
+              <th scope="col">Must contain</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Registration confirmation</th><td class="mono">On registration</td><td>Date, start time, venue address, add-to-calendar links, a reply-to a person reads</td></tr>
+            <tr><th scope="row">Application received</th><td class="mono">On application</td><td>The review time as a number of days, what happens next, no calendar link yet</td></tr>
+            <tr><th scope="row">Four weeks out</th><td class="mono">Wed 30 Sep</td><td>New speakers, the shape of the day, one reason to keep the date</td></tr>
+            <tr><th scope="row">Bring a colleague</th><td class="mono">Thu 15 Oct</td><td>The agenda, and a referral link with its own UTM value</td></tr>
+            <tr><th scope="row">One week to go</th><td class="mono">Thu 22 Oct</td><td>Full agenda, start and end times, add-to-calendar again</td></tr>
+            <tr><th scope="row">Three days — everything you need</th><td class="mono">Mon 26 Oct</td><td>Address, nearest transit, doors open, check-in method, ID needed, dress code, on-site contact</td></tr>
+            <tr><th scope="row">See you tomorrow</th><td class="mono">Wed 28 Oct</td><td>QR code or check-in link, doors open, address, map link, a phone number that answers</td></tr>
+            <tr><th scope="row">Doors are open</th><td class="mono">Thu 29 Oct, 07:00</td><td>Today’s agenda, first session time, wifi, on-site contact, the check-in desk</td></tr>
+            <tr><th scope="row">This afternoon (optional)</th><td class="mono">Thu 29 Oct, 13:30</td><td>The afternoon sessions, the second stage, the reception time</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Two rules to state on the call</div>
+        <p>
+          Logistics emails must not sit under a marketing subscription a registrant can switch off,
+          and add-to-calendar goes in as a link, never as an attached file.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ─────────────────────────────────────────── -->
+  <section class="blk" id="t5">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">06</span> · Table 5</div>
+        <h2 class="blk-title">Post-event,<br>and the honest split</h2>
+      </div>
+      <button class="btn" data-copy="#t5-table">Copy table</button>
+    </div>
+    <div class="blk-body" id="t5-body">
+      <div class="tw" id="t5-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col">Send</th>
+              <th scope="col">Day</th>
+              <th scope="col">Who</th>
+              <th scope="col">The job</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Thank you for coming</th><td class="mono">Fri 30 Oct</td><td>Checked in</td><td>Two survey questions with a real incentive, an opt-in for the next event, a pass-it-on link</td></tr>
+            <tr><th scope="row">Sorry we missed you</th><td class="mono">Fri 30 Oct</td><td>Registered, did not check in</td><td>One honest line, the recap, the recording, and a call booking link</td></tr>
+            <tr><th scope="row">Five best moments</th><td class="mono">Mon 2 Nov</td><td>Everyone, including people who never registered</td><td>Five clips or one super cut, and one large “continue the conversation” CTA</td></tr>
+            <tr><th scope="row">The care package</th><td class="mono">Thu 5 Nov</td><td>Checked in</td><td>The reports and one-pagers named on stage, plus a meeting link</td></tr>
+            <tr><th scope="row">Takeaways and one question</th><td class="mono">Mon 9 Nov</td><td>All engaged contacts</td><td>The last touch, then hand them to sales</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why “Sorry we missed you” exists</div>
+        <p>
+          Resham’s point: “there’s probably a ton of people that literally can’t make it that day.”
+          They are still qualified.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 ─────────────────────────────────────────── -->
+  <section class="blk" id="script">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">07</span> · Delivery</div>
+        <h2 class="blk-title">The walkthrough script</h2>
+      </div>
+      <button class="btn" data-copy="#script-body">Copy script</button>
+    </div>
+    <p class="blk-intro">Roughly two and a half minutes. Cut the middle if the call is running long — the asks at the end matter more.</p>
+    <div class="blk-body" id="script-body">
+
+      <div class="beat">
+        <div class="beat-label">Open — the split</div>
+        <div class="beat-body">
+          <p>“My slide is the email programme. Everything on it comes from one decision: a person is
+          either registered or they are not, and those two groups never get the same email. Eleven
+          sends go to people who have not registered. Twelve go to people who have.”</p>
+        </div>
+      </div>
+
+      <div class="beat">
+        <div class="beat-label">Where we are</div>
+        <div class="beat-body">
+          <p>“Right now that is 35 BCM RSVPs against a 450 target, and about 140 registrations across
+          all sources. Yesterday’s send opened at 8 per cent against a 28 per cent benchmark. The
+          cause was ours — we sent an invitation to a one-room event in New York without a geography
+          filter. That is fixed from Thursday.”</p>
+        </div>
+      </div>
+
+      <div class="beat">
+        <div class="beat-label">The seven types — the substance of the slide</div>
+        <div class="beat-body">
+          <p>“There are seven kinds of email in here and each one does exactly one job.</p>
+          <ul class="beat-sub">
+            <li><span class="k">1 · Programme</span>Programme emails give a reason to care, one panel per email. Three of them: The Road Ahead, which is the CEO panel; market hours to market infrastructure, which is the one capital markets will care about; and liquidity standards, which answers ‘how does this make me money’. That is the middle of the whole cadence, and it is content rather than reminders.</li>
+            <li><span class="k">2 · Networking</span>Networking emails say the room is the product. That came from a real APAC client who told Resham the introductions are what he actually wants. The subject line is ‘join peers from’ and then we name institutions.</li>
+            <li><span class="k">3 · Regional</span>Regional emails are new this week. Every Sibos wave is now three sends — David to Europe, Frank to the US, Nikki to APAC — in their own time zone, with a case study from their own market, from a named human rather than the brand. Whether we do the same on Link NYC is an open question and I will come back to it.</li>
+            <li><span class="k">4 · Scarcity</span>Scarcity emails force the decision, and they only work if the number is true.</li>
+            <li><span class="k">5 · Personal / VIP</span>Personal and VIP emails strip out every marketing signal. Three lines, plain text, from one person, asking for a reply instead of a click. On Sibos that is a note from Sergey and the replies go to Amal’s team.</li>
+            <li><span class="k">6 · Logistics</span>Logistics emails carry no argument at all. Doors, transit, check-in, dress code, a phone number that answers. They exist so nobody has a reason not to arrive.</li>
+            <li><span class="k">7 · Post-event</span>Post-event splits honestly — people who came, people who registered and did not, and everyone else. The strongest asset in the whole plan is the five-best-moments email with clips.”</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="beat">
+        <div class="beat-label">Close — two asks and a date</div>
+        <div class="beat-body">
+          <p>“Everything that sends between 1 and 10 September is built and scheduled by 31 August, so
+          nothing waits on me being online. Two things are blocked, and I need them from this call.”</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 08 ─────────────────────────────────────────── -->
+  <section class="blk" id="asks">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">08</span> · Blockers</div>
+        <h2 class="blk-title">The two asks —<br>say the name</h2>
+      </div>
+      <button class="btn" data-copy="#asks-body">Copy section</button>
+    </div>
+    <div class="blk-body" id="asks-body">
+      <ol class="asks">
+        <li class="ask">
+          <div class="ask-num">01</div>
+          <div>
+            <div class="ask-who">Amal — the real seat cap, in writing</div>
+            <p class="ask-body">
+              Two people have already drafted “only 50 places left” copy and nobody owns that number.
+              Scarcity that is not true is the kind of thing a client notices.
+            </p>
+          </div>
+        </li>
+        <li class="ask">
+          <div class="ask-num">02</div>
+          <div>
+            <div class="ask-who">Hod — where the clips live</div>
+            <p class="ask-body">
+              Website, YouTube or LinkedIn. The five-best-moments email is the highest-value
+              post-event asset in the plan and it cannot be built until that is one decision.
+            </p>
+          </div>
+        </li>
+      </ol>
+      <div class="callout">
+        <div class="callout-label">Bank quietly, off the call</div>
+        <p>
+          Justin’s daily speaker drops and the speaker email should carry the same name on the same
+          day. Catch him afterwards rather than spending slide time on it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 ─────────────────────────────────────────── -->
+  <section class="blk" id="challenge">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">09</span> · Q&amp;A</div>
+        <h2 class="blk-title">If you are challenged</h2>
+      </div>
+      <button class="btn" data-copy="#challenge-table">Copy table</button>
+    </div>
+    <div class="blk-body" id="challenge-body">
+      <div class="tw" id="challenge-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col">They say</th>
+              <th scope="col">You say</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">“Isn’t 23 emails spam?”</th><td class="q">“Nobody receives 23. The most any one person gets is 11, and the moment they register the invitations stop. That is what the split is for.”</td></tr>
+            <tr><th scope="row">“Why not one big email with everything in it?”</th><td class="q">“We tried it. The first Sibos send went to 500 matched accounts and produced one meeting. One email carrying five arguments is one email nobody finishes.”</td></tr>
+            <tr><th scope="row">“Why 8 per cent?”</th><td class="q">“No geography filter on a New York event, and a colder list. Both fixed from Thursday. I would rather report it than have somebody find it.”</td></tr>
+            <tr><th scope="row">“Are we going to hit 450?”</th><td class="q">“Not on the current list. That is a list problem, not a cadence problem, and I have four ways to close it that need a decision from Amal, Johan and Hod.”</td></tr>
+            <tr><th scope="row">“Can we put the Link NYC link in the Sibos emails?”</th><td class="q">“Ashley ruled that out yesterday — Link NYC is invite only and the Sibos audience is more junior. A VIP-only exception is still open.”</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 ─────────────────────────────────────────── -->
+  <section class="blk" id="numbers">
+    <div class="blk-bar">
+      <div>
+        <div class="blk-index"><span class="n">10</span> · Receipts</div>
+        <h2 class="blk-title">Numbers,<br>with their sources</h2>
+      </div>
+      <button class="btn" data-copy="#numbers-table">Copy table</button>
+    </div>
+    <p class="blk-intro">Quote them this way — figure, meaning, and the person who said it.</p>
+    <div class="blk-body" id="numbers-body">
+      <div class="tw" id="numbers-table">
+        <table class="t">
+          <thead>
+            <tr>
+              <th scope="col">Figure</th>
+              <th scope="col">What it is</th>
+              <th scope="col">Who said it, when</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fig">35</td><th scope="row">BCM RSVPs to date</th><td class="mono">Mazin, cadence sync, 26 Aug</td></tr>
+            <tr><td class="fig">450</td><th scope="row">BCM RSVP target</th><td class="mono">Mazin, cadence sync, 26 Aug</td></tr>
+            <tr><td class="fig">~140</td><th scope="row">Total registrations, all sources</th><td class="mono">Hod Klein, 25 Aug</td></tr>
+            <tr><td class="fig">300–400</td><th scope="row">People in the room, the real goal</th><td class="mono">Mazin, cadence sync, 26 Aug</td></tr>
+            <tr><td class="fig">8% vs 28%</td><th scope="row">Open rate of the 25 Aug send against the benchmark</th><td class="mono">Hod Klein, 25 Aug</td></tr>
+            <tr><td class="fig">Unknown</td><th scope="row">The seat cap</th><td class="mono">Nobody owns it</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="callout-label">⚠️ Never reconciled</div>
+        <p>
+          These have never been reconciled. Present each one with its source attached rather than as a
+          single funnel, or somebody will do the arithmetic in the room and you will be the one
+          explaining it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-label">§ Working doc · Link NYC</div>
+        <h3 class="footer-hello">Ship<span class="dot">.</span></h3>
+      </div>
+      <a href="/" class="footer-cta">← Back to portfolio</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mazin Kanuga</span>
+      <span>Prepared 26 August 2026</span>
+      <span>Toronto, CA</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ── nav ─────────────────────────────────────── */
+  (function () {
+    var nav = document.getElementById('nav');
+    var burger = document.getElementById('nav-burger');
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    var close = function () {
+      nav.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+    };
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-link, .nav-cta').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) close();
+    });
+  })();
+
+  /* ── copy to clipboard ───────────────────────── */
+  (function () {
+    var toast = document.getElementById('toast');
+    var toastTimer;
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    }
+
+    // innerText is used because it honours block breaks and <br>, but it also honours
+    // text-transform. The class below switches casing off for the duration of the read.
+    function naturalCase(fn) {
+      var root = document.documentElement;
+      root.classList.add('is-copying');
+      try { return fn(); } finally { root.classList.remove('is-copying'); }
+    }
+
+    var LEAF = /^(P|LI|H1|H2|H3|H4|TD|TH)$/;
+
+    // True when the element carries text of its own alongside its child elements —
+    // e.g. <div><span>01</span> · Scope</div>. Recursing past one of those drops the
+    // loose text, so it has to be read as a single leaf instead.
+    function hasOwnText(el) {
+      var childText = '';
+      for (var i = 0; i < el.children.length; i++) childText += el.children[i].textContent;
+      return el.textContent.replace(/\s/g, '').length > childText.replace(/\s/g, '').length;
+    }
+
+    function flat(el) {
+      return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+    }
+
+    // Plain-text version. Tables become TSV so they paste into Sheets/Excel as real cells.
+    function toText(node) {
+      var out = [];
+      (function walk(el) {
+        for (var i = 0; i < el.children.length; i++) {
+          var ch = el.children[i];
+          if (ch.classList.contains('btn')) continue;
+          if (ch.tagName === 'TABLE') { out.push(tableToTsv(ch)); continue; }
+          // Keep an owner and their remit on one line rather than two.
+          if (ch.classList.contains('lane-cell')) {
+            out.push(Array.prototype.map.call(ch.children, flat).filter(Boolean).join(' — '));
+            continue;
+          }
+          if (ch.children.length && !LEAF.test(ch.tagName) && !hasOwnText(ch)) { walk(ch); continue; }
+          var t = flat(ch);
+          if (t) out.push(t);
+        }
+      })(node);
+      return out.join('\n\n');
+    }
+
+    function tableToTsv(table) {
+      var lines = [];
+      table.querySelectorAll('tr').forEach(function (tr) {
+        var cells = [];
+        tr.querySelectorAll('th, td').forEach(function (c) {
+          cells.push((c.innerText || c.textContent || '').replace(/\s+/g, ' ').trim());
+        });
+        lines.push(cells.join('\t'));
+      });
+      return lines.join('\n');
+    }
+
+    // Rich HTML version, with borders inlined so tables survive the paste into Docs/Word/Slides.
+    function toHtml(node) {
+      var clone = node.cloneNode(true);
+      clone.querySelectorAll('.btn').forEach(function (b) { b.remove(); });
+      clone.querySelectorAll('table').forEach(function (t) {
+        t.setAttribute('style', 'border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:11pt;');
+        t.querySelectorAll('th').forEach(function (c) {
+          c.setAttribute('style', 'border:1px solid #999;padding:6px 9px;text-align:left;vertical-align:top;background:#f0f0f0;font-weight:bold;');
+        });
+        t.querySelectorAll('thead th').forEach(function (c) {
+          c.setAttribute('style', 'border:1px solid #999;padding:6px 9px;text-align:left;vertical-align:top;background:#0a0a0a;color:#ffffff;font-weight:bold;');
+        });
+        t.querySelectorAll('td').forEach(function (c) {
+          c.setAttribute('style', 'border:1px solid #999;padding:6px 9px;text-align:left;vertical-align:top;');
+        });
+      });
+      return '<meta charset="utf-8">' + clone.innerHTML;
+    }
+
+    function legacyCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-1000px;left:-1000px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    function copy(html, text) {
+      if (navigator.clipboard && window.ClipboardItem) {
+        try {
+          return navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([html], { type: 'text/html' }),
+            'text/plain': new Blob([text], { type: 'text/plain' })
+          })]);
+        } catch (e) { /* fall through */ }
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      return legacyCopy(text) ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    }
+
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      var original = btn.textContent;
+      btn.addEventListener('click', function () {
+        var target = document.querySelector(btn.getAttribute('data-copy'));
+        if (!target) return;
+        var text = naturalCase(function () { return toText(target); });
+        copy(toHtml(target), text).then(function () {
+          btn.textContent = 'Copied ✓';
+          btn.classList.add('is-done');
+          showToast('Copied — ' + text.length.toLocaleString() + ' characters');
+        }).catch(function () {
+          if (legacyCopy(text)) {
+            btn.textContent = 'Copied ✓';
+            btn.classList.add('is-done');
+            showToast('Copied as plain text');
+          } else {
+            btn.textContent = 'Select it';
+            btn.classList.add('is-fail');
+            var range = document.createRange();
+            range.selectNodeContents(target);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            showToast('Clipboard blocked — selected instead, press ⌘C');
+          }
+        }).then(function () {
+          setTimeout(function () {
+            btn.textContent = original;
+            btn.classList.remove('is-done', 'is-fail');
+          }, 2000);
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
