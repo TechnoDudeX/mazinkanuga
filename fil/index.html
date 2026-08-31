@@ -497,15 +497,19 @@
     font-size: 15px; line-height: 1.6; position: relative; text-wrap: pretty;
   }
   .email-body ul li::before { content: '—'; position: absolute; left: 0; font-family: var(--mono); color: var(--accent); }
+  .email-body .email-cta + p { margin-top: var(--s-8); }
+  /* Marks the words that carry the hyperlink in the built email. */
+  .email-body .lnk {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
   .email-cta {
     display: inline-block; margin-top: var(--s-8);
     background: var(--ink); color: var(--bg);
     padding: var(--s-5) var(--s-8);
     font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
-  }
-  .email-foot {
-    border-top: 1px solid var(--rule); padding: var(--s-5) var(--s-7);
-    font-size: 13px; line-height: 1.6; color: var(--ink-mute);
   }
 
   /* ─── steps ─── */
@@ -874,39 +878,32 @@ NOT      (any exclusion list above)</pre>
         <div class="email-meta">
           <p><b>From:</b> Chainlink Labs</p>
           <p><b>Subject:</b> Fidelity International on what a tokenized fund needs to be useful</p>
-          <p><b>Preheader:</b> A 30-minute conversation on tokenized liquidity, fund data, and what changes for custody, collateral, and treasury.</p>
+          <p><b>Preheader:</b> A 30-minute on-demand webinar on tokenized liquidity, fund data, and what changes for custody, collateral, and treasury.</p>
         </div>
         <div class="email-body">
-          <p class="lead">Fidelity International tried a tokenized fund that did not work. The second one does.</p>
+          <p class="lead">Fidelity International’s first tokenized fund did not work. The second one does.</p>
           <p>
-            Two and a half years ago, Fidelity International issued a digital twin — a token that mirrored
-            a traditional fund share while the share, and every process behind it, stayed exactly where it
-            was. It got no distribution uptake and no secondary market activity.
+            Two and a half years ago, Fidelity International issued a digital twin: a token that mirrored
+            a fund share while every process behind it stayed exactly where it was. It got no distribution
+            uptake and no secondary market activity. In <a class="lnk">this 30-minute on-demand webinar</a>,
+            Emma Pecenicic, Head of Digital Asset Distribution at Fidelity International, tells
+            Frank Seibold of Chainlink Labs what they changed and why.
           </p>
+          <span class="email-cta">▸ WATCH THE ON-DEMAND WEBINAR</span>
           <p>
-            In this recorded conversation, <strong>Emma Pecenicic</strong>, Head of Digital Asset
-            Distribution at Fidelity International, tells <strong>Frank Seibold</strong>, Global Head of
-            Banking &amp; Capital Markets Sales at Chainlink Labs, what they changed and why.
+            The answer is not the token. Tokenizing a share achieves nothing on its own. What makes the
+            instrument useful is the data that travels with it: NAV, yield and distribution ratios, on
+            chain, available to any system that needs it, with no manual file from the asset manager.
           </p>
-          <p>
-            The short version: tokenizing a share achieves nothing on its own. What makes the instrument
-            useful is the data that travels with it — NAV, yield, distribution ratios — available on chain,
-            to any system that needs it, without a manual file from the asset manager.
-          </p>
-          <h4>What you will hear:</h4>
+          <h4>What the on-demand webinar covers:</h4>
           <ul>
-            <li>Why digital twins stalled, and what “digital native” means in practice — subscriptions and redemptions on chain, and the token recognised as the share</li>
-            <li>How the Chainlink Runtime Environment (CRE) publishes NAV, yield to maturity, 30-day yield and distribution ratios on chain, consistently across multiple chains — including the process to republish a corrected NAV</li>
-            <li>What this changes for a collateral platform that needs to fetch a NAV, apply a haircut, and confirm eligibility without waiting for a file</li>
-            <li>Why Emma’s ambition is a single source of truth that removes reconciliation between the asset manager, the distributor, the administrator and the data vendors</li>
-            <li>Where she expects tokenized liquidity to go over the next 12 to 24 months</li>
+            <li>Why digital twins stalled, and what “digital native” means in practice: subscriptions and redemptions on chain, and the token recognised as the share</li>
+            <li>How the Chainlink Runtime Environment publishes NAV, yield and distribution ratios on chain, consistently across chains, including the process to republish a corrected NAV</li>
+            <li>What changes for a collateral platform that must fetch a NAV and apply a haircut without waiting for a file</li>
+            <li>Where Emma expects tokenized liquidity to go over the next 12 to 24 months</li>
           </ul>
-          <p style="margin-top:24px">It runs 30 minutes. No slides.</p>
-          <span class="email-cta">Watch the recording →</span>
-          <p style="margin-top:24px">Built for teams across capital markets, digital assets, and financial infrastructure.</p>
-        </div>
-        <div class="email-foot">
-          Text link at the foot: <em>Prefer to read first? Here is what CRE does for fund data.</em>
+          <span class="email-cta">▸ START WATCHING</span>
+          <p>Built for teams across capital markets, digital assets, and financial infrastructure.</p>
         </div>
       </div>
     </div>
