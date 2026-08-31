@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mini Handover — Email Sends · Mazin Kanuga</title>
+<meta name="description" content="Mini handover for the 2–9 September absence — email sends only. Owners, dates and open decisions, ready to copy into Google Docs.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #0a0a0a;
+    --ink-dim: #333333;
+    --ink-mute: #6c6c6c;
+    --rule: #e6e6e6;
+    --rule-strong: #d0d0d0;
+    --wash: #f7f7f5;
+    --teal: #0b5b63;
+    --teal-wash: #f0f6f6;
+    --red: #E63946;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ---------- toolbar ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar-in {
+    max-width: 1000px; margin: 0 auto;
+    padding: 12px 24px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .home {
+    font-family: var(--display); font-weight: 900;
+    letter-spacing: -.02em; font-size: 18px; text-decoration: none;
+  }
+  .home .dot { color: var(--red); }
+  .bar-note {
+    font-size: 12px; color: var(--ink-mute);
+    margin-right: auto; flex: 1 1 auto; min-width: 0;
+    letter-spacing: .01em;
+  }
+  .btn {
+    border: 1px solid var(--ink);
+    background: var(--ink); color: #fff;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 600; letter-spacing: .01em;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  /* ---------- page ---------- */
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 24px 96px; }
+  .page > * { overflow-wrap: break-word; }
+
+  h1 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -.03em; line-height: 1.04;
+    margin: 8px 0 20px;
+  }
+  h2 {
+    font-family: var(--display); font-weight: 900;
+    font-size: clamp(23px, 3vw, 30px);
+    letter-spacing: -.02em; line-height: 1.18;
+    margin: 56px 0 8px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    scroll-margin-top: 72px;
+  }
+  hr { border: 0; border-top: 2px solid var(--ink); margin: 56px 0 0; }
+  hr + h2 { border-top: none; margin-top: 0; }
+  hr + h3 { margin-top: 28px; }
+  h3 {
+    font-size: 19px; font-weight: 700; letter-spacing: -.01em;
+    margin: 34px 0 8px; scroll-margin-top: 72px;
+  }
+  h4 {
+    font-size: 15.5px; font-weight: 700;
+    margin: 24px 0 6px; scroll-margin-top: 72px;
+  }
+  p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 12px 0; max-width: 82ch; }
+  p strong, li strong, td strong, th strong { color: var(--ink); font-weight: 700; }
+  ul, ol { margin: 12px 0 12px 22px; max-width: 82ch; }
+  li { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 7px 0; }
+  li > ul, li > ol { margin-top: 6px; margin-bottom: 6px; }
+  li.task { list-style: none; }
+
+  blockquote {
+    border-left: 3px solid var(--teal);
+    background: var(--teal-wash);
+    padding: 12px 18px;
+    margin: 18px 0;
+    max-width: 82ch;
+  }
+  blockquote p { margin: 8px 0; }
+  blockquote > p:first-child { margin-top: 0; }
+  blockquote > p:last-child { margin-bottom: 0; }
+  li blockquote { margin: 10px 0; }
+
+  code {
+    font-family: var(--mono); font-size: .88em;
+    background: var(--wash);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--ink);
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap { margin: 18px 0 26px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  th, td {
+    border: 1px solid var(--rule-strong);
+    padding: 10px 12px;
+    font-size: 14.5px; line-height: 1.5;
+    text-align: left; vertical-align: top;
+    color: var(--ink-dim);
+  }
+  th { background: var(--wash); color: var(--ink); font-weight: 700; }
+  tbody tr:nth-child(even) td { background: #fbfbfa; }
+  td code, th code { white-space: nowrap; }
+
+  .copybtn {
+    margin: 0 0 8px;
+    border: 1px solid var(--rule-strong);
+    background: #fff; color: var(--ink-mute);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px; font-weight: 600;
+  }
+  .copybtn:hover { border-color: var(--ink); color: var(--ink); }
+  .copybtn.done { border-color: var(--teal); color: var(--teal); }
+
+  /* ---------- toc ---------- */
+  .toc {
+    border: 1px solid var(--rule);
+    background: var(--wash);
+    padding: 20px 24px;
+    margin: 28px 0 8px;
+  }
+  .toc h4 { margin: 0 0 10px; }
+  .toc ul { margin: 0 0 0 18px; list-style: none; }
+  .toc li { margin: 4px 0; font-size: 15px; }
+  .toc a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+  .toc a:hover { color: var(--ink); border-color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .page { padding: 28px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .bar-note { flex-basis: 100%; order: 3; }
+  }
+
+  @media print {
+    .bar, .copybtn { display: none; }
+    .page { max-width: none; padding: 0; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar no-copy">
+  <div class="bar-in">
+    <a href="/" class="home">MK<span class="dot">.</span></a>
+    <span class="bar-note">Email sends only · absence 2–9 Sept · back Thu 10 Sept</span>
+    <button class="btn ghost" id="copy-plain" type="button">Copy as plain text</button>
+    <button class="btn" id="copy-all" type="button">Copy whole document</button>
+  </div>
+</div>
+
+<main class="page" id="doc">
+
+<h1 id="mini-handover-email-sends">Mini handover — email sends</h1>
+<p><strong>Mazin Kanuga · Chainlink Labs</strong></p>
+<p><strong>Meeting:</strong> Monday 31 August 2026. <strong>Present:</strong> Hod Klein, Margaux Franco, Joshua Azar.<br>
+<strong>Absence:</strong> Wednesday 2 September to Wednesday 9 September 2026. <strong>Back:</strong> Thursday 10 September.</p>
+<blockquote>
+<p><strong>Companion document:</strong> <code>PTO-Handover-2-9-Sept.md</code>. That document holds the full picture. <strong>This document holds the email sends only.</strong></p>
+</blockquote>
+<p><strong>Legend:</strong> 🔴 needs an owner or a decision in this meeting · ⚠️ risk, clash or constraint</p>
+
+<nav class="toc no-copy" aria-label="Contents">
+  <h4>Contents</h4>
+  <ul>
+    <li><a href="#1-three-rules">1. Three rules</a></li>
+    <li><a href="#2-at-a-glance">2. At a glance</a></li>
+    <li><a href="#3-item-detail">3. Item detail</a></li>
+    <li><a href="#4-open-decisions-for-this-meeting">4. Open decisions for this meeting</a></li>
+    <li><a href="#5-what-is-easy-to-miss">5. What is easy to miss</a></li>
+    <li><a href="#6-frozen-no-decisions-between-2-and-9-september">6. Frozen — no decisions between 2 and 9 September</a></li>
+    <li><a href="#7-escalation">7. Escalation</a></li>
+  </ul>
+</nav>
+
+<hr />
+<h2 id="1-three-rules">1. Three rules</h2>
+<ol>
+  <li>Every send is built, tested and scheduled <strong>before Monday 1 September</strong>. Nobody builds an email during the absence.</li>
+  <li>The cover owner presses send, or confirms that a scheduled send went out. <strong>The cover owner does not write copy.</strong></li>
+  <li>If an item is not in this document, it waits until <strong>Thursday 10 September</strong>.</li>
+</ol>
+
+<hr />
+<h2 id="2-at-a-glance">2. At a glance</h2>
+<div class="tablewrap">
+<table>
+<thead><tr>
+<th>#</th>
+<th>Email</th>
+<th>Build state</th>
+<th>Blocked by</th>
+<th>Send date</th>
+<th>Cover owner</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Chainlink Connect — this week</strong></td>
+<td>In content review</td>
+<td>Content review, then legal</td>
+<td>Tue 1 Sept</td>
+<td><strong>Mazin.</strong> No cover needed</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Chainlink Connect — next week</strong></td>
+<td>Built in HubSpot. Steps written</td>
+<td>Copy, then legal</td>
+<td>Tue 8 Sept</td>
+<td>🔴 <strong>Josh Azar</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Digital Asset Digest</strong></td>
+<td>Built in HubSpot. Draft and audience are in the copy document</td>
+<td>🔴 Bank of England approval, then legal</td>
+<td>🔴 <strong>Not set</strong></td>
+<td>🔴 <strong>Josh Azar</strong>, with Justin Alper</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Fidelity on-demand webinar</strong></td>
+<td>Workflow live. List built</td>
+<td>George Chivi copy review, then legal ticket</td>
+<td>Thu 3 Sept</td>
+<td>🔴 <strong>Josh Azar</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Sibos invite #2</strong></td>
+<td>Copy drafted. HubSpot draft created</td>
+<td>List and copy sign-off</td>
+<td>Wed 2 Sept</td>
+<td>🔴 <strong>Josh Azar</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Link NYC invite, waves 2 and 3</strong></td>
+<td>In progress</td>
+<td>—</td>
+<td>Before 1 Sept</td>
+<td><strong>Mazin.</strong> No cover needed</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Truflation webinar</strong></td>
+<td>Sign-up page is live</td>
+<td>—</td>
+<td>In flight</td>
+<td><strong>No support needed now</strong></td>
+</tr>
+</tbody></table></div>
+<p>🔴 = needs an owner and a decision in this meeting.</p>
+
+<hr />
+<h2 id="3-item-detail">3. Item detail</h2>
+
+<h3 id="31-chainlink-connect-this-weeks-edition">3.1 Chainlink Connect — this week’s edition</h3>
+<ul>
+  <li>The copy is with content for review.</li>
+  <li>Next: legal review. Use the standing ticket text in <code>Meetings/LEGAL-TICKET-CL-CONNECT.md</code>.</li>
+  <li>Then send, most likely <strong>Tuesday 1 September</strong>.</li>
+  <li>I expect to complete this myself before I go. <strong>Treat it as mine.</strong></li>
+</ul>
+
+<h3 id="32-chainlink-connect-next-weeks-edition">3.2 Chainlink Connect — next week’s edition</h3>
+<ul>
+  <li>The email is <strong>already created in HubSpot</strong>. The steps are written down.</li>
+  <li>Production cycle: <strong>copy arrives Monday. Legal approves Tuesday. The send goes out Tuesday.</strong></li>
+  <li>Writer: <strong>Alkesh Shah</strong>. Reviewers before legal: content, then <strong>Scott Gillespie</strong>, then <strong>Hod Klein</strong>.</li>
+  <li>Legal ticket: Jira service desk, request type <em>Request Legal Review of Existing Document or Content → Content</em>. Full paste-ready text is in <code>Meetings/LEGAL-TICKET-CL-CONNECT.md</code>.</li>
+  <li>⚠️ <strong>Legal takes 2 to 3 days, and a different lawyer answers each time.</strong> Raise the ticket on the Monday, not the Tuesday.</li>
+  <li><strong>Josh:</strong> build from the steps, run the checklist, press send. Do not rewrite copy. If the copy is late, move the send. Do not ship it unreviewed.</li>
+</ul>
+
+<h3 id="33-digital-asset-digest">3.3 Digital Asset Digest</h3>
+<ul>
+  <li>Built in HubSpot. The email draft and the audience are in the copy document.</li>
+  <li><strong>Two gates, in this order:</strong> (1) <strong>Bank of England approval</strong>, (2) <strong>legal sign-off</strong>. Then send.</li>
+  <li>🔴 <strong>After the email goes out, Justin Alper posts the LinkedIn newsletter.</strong> The LinkedIn post always fires <strong>after</strong> the email, never before. The reason: we want the click to come from the email first.</li>
+  <li>🔴 <strong>The August edition LinkedIn leg was never published.</strong> The email went out on 6 or 7 August. The Asana task is still open. Close this with Justin before the September post goes out.</li>
+  <li>🔴 <strong>Do not use 11 September.</strong> See section 5.</li>
+</ul>
+
+<h3 id="34-fidelity-international-on-demand-webinar">3.4 Fidelity International on-demand webinar</h3>
+<ul>
+  <li>Title: <em>Building a Tokenized Economy, Starting from Liquidity</em>. Speakers: Frank Seibold and Emma Pecenicic.</li>
+  <li>Format: recorded, gated, on demand. Hosted on <strong>Vidyard</strong>.</li>
+  <li><strong>The workflow is live. The list is built.</strong></li>
+  <li>Left to do: <strong>copy review from George Chivi</strong>, then a <strong>legal ticket</strong>. Raise the ticket today.</li>
+  <li>Send: <strong>Thursday 3 September, 10:00 ET</strong>.</li>
+  <li>⚠️ <strong>Date clash.</strong> 3 September is also the fallback slot for Sibos invite #2. If the Sibos send fails on 2 September and moves to the 3rd, two sends hit an overlapping audience on the same day. <strong>Decide one now:</strong> (a) hold Fidelity to Thursday 10 September, or (b) keep 3 September and add the Sibos recipients as an exclusion list. Option (a) costs nothing, because the asset is evergreen.</li>
+  <li>⚠️ <strong>Vidyard is confirmed only to 30 September.</strong> The asset is evergreen. Do not promise permanent access in the copy.</li>
+  <li><strong>Website support:</strong> I asked <strong>Brandon Harrison</strong> about a pop-up on the home page to drive traffic to the recording. 🔴 There is no ticket and no date for this. Give it an owner, or drop it.</li>
+</ul>
+
+<h3 id="35-sibos-invite-2">3.5 Sibos invite #2</h3>
+<ul>
+  <li>Copy is drafted. See <code>Sibos-Invite-Momentum-Copy.md</code>.</li>
+  <li>The HubSpot email draft is created.</li>
+  <li>Sender: <strong>Fernando Vázquez</strong>. Audience: tier 2 and tier 3.</li>
+  <li>Copy and list sign-off: <strong>Hod Klein and Frank Seibold</strong>, two days before the send.</li>
+  <li><strong>Josh:</strong> press send only. If the send fails, do not rewrite. Move it to the next day.</li>
+</ul>
+
+<h3 id="36-link-nyc-invite-waves-2-and-3">3.6 Link NYC invite, waves 2 and 3</h3>
+<ul>
+  <li><strong>I handle this.</strong> It is built and scheduled before 1 September. No cover action.</li>
+</ul>
+
+<h3 id="37-truflation-webinar">3.7 Truflation webinar</h3>
+<ul>
+  <li>The sign-up page is live. The webinar is <strong>Wednesday 16 September</strong>.</li>
+  <li><strong>No support needed now.</strong> Natalie Chakar owns the copy and the run of show.</li>
+</ul>
+
+<hr />
+<h2 id="4-open-decisions-for-this-meeting">4. Open decisions for this meeting</h2>
+<div class="tablewrap">
+<table>
+<thead><tr>
+<th>#</th>
+<th>Decision</th>
+<th>Who decides</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Is Josh available for the full window, 2 to 9 September?</strong> This was never confirmed in writing. The whole plan rests on it</td>
+<td>Josh, confirmed by Margaux</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>What is the Digest send date?</strong> Three dates have been named. None was agreed. It must not be 11 September</td>
+<td>Hod</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Who chases the Bank of England approval while I am away?</strong></td>
+<td>Hod</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Fidelity: hold to 10 September, or keep 3 September with an exclusion list?</strong></td>
+<td>Hod</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Who is Jocelyn?</strong> Hod named this person for the handover. The name is not in my records</td>
+<td>Hod</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Does the Brandon Harrison home page pop-up go ahead?</strong> No ticket exists</td>
+<td>Hod</td>
+</tr>
+</tbody></table></div>
+
+<hr />
+<h2 id="5-what-is-easy-to-miss">5. What is easy to miss</h2>
+<ol>
+  <li><strong>No email and no social media on 11 September.</strong> All channels. This is Hod’s instruction from 25 August. Sweep the calendar for that day, social included.</li>
+  <li><strong>Nothing sends on a 13th.</strong> This is a standing company rule.</li>
+  <li><strong>Sibos “Proof” send, Tuesday 8 September.</strong> If this is a different send from Sibos invite #2, it has no owner in this document. The public institution names must come from <strong>Alex Heitman or Frank Seibold before 4 September</strong>.</li>
+  <li><strong>Link NYC wave 4, “New speakers”, Wednesday 9 September.</strong> This falls inside the absence. <strong>Rory</strong> approves which speaker names may go out. Get that approval before 1 September.</li>
+  <li><strong>Truflation registration push, Wednesday 2 September.</strong> I chose a manual send because of the absence. A manual send needs a named person. That person is <strong>Josh</strong>.</li>
+  <li><strong>Distribution lists.</strong> Hod asked for the evergreen distribution lists. I hand them over before I go.</li>
+  <li><strong>Cover is thin.</strong> William Reilly, Michael Imperiale and part of Amal Hijazi’s time are also out in this window. Do not add work.</li>
+</ol>
+
+<hr />
+<h2 id="6-frozen-no-decisions-between-2-and-9-september">6. Frozen. No decisions between 2 and 9 September</h2>
+<ul>
+  <li>The HubSpot to Salesforce sync question.</li>
+  <li>The video hosting decision, Wistia against Vidyard.</li>
+  <li>The newsletter consolidation, five titles to three.</li>
+  <li>The email template system build in HubSpot.</li>
+  <li>Any change to the Sibos or Link NYC cadence after 1 September.</li>
+</ul>
+
+<hr />
+<h2 id="7-escalation">7. Escalation</h2>
+<ol>
+  <li>A send fails, or a date must move → <strong>Josh Azar</strong>, then <strong>Margaux Franco</strong>.</li>
+  <li>Copy or approval is missing → <strong>Hod Klein</strong>.</li>
+  <li>The Digest LinkedIn post → <strong>Justin Alper</strong>.</li>
+  <li>The Truflation webinar → <strong>Natalie Chakar</strong>.</li>
+  <li>Nothing above applies → hold the item until <strong>Thursday 10 September</strong>. Do not improvise.</li>
+</ol>
+
+</main>
+
+<script>
+(function () {
+  var doc = document.getElementById('doc');
+
+  function cleanClone(node) {
+    var c = node.cloneNode(true);
+    c.querySelectorAll('.no-copy').forEach(function (n) { n.remove(); });
+    return c;
+  }
+
+  function flash(btn, msg) {
+    var old = btn.textContent;
+    btn.textContent = msg;
+    btn.classList.add('done');
+    setTimeout(function () {
+      btn.textContent = old;
+      btn.classList.remove('done');
+    }, 1600);
+  }
+
+  // Rich copy: put both text/html and text/plain on the clipboard so a paste
+  // into Google Docs keeps headings, tables and lists.
+  function copyRich(node, btn, label) {
+    var clone = cleanClone(node);
+    var html = '<meta charset="utf-8">' + clone.innerHTML;
+    var text = clone.innerText;
+
+    function fallback() {
+      // Selection-based copy also carries rich text in every major browser.
+      var holder = document.createElement('div');
+      holder.style.cssText = 'position:fixed;left:-9999px;top:0;white-space:normal;';
+      holder.appendChild(clone);
+      document.body.appendChild(holder);
+      var range = document.createRange();
+      range.selectNodeContents(holder);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      sel.removeAllRanges();
+      holder.remove();
+      flash(btn, ok ? (label || 'Copied') : 'Press Cmd/Ctrl+C');
+    }
+
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })
+      ]).then(function () { flash(btn, label || 'Copied'); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function copyPlain(node, btn, label) {
+    var text = cleanClone(node).innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash(btn, label || 'Copied'); },
+        function () { flash(btn, 'Press Cmd/Ctrl+C'); }
+      );
+    } else {
+      flash(btn, 'Press Cmd/Ctrl+C');
+    }
+  }
+
+  document.getElementById('copy-all').addEventListener('click', function () {
+    copyRich(doc, this, 'Copied — paste into Docs');
+  });
+
+  document.getElementById('copy-plain').addEventListener('click', function () {
+    copyPlain(doc, this, 'Copied as text');
+  });
+
+  // A copy button on every table, so one table can go across on its own.
+  document.querySelectorAll('.tablewrap').forEach(function (wrap) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copybtn no-copy';
+    btn.textContent = 'Copy table';
+    btn.addEventListener('click', function () {
+      copyRich(wrap, btn, 'Copied');
+    });
+    wrap.insertBefore(btn, wrap.firstChild);
+  });
+})();
+</script>
+
+</body>
+</html>
