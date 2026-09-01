@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Mini Handover — Email Sends · Mazin Kanuga</title>
-<meta name="description" content="Mini handover for the 2–9 September absence — email sends only. Owners, dates and open decisions, ready to copy into Google Docs.">
+<title>Mini Handover v2 — Email Sends · Mazin Kanuga</title>
+<meta name="description" content="Mini handover v2, updated after the 31 August call — email sends for the 2–9 September absence. Owners, dates, new items and open questions.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Mazin Kanuga">
 <meta name="theme-color" content="#ffffff">
@@ -172,6 +172,14 @@
   .toc a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
   .toc a:hover { color: var(--ink); border-color: var(--ink); }
 
+  /* ---------- unfilled placeholders ---------- */
+  .todo {
+    font-family: var(--mono); font-size: .84em;
+    background: #fff4d6; border: 1px solid #e8cf8a;
+    border-radius: 4px; padding: 1px 5px;
+    color: #7a5800; white-space: nowrap;
+  }
+
   @media (max-width: 640px) {
     .page { padding: 28px 16px 72px; }
     .bar-in { padding: 10px 16px; }
@@ -191,7 +199,7 @@
 <div class="bar no-copy">
   <div class="bar-in">
     <a href="/" class="home">MK<span class="dot">.</span></a>
-    <span class="bar-note">Email sends only · absence 2–9 Sept · back Thu 10 Sept</span>
+    <span class="bar-note">v2 · post-call 31 Aug · absence 2–9 Sept · back Thu 10 Sept</span>
     <button class="btn ghost" id="copy-plain" type="button">Copy as plain text</button>
     <button class="btn" id="copy-all" type="button">Copy whole document</button>
   </div>
@@ -199,42 +207,50 @@
 
 <main class="page" id="doc">
 
-<h1 id="mini-handover-email-sends">Mini handover — email sends</h1>
-<p><strong>Mazin Kanuga · Chainlink Labs</strong></p>
-<p><strong>Meeting:</strong> Monday 31 August 2026. <strong>Present:</strong> Hod Klein, Margaux Franco, Joshua Azar.<br>
+<h1 id="mini-handover-email-sends-v2">Mini handover — email sends <span style="white-space:nowrap">· v2</span></h1>
+<p><strong>Mazin Kanuga · Chainlink Labs · updated after the 31 August call</strong></p>
+<p><strong>Call:</strong> Monday 31 August, 15:30. <strong>Present:</strong> Hod Klein, Margaux Franco, Joshua Azar, Mazin Kanuga.<br>
 <strong>Absence:</strong> Wednesday 2 September to Wednesday 9 September 2026. <strong>Back:</strong> Thursday 10 September.</p>
 <blockquote>
-<p><strong>Companion document:</strong> <code>PTO-Handover-2-9-Sept.md</code>. That document holds the full picture. <strong>This document holds the email sends only.</strong></p>
+<p><strong>This version adds everything agreed on the call.</strong> New content is marked 🆕.</p>
 </blockquote>
-<p><strong>Legend:</strong> 🔴 needs an owner or a decision in this meeting · ⚠️ risk, clash or constraint</p>
+<p><strong>Legend:</strong> 🆕 new since version 1 · 🔴 needs an owner or a decision · ⚠️ risk or constraint · ✅ agreed on the call</p>
 
 <nav class="toc no-copy" aria-label="Contents">
   <h4>Contents</h4>
   <ul>
-    <li><a href="#1-three-rules">1. Three rules</a></li>
-    <li><a href="#2-at-a-glance">2. At a glance</a></li>
-    <li><a href="#3-item-detail">3. Item detail</a></li>
-    <li><a href="#4-open-decisions-for-this-meeting">4. Open decisions for this meeting</a></li>
-    <li><a href="#5-what-is-easy-to-miss">5. What is easy to miss</a></li>
-    <li><a href="#6-frozen-no-decisions-between-2-and-9-september">6. Frozen — no decisions between 2 and 9 September</a></li>
-    <li><a href="#7-escalation">7. Escalation</a></li>
+    <li><a href="#s0-contact-and-logistics">0. 🆕 Contact and logistics</a></li>
+    <li><a href="#s1-at-a-glance">1. At a glance</a></li>
+    <li><a href="#s1a-the-calendar">1a. The calendar</a></li>
+    <li><a href="#s2-two-rules-that-apply-to-every-send">2. 🆕 Two rules that apply to every send</a></li>
+    <li><a href="#s3-chainlink-connect-this-week">3. Chainlink Connect: this week’s edition</a></li>
+    <li><a href="#s4-chainlink-connect-next-week">4. Chainlink Connect: next week’s edition</a></li>
+    <li><a href="#s5-digital-asset-digest">5. Digital Asset Digest</a></li>
+    <li><a href="#s6-fidelity-on-demand-webinar">6. Fidelity International on-demand webinar</a></li>
+    <li><a href="#s7-truflation-webinar">7. 🆕 Truflation webinar — cover IS needed</a></li>
+    <li><a href="#s8-link-nyc-invite">8. Link NYC invite</a></li>
+    <li><a href="#s9-sibos-invite-2">9. Sibos invite #2</a></li>
+    <li><a href="#s10-new-items-raised-on-the-call">10. 🆕 New items raised on the call</a></li>
+    <li><a href="#s11-not-discussed-and-still-open">11. 🔴 Not discussed on the call, and still open</a></li>
+    <li><a href="#s12-escalation">12. Escalation</a></li>
   </ul>
 </nav>
 
 <hr />
-<h2 id="1-three-rules">1. Three rules</h2>
-<ol>
-  <li>Every send is built, tested and scheduled <strong>before Monday 1 September</strong>. Nobody builds an email during the absence.</li>
-  <li>The cover owner presses send, or confirms that a scheduled send went out. <strong>The cover owner does not write copy.</strong></li>
-  <li>If an item is not in this document, it waits until <strong>Thursday 10 September</strong>.</li>
-</ol>
+<h2 id="s0-contact-and-logistics">0. 🆕 Contact and logistics</h2>
+<ul>
+  <li>🆕 <strong>Emergency contact.</strong> Hod asked for a way to reach me. My phone number is <span class="todo">[ADD NUMBER]</span>. Reach me by <span class="todo">[WhatsApp / Signal / SMS]</span>.</li>
+  <li>🆕 <strong>I am available tomorrow morning, Tuesday 1 September.</strong> My flight is at night. I have a 07:30 call with Hod and Michael Mendez.</li>
+  <li>🆕 <strong>Josh, 10:30 tomorrow.</strong> 15 minutes, live walkthrough. Booked on the call.</li>
+  <li>🆕 <strong>Before I go I will:</strong> build the Chainlink Connect subscription form, finish and share this document, and schedule the remaining emails.</li>
+  <li>🆕 <strong>Format.</strong> I will add a calendar view so the send dates are easy to read at a glance. <em>(See <a href="#s1a-the-calendar">1a</a>.)</em></li>
+</ul>
 
 <hr />
-<h2 id="2-at-a-glance">2. At a glance</h2>
+<h2 id="s1-at-a-glance">1. At a glance</h2>
 <div class="tablewrap">
 <table>
 <thead><tr>
-<th>#</th>
 <th>Email</th>
 <th>Build state</th>
 <th>Blocked by</th>
@@ -243,198 +259,327 @@
 </tr></thead>
 <tbody>
 <tr>
-<td>1</td>
-<td><strong>Chainlink Connect — this week</strong></td>
+<td><strong>Chainlink Connect: this week</strong></td>
 <td>In content review</td>
 <td>Content review, then legal</td>
-<td>Tue 1 Sept</td>
-<td><strong>Mazin.</strong> No cover needed</td>
+<td><strong>Tue 1 Sept.</strong> Scheduled tomorrow morning at the latest</td>
+<td>Mazin. No cover needed</td>
 </tr>
 <tr>
-<td>2</td>
-<td><strong>Chainlink Connect — next week</strong></td>
-<td>Built in HubSpot. Steps written</td>
+<td><strong>Chainlink Connect: next week</strong></td>
+<td>Drafted in HubSpot. Steps written</td>
 <td>Copy, then legal</td>
 <td>Tue 8 Sept</td>
-<td>🔴 <strong>Josh Azar</strong></td>
+<td>🔴 Josh Azar</td>
 </tr>
 <tr>
-<td>3</td>
 <td><strong>Digital Asset Digest</strong></td>
-<td>Built in HubSpot. Draft and audience are in the copy document</td>
-<td>🔴 Bank of England approval, then legal</td>
-<td>🔴 <strong>Not set</strong></td>
-<td>🔴 <strong>Josh Azar</strong>, with Justin Alper</td>
+<td>Built in HubSpot. Senders and lists attached. Images loaded. Frank has reviewed</td>
+<td>🆕 Bank of England approval (<strong>Georgia / George</strong>), then legal</td>
+<td>🔴 Not set. Close to approval</td>
+<td>🔴 Josh Azar</td>
 </tr>
 <tr>
-<td>4</td>
 <td><strong>Fidelity on-demand webinar</strong></td>
-<td>Workflow live. List built</td>
+<td>Workflow live. List built, ~3,000 contacts</td>
 <td>George Chivi copy review, then legal ticket</td>
 <td>Thu 3 Sept</td>
-<td>🔴 <strong>Josh Azar</strong></td>
+<td>🔴 Josh Azar</td>
 </tr>
 <tr>
-<td>5</td>
 <td><strong>Sibos invite #2</strong></td>
-<td>Copy drafted. HubSpot draft created</td>
-<td>List and copy sign-off</td>
-<td>Wed 2 Sept</td>
-<td>🔴 <strong>Josh Azar</strong></td>
+<td>Copy drafted. HubSpot draft created. Lists attached</td>
+<td>🆕 Review by <strong>Frankie Ball and Fernando Vázquez</strong></td>
+<td>🆕 <strong>Thu 3 Sept, or early the week of 8 Sept</strong></td>
+<td>🔴 Josh Azar</td>
 </tr>
 <tr>
-<td>6</td>
-<td><strong>Link NYC invite, waves 2 and 3</strong></td>
-<td>In progress</td>
+<td><strong>Link NYC invite</strong></td>
+<td>Built</td>
 <td>—</td>
-<td>Before 1 Sept</td>
-<td><strong>Mazin.</strong> No cover needed</td>
+<td>🆕 <strong>Tue 1 Sept, morning</strong></td>
+<td>Mazin. No cover needed</td>
 </tr>
 <tr>
-<td>7</td>
 <td><strong>Truflation webinar</strong></td>
-<td>Sign-up page is live</td>
+<td>Sign-up and workflow live</td>
 <td>—</td>
-<td>In flight</td>
-<td><strong>No support needed now</strong></td>
+<td>Webinar Wed 16 Sept</td>
+<td>🆕 <strong>Cover needed. See section 7</strong></td>
 </tr>
 </tbody></table></div>
-<p>🔴 = needs an owner and a decision in this meeting.</p>
+<blockquote>
+<p>🆕 <strong>Date clash to resolve.</strong> Fidelity and Sibos can both land on <strong>Thursday 3 September</strong>, to audiences that overlap. Pick one: move Sibos to the week of 8 September, or add the Fidelity recipients as an exclusion list.</p>
+</blockquote>
 
 <hr />
-<h2 id="3-item-detail">3. Item detail</h2>
-
-<h3 id="31-chainlink-connect-this-weeks-edition">3.1 Chainlink Connect — this week’s edition</h3>
-<ul>
-  <li>The copy is with content for review.</li>
-  <li>Next: legal review. Use the standing ticket text in <code>Meetings/LEGAL-TICKET-CL-CONNECT.md</code>.</li>
-  <li>Then send, most likely <strong>Tuesday 1 September</strong>.</li>
-  <li>I expect to complete this myself before I go. <strong>Treat it as mine.</strong></li>
-</ul>
-
-<h3 id="32-chainlink-connect-next-weeks-edition">3.2 Chainlink Connect — next week’s edition</h3>
-<ul>
-  <li>The email is <strong>already created in HubSpot</strong>. The steps are written down.</li>
-  <li>Production cycle: <strong>copy arrives Monday. Legal approves Tuesday. The send goes out Tuesday.</strong></li>
-  <li>Writer: <strong>Alkesh Shah</strong>. Reviewers before legal: content, then <strong>Scott Gillespie</strong>, then <strong>Hod Klein</strong>.</li>
-  <li>Legal ticket: Jira service desk, request type <em>Request Legal Review of Existing Document or Content → Content</em>. Full paste-ready text is in <code>Meetings/LEGAL-TICKET-CL-CONNECT.md</code>.</li>
-  <li>⚠️ <strong>Legal takes 2 to 3 days, and a different lawyer answers each time.</strong> Raise the ticket on the Monday, not the Tuesday.</li>
-  <li><strong>Josh:</strong> build from the steps, run the checklist, press send. Do not rewrite copy. If the copy is late, move the send. Do not ship it unreviewed.</li>
-</ul>
-
-<h3 id="33-digital-asset-digest">3.3 Digital Asset Digest</h3>
-<ul>
-  <li>Built in HubSpot. The email draft and the audience are in the copy document.</li>
-  <li><strong>Two gates, in this order:</strong> (1) <strong>Bank of England approval</strong>, (2) <strong>legal sign-off</strong>. Then send.</li>
-  <li>🔴 <strong>After the email goes out, Justin Alper posts the LinkedIn newsletter.</strong> The LinkedIn post always fires <strong>after</strong> the email, never before. The reason: we want the click to come from the email first.</li>
-  <li>🔴 <strong>The August edition LinkedIn leg was never published.</strong> The email went out on 6 or 7 August. The Asana task is still open. Close this with Justin before the September post goes out.</li>
-  <li>🔴 <strong>Do not use 11 September.</strong> See section 5.</li>
-</ul>
-
-<h3 id="34-fidelity-international-on-demand-webinar">3.4 Fidelity International on-demand webinar</h3>
-<ul>
-  <li>Title: <em>Building a Tokenized Economy, Starting from Liquidity</em>. Speakers: Frank Seibold and Emma Pecenicic.</li>
-  <li>Format: recorded, gated, on demand. Hosted on <strong>Vidyard</strong>.</li>
-  <li><strong>The workflow is live. The list is built.</strong></li>
-  <li>Left to do: <strong>copy review from George Chivi</strong>, then a <strong>legal ticket</strong>. Raise the ticket today.</li>
-  <li>Send: <strong>Thursday 3 September, 10:00 ET</strong>.</li>
-  <li>⚠️ <strong>Date clash.</strong> 3 September is also the fallback slot for Sibos invite #2. If the Sibos send fails on 2 September and moves to the 3rd, two sends hit an overlapping audience on the same day. <strong>Decide one now:</strong> (a) hold Fidelity to Thursday 10 September, or (b) keep 3 September and add the Sibos recipients as an exclusion list. Option (a) costs nothing, because the asset is evergreen.</li>
-  <li>⚠️ <strong>Vidyard is confirmed only to 30 September.</strong> The asset is evergreen. Do not promise permanent access in the copy.</li>
-  <li><strong>Website support:</strong> I asked <strong>Brandon Harrison</strong> about a pop-up on the home page to drive traffic to the recording. 🔴 There is no ticket and no date for this. Give it an owner, or drop it.</li>
-</ul>
-
-<h3 id="35-sibos-invite-2">3.5 Sibos invite #2</h3>
-<ul>
-  <li>Copy is drafted. See <code>Sibos-Invite-Momentum-Copy.md</code>.</li>
-  <li>The HubSpot email draft is created.</li>
-  <li>Sender: <strong>Fernando Vázquez</strong>. Audience: tier 2 and tier 3.</li>
-  <li>Copy and list sign-off: <strong>Hod Klein and Frank Seibold</strong>, two days before the send.</li>
-  <li><strong>Josh:</strong> press send only. If the send fails, do not rewrite. Move it to the next day.</li>
-</ul>
-
-<h3 id="36-link-nyc-invite-waves-2-and-3">3.6 Link NYC invite, waves 2 and 3</h3>
-<ul>
-  <li><strong>I handle this.</strong> It is built and scheduled before 1 September. No cover action.</li>
-</ul>
-
-<h3 id="37-truflation-webinar">3.7 Truflation webinar</h3>
-<ul>
-  <li>The sign-up page is live. The webinar is <strong>Wednesday 16 September</strong>.</li>
-  <li><strong>No support needed now.</strong> Natalie Chakar owns the copy and the run of show.</li>
-</ul>
-
-<hr />
-<h2 id="4-open-decisions-for-this-meeting">4. Open decisions for this meeting</h2>
+<h2 id="s1a-the-calendar">1a. The calendar</h2>
+<p>The same dates as section 1, in order. Nothing here is new — it is the sends and the deadlines already named in this document.</p>
 <div class="tablewrap">
 <table>
 <thead><tr>
-<th>#</th>
-<th>Decision</th>
-<th>Who decides</th>
+<th>Date</th>
+<th>What</th>
+<th>Owner</th>
 </tr></thead>
 <tbody>
 <tr>
-<td>1</td>
-<td><strong>Is Josh available for the full window, 2 to 9 September?</strong> This was never confirmed in writing. The whole plan rests on it</td>
-<td>Josh, confirmed by Margaux</td>
+<td><strong>Tue 1 Sept</strong></td>
+<td><strong>Chainlink Connect: this week</strong> scheduled · <strong>Link NYC invite</strong> goes out in the morning · 07:30 call with Hod and Michael Mendez · <strong>10:30 walkthrough with Josh</strong> · Chainlink Connect subscription form built · flight at night</td>
+<td>Mazin</td>
 </tr>
 <tr>
-<td>2</td>
-<td><strong>What is the Digest send date?</strong> Three dates have been named. None was agreed. It must not be 11 September</td>
-<td>Hod</td>
+<td><strong>Wed 2 Sept</strong></td>
+<td>🔴 <strong>Absence begins.</strong> No sends scheduled</td>
+<td>—</td>
 </tr>
 <tr>
-<td>3</td>
-<td><strong>Who chases the Bank of England approval while I am away?</strong></td>
-<td>Hod</td>
+<td><strong>Thu 3 Sept</strong></td>
+<td><strong>Fidelity on-demand webinar, 10:00 ET</strong> · <strong>home page pop-up live at the same time</strong> · ⚠️ <strong>Sibos invite #2 may also land today — resolve the clash</strong></td>
+<td>Josh, with Brandon Harrison</td>
 </tr>
 <tr>
-<td>4</td>
-<td><strong>Fidelity: hold to 10 September, or keep 3 September with an exclusion list?</strong></td>
-<td>Hod</td>
+<td><strong>Fri 4 Sept</strong></td>
+<td>🔴 Deadline for the public institution names for the Sibos “Proof” send, <em>if that send is still live</em></td>
+<td>Alex Heitman or Frank Seibold</td>
 </tr>
 <tr>
-<td>5</td>
-<td><strong>Who is Jocelyn?</strong> Hod named this person for the handover. The name is not in my records</td>
-<td>Hod</td>
+<td><strong>Mon 7 Sept</strong></td>
+<td><strong>Raise the legal ticket for Chainlink Connect: next week.</strong> Not on the Tuesday</td>
+<td>Josh</td>
 </tr>
 <tr>
-<td>6</td>
-<td><strong>Does the Brandon Harrison home page pop-up go ahead?</strong> No ticket exists</td>
-<td>Hod</td>
+<td><strong>Tue 8 Sept</strong></td>
+<td><strong>Chainlink Connect: next week</strong> sends · 🔴 Sibos “Proof” send sits on this date and has no owner · Sibos invite #2 if it moved</td>
+<td>Josh</td>
+</tr>
+<tr>
+<td><strong>Wed 9 Sept</strong></td>
+<td>Last day of the absence</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Thu 10 Sept</strong></td>
+<td><strong>Back.</strong> Anything not in this document waits for today</td>
+<td>Mazin</td>
+</tr>
+<tr>
+<td><strong>Fri 11 Sept</strong></td>
+<td>🔴 <strong>Nothing sends and nothing posts.</strong> All channels</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Wed 16 Sept</strong></td>
+<td><strong>Truflation webinar.</strong> See section 7</td>
+<td>Natalie Chakar</td>
+</tr>
+<tr>
+<td><strong>Not set</strong></td>
+<td>🔴 <strong>Digital Asset Digest.</strong> Waiting on Bank of England approval, then legal. Must not be 11 Sept</td>
+<td>Josh, then Justin Alper</td>
 </tr>
 </tbody></table></div>
 
 <hr />
-<h2 id="5-what-is-easy-to-miss">5. What is easy to miss</h2>
+<h2 id="s2-two-rules-that-apply-to-every-send">2. 🆕 Two rules that apply to every send</h2>
 <ol>
-  <li><strong>No email and no social media on 11 September.</strong> All channels. This is Hod’s instruction from 25 August. Sweep the calendar for that day, social included.</li>
-  <li><strong>Nothing sends on a 13th.</strong> This is a standing company rule.</li>
-  <li><strong>Sibos “Proof” send, Tuesday 8 September.</strong> If this is a different send from Sibos invite #2, it has no owner in this document. The public institution names must come from <strong>Alex Heitman or Frank Seibold before 4 September</strong>.</li>
-  <li><strong>Link NYC wave 4, “New speakers”, Wednesday 9 September.</strong> This falls inside the absence. <strong>Rory</strong> approves which speaker names may go out. Get that approval before 1 September.</li>
-  <li><strong>Truflation registration push, Wednesday 2 September.</strong> I chose a manual send because of the absence. A manual send needs a named person. That person is <strong>Josh</strong>.</li>
-  <li><strong>Distribution lists.</strong> Hod asked for the evergreen distribution lists. I hand them over before I go.</li>
-  <li><strong>Cover is thin.</strong> William Reilly, Michael Imperiale and part of Amal Hijazi’s time are also out in this window. Do not add work.</li>
+  <li>🆕 <strong>Send to engaged contacts only.</strong> Hod set this on the call. The setting is already on in the next-week Chainlink Connect draft, and it carries over when Josh clones the email.</li>
+  <li>🆕 <strong>The HubSpot drafts are copies, not blank templates.</strong> Josh asked. Take the HTML code out of the copy, update the text, and paste it back. The button styling and the quote styling stay intact. This applies to Chainlink Connect and to the Digest.</li>
 </ol>
 
 <hr />
-<h2 id="6-frozen-no-decisions-between-2-and-9-september">6. Frozen. No decisions between 2 and 9 September</h2>
+<h2 id="s3-chainlink-connect-this-week">3. Chainlink Connect: this week’s edition</h2>
 <ul>
-  <li>The HubSpot to Salesforce sync question.</li>
-  <li>The video hosting decision, Wistia against Vidyard.</li>
-  <li>The newsletter consolidation, five titles to three.</li>
-  <li>The email template system build in HubSpot.</li>
-  <li>Any change to the Sibos or Link NYC cadence after 1 September.</li>
+  <li>The copy is with content for review. It goes to legal shortly.</li>
+  <li>I will schedule it tomorrow morning at the latest. <strong>No cover needed.</strong></li>
+  <li>Copy doc: <span class="todo">[link]</span> · Asana ticket: <span class="todo">[link]</span> · HubSpot email draft: <span class="todo">[link]</span></li>
+</ul>
+
+<h2 id="s4-chainlink-connect-next-week">4. Chainlink Connect: next week’s edition</h2>
+<ul>
+  <li>The email is already drafted in HubSpot. I write the steps down before I go.</li>
+  <li>Steps: raise the ticket, ping <strong>Conlan Wall</strong>, get <strong>Hod’s</strong> review, raise the legal ticket.</li>
+  <li>Writer: <strong>Alkesh Shah</strong>. Reviewers before legal: <strong>Conlan E Wall</strong>, then <strong>Scott Gillespie</strong>, then <strong>Hod Klein</strong>.</li>
+  <li>Legal ticket: Jira service desk, request type <em>Request Legal Review of Existing Document or Content</em>.</li>
+  <li>Legal takes 1 to 2 days. A different lawyer answers each time. Raise the ticket on the Monday, not the Tuesday.</li>
+  <li>🆕 <strong>Legal rarely gives edits.</strong> The answer is usually “good to go”. The real work is the editing pass with content.</li>
+  <li>🆕 <strong>The copy does not always arrive on Monday.</strong> It has arrived on a Saturday morning and at 14:00 on a Monday. Do not plan on a fixed arrival time.</li>
+  <li>🆕 <strong>Josh has built Chainlink Connect once before.</strong></li>
+  <li>🆕 <strong>Task for Josh, this week:</strong> in the Token Relations call, review the unengaged list. Check whether any valuable clients sit in it before we suppress them.</li>
+</ul>
+
+<h2 id="s5-digital-asset-digest">5. Digital Asset Digest</h2>
+<ul>
+  <li>Built in HubSpot. The senders and the distribution lists are already attached. The images are loaded.</li>
+  <li>🆕 <strong>Frank has already reviewed it.</strong></li>
+  <li><strong>Two gates, in this order:</strong> (1) 🆕 <strong>Bank of England approval on the final copy, from Georgia / George</strong>, (2) legal sign-off. Then send.</li>
+  <li>🆕 <strong>What Josh does:</strong> take the HTML code, make a small update for any new copy edits, and send. Nothing is built from scratch.</li>
+  <li>🔴 After the email goes out, <strong>Justin Alper</strong> posts the LinkedIn newsletter. The LinkedIn post always fires after the email, never before. We want the click to come from the email first.</li>
+  <li>🔴 <strong>Do not use 11 September.</strong></li>
+  <li>Email draft: <span class="todo">[link]</span> · Asana ticket: <span class="todo">[link]</span></li>
+</ul>
+
+<h2 id="s6-fidelity-on-demand-webinar">6. Fidelity International on-demand webinar</h2>
+<ul>
+  <li>Title: <em>Building a Tokenized Economy, Starting from Liquidity</em>. Speakers: Frank Seibold and Emma Pecenicic.</li>
+  <li>Format: recorded, gated, on demand. Hosted on Vidyard. The workflow automation with the Vidyard link is set.</li>
+  <li>🆕 <strong>The list is built: about 3,000 contacts.</strong></li>
+  <li>Left to do: copy review from <strong>George Chivi</strong>, then a legal ticket.</li>
+  <li>Send: <strong>Thursday 3 September, 10:00 ET.</strong></li>
+  <li>🆕 <strong>Home page pop-up. Brandon Harrison has given the ticket.</strong> Ticket: <span class="todo">[link]</span>. Josh is tagged on it.
+    <ul>
+      <li>🆕 <strong>Josh coordinates with Brandon so the pop-up goes live on Thursday, at the same time the email goes out.</strong></li>
+      <li>🆕 It is a small text pop-up on the home page. Something like “Now available: Fidelity on-demand webinar. Watch now.” There may be no image.</li>
+      <li>🆕 <strong>The pop-up image is not an email asset.</strong> The email is already built.</li>
+    </ul>
+  </li>
+  <li>Working doc: <span class="todo">[link]</span> · Launch comms copy: <span class="todo">[link]</span> · Landing page: <span class="todo">[link]</span> · Vidyard link: <span class="todo">[link]</span></li>
+</ul>
+
+<h2 id="s7-truflation-webinar">7. 🆕 Truflation webinar — cover IS needed</h2>
+<p>The webinar is <strong>Wednesday 16 September</strong>. The sign-up page and the trigger workflow are live. But three things need an owner while I am away.</p>
+<div class="tablewrap">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Action</th>
+<th>Owner</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>🆕 <strong>The dry run with the client</strong></td>
+<td>I cannot attend. Follow up with Natalie</td>
+<td><strong>Natalie Chakar</strong>, with Margaux</td>
+</tr>
+<tr>
+<td>🆕 <strong>The waiting room image</strong></td>
+<td>Must be set in Zoom before the event</td>
+<td>Natalie</td>
+</tr>
+<tr>
+<td>🆕 <strong>Poll and Q&amp;A questions</strong></td>
+<td><strong>Rashun owes us these.</strong> Hod’s instruction: connect with Rashun and make sure she owns this with Natalie</td>
+<td><strong>Rashun</strong>, chased by Hod or Margaux</td>
+</tr>
+</tbody></table></div>
+<ul>
+  <li>🆕 A dry run already ran last week. It went well. We tested polls and Q&amp;A through the integration.</li>
+  <li>🆕 One glitch: everyone is a panellist, so rejoining as a guest is the only way to see the attendee view.</li>
+  <li>🆕 The panellists also give recommendations for the polls and the Q&amp;A.</li>
+</ul>
+
+<h2 id="s8-link-nyc-invite">8. Link NYC invite</h2>
+<ul>
+  <li>🆕 <strong>Goes out tomorrow morning, Tuesday 1 September.</strong> I handle it. No cover action.</li>
+  <li>🆕 <strong>The T0 and T1 contacts who were already invited are included in this send.</strong> Hod asked and confirmed this.</li>
+  <li>🆕 <strong>The message is new, not a reminder.</strong> We are deliberately ignoring that T0 and T1 already received an invite, and treating this as a fresh send.</li>
+</ul>
+
+<h2 id="s9-sibos-invite-2">9. Sibos invite #2</h2>
+<ul>
+  <li>Copy is drafted: <span class="todo">[link]</span>. The HubSpot draft is created. The distribution lists are attached.</li>
+  <li>🆕 The copy reuses the Link NYC lines on <strong>Wyoming</strong> and <strong>Sergey at the White House</strong>.</li>
+  <li>🆕 <strong>Review needed from Hod Klein, Frankie Ball and Fernando Vázquez.</strong></li>
+  <li>🆕 <strong>Send: Thursday 3 September, or early the week of 8 September</strong>, depending on when Frankie and Fernando review it.</li>
+  <li>🆕 <strong>Josh schedules it. He does not build it.</strong></li>
 </ul>
 
 <hr />
-<h2 id="7-escalation">7. Escalation</h2>
+<h2 id="s10-new-items-raised-on-the-call">10. 🆕 New items raised on the call</h2>
+
+<h3 id="s10-1-chainlink-connect-subscription-page">10.1 🆕 Chainlink Connect subscription page — do today</h3>
+<p><strong>Why it is urgent:</strong> <strong>Grayscale will promote Chainlink Connect for us.</strong> Hod needs a link to send people to.</p>
+<div class="tablewrap">
+<table>
+<thead><tr>
+<th>Step</th>
+<th>Owner</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Create the subscription group in HubSpot. I do not have the permission</td>
+<td><strong>Josh Azar</strong></td>
+</tr>
+<tr>
+<td>Build the form and the page</td>
+<td><strong>Mazin, today</strong></td>
+</tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Decision on the call:</strong> use a <strong>HubSpot form</strong>, or a simple HubSpot landing page. Hod: it is not ideal, but he wants the link with Grayscale today.</li>
+  <li>⚠️ <strong>The problem to avoid.</strong> Every new subscription type appears automatically on the <code>chain.link/subscribe</code> notification centre page. Blog posts and other pages link to it. People we do not want on the list can find their way in.</li>
+  <li>✅ <strong>The fix agreed.</strong> Attach the form to the existing institutional update subscription group, which covers the GDPR requirement, then email only the Chainlink Connect segment. It will not appear on the subscribe page.</li>
+  <li>🆕 <strong>Later, after I return:</strong> find the correct way to do this. Move those contacts off the institutional group and into a proper Chainlink Connect group, and keep it off the public page. Josh is making a note.</li>
+</ul>
+
+<h3 id="s10-2-sibos-qr-code-redirect">10.2 🆕 Sibos QR code redirect</h3>
+<ul>
+  <li>The QR code on the double-sided Sibos panel currently points to the <code>/subscribe</code> page, which lists every newsletter.</li>
+  <li><strong>Hod’s decision: it should go only to the BCM / Digital Asset newsletter.</strong></li>
+  <li>Josh: the QR code can be redirected easily.</li>
+  <li>🔴 <strong>This needs an owner and a date.</strong> Sibos runs 28 September to 1 October, so it can wait for my return, but the redirect target is confirmed.</li>
+</ul>
+
+<h3 id="s10-3-spam-and-deliverability">10.3 🆕 Spam and deliverability</h3>
+<ul>
+  <li>Current reading: the numbers return to normal when we exclude unengaged contacts. The likely causes are dirty HubSpot data and some spam-like subject lines. I found nothing wrong on DNS or the domain.</li>
+  <li>🆕 <strong>Josh: set up Google Postmaster Tools.</strong> Hod will follow up on this directly.</li>
+  <li>🆕 <strong>When I am back:</strong> agree a method to warm up the unengaged contacts.</li>
+  <li>🆕 <strong>Move from hand-coded HTML to drag-and-drop builders.</strong> Hod agreed, with one condition: run it as a controlled A/B test, so we can show the incremental result internally.</li>
+</ul>
+
+<h3 id="s10-4-web3-newsletter-missing-link">10.4 🆕 Web3 newsletter (Missing Link) — no action needed</h3>
+<ul>
+  <li>I met Saji, Christy and Conlan before this call.</li>
+  <li><strong>It will not send on 11 September. It moves to the week after. I am back by then.</strong> Nothing for Josh.</li>
+  <li>🆕 There is a live discussion to drop the “Missing Link” name and use <strong>Ecosystem Pulse</strong>, and to move it from quarterly to bi-weekly or monthly. Hod: the whole thing needs reworking, and the name is not the priority.</li>
+</ul>
+
+<h3 id="s10-5-chainlink-for-agents-email">10.5 🆕 Chainlink for Agents email — held until I return</h3>
+<ul>
+  <li>Michael Imperiale has responded. <strong>Will (William Reilly) has not.</strong> A legal ticket comes after that.</li>
+  <li>Margaux spoke to Michael. He does not see it as urgent. Margaux expects about another week to get Will.</li>
+  <li><strong>Agreed: wait until I am back.</strong> No action in the window.</li>
+  <li>⚠️ Context for the rebuild: the previous version went to about 5,000 contacts and produced one form fill. It used a <strong>Google form, not a HubSpot form</strong>, so the data cannot be tracked. Use a HubSpot form next time.</li>
+</ul>
+
+<h3 id="s10-6-twap-audience-analysis">10.6 🆕 TWAP audience analysis — for my return</h3>
+<p>Hod’s task for me, not for the cover owners.</p>
+<ul>
+  <li>Find where the <strong>prediction market super users</strong> live online. These are the retail market makers on Polymarket, not influencers. Look at X, Discord, channels and groups.</li>
+  <li>Give a recommendation: can we reach them with paid media, is it efficient, and how would we do it.</li>
+  <li>The route is: ad, then a new landing page (not the current one), then e-commerce, subscribe at 199 per month.</li>
+  <li>Purpose: show progress to Will. Hod will tell Will it is on the list in the meantime.</li>
+</ul>
+
+<h3 id="s10-7-margaux-offered-help">10.7 🆕 Margaux offered help</h3>
+<p>Margaux asked what she can move on copy or design assets for Sibos and Link NYC.</p>
+<ul>
+  <li><strong>Sibos:</strong> segmented messaging by region across the 500 contact list. Example: <strong>Project Pangea marketing for APAC.</strong></li>
+  <li>I will message her with the detail.</li>
+</ul>
+
+<hr />
+<h2 id="s11-not-discussed-and-still-open">11. 🔴 Not discussed on the call, and still open</h2>
+<p>These were on my list. Nobody raised them. They still need an answer.</p>
+<ol>
+  <li><strong>The August Digest LinkedIn post was never published.</strong> The email went out on 6 or 7 August. The Asana task is still open. Close it with Justin before the September post goes out.</li>
+  <li><strong>Justin Alper was not in the room.</strong> Confirm he knows the LinkedIn leg follows the Digest email, and that he can act on it while I am away.</li>
+  <li><strong>Sibos “Proof” send, 8 September.</strong> The cadence brief has a second Sibos send inside the window. If it is still live, it has no owner. The public institution names must come from <strong>Alex Heitman or Frank Seibold before 4 September</strong>.</li>
+  <li><strong>Vidyard is confirmed only to 30 September.</strong> The Fidelity asset is evergreen and gated. Do not promise permanent access in the copy.</li>
+  <li><strong>Names to confirm:</strong> who is “Georgia” on the Bank of England review, and what is the correct spelling of “Rashun”.</li>
+  <li><strong>Evergreen distribution lists.</strong> Hod asked for these earlier. Hand them over before I go.</li>
+</ol>
+
+<hr />
+<h2 id="s12-escalation">12. Escalation</h2>
 <ol>
   <li>A send fails, or a date must move → <strong>Josh Azar</strong>, then <strong>Margaux Franco</strong>.</li>
   <li>Copy or approval is missing → <strong>Hod Klein</strong>.</li>
   <li>The Digest LinkedIn post → <strong>Justin Alper</strong>.</li>
-  <li>The Truflation webinar → <strong>Natalie Chakar</strong>.</li>
-  <li>Nothing above applies → hold the item until <strong>Thursday 10 September</strong>. Do not improvise.</li>
+  <li>The Truflation webinar → <strong>Natalie Chakar</strong>, then <strong>Rashun</strong>.</li>
+  <li>The home page pop-up → <strong>Brandon Harrison</strong>.</li>
+  <li>Nothing above applies → hold the item until <strong>Thursday 10 September</strong>.</li>
 </ol>
 
 </main>
