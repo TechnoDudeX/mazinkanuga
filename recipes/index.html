@@ -485,7 +485,9 @@
   }
 
   /* ─── recipe ─── */
-  .recipe { border-bottom: 1px solid var(--ink); }
+  .recipe { border-bottom: 1px solid var(--ink); scroll-margin-top: 16px; }
+  .recipe-anchor { color: inherit; text-decoration: none; }
+  .recipe-anchor:hover, .recipe-anchor:focus-visible { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
   .recipe:last-of-type { border-bottom: none; }
 
   .recipe-head {
@@ -716,10 +718,10 @@
 
 <main id="recipes">
 
-  <article class="recipe">
+  <article class="recipe" id="yellow-rice">
     <div class="recipe-head">
       <div class="recipe-index">Recipe 01 · Side · Instant Pot</div>
-      <h2 class="recipe-title">Instant&nbsp;Pot<br>Yellow&nbsp;Rice</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#yellow-rice">Instant&nbsp;Pot<br>Yellow&nbsp;Rice</a></h2>
       <p class="recipe-note">
         Three minutes at pressure, ten minutes of doing nothing, and a pot of rice that makes
         every other side dish on the table look like it isn't trying.
@@ -869,10 +871,10 @@
     </div>
   </article>
 
-  <article class="recipe">
+  <article class="recipe" id="pizza-dipping-sauce">
     <div class="recipe-head c-red">
       <div class="recipe-index">Recipe 02 · Condiment · No cook</div>
-      <h2 class="recipe-title">Pepperoncini<br>Pizza Dipping Sauce</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#pizza-dipping-sauce">Pepperoncini<br>Pizza Dipping Sauce</a></h2>
       <p class="recipe-note">
         The reason the crusts don't get left on the plate. Briny, garlicky, and better on day
         two than day one.
@@ -978,10 +980,10 @@
     </div>
   </article>
 
-  <article class="recipe">
+  <article class="recipe" id="daal">
     <div class="recipe-head c-green">
       <div class="recipe-index">Recipe 03 · Main · Instant Pot</div>
-      <h2 class="recipe-title">Instant&nbsp;Pot<br>Daal</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#daal">Instant&nbsp;Pot<br>Daal</a></h2>
       <p class="recipe-note">
         Thick, scoopable daal with a browned onion base and a ghee curry-leaf tadka. The onions
         are the whole recipe — everything after them is assembly.
@@ -1165,10 +1167,10 @@
     </div>
   </article>
 
-  <article class="recipe">
+  <article class="recipe" id="jerk-chicken">
     <div class="recipe-head c-purple">
       <div class="recipe-index">Recipe 04 · Main · Oven</div>
-      <h2 class="recipe-title">Jerk&nbsp;Chicken</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#jerk-chicken">Jerk&nbsp;Chicken</a></h2>
       <p class="recipe-note">
         Four pounds of boneless thighs, a wet marinade that does all the work overnight, and a
         short broil at the end to buy back the char that skinless thighs can't give you.
@@ -1273,7 +1275,7 @@
   <article class="recipe" id="rice-and-peas">
     <div class="recipe-head c-ink">
       <div class="recipe-index">Recipe 05 · Side · Instant Pot</div>
-      <h2 class="recipe-title">Rice&nbsp;and&nbsp;Peas</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#rice-and-peas">Rice&nbsp;and&nbsp;Peas</a></h2>
       <p class="recipe-note">
         Doubled, all-coconut liquid, extra thyme, butter finish, no scotch bonnet. The beans go
         on top and stay there — stirring them in before pressure is how you get mush.
@@ -1426,7 +1428,7 @@
   <article class="recipe" id="fettuccine">
     <div class="recipe-head c-wheat">
       <div class="recipe-index">Recipe 06 · Pasta · Stand mixer</div>
-      <h2 class="recipe-title">Fresh&nbsp;Fettuccine</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#fettuccine">Fresh&nbsp;Fettuccine</a></h2>
       <p class="recipe-note">
         Makes ~440g of dough — two generous or three modest servings. A dry-looking dough that
         comes good on the bench, rolled to a thin 1.0mm sheet.
@@ -1564,10 +1566,10 @@
     </div>
   </article>
 
-  <article class="recipe">
+  <article class="recipe" id="cajun-sausage-fettuccine">
     <div class="recipe-head c-paprika">
       <div class="recipe-index">Recipe 07 · Main · Skillet</div>
-      <h2 class="recipe-title">Creamy Cajun-Style<br>Sausage Fettuccine</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#cajun-sausage-fettuccine">Creamy Cajun-Style<br>Sausage Fettuccine</a></h2>
       <p class="recipe-note">
         What the <a href="#fettuccine" style="text-decoration:underline">fresh fettuccine</a> is for.
         A half-cream, half-milk sauce that needs a gentler hand than an all-cream one, built on
@@ -1734,10 +1736,10 @@
     </div>
   </article>
 
-  <article class="recipe">
+  <article class="recipe" id="birria-tacos">
     <div class="recipe-head c-oxblood">
       <div class="recipe-index">Recipe 08 · Main · Instant Pot</div>
-      <h2 class="recipe-title">Birria&nbsp;Tacos</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#birria-tacos">Birria&nbsp;Tacos</a></h2>
       <p class="recipe-note">
         2.5 lb of meat, roughly 12–16 tacos. The whole recipe hinges on two things: an actual
         dark crust on the sear, and not stirring the blended sauce into the liquid underneath it.
@@ -1945,7 +1947,7 @@
   <article class="recipe" id="banana-pudding-ice-cream">
     <div class="recipe-head c-wheat">
       <div class="recipe-index">Recipe 09 · Dessert · Ninja Creami</div>
-      <h2 class="recipe-title">Banana&nbsp;Pudding<br>Protein&nbsp;Ice&nbsp;Cream</h2>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#banana-pudding-ice-cream">Banana&nbsp;Pudding<br>Protein&nbsp;Ice&nbsp;Cream</a></h2>
       <p class="recipe-note">
         A half pint that hits 40 g of protein for 376 calories with no added sugar. The banana and
         the starch in the pudding mix do all the thickening — do not reach for the xanthan gum.
