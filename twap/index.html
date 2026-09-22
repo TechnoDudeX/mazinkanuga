@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TWAP Audience Read · Mazin Kanuga</title>
-<meta name="description" content="TWAP / Data Streams paid audience read for Hod Klein (v2, 21 Sept 2026): target segment, platforms, cost per subscriber and a $10K gated test plan.">
+<meta name="description" content="TWAP / Data Streams paid audience read for Hod Klein (v3, 22 Sept 2026): target segment, platforms, cost per subscriber and a $10K gated test plan.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Mazin Kanuga">
 <meta name="theme-color" content="#ffffff">
@@ -46,35 +46,27 @@
   strong { color: var(--ink); font-weight: 700; }
   ul, ol { margin: 12px 0 12px 22px; max-width: 82ch; }
   li { font-size: 16px; line-height: 1.65; color: var(--ink-dim); margin: 7px 0; }
-  code { font-family: var(--mono); font-size: .86em; background: var(--wash); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; color: var(--ink); overflow-wrap: anywhere; }
-  .ph { background: #fff6d6; border-radius: 3px; padding: 0 3px; color: var(--ink); }
+  li > ul, li > ol { margin: 4px 0 4px 20px; }
 
   .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); margin: 24px 0; }
   .meta div { background: #fff; padding: 14px 16px; }
   .meta b { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; margin-bottom: 4px; }
   .meta span { font-size: 15px; font-weight: 600; }
 
+  .copybox { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border: 1px solid var(--rule-strong); border-left: 3px solid var(--teal); background: var(--teal-wash); padding: 12px 16px; margin: 0 0 20px; max-width: 82ch; font-size: 14.5px; color: var(--ink-dim); }
+
   .toc { margin: 8px 0 0 20px; }
   .toc li { margin: 3px 0; font-size: 15px; }
-
-  .email { border: 1px solid var(--rule-strong); border-left: 3px solid var(--teal); background: var(--teal-wash); margin: 18px 0; max-width: 82ch; }
-  .email-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--rule-strong); background: #fff; }
-  .email-head .label { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); }
-  .email-body { padding: 14px 18px; }
-  .email-body p { margin: 10px 0; font-size: 15.5px; }
-  .email-body p:first-child { margin-top: 0; }
-  .email-body p:last-child { margin-bottom: 0; }
-  .email-body ul { margin: 6px 0 6px 20px; }
-  .email-body li { font-size: 15.5px; margin: 3px 0; }
-
-  .warn { border-left: 3px solid var(--red); background: var(--red-wash); padding: 12px 16px; margin: 16px 0; max-width: 82ch; font-size: 15px; line-height: 1.6; color: var(--ink-dim); }
 
   .tablewrap { margin: 18px 0 26px; overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; min-width: 520px; }
   th, td { border: 1px solid var(--rule-strong); padding: 10px 12px; font-size: 14.5px; line-height: 1.5; text-align: left; vertical-align: top; color: var(--ink-dim); }
   th { background: var(--wash); color: var(--ink); font-weight: 700; }
   tbody tr:nth-child(even) td { background: #fbfbfa; }
-  tr.hit td { background: var(--teal-wash) !important; color: var(--ink); font-weight: 600; }
+  tr.hit td { background: var(--teal-wash) !important; color: var(--ink); }
+  .src td { font-size: 13.5px; }
+  .src td:first-child { font-family: var(--mono); white-space: nowrap; }
+  .src a { overflow-wrap: anywhere; }
 
   @media (max-width: 600px) {
     .page { padding: 28px 16px 72px; }
@@ -87,22 +79,28 @@
 
 <div class="bar"><div class="bar-in">
   <a class="home" href="/">MK<span class="dot">.</span></a>
-  <span class="bar-note">TWAP / Data Streams · paid audience read · v2 · 21 Sept 2026</span>
+  <span class="bar-note">TWAP / Data Streams · paid audience read · v3 · 22 Sept 2026</span>
+  <button class="btn copy-doc" type="button">Copy for Google Docs</button>
 </div></div>
 
 <main class="page">
-  <div class="eyebrow">Draft for 1:1 · Version 2</div>
+<article id="doc">
+  <div class="eyebrow" data-nocopy>Draft for 1:1 · Version 3</div>
   <h1>TWAP / Data Streams: paid audience read</h1>
 
-  <div class="meta">
+  <div class="meta" data-nocopy>
     <div><b>For</b><span>Hod Klein</span></div>
     <div><b>From</b><span>Mazin Kanuga</span></div>
-    <div><b>Date</b><span>21 Sept 2026</span></div>
-    <div><b>Status</b><span>Draft, v2 with more detail</span></div>
+    <div><b>Date</b><span>22 Sept 2026</span></div>
+    <div><b>Status</b><span>Draft, v3</span></div>
   </div>
-  <p>This page answers your four questions from 20 Aug: who these people are, where they are, if we can target them on those platforms, and how much it costs. All figures here are public. No internal sales figures are in this page.</p>
 
-  <ol class="toc">
+  <div class="copybox" data-nocopy>
+    <button class="btn copy-doc" type="button">Copy for Google Docs</button>
+    <span>Copies the full read with headings, tables and links. Paste into a Google Doc with ⌘V.</span>
+  </div>
+
+  <ol class="toc" data-nocopy>
     <li><a href="#rec">The recommendation</a></li>
     <li><a href="#who">Who they are</a></li>
     <li><a href="#where">Where they are, and if we can target them</a></li>
@@ -110,163 +108,245 @@
     <li><a href="#plan">The plan</a></li>
     <li><a href="#risks">Risks</a></li>
     <li><a href="#need">What I need from you</a></li>
+    <li><a href="#stronger">What would make this page stronger</a></li>
     <li><a href="#sources">Sources</a></li>
   </ol>
 
   <h2 id="rec">1. The recommendation</h2>
-  <p>Spend <strong>$10K in eight weeks, in two halves.</strong> The first $5K goes to Reddit ($3K) and X ($2K). The second $5K is released only if the first half gives a cost per paid subscriber of <strong>$300 or less</strong>. No spend on LinkedIn, Discord, TikTok or Telegram.</p>
-  <p>This is your "test, learn, then expand" option with a gate in the middle. We risk $5K to get three numbers that nobody has today: the real cost per click for this audience, the real click-to-subscriber rate, and the 30-day retention of a subscriber who came from an ad.</p>
-  <p>The plan obeys the two rules you gave on 15 Sept. Each audience is 50,000 to 200,000 people. Each ad sends the person to the Data Streams sign-up page. There are no boosted posts.</p>
-  <div class="warn">Three items must be done before the first dollar: a conversion event on the checkout page, written ad-policy approval from the Reddit rep and the X rep, and the revenue forecast with Will Reilly.</div>
+  <p>Spend $10K in eight weeks, in two halves. The first $5K goes to Reddit ($3K) and X ($2K). The second $5K is released only if the first half gives a cost per paid subscriber of $300 or less.</p>
+  <p>I got this number from assuming that the cost per click would be $3 for a financial ad on Reddit and that the click to paid subscriber rate is 1%, so $3 divided by 1% gives you $300 for each paid subscriber. The full calculation is in section 4.</p>
+  <p>No spend on LinkedIn as per your instruction, and no Discord, TikTok or Telegram because no ads are allowed there.</p>
+  <p>This is the "test, learn, then expand" option with a gate in the middle. We risk $5K to get three numbers: the real cost per click for this audience, the real click-to-subscriber rate, and the 30-day retention of a subscriber who came from an ad.</p>
+  <p>Each audience is 50,000 to 200,000 people. Each ad sends the person to the Data Streams sign-up page. There are no boosted posts.</p>
 
   <h2 id="who">2. Who they are</h2>
   <h3>The three segments</h3>
   <div class="tablewrap"><table>
-    <thead><tr><th>Segment</th><th>Size (public data)</th><th>What we know</th><th>Paid target?</th></tr></thead>
+    <thead><tr><th>Segment</th><th>Size</th><th>What we know</th><th>Paid target?</th></tr></thead>
     <tbody>
-      <tr class="hit"><td>Retail bot builders and independent quants</td><td>≈ 25,000 to 30,000</td><td>They trade with code, on almost all days. They already pay each month for tools.</td><td>Yes. This is the target.</td></tr>
-      <tr><td>Manual retail traders</td><td>The remainder of ≈ 243,000 traders</td><td>The median is 46 trades in six weeks. The average crypto trade is less than $4.</td><td>No. They will not pay $150 per month.</td></tr>
-      <tr><td>Professional desks</td><td>Small number</td><td>They spend large amounts on infrastructure and they know Chainlink already.</td><td>No. Sales speaks to them directly.</td></tr>
+      <tr class="hit"><td><strong>Retail bot builders and independent quants</strong></td><td>Approximately 25,000 to 30,000 (my estimate from 1 and 2)</td><td>They trade with code, on almost all days [2]. Public posts show that they pay for tools [5].</td><td><strong>Yes. This is the target.</strong> (my estimate)</td></tr>
+      <tr><td>Manual retail traders</td><td>The remainder of approximately 243,000 traders [1]</td><td>The median is 46 trades in six weeks [2]. The average crypto trade is less than $4 [2].</td><td>No. They will not pay $150 per month (my estimate).</td></tr>
+      <tr><td>Professional desks</td><td>No public count. Will called them 20% of the market by value</td><td>They spend large amounts on infrastructure.</td><td>No. Will said to not advertise to them: they find Chainlink anyway.</td></tr>
     </tbody>
   </table></div>
 
-  <h3>The target buyer in detail</h3>
+  <h3>How the three sizes were made</h3>
+  <p><strong>The two sources</strong></p>
+  <ol>
+    <li><strong>Stanford and Singapore Management University study</strong>, reported by Bitcoin.com [1]. It examined approximately 16,000 five-minute bitcoin up-or-down contracts on Polymarket, from 12 February to April 2026. It found approximately 243,000 traders in these markets. It also found that 821 traders (approximately 1 in 300) manipulated the settlement, took $8.2M, and that 93% of the losses went to retail traders.</li>
+    <li><strong>Pew Research Center</strong>, 22 July 2026 [2]. It examined 11,989 active Polymarket accounts for six weeks, from 7 May to 19 June 2026. The accounts came from 10 high-volume events across all subjects. It found:
+      <ul>
+        <li>Median trades per user in six weeks: 46.</li>
+        <li>Median active days: 10.</li>
+        <li>Average trade value: $6.50. For crypto-focused traders, less than $4.</li>
+        <li>The typical user spent approximately $600 and lost less than $2.</li>
+        <li>24% of accounts made fewer than 10 trades. 39% made 10 to 99. 27% made 100 to 999. 11% made 1,000 or more.</li>
+        <li>The 11% group traded on 39 of 42 days.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p><strong>Segment 1: retail bot builders, approximately 25,000 to 30,000</strong></p>
   <ul>
-    <li><strong>Who.</strong> One person, or a team of two or three. They run an automated strategy on the 5-minute, 15-minute and 4-hour crypto markets.</li>
-    <li><strong>Skills.</strong> They write Python, Rust or TypeScript. They use GitHub. Many use AI coding tools to build the bot.</li>
-    <li><strong>What they already pay for.</strong> A VPS, an RPC node, and signal channels (≈ $50 per month per channel). Public discussions put the starting capital at ≈ $1,000, and at $5,000 or more before latency becomes important. A stream at $150 per month is a usual tool cost at that level.</li>
-    <li><strong>What they care about.</strong> Latency, correct settlement data, and reliability. They do not care about brand.</li>
-    <li><strong>Where the purchase starts.</strong> A bot gives a wrong result, or a guide says that the settlement source changed. They then search for the correct feed.</li>
-    <li><strong>Their objections.</strong> "The free feed is sufficient." "Is $150 too much for my capital?" "Will this edge last?"</li>
+    <li>I took the 11% who made 1,000 or more trades in six weeks [2]. That is approximately 24 trades each day, on almost all days. A person does not do this by hand. It is a bot, or a person with a bot (my estimate).</li>
+    <li>11% of 243,000 [1] is 26,730. I wrote "approximately 27,000", and gave a range of 25,000 to 30,000 because the inputs are not exact (my estimate).</li>
+    <li>The number is an estimate.</li>
   </ul>
 
-  <h3>The calculation of the size</h3>
-  <ol>
-    <li>A Stanford and Singapore Management University study counted ≈ <strong>243,000 traders</strong> in the Polymarket 5-minute bitcoin markets from February to April 2026.</li>
-    <li>A Pew Research study (July 2026) found that <strong>11% of active accounts made 1,000 or more trades in six weeks</strong>, and traded on 39 of 42 days. That behaviour is automation or near-automation.</li>
-    <li>11% of 243,000 is ≈ <strong>27,000</strong>.</li>
-  </ol>
-  <p>This is an estimate, because the Pew sample is not crypto-only. It counts Polymarket only. predict.fun, Limitless, Myriad and the Jupiter prediction markets also settle on Chainlink TWAP streams, so the real number is larger.</p>
+  <p><strong>Segment 2: manual retail traders, "the remainder"</strong></p>
+  <ul>
+    <li>This is 243,000 minus approximately 27,000, which is approximately 216,000 (my estimate). I did not write the number in the table, because the 243,000 counts one market type in one period [1]. The real number is larger.</li>
+    <li>The reason to exclude them is the Pew data [2]: the median user made 46 trades in six weeks, spent approximately $600, and the crypto traders averaged less than $4 for each trade. A person who bets $4 at a time will not pay $150 per month for data (my estimate).</li>
+  </ul>
+
+  <p><strong>Segment 3: professional desks, "no public count"</strong></p>
+  <ul>
+    <li>No public source counts them. I did not make a number.</li>
+    <li>The description comes from Will: 80% retail and 20% "sharks", and the sharks spend tens of thousands a month on their setup. His advice was to not advertise to them, because they find Chainlink anyway.</li>
+    <li>The 20% is a share of volume or of value (my estimate). It does not count people. That is why the table says "no public count".</li>
+  </ul>
+
+  <h3>The target buyer in detail</h3>
+  <ul>
+    <li><strong>Who.</strong> One person, or a team of two or three (my estimate). The named bot builders in public are individuals with one or two contributors on their repos [17, 18, 19, 20].</li>
+    <li><strong>Skills.</strong> They write Python [17, 18, 20], Rust [19] or TypeScript (assumption). They use GitHub [18, 19, 20]. Some use AI coding tools to build the bot [17, 20].</li>
+    <li><strong>What they already pay for.</strong> Public Reddit discussion covers a VPS, an RPC node, developer time, and signal channels at approximately $50 per month [5]. The same discussions put the starting capital at approximately $1,000, and at $5,000 or more before latency becomes important [5]. <strong>Note:</strong> [5] is one article by a vendor that summarizes Reddit posts. I did not read the posts. That $150 per month is a usual tool cost for them is my conclusion (my estimate).</li>
+    <li><strong>What they care about.</strong> Latency and RPC performance [5], and correct settlement data [4]. That they do not care about brand is my inference from the type of content they read (my estimate).</li>
+    <li><strong>Where the purchase starts.</strong> A bot that reads the wrong price source gives wrong settlement results and shows no error [4]. That this is the moment they search for the correct feed is my inference (my estimate).</li>
+    <li><strong>Their objections.</strong> "The free feed is sufficient": public guides recommend the free Polymarket WebSocket as the production route [4]. "Is $150 too much for my capital": at $1,000 of capital [5], $150 is 15% of it each month (my estimate). "Will this edge last": one analysis found that the old edge stopped after TWAP [4] (my estimate).</li>
+  </ul>
+
+  <h3>What builders ask for in public</h3>
+  <p>These are Reddit posts from the last year in which builders ask for help or show their work. They show the buyer, the problem, and the words they use. Each line has the direct link.</p>
+
+  <p><strong>They do not know which price the market settles on, and they ask.</strong></p>
+  <ul>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1uqv9em/5_btc_target_prices_from_api/">"5' BTC target prices from API"</a>, r/Polymarket [21]. The poster runs bots on the 5-minute markets and cannot find the target prices. A reply says they are based on Chainlink.</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1sio0yc/why_does_the_btc_5m_chart_show_a_different_price/">"Why does the BTC 5m chart show a different price than the final price"</a>, r/Polymarket [22]. The poster sees a difference of approximately $50 between the chart and the settlement.</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1vva6lf/psa_the_5min_updown_markets_settle_on_a_30_second/">"psa: the 5-min up/down markets settle on a 30 second twap"</a>, r/Polymarket [23]. A builder explains the TWAP windows to the others: 30 seconds for 5-minute markets, 60 seconds for 15-minute and 4-hour markets.</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1sowia8/btc_1m_ohlc_data_for_polymarket_backtesting/">"BTC 1m OHLC data for Polymarket backtesting?"</a>, r/Polymarket [24]. A reply says: "Polymarket uses Chainlink for settlement. Chainlink Data Stream, which is the settlement source used by Polymarket."</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1vr6bkx/how_much_do_you_factor_resolution_risk_into_your/">"How much do you factor resolution risk into your strategy"</a>, r/Polymarket [25]. The thread discusses that the short crypto markets resolve off a Chainlink price stream.</li>
+  </ul>
+
+  <p><strong>They build the bot with a different data source, and it fails.</strong></p>
+  <ul>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1rwc8jy/built_something_for_polymarket_drop_it_here/">"Built Something for Polymarket? Drop It Here"</a>, r/Polymarket, 240 or more comments [26]. One builder: "I made a bot for Polymarkets that trades ETH &amp; BTC 5-minute prediction markets on Polymarket. It uses Binance real-time data."</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1un85mg/i_spent_7_months_testing_every_strategy_on/">"I spent 7 months testing every strategy on Polymarket's 5-minute markets"</a>, r/Polymarket, 40 or more comments [27]. A reply from a beginner: "I my last bot i tried to fetch the real time share price for btc 5 min. And it didn't work, so please..."</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1udy8xe/measuring_binancetopolymarket_leadlag_on_5minute/">"Measuring Binance-to-Polymarket lead-lag on 5-minute markets"</a>, r/Polymarket [28]. A builder measures the gap between the Binance price and the Polymarket settlement.</li>
+  </ul>
+
+  <p><strong>They ask for help to start, and they trade the 5-minute and 15-minute markets.</strong></p>
+  <ul>
+    <li><a href="https://www.reddit.com/r/algotrading/comments/1tpu2nz/i_was_bored_so_i_though_of_making_a_5min/">"I was bored so i though of making a 5-min polymarket bot"</a>, r/algotrading, 40 or more comments, plus an <a href="https://www.reddit.com/r/algotrading/comments/1tv6vug/update_1_i_was_bored_so_i_though_of_making_a_5min/">update thread</a> [29, 30]. A reply: "you should just move to the 15 minute bot."</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1ugt5d3/bots/">"Bots"</a>, r/Polymarket [31]. "I am looking to develop a trading bot that essentially executes buy and sell orders in prediction markets."</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1vsfut3/i_started_logging_why_my_btc_15m_paper_strategy/">"I started logging why my BTC 15m paper strategy stayed flat"</a>, r/Polymarket [32].</li>
+    <li><a href="https://www.reddit.com/r/Polymarket/comments/1t3g3vv/anyone_had_any_success_in_creating_a_copy_trading/">"Anyone had any success in creating a copy trading bot with the help of AI?"</a>, r/Polymarket [33].</li>
+    <li><a href="https://www.reddit.com/r/Kalshi/comments/1mkzmqs/api_bot/">"api bot"</a> and <a href="https://www.reddit.com/r/Kalshi/comments/1o65k1a/api_series_question/">"API series question"</a>, r/Kalshi [34, 35]. Beginners with Python scripts that fail against the API.</li>
+  </ul>
+
+  <p><strong>They publish their code, and other builders copy it.</strong></p>
+  <ul>
+    <li><a href="https://www.reddit.com/r/algotrading/comments/1qebxud/i_built_a_bot_to_automate_riskfree_arbitrage/">"I built a bot to automate 'risk-free' arbitrage between Kalshi and Polymarket"</a>, r/algotrading, 120 or more comments [36].</li>
+    <li><a href="https://www.reddit.com/r/algotrading/comments/1v2oyv1/i_opensourced_my_polymarket_marketmaking_bot_mit/">"I open-sourced my Polymarket market-making bot (MIT)"</a>, r/algotrading, 40 or more comments [37].</li>
+    <li><a href="https://www.reddit.com/r/Kalshi/comments/1qm2kf6/dev_async_python_kalshi_rest_api_client_library/">"[DEV] Async Python Kalshi REST API client library"</a>, r/Kalshi [38]. "I built an async Python client for the Kalshi REST API that I'm using in my own trading bot."</li>
+    <li><a href="https://www.reddit.com/r/Kalshi/comments/1qd4ubf/people_who_actually_win_money_on_kalshi_whats/">"People who actually WIN MONEY on Kalshi"</a>, r/Kalshi, 310 or more comments [39]. One reply: "I am trading weather markets on Kalshi using an automated Python bot."</li>
+  </ul>
+
+  <p><strong>What this shows.</strong> The settlement price is a live question in these threads. Builders answer each other with the word "Chainlink" already. The ad only has to arrive in the thread where the question is asked.</p>
+  <p><strong>One correction to the audience sizes.</strong> The search result shows r/Polymarket at 36.3K followers on 22 Sept 2026. My August figure was approximately 127K. The two counts may measure different things (followers against members), but the ad groups must be sized again in Reddit Ads Manager before launch.</p>
 
   <h3>Why they buy now</h3>
-  <p>Polymarket moved these markets to TWAP settlement on 7 August 2026. The 5-minute markets use a 30-second average. The 15-minute and 4-hour markets use a 60-second average. The change came after the same study found that 821 accounts took ≈ $8.2M by pushing the price in the last seconds, and that retail traders took 93% of the losses.</p>
-  <p>A bot that calculates settlement from a different price source now gives wrong results and shows no error. The builder needs the same number that the market settles on.</p>
-  <div class="email"><div class="email-body">
-    <p><strong>The message:</strong> <em>"Trade on the number the market settles on."</em> The second message is fairness: the settlement is now much more difficult to manipulate, and Chainlink supplies it.</p>
-  </div></div>
+  <p>Polymarket moved these markets to TWAP settlement on 7 August 2026. The 5-minute markets use a 30-second average. The 15-minute and 4-hour markets use a 60-second average [3]. The change came after the same study found that 821 accounts (approximately 1 in 300) took approximately $8.2M by pushing the price in the last seconds, and that retail traders took 93% of the losses [1].</p>
+  <p>A bot that calculates settlement from a different price source now gives wrong results and shows no error [4]. The builder needs the same number that the market settles on (my estimate).</p>
+  <p><strong>The message:</strong> <em>"Trade on the number the market settles on."</em> (assumption). The second message is fairness: the settlement is now much more difficult to manipulate [3], and Chainlink supplies it [3].</p>
 
   <h3>The competitor is the free feed</h3>
-  <p>Public guides tell builders to use the Polymarket real-time WebSocket for prices. Our ads and the landing page must show why the direct stream is better: signed reports, lower latency, and reliability. It is not sufficient to show that the product exists.</p>
+  <p>Public guides tell builders to use the Polymarket real-time WebSocket for prices, and name it as the recommended production path [4]. Our ads and the landing page must show why the direct stream is better: signed reports [4], and lower latency and reliability (assumption). Ads that only say the product exists will fail (my estimate).</p>
 
   <h2 id="where">3. Where they are, and if we can target them</h2>
   <h3>Summary</h3>
   <div class="tablewrap"><table>
     <thead><tr><th>Platform</th><th>Are they there?</th><th>Can we target them?</th><th>Cost</th><th>Decision</th></tr></thead>
     <tbody>
-      <tr class="hit"><td>Reddit</td><td>Yes</td><td>Yes. Subreddit and keyword targeting</td><td>$1.80 to $4 CPC</td><td>Run. $3K.</td></tr>
-      <tr class="hit"><td>X</td><td>Yes</td><td>Probably. Keyword targeting. Follower look-alikes to confirm</td><td>≈ $0.75 CPC, $5.80 CPM</td><td>Run. $2K.</td></tr>
-      <tr><td><strong>YouTube</strong></td><td>Yes</td><td>Yes. Placement on specific videos and channels</td><td>Not priced yet</td><td><strong>Second half, if the first half passes</strong></td></tr>
-      <tr><td>Discord</td><td>Yes</td><td><strong>No.</strong> No self-serve ads. Minimum of $100K or more, for gaming brands</td><td>Not applicable</td><td>No paid. Organic only</td></tr>
-      <tr><td>Telegram</td><td>Yes</td><td>Poor. The ad cannot link to an external website</td><td>Low CPM</td><td>No</td></tr>
-      <tr><td>TikTok</td><td>Some</td><td><strong>No.</strong> Policy prohibits branded content for financial and trading products</td><td>Not applicable</td><td>No</td></tr>
-      <tr><td>LinkedIn</td><td>No</td><td>Not applicable</td><td>$8 to $12 CPC</td><td>No</td></tr>
+      <tr class="hit"><td><strong>Reddit</strong></td><td>Yes [5, 16]</td><td><strong>Yes.</strong> Subreddit and keyword targeting [7]</td><td>$1.80 (my August research) to approximately $4 (my estimate from 9) per click</td><td><strong>Run. $3K.</strong></td></tr>
+      <tr class="hit"><td><strong>X</strong></td><td>Yes [16]</td><td><strong>Probably.</strong> Keyword targeting [12]. Follower look-alikes to confirm [12]</td><td>Approximately $0.75 per click, $5.80 CPM [12]</td><td><strong>Run. $2K.</strong></td></tr>
+      <tr><td><strong>YouTube</strong></td><td>Yes [17, 20]</td><td>Yes. Placement on specific videos and channels (assumption)</td><td>Not priced yet</td><td><strong>Second half, if the first half passes</strong></td></tr>
+      <tr><td>Discord</td><td>Yes [16]</td><td><strong>No.</strong> No self-serve ads. Minimum of $100K or more, for gaming and media brands</td><td>Not applicable</td><td><strong>No paid. Organic only</strong></td></tr>
+      <tr><td>Telegram</td><td>Yes [16]</td><td>Poor. The ad cannot link to an external website [15]</td><td>Minimum 0.1 TON per 1,000 impressions [15]</td><td><strong>No</strong></td></tr>
+      <tr><td>TikTok</td><td>Some (assumption)</td><td><strong>No.</strong> Policy prohibits branded content for financial and trading products</td><td>Not applicable</td><td><strong>No</strong></td></tr>
+      <tr><td>LinkedIn</td><td>No</td><td>Not applicable</td><td>$8 to $12 per click</td><td><strong>No</strong></td></tr>
     </tbody>
   </table></div>
 
   <h3>Reddit in detail ($3K)</h3>
   <ul>
-    <li><strong>Why.</strong> This is where builders ask for help with bot design, latency and data sources. The discussions are technical and public.</li>
-    <li><strong>Targeting.</strong> Reddit places the ad in the subreddits we select. It can also target people who recently took part in posts that contain our keywords. Reddit recommends a minimum audience of 50,000, which agrees with your range.</li>
-    <li><strong>Three ad groups, each in your size range</strong> (subscriber counts are from August and must be read again in Ads Manager):
+    <li><strong>Why.</strong> Builders ask for help with bot design, latency and data sources in r/Polymarket and r/algotrading [5].</li>
+    <li><strong>Targeting.</strong> Reddit places the ad in the subreddits we select, and can target people who recently took part in posts that contain our keywords [7]. Reddit recommends a minimum audience of 50,000 [7], which agrees with your range.</li>
+    <li><strong>Three ad groups, each in your size range.</strong> The subscriber counts are from my August research and must be read again in Ads Manager.
       <ul>
-        <li><strong>A. Prediction markets:</strong> r/Polymarket (≈ 127K) and r/Kalshi (≈ 41K). ≈ 170K.</li>
-        <li><strong>B. Quants:</strong> r/quant (≈ 202K).</li>
-        <li><strong>C. Builders, with keywords only:</strong> r/algotrading (1.9M) and r/AI_Agents (421K), limited to keywords such as Polymarket, Kalshi, prediction market, trading bot, price feed and settlement. Held to 200K or less.</li>
+        <li><strong>A. Prediction markets:</strong> r/Polymarket (approximately 127K) and r/Kalshi (approximately 41K). Approximately 170K.</li>
+        <li><strong>B. Quants:</strong> r/quant (approximately 202K).</li>
+        <li><strong>C. Builders, with keywords only:</strong> r/algotrading (1.9M) and r/AI_Agents (421K), limited to keywords such as Polymarket, Kalshi, prediction market, trading bot, price feed and settlement (assumption). Held to 200K or less.</li>
       </ul>
     </li>
-    <li><strong>Ad format.</strong> A static image or a text post that looks like a technical post. Text posts give fewer clicks but clicks of higher intent.</li>
-    <li><strong>Budget.</strong> $1K for each ad group in four weeks. This is ≈ $35 per day for each group, above the $5 platform minimum.</li>
-    <li><strong>Policy step.</strong> Reddit sends crypto advertisers through a dedicated rep, and requires a registered entity and risk disclaimers. I will get written approval before launch. You said on 20 Aug that an old Reddit ad account may exist and that Natalie will know. I will confirm with her.</li>
+    <li><strong>Ad format.</strong> A static image gives the highest click rate. A text post gives fewer clicks but clicks of higher intent [9]. Niche subreddits under 100K have the lowest CPM and often the best cost per conversion [9].</li>
+    <li><strong>Budget.</strong> $1K for each ad group in four weeks. This is approximately $35 per day for each group (my estimate), above the $5 platform minimum [8]. Finance and investing is the most expensive Reddit category [9].</li>
+    <li><strong>Policy step.</strong> Reddit sends crypto advertisers through a dedicated rep, and requires proper licensing and registration [11]. Its 2026 rules require a registered entity, risk disclaimers, and no guaranteed-return claims [10]. Neither source names a data product. I will get written approval before launch. You said that an old Reddit ad account may exist and that Natalie will know.</li>
   </ul>
 
   <h3>X in detail ($2K)</h3>
   <ul>
-    <li><strong>Why.</strong> Trading news and bot results appear on X first. Will said the same on 13 Aug.</li>
-    <li><strong>Targeting.</strong> Two audiences at $1K each. (1) Keywords in posts and searches: Polymarket bot, Kalshi API, prediction market bot, 15 minute market, TWAP. (2) Look-alikes of the followers of @Polymarket, @Kalshi and bot-tool accounts.</li>
-    <li><strong>To confirm.</strong> You told me that X removed handle targeting years ago. A 2026 guide says that follower look-alikes exist. I will confirm in Ads Manager. If the option does not exist, all $2K goes to keywords.</li>
-    <li><strong>Policy step.</strong> X requires certification for most crypto products. Educational content about blockchain is exempt. A data product is not named. I will get a written answer from the rep.</li>
+    <li><strong>Why.</strong> Will said that these traders are in Twitter spaces and Discord rooms, and that breaking news happens on Twitter.</li>
+    <li><strong>Targeting.</strong> Two audiences at $1K each. (1) Keywords in posts and searches [12]: Polymarket bot, Kalshi API, prediction market bot, 15 minute market, TWAP (assumption). (2) Look-alikes of the followers of @Polymarket, @Kalshi and bot-tool accounts [12] [A for the account list].</li>
+    <li><strong>To confirm.</strong> You said that X removed handle-follower targeting years ago. A 2026 guide says that follower look-alikes exist [12]. I will confirm in Ads Manager. If the option does not exist, all $2K goes to keywords.</li>
+    <li><strong>Cost.</strong> The average is approximately $0.75 per click and $5.80 CPM. A valid test needs $1,000 to $2,000 for each audience [12].</li>
+    <li><strong>Policy step.</strong> X requires certification for most crypto products. Educational content about blockchain, cryptocurrency or DeFi is exempt [13]. A data product is not named. I will get a written answer from the rep.</li>
   </ul>
 
   <h3>YouTube in detail (second half only)</h3>
   <ul>
-    <li><strong>Why.</strong> Tutorials such as "build a Polymarket bot with Claude" are where a new builder selects the tools.</li>
-    <li><strong>Targeting.</strong> Google Ads can place an ad on specific videos and channels. We give it the list of bot tutorial videos.</li>
-    <li><strong>Policy step.</strong> Google requires certification for exchanges and wallets. Its policy does not name data products. To confirm before the second half.</li>
+    <li><strong>Why.</strong> Public tutorials such as "Build a Polymarket Trading Bot with Python" and "Polymarket Bot That Asks Claude to Analyse and Trade" exist [17], and a large channel publishes free AI trading agents [20]. That a new builder selects tools at that moment is my inference (my estimate).</li>
+    <li><strong>Targeting.</strong> Google Ads can place an ad on specific videos and channels (assumption). We give it the list of bot tutorial videos.</li>
+    <li><strong>Policy step.</strong> Google requires certification for exchanges and wallets, and in the EEA a MiCA licence [14]. Its policy does not name data products [14]. To confirm before the second half.</li>
   </ul>
 
   <h2 id="cost">4. The cost per subscriber</h2>
-  <p>The public price is $150 per month per stream.</p>
+  <p>The public price is $150 per month per stream, sold through a self-serve portal at app.chain.link, with card and bank transfer through Stripe [6].</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
     <tbody>
-      <tr><td>Cost per click</td><td>$1.80</td><td>$3.00</td><td>$4.00</td></tr>
-      <tr><td>Click to paid subscriber</td><td>1.5%</td><td>1.0%</td><td>0.5%</td></tr>
-      <tr class="hit"><td>Cost per paid subscriber</td><td>$120</td><td>$300</td><td>$800</td></tr>
+      <tr><td>Cost per click</td><td>$1.80 (August research)</td><td>$3.00 (assumption)</td><td>$4.00 (assumption)</td></tr>
+      <tr><td>Click to paid subscriber</td><td>1.5% (assumption)</td><td>1.0% (assumption)</td><td>0.5% (assumption)</td></tr>
+      <tr class="hit"><td><strong>Cost per paid subscriber</strong></td><td><strong>$120</strong></td><td><strong>$300</strong></td><td><strong>$800</strong></td></tr>
     </tbody>
   </table></div>
-  <p>The conversion rates are my assumptions. No data exists yet. The test replaces them with real numbers.</p>
+  <p><strong>All three conversion rates are my assumptions (assumption).</strong> No data exists for this product. The $3 and $4 click costs are my reading of the Reddit range: $1.80 is the developer-targeting figure from my August research, and finance is the most expensive Reddit category in 2026 [9]. The test replaces all of these with real numbers.</p>
+
+  <h3>How the $300 gate was calculated</h3>
+  <p>The $300 is the base case in the table. I set it as the gate because it is a payback rule. The steps:</p>
+  <ol>
+    <li><strong>Cost per click: $3 (assumption).</strong> The public range for Reddit is $1.80 at the low end (my August research). Finance is the most expensive Reddit category [9], so I put the base at $3 and the high case at $4.</li>
+    <li><strong>Click to paid subscriber: 1% (assumption).</strong> This is the rate of people who click the ad, go to the sign-up page, and pay. No data exists for this product. 1% is a usual rate for a paid tool with a self-serve checkout when the audience is targeted. The low case is 1.5% and the high case is 0.5%.</li>
+    <li><strong>The division.</strong> $3 divided by 1% is $300. In other words, 100 clicks at $3 each cost $300, and 1 of those 100 people pays.</li>
+    <li><strong>The payback test.</strong> The public price is $150 per month [6]. $300 divided by $150 is 2. Thus at $300 a subscriber pays back the ad cost in two months.</li>
+    <li><strong>Why two months is the gate (assumption).</strong> Nobody has the retention number yet. Two months is a limit that a subscriber must pass before we know if the plan makes a profit. If Will's data shows that the usual subscriber stays six months, the gate can move to $600 (four months of revenue). If the usual subscriber stays one month, the gate must be $150.</li>
+  </ol>
+  <p>The same method gives the other two cases: $1.80 divided by 1.5% is $120, and $4 divided by 0.5% is $800.</p>
 
   <h3>Revenue for each $1 of ad spend, by how long the subscriber stays</h3>
   <div class="tablewrap"><table>
-    <thead><tr><th>The subscriber stays</th><th>Revenue per subscriber</th><th>At $120 cost</th><th>At $300 cost</th><th>At $800 cost</th></tr></thead>
+    <thead><tr><th>The subscriber stays</th><th>Revenue per subscriber [6]</th><th>At $120 cost</th><th>At $300 cost</th><th>At $800 cost</th></tr></thead>
     <tbody>
       <tr><td>1 month</td><td>$150</td><td>$1.25</td><td>$0.50</td><td>$0.19</td></tr>
       <tr><td>3 months</td><td>$450</td><td>$3.75</td><td>$1.50</td><td>$0.56</td></tr>
       <tr><td>6 months</td><td>$900</td><td>$7.50</td><td>$3.00</td><td>$1.13</td></tr>
     </tbody>
   </table></div>
-  <p><strong>What the table shows.</strong> At the base cost of $300, we need a subscriber to stay two months to get the money back. At a cost of $800, the plan does not work unless subscribers stay six months or more. <strong>Retention is the number that decides this. I need it from Will.</strong></p>
-  <p>In the base case, the first $5K gives ≈ 1,650 clicks and 15 to 20 paid subscribers. That is sufficient to read the cost per subscriber by channel.</p>
+  <p><strong>What the table shows.</strong> At the base cost of $300, a subscriber must stay two months to get the money back. At $800, the plan does not work unless subscribers stay six months or more. <strong>Retention is the number that decides this. I need it from Will</strong> (Will offered to help build the forecast).</p>
+  <p>In the base case, the first $5K gives approximately 1,650 clicks and 15 to 20 paid subscribers (my estimate from the base row). That is sufficient to read the cost per subscriber by channel (assumption).</p>
 
   <h2 id="plan">5. The plan</h2>
   <div class="tablewrap"><table>
     <thead><tr><th>Weeks</th><th>Spend</th><th>Work</th><th>Gate</th></tr></thead>
     <tbody>
       <tr><td>0 (before launch)</td><td>$0</td><td>The five items below</td><td>All five done</td></tr>
-      <tr><td>1 to 4</td><td>$5K</td><td>Reddit $3K in three ad groups. X $2K in two audiences. All ads use the conversion objective and go to the sign-up page</td><td>Cost per paid subscriber $300 or less</td></tr>
+      <tr><td>1 to 4</td><td>$5K</td><td>Reddit $3K in three ad groups. X $2K in two audiences. All ads use the conversion objective and go to the sign-up page</td><td>Cost per paid subscriber $300 or less (assumption)</td></tr>
       <tr><td>5 to 8</td><td>$5K</td><td>Put the money in the better channel. Add YouTube placements on bot tutorial videos</td><td>Report: spend, subscribers, cost, 30-day retention</td></tr>
     </tbody>
   </table></div>
 
   <h3>The five items before launch</h3>
   <ol>
-    <li><strong>Conversion event.</strong> The checkout page must record three events: sign-up, API key created, and first payment. Without them we cannot read any result.</li>
-    <li><strong>Policy.</strong> Written answers from the Reddit rep and the X rep.</li>
-    <li><strong>Forecast.</strong> The "we spend this, we get this" sheet, made with Will, with his retention number in it.</li>
-    <li><strong>Landing page.</strong> One page that answers the three objections: why not the free feed, what it costs, how to start in ten minutes.</li>
-    <li><strong>Legal.</strong> A read of the ad copy. You raised this on 13 Aug because the product is near a financial instrument.</li>
+    <li><strong>Conversion event.</strong> The checkout page must record three events: sign-up, API key created [6], and first payment. Nobody has confirmed that the page has any conversion tracking.</li>
+    <li><strong>Policy.</strong> Written answers from the Reddit rep [10, 11] and the X rep [13].</li>
+    <li><strong>Forecast.</strong> The "we spend this, we get this" sheet, which you named as your condition for paid, made with Will, with his retention number in it.</li>
+    <li><strong>Landing page.</strong> One page that answers the three objections above (my estimate). You said the landing page is not ready for ads.</li>
+    <li><strong>Legal.</strong> A read of the ad copy. You raised this because the product is near a financial instrument.</li>
   </ol>
 
   <h3>How we measure</h3>
   <ul>
-    <li>Each ad has its own UTM tag, so each subscriber goes back to one ad group.</li>
-    <li><strong>The main number:</strong> cost per paid subscriber. <strong>The early numbers:</strong> cost per click, and cost per sign-up.</li>
-    <li><strong>Stop rules.</strong> I stop an ad group if it has 300 clicks and no sign-up, or if its cost per click is more than $6 after $500 of spend. The money moves to the better group.</li>
-    <li><strong>Report.</strong> One short update each week: spend, clicks, sign-ups, paid subscribers, cost. One screenshot, posted the same day.</li>
+    <li>Each ad has its own UTM tag, so each subscriber goes back to one ad group (assumption).</li>
+    <li><strong>The main number:</strong> cost per paid subscriber. <strong>The early numbers:</strong> cost per click, and cost per sign-up (assumption).</li>
+    <li><strong>Stop rules (assumption).</strong> I stop an ad group if it has 300 clicks and no sign-up, or if its cost per click is more than $6 after $500 of spend. The money moves to the better group.</li>
+    <li><strong>Report.</strong> One short update each week: spend, clicks, sign-ups, paid subscribers, cost. One screenshot, posted the same day, which is the habit you asked for.</li>
   </ul>
 
   <h3>Creative</h3>
-  <p>Tutorials and engineering proof only. Example subjects: "How TWAP settlement changed your bot", "Get the settlement price in ten lines of Python", "Signed price reports: why your backtest and your live results differ". No earnings claims. This keeps us away from the format that is now under CFTC investigation at Polymarket.</p>
+  <p>Tutorials and engineering proof only. Example subjects (assumption): "How TWAP settlement changed your bot", "Get the settlement price in ten lines of Python", "Signed price reports: why your backtest and your live results differ". No earnings claims. Reddit prohibits guaranteed-return claims [10], and Polymarket's own creator campaign with fabricated wins is under CFTC investigation.</p>
 
   <h2 id="risks">6. Risks</h2>
-  <ol>
-    <li><strong>The assumptions are wrong.</strong> The click-to-subscriber rate can be less than 0.5%. The gate at $5K limits the loss.</li>
-    <li><strong>No conversion event exists.</strong> Then the test gives clicks only. This is the first item to confirm.</li>
-    <li><strong>The platforms do not approve the ads.</strong> Reddit and X have crypto rules that do not name a data product. We learn this at zero cost before launch.</li>
-    <li><strong>Subscribers do not stay.</strong> If the usual subscriber stays one month, paid does not work at any cost above $150. Will has this number.</li>
-    <li><strong>The market is smaller after the change.</strong> One public analysis found that the volume of each 5-minute bitcoin cycle decreased by ≈ 40% after TWAP, because the manipulation strategy stopped. Some of the most active bots were that strategy. The number of possible buyers can be smaller than 27,000.</li>
-    <li><strong>The free feed is sufficient for most builders.</strong> Then the product message, not the media, is the problem. The landing page must answer this.</li>
-  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Risk</th><th>Effect</th><th>Control</th></tr></thead>
+    <tbody>
+      <tr><td>The conversion assumptions are wrong (assumption)</td><td>Cost per subscriber above $300</td><td>The $5K gate limits the loss</td></tr>
+      <tr><td>No conversion event on the checkout page</td><td>The test gives clicks only, no result</td><td>First item before launch</td></tr>
+      <tr><td>Reddit or X does not approve the ads [10, 11, 13]</td><td>No launch on that channel</td><td>Written answers from the reps, at zero cost</td></tr>
+      <tr><td>Subscribers stay one month (assumption)</td><td>Paid does not work above $150 per subscriber (my estimate)</td><td>Retention number from Will before launch</td></tr>
+      <tr><td>The market is smaller after TWAP: 5-minute cycle volume fell approximately 40% [4]</td><td>Fewer than 27,000 possible buyers (my estimate)</td><td>Read the audience sizes in Ads Manager before spend</td></tr>
+      <tr><td>The free feed is sufficient for most builders [4]</td><td>The problem is the message (my estimate)</td><td>The landing page must answer this objection</td></tr>
+    </tbody>
+  </table></div>
 
   <h2 id="need">7. What I need from you</h2>
   <ol>
@@ -275,25 +355,108 @@
     <li>An owner for the checkout page, so that the conversion events get built.</li>
   </ol>
 
-  <h2 id="sources">Sources</h2>
-  <ul class="sources">
-    <li>Stanford / SMU study, 243,000 traders, 821 accounts, $8.2M: <a href="https://news.bitcoin.com/stanford-study-polymarket-bitcoin-manipulation/">news.bitcoin.com</a></li>
-    <li>Pew Research, typical Polymarket user (22 July 2026): <a href="https://www.pewresearch.org/short-reads/2026/07/22/what-we-know-about-the-typical-polymarket-user/">pewresearch.org</a></li>
-    <li>TWAP settlement change, windows, and the other venues: <a href="https://genfinity.io/2026/08/12/chainlink-twap-data-streams-polymarket-crypto-markets/">genfinity.io</a></li>
-    <li>How bot builders get price data after TWAP, and the 40% volume change: <a href="https://tradoxvps.com/polymarket-twap-settlement/">tradoxvps.com</a></li>
-    <li>What bot builders discuss and pay for: <a href="https://www.polysyncer.com/blog/polymarket-bot-reddit">polysyncer.com</a></li>
-    <li>Public Data Streams price ($150 per month per stream): <a href="https://www.coingabbar.com/en/crypto-currency-news/chainlink-news-link-price-data-streams-paid-access">coingabbar.com</a></li>
-    <li>Reddit targeting and the 50,000 minimum: <a href="https://www.stackmatix.com/blog/reddit-ads-targeting-options-2026">stackmatix.com</a></li>
-    <li>Reddit budgets: <a href="https://www.stackmatix.com/blog/reddit-ads-minimum-budget-requirements-2026">stackmatix.com</a></li>
-    <li>Reddit cost by category and by format: <a href="https://www.adcontrolcenter.com/learn/reddit-ads-cost-benchmarks-q2-2026">adcontrolcenter.com</a></li>
-    <li>Reddit crypto policy: <a href="https://www.auditsocials.com/blog/reddit-advertising-policy-compliance-guide-2026">auditsocials.com</a> and <a href="https://www.marketingbrew.com/stories/2022/04/07/the-dos-and-don-ts-of-running-crypto-ads-on-reddit">marketingbrew.com</a></li>
-    <li>X costs and targeting: <a href="https://improvado.io/blog/twitter-ads-guide">improvado.io</a></li>
-    <li>X crypto policy: <a href="https://business.x.com/en/help/ads-policies/ads-content-policies/financial-services">business.x.com</a></li>
-    <li>Google Ads crypto policy (August 2026 update): <a href="https://support.google.com/adspolicy/answer/17264747?hl=en-IE">support.google.com</a></li>
-    <li>Telegram Ads limits: <a href="https://blog.invitemember.com/telegram-ads-in-2026-setup-costs-and-requirements/">invitemember.com</a></li>
-    <li>Polymarket community locations: <a href="https://www.newspoly.net/blog/polymarket-community">newspoly.net</a></li>
-    <li>Subreddit sizes, Reddit $1.80 CPC, Discord and TikTok limits: my August research (TWAP creator plan).</li>
+  <h2 id="stronger">8. What would make this page stronger</h2>
+  <ul>
+    <li><strong>Three subscriber conversations.</strong> Will has the subscriber emails. Three answers to "why did you buy, and what did you use before" would replace most of my estimates in section 2 with facts.</li>
+    <li><strong>Current member counts</strong> for the five subreddits, read from Reddit Ads Manager. The August figures are the only ones I have.</li>
+    <li><strong>A count of API keys or wallets that read the Polymarket feed</strong>, if the product team has it. That would replace the 27,000 estimate with a measurement.</li>
   </ul>
+
+  <h2 id="sources">Sources</h2>
+  <p>A number in brackets points to a source below. "(assumption)" marks my own assumption with no source. "(my estimate)" marks my estimate from a source. "(my August research)" is the research I did for the earlier creator plan.</p>
+  <div class="tablewrap"><table class="src">
+    <thead><tr><th>#</th><th>Source</th><th>What it supplies</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Bitcoin.com News, "Stanford Study: Polymarket's Bitcoin Bets Were Rigged in the Final 10 Seconds" (2026). <a href="https://news.bitcoin.com/stanford-study-polymarket-bitcoin-manipulation/">https://news.bitcoin.com/stanford-study-polymarket-bitcoin-manipulation/</a></td><td>Approximately 243,000 traders in the 5-minute bitcoin markets, 12 Feb to April 2026. 821 accounts, approximately 1 in 300. $8.2M taken. 93% of losses on retail. Approximately 16,000 contracts examined.</td></tr>
+      <tr><td>2</td><td>Pew Research Center, "How often do Polymarket users trade, and how much do they win?" (22 July 2026). <a href="https://www.pewresearch.org/short-reads/2026/07/22/what-we-know-about-the-typical-polymarket-user/">https://www.pewresearch.org/short-reads/2026/07/22/what-we-know-about-the-typical-polymarket-user/</a></td><td>11,989 active accounts, 7 May to 19 June 2026, from 10 high-volume events. Median 46 trades, 10 active days. Average trade $6.50. Crypto-focused traders: average trade less than $4. 24% under 10 trades, 39% at 10 to 99, 27% at 100 to 999, 11% at 1,000 or more. The 11% traded on 39 of 42 days.</td></tr>
+      <tr><td>3</td><td>Genfinity, "Chainlink TWAP Data Streams Now Settle Polymarket's 5- and 15-Minute Crypto Markets" (12 Aug 2026). <a href="https://genfinity.io/2026/08/12/chainlink-twap-data-streams-polymarket-crypto-markets/">https://genfinity.io/2026/08/12/chainlink-twap-data-streams-polymarket-crypto-markets/</a></td><td>TWAP from 7 Aug 2026. 30-second window for 5-minute markets, 60-second for 15-minute and 4-hour. Chainlink TWAP mainnet feeds live 31 July 2026. More than $9B cumulative volume on Chainlink-powered Polymarket markets. predict.fun, Limitless, Myriad and Jupiter use the same streams.</td></tr>
+      <tr><td>4</td><td>TradoxVPS, "Polymarket TWAP Settlement: What Actually Changed for Bots" (2026). <a href="https://tradoxvps.com/polymarket-twap-settlement/">https://tradoxvps.com/polymarket-twap-settlement/</a></td><td>Three price routes for bots: Chainlink Data Streams (signed reports, credentials), the Polymarket real-time WebSocket (recommended production path), Binance spot for hourly and daily markets. A wrong source drifts with no error. Window changed from 30 to 60 seconds on 14 Aug. Volume per 5-minute cycle fell approximately 40%, from $91,600 to $54,100.</td></tr>
+      <tr><td>5</td><td>Polysyncer, "Polymarket Bot on Reddit: What the Community Picks" (2026). <a href="https://www.polysyncer.com/blog/polymarket-bot-reddit">https://www.polysyncer.com/blog/polymarket-bot-reddit</a></td><td>Subreddits where bots are discussed: r/Polymarket, r/algotrading, r/CryptoCurrency, r/options. Subjects: RPC infrastructure, execution latency, wallet selection. Costs: signal channels approximately $50 per month, VPS, RPC, developer time. Capital: approximately $1,000 for managed services, approximately $5,000 before latency dominates. <strong>Vendor source. It sells a copy-trading service.</strong></td></tr>
+      <tr><td>6</td><td>CoinGabbar, "Chainlink News: New Data Streams Revenue Plan Could Lift LINK" (8 Aug 2026). <a href="https://www.coingabbar.com/en/crypto-currency-news/chainlink-news-link-price-data-streams-paid-access">https://www.coingabbar.com/en/crypto-currency-news/chainlink-news-link-price-data-streams-paid-access</a></td><td>$150 per month per stream. Bundle plans. Self-serve portal at app.chain.link. Card and bank transfer via Stripe. Monthly billing. Users generate API credentials in the portal. Target: market makers and algorithmic traders in prediction markets.</td></tr>
+      <tr><td>7</td><td>Stackmatix, "Reddit Ads Targeting Options in 2026". <a href="https://www.stackmatix.com/blog/reddit-ads-targeting-options-2026">https://www.stackmatix.com/blog/reddit-ads-targeting-options-2026</a></td><td>Community (subreddit) targeting. Keyword targeting by recent participation in posts. Reddit recommends a minimum audience of 50,000.</td></tr>
+      <tr><td>8</td><td>Stackmatix, "Reddit Ads Minimum Budget Requirements in 2026". <a href="https://www.stackmatix.com/blog/reddit-ads-minimum-budget-requirements-2026">https://www.stackmatix.com/blog/reddit-ads-minimum-budget-requirements-2026</a></td><td>$5 per day platform minimum. Practical minimums: $50 to $75 per day for traffic, $75 to $150 for conversions. Validation phase of $1,500 to $3,000 in two to three weeks.</td></tr>
+      <tr><td>9</td><td>AdControlCenter, "Reddit Ads cost benchmarks, Q2 2026". <a href="https://www.adcontrolcenter.com/learn/reddit-ads-cost-benchmarks-q2-2026">https://www.adcontrolcenter.com/learn/reddit-ads-cost-benchmarks-q2-2026</a></td><td>Finance and investing is the most expensive category. Niche subreddits under 100K have the lowest CPM and often the best cost per conversion. Static images give the highest click rate; text posts give higher-intent clicks. No dollar figures.</td></tr>
+      <tr><td>10</td><td>AuditSocials, "Reddit Advertising Policy 2026". <a href="https://www.auditsocials.com/blog/reddit-advertising-policy-compliance-guide-2026">https://www.auditsocials.com/blog/reddit-advertising-policy-compliance-guide-2026</a></td><td>Crypto and Web3: registered entity required, no guaranteed-return claims, risk disclaimers mandatory. Gambling: valid licence, state-by-state in the US.</td></tr>
+      <tr><td>11</td><td>Marketing Brew, "The dos and don'ts of running crypto ads on Reddit" (7 Apr 2022). <a href="https://www.marketingbrew.com/stories/2022/04/07/the-dos-and-don-ts-of-running-crypto-ads-on-reddit">https://www.marketingbrew.com/stories/2022/04/07/the-dos-and-don-ts-of-running-crypto-ads-on-reddit</a></td><td>Crypto advertisers work with a dedicated Reddit rep, with no self-serve option. Proper licensing and registration required. Wallets, cards, exchanges and NFT marketplaces allowed. Crypto loans prohibited. <strong>From 2022. Rules can have changed.</strong></td></tr>
+      <tr><td>12</td><td>Improvado, "Twitter Ads Guide 2026". <a href="https://improvado.io/blog/twitter-ads-guide">https://improvado.io/blog/twitter-ads-guide</a></td><td>Average $0.75 CPC, $5.80 CPM. $20 per day technical minimum; $1,000 to $2,000 per audience for a valid test. Targeting: keywords (exact, phrase, broad), follower look-alikes, account lists, pixel retargeting, interests.</td></tr>
+      <tr><td>13</td><td>X Business, "Financial products and services" ad policy. <a href="https://business.x.com/en/help/ads-policies/ads-content-policies/financial-services">https://business.x.com/en/help/ads-policies/ads-content-policies/financial-services</a></td><td>Certification required for most crypto products. Exchanges, wallets and similar allowed with country licensing. Educational content about blockchain, cryptocurrency or DeFi is unrestricted. ICOs and mining prohibited.</td></tr>
+      <tr><td>14</td><td>Google Ads Policy Help, "Update to Cryptocurrencies and related products policy (August 2026)". <a href="https://support.google.com/adspolicy/answer/17264747?hl=en-IE">https://support.google.com/adspolicy/answer/17264747?hl=en-IE</a></td><td>Certification required for exchanges, software wallets and hardware wallets. In the EEA, a MiCA CASP licence. Data products not named.</td></tr>
+      <tr><td>15</td><td>InviteMember, "Telegram Ads in 2026: Setup, Costs and Requirements". <a href="https://blog.invitemember.com/telegram-ads-in-2026-setup-costs-and-requirements/">https://blog.invitemember.com/telegram-ads-in-2026-setup-costs-and-requirements/</a></td><td>Minimum 0.1 TON per 1,000 impressions. Channel-based targeting only. Ads link only to Telegram destinations. Gambling and "harmful finance" prohibited. 160-character limit.</td></tr>
+      <tr><td>16</td><td>NewsPoly, "Polymarket Community: Discord, Twitter and Where Traders Connect". <a href="https://www.newspoly.net/blog/polymarket-community">https://www.newspoly.net/blog/polymarket-community</a></td><td>Discord is the official hub with "tens of thousands of members". Communities on X, r/Polymarket, r/PredictionMarkets, and Telegram. No counts.</td></tr>
+      <tr><td>17</td><td>Robot Traders, "Build a Polymarket Trading Bot with Python". <a href="https://robottraders.io/blog/polymarket-trading-bot-python">https://robottraders.io/blog/polymarket-trading-bot-python</a> and "Polymarket Bot That Asks Claude to Analyse and Trade". <a href="https://robottraders.io/blog/polymarket-ai-bot-claude-python">https://robottraders.io/blog/polymarket-ai-bot-claude-python</a></td><td>Public tutorials: a Polymarket bot in Python, and a Python bot that sends a market question to Claude through the Anthropic API and trades on the verdict. Verified 22 Sept 2026.</td></tr>
+      <tr><td>18</td><td>Ryan Frigo, GitHub, "kalshi-ai-trading-bot". <a href="https://github.com/ryanfrigo/kalshi-ai-trading-bot">https://github.com/ryanfrigo/kalshi-ai-trading-bot</a> (user page: <a href="https://github.com/ryanfrigo">https://github.com/ryanfrigo</a>)</td><td>"A toolkit for building AI-automated trading strategies on Kalshi prediction markets." Python. 595 stars on 22 Sept 2026. Signed REST and WebSocket client, market ingestion, position tracking, example strategies.</td></tr>
+      <tr><td>19</td><td>HarrierOnChain, GitHub, "Prediction-Markets-Trading-Bot-Toolkits". <a href="https://github.com/HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits">https://github.com/HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits</a></td><td>"Production-grade Rust trading bots for prediction markets. Polymarket, Kalshi, Limitless. 10 strategies on one execution core." Live on Polymarket, Kalshi, Limitless, Drift BET, Augur, Azuro and Myriad. 370 stars on 22 Sept 2026.</td></tr>
+      <tr><td>20</td><td>Moon Dev, GitHub user page. <a href="https://github.com/moondevonyt">https://github.com/moondevonyt</a></td><td>2,800 followers on 22 Sept 2026. Repos include "Harvard-Algorithmic-Trading-with-AI" (458 stars), "Limitless-Prediction-Market-Bots" (66 stars) and a fork of "eliza" for autonomous trading agents. Publishes quantitative trading code on YouTube.</td></tr>
+      <tr><td>21</td><td>r/Polymarket, "5' BTC target prices from API". <a href="https://www.reddit.com/r/Polymarket/comments/1uqv9em/5_btc_target_prices_from_api/">https://www.reddit.com/r/Polymarket/comments/1uqv9em/5_btc_target_prices_from_api/</a></td><td>A bot builder cannot find the settlement target prices. Reply: they are based on Chainlink. Found 22 Sept 2026.</td></tr>
+      <tr><td>22</td><td>r/Polymarket, "Why does the BTC 5m chart show a different price than the final price". <a href="https://www.reddit.com/r/Polymarket/comments/1sio0yc/why_does_the_btc_5m_chart_show_a_different_price/">https://www.reddit.com/r/Polymarket/comments/1sio0yc/why_does_the_btc_5m_chart_show_a_different_price/</a></td><td>Approximately $50 difference between the chart and the settlement price. Found 22 Sept 2026.</td></tr>
+      <tr><td>23</td><td>r/Polymarket, "psa: the 5-min up/down markets settle on a 30 second twap". <a href="https://www.reddit.com/r/Polymarket/comments/1vva6lf/psa_the_5min_updown_markets_settle_on_a_30_second/">https://www.reddit.com/r/Polymarket/comments/1vva6lf/psa_the_5min_updown_markets_settle_on_a_30_second/</a></td><td>Builder explains the TWAP windows to other builders. Found 22 Sept 2026.</td></tr>
+      <tr><td>24</td><td>r/Polymarket, "BTC 1m OHLC data for Polymarket backtesting?". <a href="https://www.reddit.com/r/Polymarket/comments/1sowia8/btc_1m_ohlc_data_for_polymarket_backtesting/">https://www.reddit.com/r/Polymarket/comments/1sowia8/btc_1m_ohlc_data_for_polymarket_backtesting/</a></td><td>Reply names Chainlink Data Stream as the settlement source. Found 22 Sept 2026.</td></tr>
+      <tr><td>25</td><td>r/Polymarket, "How much do you factor resolution risk into your strategy". <a href="https://www.reddit.com/r/Polymarket/comments/1vr6bkx/how_much_do_you_factor_resolution_risk_into_your/">https://www.reddit.com/r/Polymarket/comments/1vr6bkx/how_much_do_you_factor_resolution_risk_into_your/</a></td><td>Discussion of settlement off a Chainlink price stream. Found 22 Sept 2026.</td></tr>
+      <tr><td>26</td><td>r/Polymarket, "Built Something for Polymarket? Drop It Here". <a href="https://www.reddit.com/r/Polymarket/comments/1rwc8jy/built_something_for_polymarket_drop_it_here/">https://www.reddit.com/r/Polymarket/comments/1rwc8jy/built_something_for_polymarket_drop_it_here/</a></td><td>240 or more comments. Builders list their bots. One 5-minute bot uses Binance real-time data. Found 22 Sept 2026.</td></tr>
+      <tr><td>27</td><td>r/Polymarket, "I spent 7 months testing every strategy on Polymarket's 5-minute markets". <a href="https://www.reddit.com/r/Polymarket/comments/1un85mg/i_spent_7_months_testing_every_strategy_on/">https://www.reddit.com/r/Polymarket/comments/1un85mg/i_spent_7_months_testing_every_strategy_on/</a></td><td>40 or more comments. Explains strike and settlement on the Chainlink price. A beginner reports that the price fetch failed. Found 22 Sept 2026.</td></tr>
+      <tr><td>28</td><td>r/Polymarket, "Measuring Binance-to-Polymarket lead-lag on 5-minute markets". <a href="https://www.reddit.com/r/Polymarket/comments/1udy8xe/measuring_binancetopolymarket_leadlag_on_5minute/">https://www.reddit.com/r/Polymarket/comments/1udy8xe/measuring_binancetopolymarket_leadlag_on_5minute/</a></td><td>Builder measures the gap between Binance and settlement. Found 22 Sept 2026.</td></tr>
+      <tr><td>29</td><td>r/algotrading, "I was bored so i though of making a 5-min polymarket bot". <a href="https://www.reddit.com/r/algotrading/comments/1tpu2nz/i_was_bored_so_i_though_of_making_a_5min/">https://www.reddit.com/r/algotrading/comments/1tpu2nz/i_was_bored_so_i_though_of_making_a_5min/</a></td><td>40 or more comments. Reply: move to the 15-minute bot. Found 22 Sept 2026.</td></tr>
+      <tr><td>30</td><td>r/algotrading, "[Update 1] I was bored so i though of making a 5-min polymarket bot". <a href="https://www.reddit.com/r/algotrading/comments/1tv6vug/update_1_i_was_bored_so_i_though_of_making_a_5min/">https://www.reddit.com/r/algotrading/comments/1tv6vug/update_1_i_was_bored_so_i_though_of_making_a_5min/</a></td><td>Progress after two weeks. Found 22 Sept 2026.</td></tr>
+      <tr><td>31</td><td>r/Polymarket, "Bots". <a href="https://www.reddit.com/r/Polymarket/comments/1ugt5d3/bots/">https://www.reddit.com/r/Polymarket/comments/1ugt5d3/bots/</a></td><td>A person asks how to develop a prediction-market trading bot. Found 22 Sept 2026.</td></tr>
+      <tr><td>32</td><td>r/Polymarket, "I started logging why my BTC 15m paper strategy stayed flat". <a href="https://www.reddit.com/r/Polymarket/comments/1vsfut3/i_started_logging_why_my_btc_15m_paper_strategy/">https://www.reddit.com/r/Polymarket/comments/1vsfut3/i_started_logging_why_my_btc_15m_paper_strategy/</a></td><td>Paper trading on the 15-minute markets. Found 22 Sept 2026.</td></tr>
+      <tr><td>33</td><td>r/Polymarket, "Anyone had any success in creating a copy trading bot with the help of AI?". <a href="https://www.reddit.com/r/Polymarket/comments/1t3g3vv/anyone_had_any_success_in_creating_a_copy_trading/">https://www.reddit.com/r/Polymarket/comments/1t3g3vv/anyone_had_any_success_in_creating_a_copy_trading/</a></td><td>Builders use AI tools to write bots. Found 22 Sept 2026.</td></tr>
+      <tr><td>34</td><td>r/Kalshi, "api bot". <a href="https://www.reddit.com/r/Kalshi/comments/1mkzmqs/api_bot/">https://www.reddit.com/r/Kalshi/comments/1mkzmqs/api_bot/</a></td><td>A Python script fails against the API. Found 22 Sept 2026.</td></tr>
+      <tr><td>35</td><td>r/Kalshi, "API series question". <a href="https://www.reddit.com/r/Kalshi/comments/1o65k1a/api_series_question/">https://www.reddit.com/r/Kalshi/comments/1o65k1a/api_series_question/</a></td><td>A beginner asks for help with the Python API. Found 22 Sept 2026.</td></tr>
+      <tr><td>36</td><td>r/algotrading, "I built a bot to automate 'risk-free' arbitrage between Kalshi and Polymarket". <a href="https://www.reddit.com/r/algotrading/comments/1qebxud/i_built_a_bot_to_automate_riskfree_arbitrage/">https://www.reddit.com/r/algotrading/comments/1qebxud/i_built_a_bot_to_automate_riskfree_arbitrage/</a></td><td>120 or more comments. Source code published. Found 22 Sept 2026.</td></tr>
+      <tr><td>37</td><td>r/algotrading, "I open-sourced my Polymarket market-making bot (MIT)". <a href="https://www.reddit.com/r/algotrading/comments/1v2oyv1/i_opensourced_my_polymarket_marketmaking_bot_mit/">https://www.reddit.com/r/algotrading/comments/1v2oyv1/i_opensourced_my_polymarket_marketmaking_bot_mit/</a></td><td>40 or more comments. Found 22 Sept 2026.</td></tr>
+      <tr><td>38</td><td>r/Kalshi, "[DEV] Async Python Kalshi REST API client library". <a href="https://www.reddit.com/r/Kalshi/comments/1qm2kf6/dev_async_python_kalshi_rest_api_client_library/">https://www.reddit.com/r/Kalshi/comments/1qm2kf6/dev_async_python_kalshi_rest_api_client_library/</a></td><td>A builder shares the client used in his own bot. Found 22 Sept 2026.</td></tr>
+      <tr><td>39</td><td>r/Kalshi, "People who actually WIN MONEY on Kalshi". <a href="https://www.reddit.com/r/Kalshi/comments/1qd4ubf/people_who_actually_win_money_on_kalshi_whats/">https://www.reddit.com/r/Kalshi/comments/1qd4ubf/people_who_actually_win_money_on_kalshi_whats/</a></td><td>310 or more comments. Includes an automated Python weather bot. Found 22 Sept 2026.</td></tr>
+    </tbody>
+  </table></div>
+</article>
 </main>
+
+<script>
+  // Copy the read as rich HTML for Google Docs: drop page-only chrome and
+  // inline the table styling, since Docs ignores class-based CSS on paste.
+  function buildDocClone() {
+    var doc = document.getElementById('doc').cloneNode(true);
+    doc.querySelectorAll('[data-nocopy]').forEach(function (el) { el.remove(); });
+    doc.querySelectorAll('.tablewrap').forEach(function (w) { w.replaceWith.apply(w, Array.from(w.childNodes)); });
+    doc.querySelectorAll('table').forEach(function (t) { t.setAttribute('style', 'border-collapse:collapse;width:100%'); });
+    doc.querySelectorAll('th, td').forEach(function (c) {
+      var s = 'border:1px solid #bbbbbb;padding:6px 8px;vertical-align:top;text-align:left';
+      if (c.tagName === 'TH') s += ';background:#f1f1f1;font-weight:bold';
+      else if (c.parentNode.classList.contains('hit')) s += ';background:#e3f0f0';
+      c.setAttribute('style', s);
+    });
+    doc.querySelectorAll('[class]').forEach(function (el) { el.removeAttribute('class'); });
+    doc.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+    return doc;
+  }
+
+  document.querySelectorAll('.copy-doc').forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+      var doc = buildDocClone();
+      // innerText needs a rendered node, so mount the clone off-screen briefly.
+      doc.style.cssText = 'position:fixed;left:-99999px;top:0;width:900px';
+      document.body.appendChild(doc);
+      var text = doc.innerText.replace(/\n{3,}/g, '\n\n').trim();
+      doc.remove();
+      doc.removeAttribute('style');
+      var html = '<meta charset="utf-8"><div>' + doc.innerHTML + '</div>';
+      var done = function () {
+        document.querySelectorAll('.copy-doc').forEach(function (b) { b.textContent = 'Copied'; b.classList.add('done'); });
+        setTimeout(function () {
+          document.querySelectorAll('.copy-doc').forEach(function (b) { b.textContent = label; b.classList.remove('done'); });
+        }, 1800);
+      };
+      if (window.ClipboardItem && navigator.clipboard.write) {
+        navigator.clipboard.write([new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' })
+        })]).then(done, function () { navigator.clipboard.writeText(text).then(done); });
+      } else {
+        navigator.clipboard.writeText(text).then(done);
+      }
+    });
+  });
+</script>
 </body>
 </html>
