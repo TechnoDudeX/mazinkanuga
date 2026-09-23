@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chocolate Banana Story Card</title>
+<!-- 1080x960: the top pane of an Instagram Story in two-pane Layout mode (1080x1920 split in half). -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0a0a0a; --berry:#4A2C1D; --paper:#FBF6F1; --red:#B5541F; --cream:#F2D9B8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:960px; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  .card { width:1080px; height:960px; display:flex; flex-direction:column; }
+  .head { background:var(--berry); color:var(--cream); padding:30px 52px 26px; border-bottom:4px solid var(--ink); display:flex; align-items:center; gap:26px; }
+  .emoji { font-size:104px; line-height:1; font-family:'Apple Color Emoji',sans-serif; }
+  h1 { font-family:'Archivo',sans-serif; font-weight:900; font-size:72px; line-height:.9; letter-spacing:-2.5px; }
+  .sub { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:22px; letter-spacing:.06em; text-transform:uppercase; margin-top:12px; }
+  .body { flex:1; display:grid; grid-template-columns: 1.1fr 1fr; }
+  .col { padding:34px 30px 24px 52px; }
+  .col + .col { border-left:3px solid var(--ink); padding:34px 48px 24px 30px; }
+  h2 { font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--red); margin-bottom:12px; }
+  .ing { list-style:none; }
+  .ing li { display:flex; justify-content:space-between; gap:10px; font-size:33px; font-weight:500; line-height:1.15; padding:10px 0; border-bottom:2px solid #e6d6c6; }
+  .ing li b { font-weight:800; white-space:nowrap; }
+  .ing li.no { color:#7d6554; border-bottom:0; font-size:27px; padding-top:14px; }
+  .steps { list-style:none; counter-reset:s; }
+  .steps li { counter-increment:s; position:relative; padding-left:54px; font-size:33px; font-weight:500; line-height:1.2; margin:0 0 22px; }
+  .steps li::before { content:counter(s); position:absolute; left:0; top:1px; width:38px; height:38px; border-radius:50%; background:var(--ink); color:#fff; font-size:21px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .steps li b { font-weight:800; white-space:nowrap; }
+  .nut { display:grid; grid-template-columns:repeat(4,1fr); background:var(--ink); color:#fff; }
+  .nut > div { padding:20px 0 22px; text-align:center; border-left:2px solid #333; }
+  .nut > div:first-child { border-left:0; }
+  .v { font-family:'Archivo',sans-serif; font-weight:900; font-size:56px; letter-spacing:-1.5px; line-height:1; color:var(--cream); }
+  .v small { font-size:30px; }
+  .k { margin-top:8px; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:20px; letter-spacing:.1em; text-transform:uppercase; color:#cfc2b4; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="emoji">🍫</div>
+    <div>
+      <h1>Mazin's Choco Banana Ninja Creami</h1>
+      <div class="sub">Protein ice cream · 1 half pint</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="col">
+      <h2>Ingredients</h2>
+      <ul class="ing">
+        <li>Fairlife 2% milk <b>305 ml</b></li>
+        <li>Ripe banana <b>60 g</b></li>
+        <li>Vanilla whey <b>33 g</b></li>
+        <li>FF choc pudding mix <b>12 g</b></li>
+        <li>Allulose <b>1 tbsp</b></li>
+        <li>Vanilla extract <b>½ tsp</b></li>
+        <li>Xanthan gum <b>1/16 tsp</b></li>
+        <li class="no">No salt · the mix has plenty</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>Steps</h2>
+      <ol class="steps">
+        <li><b>Blend</b> 75 sec, scrape, 15 more</li>
+        <li>Into the pint <b>right away</b>, it sets in 3–5 min</li>
+        <li><b>Freeze</b> level for 24 hrs</li>
+        <li><b>Spin</b> on LITE ICE CREAM</li>
+        <li>Dry? Add 10 ml milk, <b>RE-SPIN</b></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="nut">
+    <div><div class="v">395</div><div class="k">Cal</div></div>
+    <div><div class="v">41<small>g</small></div><div class="k">Protein</div></div>
+    <div><div class="v">33<small>g</small></div><div class="k">Net carbs</div></div>
+    <div><div class="v">10<small>g</small></div><div class="k">Fat</div></div>
+  </div>
+</div>
+</body>
+</html>

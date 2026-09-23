@@ -340,6 +340,86 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Strawberry Protein Ice Cream",
+  "description": "A Ninja Creami half pint with 40 g of protein for 346 calories. Fresh strawberries and one serving of strawberry dessert mix do the thickening.",
+  "author": { "@type": "Person", "name": "Mazin Kanuga" },
+  "recipeCategory": "Dessert",
+  "recipeYield": "1 half pint",
+  "prepTime": "PT5M",
+  "totalTime": "PT24H5M",
+  "recipeIngredient": [
+    "280 ml Fairlife 2% ultra filtered milk",
+    "100 g ripe strawberries, hulled",
+    "33 g vanilla whey protein, 1 scoop (Leanfit)",
+    "12 g Simply Desserts strawberry mix, one serving",
+    "1 tbsp allulose",
+    "1/2 tsp vanilla extract"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Blend", "text": "Put all ingredients in the blender and blend for 60 seconds." },
+    { "@type": "HowToStep", "name": "Fill", "text": "Pour the base into the pint immediately. The starch starts to set in 3 to 5 minutes." },
+    { "@type": "HowToStep", "name": "Freeze", "text": "Freeze level for 24 hours." },
+    { "@type": "HowToStep", "name": "Spin", "text": "Select LITE ICE CREAM." },
+    { "@type": "HowToStep", "name": "Re-spin", "text": "If it comes out dry, add 10 ml of milk and RE-SPIN." }
+  ],
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "servingSize": "1 half pint",
+    "calories": "346 calories",
+    "proteinContent": "40 g",
+    "carbohydrateContent": "39 g",
+    "fatContent": "10 g",
+    "sugarContent": "14 g",
+    "sodiumContent": "550 mg"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Chocolate Banana Protein Ice Cream",
+  "description": "A Ninja Creami half pint with fresh banana, fat free chocolate pudding mix and whey. 41 g of protein for about 395 calories.",
+  "author": { "@type": "Person", "name": "Mazin Kanuga" },
+  "recipeCategory": "Dessert",
+  "recipeYield": "1 half pint",
+  "prepTime": "PT10M",
+  "totalTime": "PT24H10M",
+  "recipeIngredient": [
+    "305 ml Fairlife 2% ultra filtered milk",
+    "60 g ripe banana (brown spots on the peel)",
+    "33 g vanilla whey protein, 1 scoop (Leanfit)",
+    "12 g Jell-O fat free chocolate instant pudding mix, dry",
+    "1 tbsp allulose",
+    "1/2 tsp vanilla extract",
+    "1/16 tsp xanthan gum"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Weigh into the jar", "text": "Blender jar on the scale, zero it. Add the milk, cut the banana straight in, then the whey and pudding mix." },
+    { "@type": "HowToStep", "name": "Add the rest", "text": "Add the allulose and vanilla. Put the xanthan gum on top of the dry powders, not into the milk, so it does not lump." },
+    { "@type": "HowToStep", "name": "Blend", "text": "Blend 75 seconds, scrape the sides down, blend 15 seconds more. The base must be fully smooth." },
+    { "@type": "HowToStep", "name": "Taste", "text": "Add more allulose only if it is not sweet. Frozen tastes less sweet than liquid." },
+    { "@type": "HowToStep", "name": "Fill and freeze", "text": "Into the pint immediately - the starch sets in 3 to 5 minutes and banana browns. Lid on, freeze level for 24 hours." },
+    { "@type": "HowToStep", "name": "Spin", "text": "Straight from the freezer into the machine. Select LITE ICE CREAM." },
+    { "@type": "HowToStep", "name": "Re-spin", "text": "If it comes out dry or in pieces, add 10 ml of milk and RE-SPIN. Two cycles is normal with whey." },
+    { "@type": "HowToStep", "name": "Serve", "text": "Serve immediately. For mix-ins, make a hole in the center, add them, and run MIX-IN once." }
+  ],
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "servingSize": "1 half pint",
+    "calories": "395 calories",
+    "proteinContent": "41 g",
+    "carbohydrateContent": "45 g",
+    "fatContent": "10 g",
+    "sugarContent": "16 g",
+    "sodiumContent": "550 mg"
+  }
+}
+</script>
 <style>
   :root {
     --bg: #ffffff;
@@ -356,6 +436,8 @@
     --paprika: #C1440E;
     --oxblood: #6E1423;
     --red: #E63946;
+    --berry: #F7B2C1;
+    --cocoa: #4A2C1D;
     --accent: #E63946;
 
     --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
@@ -502,6 +584,8 @@
   .recipe-head.c-wheat { background: var(--wheat); color: var(--ink); }
   .recipe-head.c-paprika { background: var(--paprika); color: var(--bg); }
   .recipe-head.c-oxblood { background: var(--oxblood); color: var(--bg); }
+  .recipe-head.c-berry { background: var(--berry); color: var(--ink); }
+  .recipe-head.c-cocoa { background: var(--cocoa); color: var(--bg); }
   .recipe-credit {
     margin-top: var(--s-5);
     font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -2115,6 +2199,299 @@
             <strong>Elastic or stringy</strong> — you added gum on top of the starch. Don't.<br>
             <strong>Soupy</strong> — warm pint or too much allulose. Give it the full 24 hours.<br>
             <strong>Banana pieces</strong> — under-blended. 60 seconds, minimum.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article class="recipe" id="strawberry-ice-cream">
+    <div class="recipe-head c-berry">
+      <div class="recipe-index">Recipe 10 · Dessert · Ninja Creami</div>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#strawberry-ice-cream">Strawberry<br>Protein&nbsp;Ice&nbsp;Cream</a></h2>
+      <p class="recipe-note">
+        A half pint with 40 g of protein for 346 calories. The strawberries and one serving of the
+        dessert mix give all the body it needs — no salt, no xanthan gum.
+      </p>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Makes</div>
+        <div class="meta-val">1 half pint</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Protein</div>
+        <div class="meta-val">40 g</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Calories</div>
+        <div class="meta-val">346</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Freeze</div>
+        <div class="meta-val">24 hr level</div>
+      </div>
+    </div>
+
+    <div class="recipe-body">
+      <section class="ingredients">
+        <div class="block-label">§ Ingredients</div>
+        <ul class="ing-list">
+          <li class="ing-group">For the base</li>
+          <li><span class="ing-name">Fairlife 2% ultra filtered milk</span><span class="ing-qty">280 ml</span></li>
+          <li><span class="ing-name">Ripe strawberries<span class="opt">Hulled</span></span><span class="ing-qty">100 g</span></li>
+          <li><span class="ing-name">Whey protein, vanilla<span class="opt">Leanfit · 1 scoop</span></span><span class="ing-qty">33 g</span></li>
+          <li><span class="ing-name">Simply Desserts strawberry mix<span class="opt">One serving · not the box ratio</span></span><span class="ing-qty">12 g</span></li>
+          <li><span class="ing-name">Allulose</span><span class="ing-qty">1 tbsp</span></li>
+          <li><span class="ing-name">Vanilla extract</span><span class="ing-qty">½ tsp</span></li>
+
+          <li class="ing-group">Leave out</li>
+          <li><span class="ing-name">Salt<span class="opt">The mix has 284 mg sodium per 12 g · that's enough</span></span><span class="ing-qty">None</span></li>
+          <li><span class="ing-name">Xanthan gum<span class="opt">The corn starch and soluble fibre give enough body</span></span><span class="ing-qty">None</span></li>
+        </ul>
+      </section>
+
+      <section class="method">
+        <div class="block-label">§ Method</div>
+
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Blend · 60 sec</div>
+            <p class="step-body">
+              Everything into the blender at once and run it for a full minute.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Into the pint immediately</div>
+            <p class="step-body">
+              The starch in the mix starts to set in 3 to 5 minutes. Pour it before it does.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Freeze 24 hours, level</div>
+            <p class="step-body">
+              Lid on, flat shelf. A pint that freezes at an angle comes out dry on one side.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Spin on LITE ICE CREAM</div>
+            <p class="step-body">
+              Straight from the freezer into the machine.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Re-spin if needed</div>
+            <p class="step-body">
+              If it comes out dry, add 10 ml of milk and RE-SPIN.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Numbers</div>
+          <p>
+            346 cal · 40 g protein · 39 g carb · 19 g net carb · 10 g fat · 14 g sugar · 550 mg sodium.
+            Net carb takes out the allulose, the 5 g of erythritol in the mix, and the fibre.
+          </p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Why 12 g, not the box ratio</div>
+          <p>
+            The box calls for 48 g in 500 ml of milk. That makes a pudding that holds its shape — in a
+            frozen base it turns the ice cream thick and pasty. One serving is right for a half pint.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article class="recipe" id="chocolate-banana-ice-cream">
+    <div class="recipe-head c-cocoa">
+      <div class="recipe-index">Recipe 11 · Dessert · Ninja Creami</div>
+      <h2 class="recipe-title"><a class="recipe-anchor" href="#chocolate-banana-ice-cream">Chocolate&nbsp;Banana<br>Protein&nbsp;Ice&nbsp;Cream</a></h2>
+      <p class="recipe-note">
+        A half pint with 41 g of protein for about 395 calories. Chocolate up front, banana in the
+        background, and no added sugar — all of it comes from the milk and the banana.
+      </p>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Makes</div>
+        <div class="meta-val">1 half pint</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Protein</div>
+        <div class="meta-val">41 g</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Calories</div>
+        <div class="meta-val">395</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Freeze</div>
+        <div class="meta-val">24 hr level</div>
+      </div>
+    </div>
+
+    <div class="recipe-body">
+      <section class="ingredients">
+        <div class="block-label">§ Ingredients</div>
+        <ul class="ing-list">
+          <li class="ing-group">For the base</li>
+          <li><span class="ing-name">Fairlife 2% ultra filtered milk</span><span class="ing-qty">305 ml</span></li>
+          <li><span class="ing-name">Ripe banana<span class="opt">Brown spots on the peel · a yellow one is starchy and low on flavour</span></span><span class="ing-qty">60 g</span></li>
+          <li><span class="ing-name">Whey protein, vanilla<span class="opt">Leanfit · 1 scoop</span></span><span class="ing-qty">33 g</span></li>
+          <li><span class="ing-name">Jell-O fat free chocolate instant pudding mix<span class="opt">Dry · weigh it, don't scoop it</span></span><span class="ing-qty">12 g</span></li>
+          <li><span class="ing-name">Allulose</span><span class="ing-qty">1 tbsp</span></li>
+          <li><span class="ing-name">Vanilla extract</span><span class="ing-qty">½ tsp</span></li>
+          <li><span class="ing-name">Xanthan gum<span class="opt">Fill a ⅛ tsp and tip half out</span></span><span class="ing-qty">1/16 tsp</span></li>
+
+          <li class="ing-group">Leave out</li>
+          <li><span class="ing-name">Salt<span class="opt">The mix brings 330 mg sodium per 10 g · that's enough</span></span><span class="ing-qty">None</span></li>
+        </ul>
+      </section>
+
+      <section class="method">
+        <div class="block-label">§ Method</div>
+
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Weigh everything into the jar</div>
+            <p class="step-body">
+              Blender jar on the scale, zero it. Milk in, cut the banana straight into the jar, then the whey and the pudding mix.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Xanthan on top of the powders</div>
+            <p class="step-body">
+              Allulose and vanilla in. Sprinkle the xanthan gum onto the dry powders, not into the milk — that's what keeps it from lumping.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Blend · 75 sec, then 15 more</div>
+            <p class="step-body">
+              Stop, push everything down off the sides, and give it another 15 seconds. Fully smooth, no flecks — the machine will not break down banana pieces later.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Taste before it goes in</div>
+            <p class="step-body">
+              Add more allulose only if it isn't sweet. Frozen always reads less sweet than the liquid does.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Into the pint immediately</div>
+            <p class="step-body">
+              The starch in the mix starts to set in 3 to 5 minutes, and cut banana browns in air. Don't let it sit.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">06</div>
+          <div>
+            <div class="step-title">Freeze 24 hours, level</div>
+            <p class="step-body">
+              Lid on, flat shelf. A pint that freezes at an angle comes out dry on one side.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">07</div>
+          <div>
+            <div class="step-title">Spin on LITE ICE CREAM</div>
+            <p class="step-body">
+              Freezer to machine, no detours — don't let the pint start softening on the counter.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">08</div>
+          <div>
+            <div class="step-title">Re-spin</div>
+            <p class="step-body">
+              Dry or in pieces? Add 10 ml of milk and RE-SPIN, again if it needs it. Two cycles is standard with whey. Stop when the surface is smooth.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">09</div>
+          <div>
+            <div class="step-title">Serve immediately</div>
+            <p class="step-body">
+              For mix-ins, hole down the center, mix-ins in, MIX-IN once. One cycle only.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Numbers</div>
+          <p>
+            About 395 cal · 41 g protein · 45 g carb · 33 g net carb · 10 g fat · 16 g sugar · 550 mg sodium.
+            All the sugar comes from the milk and the banana — the pudding mix has none.
+          </p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Xanthan gum</div>
+          <p>
+            It's a sixteenth of a teaspoon on purpose. The pudding mix already has xanthan in it and
+            the banana adds starch. If the pint comes out elastic or stringy, use none in the next one.
+          </p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">More banana</div>
+          <p>
+            Chocolate is dominant and banana sits in the background. Go up to 80 g of banana for more of
+            it — don't increase the mix.
+          </p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Without the whey</div>
+          <p>
+            Drop the protein powder and use 290 ml of milk. About 255 calories and 17 g of protein.
           </p>
         </div>
       </section>
