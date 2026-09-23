@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sibos 2026 Recap Email · Mazin Kanuga</title>
+<meta name="description" content="Draft recap email for Sibos 2026: CCIP 2.0 launch and Chainlink's week in Miami.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --ink: #0a0a0a; --ink-dim: #333333; --ink-mute: #6c6c6c;
+    --rule: #e6e6e6; --rule-strong: #d0d0d0; --wash: #f7f7f5;
+    --teal: #0b5b63; --teal-wash: #f0f6f6; --red: #E63946; --ph: #fff4c2;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--wash); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--teal); }
+  button { font: inherit; cursor: pointer; }
+  .bar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(8px); border-bottom: 1px solid var(--rule); }
+  .bar-in { max-width: 760px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 12px; }
+  .home { font-family: var(--display); font-weight: 900; letter-spacing: -.02em; font-size: 18px; text-decoration: none; color: var(--ink); }
+  .home .dot { color: var(--red); }
+  .bar-note { font-size: 12px; color: var(--ink-mute); margin-right: auto; flex: 1 1 auto; min-width: 0; }
+  .btn { border: 1px solid var(--ink); background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600; transition: background .15s, color .15s; white-space: nowrap; }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done, .btn.done:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .page { max-width: 760px; margin: 0 auto; padding: 36px 24px 96px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+  h1 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 5vw, 40px); letter-spacing: -.03em; line-height: 1.06; margin: 8px 0 22px; }
+  .card { background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; }
+  .head { padding: 6px 20px; margin-bottom: 18px; }
+  .row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .row:last-child { border-bottom: 0; }
+  .row b { flex: 0 0 92px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; }
+  .row span { flex: 1; font-size: 15px; font-weight: 600; min-width: 0; }
+  .body { padding: 32px 36px; }
+  .body-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  #email { font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #222; }
+  #email p { margin: 0 0 14px; }
+  #email h3 { font-size: 17px; font-weight: 700; color: #111; margin: 24px 0 8px; }
+  #email ul { margin: 0 0 14px 22px; }
+  #email li { margin: 6px 0; }
+  .ph { background: var(--ph); border-radius: 3px; padding: 0 3px; font-weight: 600; }
+  .legend { font-size: 13px; color: var(--ink-mute); margin-top: 14px; }
+  @media (max-width: 600px) {
+    .page { padding: 24px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .bar-note { display: none; }
+    .body { padding: 22px 18px; }
+    .head { padding: 4px 16px; }
+    .row { flex-wrap: wrap; gap: 6px 12px; }
+    .row b { flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="bar-in">
+  <a class="home" href="/">MK<span class="dot">.</span></a>
+  <span class="bar-note">Sibos 2026 recap email · draft · 23 Sept 2026</span>
+  <button class="btn copy-email" type="button">Copy email</button>
+</div></div>
+
+<main class="page">
+  <div class="eyebrow">Draft email</div>
+  <h1>Sibos 2026 recap</h1>
+
+  <div class="card head">
+    <div class="row"><b>Subject 1</b><span class="val">Sibos 2026 recap: CCIP 2.0 and Chainlink's week in Miami</span><button class="btn ghost copy-one" type="button">Copy</button></div>
+    <div class="row"><b>Subject 2</b><span class="val">What Chainlink announced at Sibos 2026</span><button class="btn ghost copy-one" type="button">Copy</button></div>
+    <div class="row"><b>Preview</b><span class="val">The CCIP 2.0 launch, the keynotes, and the materials from the week.</span><button class="btn ghost copy-one" type="button">Copy</button></div>
+  </div>
+
+  <div class="card body">
+    <div class="body-top">
+      <span class="eyebrow">Body</span>
+      <button class="btn copy-email" type="button">Copy email</button>
+    </div>
+    <div id="email">
+      <p>Hi <span class="ph">[First Name]</span>,</p>
+      <p>Sibos 2026 brought the global banking and capital markets community to Miami last week. Across the conversations, one theme came up again and again: institutions have started to tokenize assets, and the harder problem now is distribution across markets.</p>
+      <p>Here is a short recap of Chainlink's week, with the materials in one place.</p>
+
+      <h3>The headline: CCIP 2.0 is live</h3>
+      <p>Chainlink launched CCIP 2.0 at Sibos. The upgrade gives banks, asset managers and market infrastructures more control over how tokenized assets move across public and private blockchains:</p>
+      <ul>
+        <li><strong>Institutional risk controls:</strong> institutions can run their own Cross-Chain Verifiers, or select third-party providers, on top of CCIP's default security.</li>
+        <li><strong>Configurable settlement:</strong> faster transfers for high-frequency payments, or full source-chain finality for higher-value settlement.</li>
+        <li><strong>Built-in compliance:</strong> Chainlink's Automated Compliance Engine (ACE) lets issuers embed eligibility checks, transfer limits and other policies directly into cross-chain transfers.</li>
+      </ul>
+      <p>Institutions set these frameworks once and apply them across additional blockchains, without separate infrastructure for each network. CCIP 2.0 launched with partners across banks, financial market infrastructures, digital asset issuers, verifier operators and DeFi protocols, including <span class="ph">[PARTNER NAMES FROM FINAL LOGO WALL]</span>.</p>
+      <p><strong><span class="ph">[Read the CCIP 2.0 announcement]</span></strong></p>
+
+      <h3>Also at Sibos</h3>
+      <ul>
+        <li><span class="ph">[SECOND ANNOUNCEMENT, ONE LINE]</span> <span class="ph">[LINK]</span></li>
+        <li>Sergey Nazarov spoke on the Exhibitor Stage and the Innotribe stage, and led a workshop session. <span class="ph">[RYAN FULL NAME]</span> spoke on <span class="ph">[SESSION TITLE]</span>. <span class="ph">[SESSION LINKS IF SIBOS PUBLISHES THEM]</span></li>
+        <li>Chainlink hosted a closed-door executive roundtable with senior leaders from across banking and capital markets.</li>
+      </ul>
+
+      <h3>Photos from the week</h3>
+      <p><span class="ph">[3 to 4 PHOTOS: booth, Sergey on stage, roundtable room if approved]</span></p>
+
+      <h3>Materials</h3>
+      <ul>
+        <li>CCIP 2.0 announcement: <span class="ph">[LINK]</span></li>
+        <li>Chainlink overview deck: <span class="ph">[LINK]</span></li>
+      </ul>
+
+      <p>If a briefing on CCIP 2.0 or any of the Sibos announcements is useful for your coverage, reply to this email and we will set up time.</p>
+      <p>Best,<br><span class="ph">[SENDER]</span></p>
+    </div>
+  </div>
+  <p class="legend"><span class="ph">Highlighted</span> text is a placeholder to fill in. The highlight is left out when you copy.</p>
+</main>
+
+<script>
+  function flash(btns, label) {
+    btns.forEach(function (b) { b.textContent = 'Copied'; b.classList.add('done'); });
+    setTimeout(function () { btns.forEach(function (b) { b.textContent = label; b.classList.remove('done'); }); }, 1600);
+  }
+  function write(html, text) {
+    if (html && window.ClipboardItem && navigator.clipboard.write) {
+      return navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      })]).catch(function () { return navigator.clipboard.writeText(text); });
+    }
+    return navigator.clipboard.writeText(text);
+  }
+
+  // Copy the body as rich HTML with inline styles so Gmail/Outlook keep the formatting.
+  var copyBtns = Array.from(document.querySelectorAll('.copy-email'));
+  copyBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var src = document.getElementById('email');
+      var text = src.innerText.replace(/\n{3,}/g, '\n\n').trim();
+      var doc = src.cloneNode(true);
+      doc.querySelectorAll('.ph').forEach(function (el) { el.replaceWith(document.createTextNode(el.textContent)); });
+      doc.querySelectorAll('p').forEach(function (el) { el.setAttribute('style', 'margin:0 0 14px'); });
+      doc.querySelectorAll('h3').forEach(function (el) { el.setAttribute('style', 'font-size:17px;font-weight:bold;margin:22px 0 8px'); });
+      doc.querySelectorAll('ul').forEach(function (el) { el.setAttribute('style', 'margin:0 0 14px 22px;padding:0'); });
+      doc.querySelectorAll('li').forEach(function (el) { el.setAttribute('style', 'margin:6px 0'); });
+      var html = '<meta charset="utf-8"><div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222">' + doc.innerHTML + '</div>';
+      write(html, text).then(function () { flash(copyBtns, 'Copy email'); });
+    });
+  });
+
+  document.querySelectorAll('.copy-one').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = btn.parentNode.querySelector('.val').textContent;
+      write(null, t).then(function () { flash([btn], 'Copy'); });
+    });
+  });
+</script>
+</body>
+</html>
