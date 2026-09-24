@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Link NYC Registration Update · Mazin Kanuga</title>
+<meta name="description" content="Link NYC registration update slide (Sep 24, 2026) with talk track and copy buttons.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --ink: #0a0a0a; --ink-dim: #333333; --ink-mute: #6c6c6c;
+    --rule: #e6e6e6; --rule-strong: #d0d0d0; --wash: #f7f7f5;
+    --teal: #0b5b63; --red: #E63946;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--wash); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--teal); }
+  button { font: inherit; cursor: pointer; }
+  .bar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(8px); border-bottom: 1px solid var(--rule); }
+  .bar-in { max-width: 1040px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 10px; }
+  .home { font-family: var(--display); font-weight: 900; letter-spacing: -.02em; font-size: 18px; text-decoration: none; color: var(--ink); }
+  .home .dot { color: var(--red); }
+  .bar-note { font-size: 12px; color: var(--ink-mute); margin-right: auto; flex: 1 1 auto; min-width: 0; }
+  .btn { border: 1px solid var(--ink); background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600; transition: background .15s, color .15s; white-space: nowrap; text-decoration: none; display: inline-block; }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done, .btn.done:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .page { max-width: 1040px; margin: 0 auto; padding: 36px 24px 96px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+  h1 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 5vw, 40px); letter-spacing: -.03em; line-height: 1.06; margin: 8px 0 22px; }
+  h2 { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: -.02em; }
+  .card { background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--rule); }
+  .card-top .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .stage { padding: 20px; }
+  /* The slide is authored at 1920x1080 and scaled to the frame width. */
+  .frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; box-shadow: 0 0 0 1px var(--rule); }
+  .frame > .slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+  .frame > .slide * { box-sizing: border-box; }
+  .script { margin-top: 28px; }
+  .beat { display: grid; grid-template-columns: 150px 1fr auto; gap: 16px; align-items: start; padding: 16px 20px; border-bottom: 1px solid var(--rule); }
+  .beat:last-child { border-bottom: 0; }
+  .beat b { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; padding-top: 4px; }
+  .beat p { font-size: 16px; line-height: 1.6; color: var(--ink-dim); }
+  .legend { font-size: 13px; color: var(--ink-mute); margin-top: 14px; }
+  @media (max-width: 700px) {
+    .page { padding: 24px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .bar-note { display: none; }
+    .home { margin-right: auto; }
+    .stage { padding: 12px; }
+    .card-top { padding: 12px 16px; }
+    .beat { grid-template-columns: 1fr auto; padding: 14px 16px; gap: 6px 12px; }
+    .beat b { grid-column: 1; }
+    .beat p { grid-column: 1 / -1; grid-row: 2; }
+    .beat .btn { grid-column: 2; grid-row: 1; justify-self: end; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="bar-in">
+  <a class="home" href="/">MK<span class="dot">.</span></a>
+  <span class="bar-note">Link NYC registration update · 24 Sept 2026</span>
+  <button class="btn copy-slide" type="button">Copy slide</button>
+</div></div>
+
+<main class="page">
+  <div class="eyebrow">Link NYC · Slide + talk track</div>
+  <h1>Registration update</h1>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="eyebrow">Slide · 1920×1080</span>
+      <div class="acts">
+        <a class="btn ghost" href="slide.png" download="link-nyc-registration-update.png">Download PNG</a>
+        <button class="btn copy-slide" type="button">Copy slide</button>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="frame" id="frame"><div class="slide"><div style="width: 1920px; height: 1080px; position: relative; background: rgb(245, 247, 251); overflow: clip; contain: paint;"><div data-frame-id="e0-ius9lh" style="position: absolute; inset: 0px; box-sizing: border-box;"><div data-node-path="" style="display: flex; flex-direction: column; align-items: stretch; gap: 24px; width: 100%; height: 100%; padding: 112px 128px 160px;"><div data-node-path="0" style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; min-width: 0px; min-height: 0px;"><div data-text-path="0.0" data-node-path="0.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(55, 91, 210); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; letter-spacing: 3px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Link NYC · Registration update · Sep 24</div><div data-text-path="0.1" data-node-path="0.1" role="heading" aria-level="2" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.1; color: rgb(14, 26, 58); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(64px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Better mix, not enough volume</div></div><div data-node-path="1" style="display: flex; flex-direction: row; align-items: stretch; gap: 32px; min-width: 0px; min-height: 0px;"><div data-node-path="1.0" style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px; background-color: rgb(255, 255, 255); padding: 28px 40px; border-width: 1px; border-style: solid; border-color: rgb(221, 227, 238); border-radius: 16px;"><div data-text-path="1.0.0" data-node-path="1.0.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(90, 102, 130); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; letter-spacing: 2px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Where we are</div><div data-text-path="1.0.1" data-node-path="1.0.1" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.05; color: rgb(14, 26, 58); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(88px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">305<font color="#8a94ab" style="color: rgb(138, 148, 171); -webkit-text-fill-color: currentcolor;"> / 950</font></div><div data-text-path="1.0.2" data-node-path="1.0.2" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(74, 86, 112); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(26px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">32% of goal with 35 days to go.</div></div><div data-node-path="1.1" style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px; background-color: rgb(255, 255, 255); padding: 28px 40px; border-width: 1px; border-style: solid; border-color: rgb(221, 227, 238); border-radius: 16px;"><div data-text-path="1.1.0" data-node-path="1.1.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(31, 122, 77); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; letter-spacing: 2px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Mix is up</div><div data-text-path="1.1.1" data-node-path="1.1.1" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.05; color: rgb(14, 26, 58); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(88px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">31% BCM</div><div data-text-path="1.1.2" data-node-path="1.1.2" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(74, 86, 112); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(26px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">94 of 305, up from 22% on Aug 17. BCM grew 5.2x, total grew 3.7x.</div></div><div data-node-path="1.2" style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px; background-color: rgb(255, 255, 255); padding: 28px 40px; border-width: 1px; border-style: solid; border-color: rgb(221, 227, 238); border-radius: 16px;"><div data-text-path="1.2.0" data-node-path="1.2.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(180, 84, 10); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; letter-spacing: 2px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Volume is short</div><div data-text-path="1.2.1" data-node-path="1.2.1" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.05; color: rgb(14, 26, 58); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(88px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">5.9/day</div><div data-text-path="1.2.2" data-node-path="1.2.2" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(74, 86, 112); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(26px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">950 needs 18.4/day from here, 3.1x the pace since Aug 17.</div></div></div><div data-node-path="2" style="display: flex; flex-direction: row; align-items: center; gap: 12px; min-width: 0px; min-height: 0px;"><div data-text-path="2.0" data-node-path="2.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(90, 102, 130); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; letter-spacing: 2px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">RSVPs by source</div><div data-text-path="2.1" data-node-path="2.1" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(245, 247, 251); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(14, 26, 58); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Apply to attend</b> 96</div><div data-text-path="2.2" data-node-path="2.2" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(255, 255, 255); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(55, 91, 210); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>BCM</b> 94</div><div data-text-path="2.3" data-node-path="2.3" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(14, 26, 58); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(228, 233, 244); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Partnerships</b> 52</div><div data-text-path="2.4" data-node-path="2.4" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(14, 26, 58); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(228, 233, 244); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Community</b> 24</div><div data-text-path="2.5" data-node-path="2.5" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(14, 26, 58); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(228, 233, 244); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Node</b> 20</div><div data-text-path="2.6" data-node-path="2.6" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(14, 26, 58); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(228, 233, 244); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>TR</b> 10</div><div data-text-path="2.7" data-node-path="2.7" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(14, 26, 58); margin: 0px; white-space: pre; overflow-wrap: normal; min-width: 0px; min-height: 0px; background-color: rgb(228, 233, 244); padding: 6px 16px; border-radius: 256px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Speakers</b> 9</div></div><div data-node-path="3" style="display: flex; flex-direction: row; align-items: center; gap: 48px; min-width: 0px; min-height: 0px; background-color: rgb(14, 26, 58); padding: 28px 48px; border-radius: 16px;"><div data-node-path="3.0" style="display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 0px; min-height: 0px; flex-grow: 1.3; flex-basis: 0px;"><div data-text-path="3.0.0" data-node-path="3.0.0" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 600; line-height: 1.4; color: rgb(143, 168, 245); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; letter-spacing: 2px; text-transform: uppercase; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Proposal</div><div data-text-path="3.0.1" data-node-path="3.0.1" role="heading" aria-level="3" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.15; color: rgb(245, 247, 251); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(44px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Reset the target to 700</div><div data-text-path="3.0.2" data-node-path="3.0.2" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(195, 205, 230); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(26px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">Current pace lands near 510. A normal last-two-weeks surge gets us to about 660.</div></div><div data-node-path="3.1" style="display: flex; flex-direction: row; align-items: stretch; gap: 40px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px;"><div data-node-path="3.1.0" style="display: flex; flex-direction: column; align-items: stretch; gap: 4px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px;"><div data-text-path="3.1.0.0" data-node-path="3.1.0.0" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.05; color: rgb(245, 247, 251); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(72px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">~216</div><div data-text-path="3.1.0.1" data-node-path="3.1.0.1" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(195, 205, 230); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">BCM registrations at the 31% mix</div></div><div data-node-path="3.1.1" style="display: flex; flex-direction: column; align-items: stretch; gap: 4px; min-width: 0px; min-height: 0px; flex-grow: 1; flex-basis: 0px;"><div data-text-path="3.1.1.0" data-node-path="3.1.1.0" style="font-family: &quot;Space Grotesk&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 700; line-height: 1.05; color: rgb(245, 247, 251); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(72px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">~385</div><div data-text-path="3.1.1.1" data-node-path="3.1.1.1" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(195, 205, 230); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; min-width: 0px; min-height: 0px; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);">in the room at a 55% show rate</div></div></div></div></div></div><div data-frame-id="e1-ius9lh" style="position: absolute; left: 128px; width: 1664px; bottom: 64px; box-sizing: border-box;"><div data-text-path="" data-node-path="" style="font-family: &quot;IBM Plex Sans&quot;, Arial, ui-sans-serif, system-ui, sans-serif; font-size: var(--fit-size); font-weight: 400; line-height: 1.4; color: rgb(90, 102, 130); margin: 0px; white-space: pre-wrap; overflow-wrap: break-word; text-wrap-style: pretty; --fit-size: calc(24px * var(--fit, 1)); overflow-y: var(--fit-clip, visible);"><b>Next:</b> sales kit session with the team tomorrow · meeting next week on non-email invite activities</div></div></div></div></div>
+    </div>
+  </div>
+  <p class="legend">Copy slide puts a 1920×1080 PNG on your clipboard. Paste it into Slides, Keynote or Slack.</p>
+
+  <div class="card script">
+    <div class="card-top">
+      <h2>Talk track</h2>
+      <button class="btn copy-script" type="button">Copy script</button>
+    </div>
+    <div id="script">
+      <div class="beat"><b>Open</b><p class="val">This is a follow-up to the read I gave on Aug 17. We now have more than a month of actual numbers.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>Where we are</b><p class="val">Today we have 305 RSVPs against a goal of 950. That is 32% of the goal, and we have 35 days to go.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>Mix is up</b><p class="val">First, the good news: the mix is better. BCM has 94 of the 305 RSVPs, so 31% of the room. On Aug 17, BCM had 18 of 82, which was 22%. Since then, BCM grew 5.2 times and the total grew 3.7 times. The separate BCM track does what we said it would do.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>By source</b><p class="val">By source: apply to attend has 96, BCM 94, partnerships 52, community 24, node 20, TR 10, and speakers 9.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>Volume is short</b><p class="val">Volume is the problem. Since Aug 17, we get about 6 new RSVPs a day. To get to 950, we need about 18 a day from now. That is three times our current pace.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>Proposal</b><p class="val">At the current pace, we land near 510. With a normal surge in the last two weeks, we land near 660. So I propose that we reset the target to 700. At our current mix, that gives us about 216 BCM registrations. At a 55% show rate, 700 RSVPs puts about 385 people in the room.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+      <div class="beat"><b>Next</b><p class="val">Two next steps. Tomorrow I have a sales kit session with the team. Next week I will send a meeting invite to plan invite activities that are not email.</p><button class="btn ghost copy-one" type="button">Copy</button></div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Scale the 1920px slide to whatever width the frame has.
+  var frame = document.getElementById('frame');
+  var slide = frame.querySelector('.slide');
+  function fit() { slide.style.transform = 'scale(' + frame.clientWidth / 1920 + ')'; }
+  fit();
+  new ResizeObserver(fit).observe(frame);
+
+  function flash(btns, label) {
+    btns.forEach(function (b) { b.textContent = 'Copied'; b.classList.add('done'); });
+    setTimeout(function () { btns.forEach(function (b) { b.textContent = label; b.classList.remove('done'); }); }, 1600);
+  }
+  function fail(btns, label) {
+    btns.forEach(function (b) { b.textContent = 'Use Download'; });
+    setTimeout(function () { btns.forEach(function (b) { b.textContent = label; }); }, 2200);
+  }
+
+  // Build the ClipboardItem synchronously with a promise so Safari keeps the user gesture.
+  var slideBtns = Array.from(document.querySelectorAll('.copy-slide'));
+  slideBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!window.ClipboardItem || !navigator.clipboard || !navigator.clipboard.write) return fail(slideBtns, 'Copy slide');
+      var png = fetch('slide.png').then(function (r) { return r.blob(); }).then(function (b) { return new Blob([b], { type: 'image/png' }); });
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': png })])
+        .then(function () { flash(slideBtns, 'Copy slide'); }, function () { fail(slideBtns, 'Copy slide'); });
+    });
+  });
+
+  var scriptBtns = Array.from(document.querySelectorAll('.copy-script'));
+  scriptBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = Array.from(document.querySelectorAll('#script .beat')).map(function (el) {
+        return '[' + el.querySelector('b').textContent + ']\n' + el.querySelector('.val').textContent;
+      }).join('\n\n');
+      navigator.clipboard.writeText(text).then(function () { flash(scriptBtns, 'Copy script'); });
+    });
+  });
+
+  document.querySelectorAll('.copy-one').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.parentNode.querySelector('.val').textContent).then(function () { flash([btn], 'Copy'); });
+    });
+  });
+</script>
+</body>
+</html>
