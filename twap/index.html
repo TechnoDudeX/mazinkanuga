@@ -17,6 +17,7 @@
     --bg: #ffffff; --ink: #0a0a0a; --ink-dim: #333333; --ink-mute: #6c6c6c;
     --rule: #e6e6e6; --rule-strong: #d0d0d0; --wash: #f7f7f5;
     --teal: #0b5b63; --teal-wash: #f0f6f6; --red: #E63946; --red-wash: #fdf0f1;
+    --mark: #fff6cc; --mark-edge: #f2c200;
     --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
     --sans: 'Inter', -apple-system, system-ui, sans-serif;
     --mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -65,6 +66,16 @@
   .src td:first-child { font-family: var(--mono); white-space: nowrap; }
   .src a { overflow-wrap: anywhere; }
 
+  .banner { border: 1px solid #ecd67a; border-left: 3px solid var(--mark-edge); background: var(--mark); padding: 12px 16px; margin: 0 0 20px; max-width: 82ch; font-size: 14.5px; line-height: 1.55; color: var(--ink-dim); }
+  .fix { background: var(--mark); box-shadow: inset 3px 0 0 var(--mark-edge); padding-left: 10px; }
+  li.fix { margin-left: -10px; }
+  tr.fix td, tbody tr.fix td { background: var(--mark) !important; color: var(--ink); }
+  tr.fix td:first-child { box-shadow: inset 3px 0 0 var(--mark-edge); }
+  .was { font-size: 13.5px; line-height: 1.5; color: var(--ink-mute); font-style: italic; margin: 4px 0 0; }
+  p.was { margin: -6px 0 14px; padding-left: 13px; }
+  tr.was td { background: #fffdf2 !important; font-size: 13px; font-style: italic; color: var(--ink-mute); padding: 6px 12px; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; background: var(--mark-edge); color: var(--ink); padding: 1px 6px; border-radius: 3px; margin-right: 6px; font-style: normal; }
+
   @media (max-width: 600px) {
     .page { padding: 28px 16px 72px; }
     .bar-in { padding: 10px 16px; }
@@ -76,21 +87,23 @@
 
 <div class="bar"><div class="bar-in">
   <a class="home" href="/">MK<span class="dot">.</span></a>
-  <span class="bar-note">TWAP / Data Streams · paid audience read · v4 · 24 Sept 2026</span>
+  <span class="bar-note">TWAP / Data Streams · paid audience read · v4 · corrections marked · 24 Sept 2026</span>
   <button class="btn copy-doc" type="button">Copy for Google Docs</button>
 </div></div>
 
 <main class="page">
 <article id="doc">
-  <div class="eyebrow" data-nocopy>Draft for 1:1 · Version 4</div>
+  <div class="eyebrow" data-nocopy>Draft for 1:1 · Version 4 · Corrections marked</div>
   <h1>TWAP / Data Streams: paid audience read</h1>
 
   <div class="meta" data-nocopy>
     <div><b>For</b><span>Hod Klein</span></div>
     <div><b>From</b><span>Mazin Kanuga</span></div>
     <div><b>Date</b><span>24 Sept 2026</span></div>
-    <div><b>Status</b><span>Draft, v4</span></div>
+    <div><b>Status</b><span>Draft, v4, corrections marked</span></div>
   </div>
+
+  <div class="banner" data-nocopy><span class="tag">🟨 Marked</span>A highlighted line was corrected in the verification pass on 24 Sept 2026. The note under each one shows the old text. Twelve lines corrected, six sources added (40 to 45). Remove the markers before you share this copy. The Copy for Google Docs button leaves them out.</div>
 
   <div class="copybox" data-nocopy>
     <button class="btn copy-doc" type="button">Copy for Google Docs</button>
@@ -199,7 +212,8 @@
   </ul>
 
   <p><strong>What this shows.</strong> The settlement price is a live question in these threads. Builders answer each other with the word "Chainlink" already. The ad only has to arrive in the thread where the question is asked.</p>
-  <p><strong>Audience sizes, checked 24 Sept 2026 [40].</strong> r/Polymarket 36.3K, r/Kalshi 42.6K, r/quant 205.2K, r/algotrading 1.9M, r/AI_Agents 440.8K. My August figure for r/Polymarket (approximately 127K) was wrong. The other four agree with August. These are follower counts from the subreddit pages. The reachable audience in Reddit Ads Manager can differ, and I will read it there before launch.</p>
+  <p class="fix"><strong>Audience sizes, checked 24 Sept 2026 [40].</strong> r/Polymarket 36.3K, r/Kalshi 42.6K, r/quant 205.2K, r/algotrading 1.9M, r/AI_Agents 440.8K. My August figure for r/Polymarket (approximately 127K) was wrong. The other four agree with August. These are follower counts from the subreddit pages. The reachable audience in Reddit Ads Manager can differ, and I will read it there before launch.</p>
+  <p class="was" data-nocopy>r/Polymarket was approximately 127K in the August research. Google shows 36.3K. The other four subreddits agree with August.</p>
 
   <h3>Why they buy now</h3>
   <p>Polymarket moved these markets to TWAP settlement on 7 August 2026. The 5-minute markets use a 30-second average. The 15-minute and 4-hour markets use a 60-second average [3]. The change came after the same study found that 821 accounts (approximately 1 in 300) took approximately $8.2M by pushing the price in the last seconds, and that retail traders took 93% of the losses [1].</p>
@@ -214,12 +228,16 @@
   <div class="tablewrap"><table>
     <thead><tr><th>Platform</th><th>Are they there?</th><th>Can we target them?</th><th>Cost</th><th>Decision</th></tr></thead>
     <tbody>
-      <tr class="hit"><td><strong>Reddit</strong></td><td>Yes [5, 16]</td><td><strong>Yes.</strong> Subreddit and keyword targeting [7]</td><td>$1.80 for developer tools, $2.50 for financial services [44]. My high case is $4</td><td><strong>Run. $3K.</strong></td></tr>
-      <tr class="hit"><td><strong>X</strong></td><td>Yes [16]</td><td><strong>Yes.</strong> Keyword targeting [12] and follower look-alikes [41]</td><td>Approximately $0.75 per click, $5.80 CPM [12]</td><td><strong>Run. $2K.</strong></td></tr>
+      <tr class="hit fix"><td><strong>Reddit</strong></td><td>Yes [5, 16]</td><td><strong>Yes.</strong> Subreddit and keyword targeting [7]</td><td>$1.80 for developer tools, $2.50 for financial services [44]. My high case is $4</td><td><strong>Run. $3K.</strong></td></tr>
+      <tr class="was" data-nocopy><td colspan="5">Was: "$1.80 (my August research) to approximately $4 (my estimate)." Now a 2026 public benchmark.</td></tr>
+      <tr class="hit fix"><td><strong>X</strong></td><td>Yes [16]</td><td><strong>Yes.</strong> Keyword targeting [12] and follower look-alikes [41]</td><td>Approximately $0.75 per click, $5.80 CPM [12]</td><td><strong>Run. $2K.</strong></td></tr>
+      <tr class="was" data-nocopy><td colspan="5">Was: "Probably. Keyword targeting. Follower look-alikes to confirm." Now confirmed from X's own documentation.</td></tr>
       <tr><td><strong>YouTube</strong></td><td>Yes [17, 20]</td><td>Yes. Placement on specific videos and channels (assumption)</td><td>Not priced yet</td><td><strong>Second half, if the first half passes</strong></td></tr>
-      <tr><td>Discord</td><td>Yes [16]</td><td><strong>No.</strong> No self-serve ads. Sales team only [42]. The format is sponsored Quests inside games, which does not fit a data product. Minimum spend is not published</td><td>Not applicable</td><td><strong>No paid. Organic only</strong></td></tr>
+      <tr class="fix"><td>Discord</td><td>Yes [16]</td><td><strong>No.</strong> No self-serve ads. Sales team only [42]. The format is sponsored Quests inside games, which does not fit a data product. Minimum spend is not published</td><td>Not applicable</td><td><strong>No paid. Organic only</strong></td></tr>
+      <tr class="was" data-nocopy><td colspan="5">Was: "Minimum of $100K or more, for gaming and media brands." Discord does not publish a minimum, and its advertisers include non-gaming brands. The decision stands.</td></tr>
       <tr><td>Telegram</td><td>Yes [16]</td><td>Poor. The ad cannot link to an external website [15]</td><td>Minimum 0.1 TON per 1,000 impressions [15]</td><td><strong>No</strong></td></tr>
-      <tr><td>TikTok</td><td>Some (assumption)</td><td><strong>No.</strong> The Branded Content Policy prohibits "investment services", "trading platforms" and "virtual currencies" [43]</td><td>Not applicable</td><td><strong>No</strong></td></tr>
+      <tr class="fix"><td>TikTok</td><td>Some (assumption)</td><td><strong>No.</strong> The Branded Content Policy prohibits "investment services", "trading platforms" and "virtual currencies" [43]</td><td>Not applicable</td><td><strong>No</strong></td></tr>
+      <tr class="was" data-nocopy><td colspan="5">Was: "Policy prohibits branded content for financial and trading products" with no source. Now quoted from the official policy.</td></tr>
       <tr><td>LinkedIn</td><td>No</td><td>Not applicable</td><td>$8 to $12 per click</td><td><strong>No</strong></td></tr>
     </tbody>
   </table></div>
@@ -230,9 +248,9 @@
     <li><strong>Targeting.</strong> Reddit places the ad in the subreddits we select, and can target people who recently took part in posts that contain our keywords [7]. Reddit recommends a minimum audience of 50,000 [7], which agrees with your range.</li>
     <li><strong>Three ad groups, each in your size range.</strong> Follower counts checked 24 Sept 2026 [40]. The reachable audience in Ads Manager can differ.
       <ul>
-        <li><strong>A. Prediction markets:</strong> r/Polymarket (36.3K) and r/Kalshi (42.6K). Approximately 79K.</li>
-        <li><strong>B. Quants:</strong> r/quant (205.2K). At the top of your range.</li>
-        <li><strong>C. Builders, with keywords only:</strong> r/algotrading (1.9M) and r/AI_Agents (440.8K), limited to keywords such as Polymarket, Kalshi, prediction market, trading bot, price feed and settlement (assumption). Held to 200K or less.</li>
+        <li class="fix"><strong>A. Prediction markets:</strong> r/Polymarket (36.3K) and r/Kalshi (42.6K). Approximately 79K.<div class="was" data-nocopy>Was: r/Polymarket (approximately 127K) and r/Kalshi (approximately 41K). Approximately 170K.</div></li>
+        <li class="fix"><strong>B. Quants:</strong> r/quant (205.2K). At the top of your range.<div class="was" data-nocopy>Was: r/quant (approximately 202K).</div></li>
+        <li class="fix"><strong>C. Builders, with keywords only:</strong> r/algotrading (1.9M) and r/AI_Agents (440.8K), limited to keywords such as Polymarket, Kalshi, prediction market, trading bot, price feed and settlement (assumption). Held to 200K or less.<div class="was" data-nocopy>Was: r/AI_Agents (421K).</div></li>
       </ul>
     </li>
     <li><strong>Ad format.</strong> A static image gives the highest click rate. A text post gives fewer clicks but clicks of higher intent [9]. Niche subreddits under 100K have the lowest CPM and often the best cost per conversion [9].</li>
@@ -244,7 +262,7 @@
   <ul>
     <li><strong>Why.</strong> Will said that these traders are in Twitter spaces and Discord rooms, and that breaking news happens on Twitter.</li>
     <li><strong>Targeting.</strong> Two audiences at $1K each. (1) Keywords in posts and searches [12]: Polymarket bot, Kalshi API, prediction market bot, 15 minute market, TWAP (assumption). (2) Look-alikes of the followers of @Polymarket, @Kalshi and bot-tool accounts [41]. The account list is my assumption.</li>
-    <li><strong>Follower look-alikes, checked.</strong> X's own targeting documentation describes it: "Follower look-alikes targeting allows you to target people with interests similar to an account's followers", with a recommendation of approximately 30 handles per campaign [41]. This is the look-alike option. The old option that targeted the exact followers of a handle is the one that X removed. I will still confirm the audience size in Ads Manager.</li>
+    <li class="fix"><strong>Follower look-alikes, checked.</strong> X's own targeting documentation describes it: "Follower look-alikes targeting allows you to target people with interests similar to an account's followers", with a recommendation of approximately 30 handles per campaign [41]. This is the look-alike option. The old option that targeted the exact followers of a handle is the one that X removed. I will still confirm the audience size in Ads Manager.<div class="was" data-nocopy>Was: "To confirm. You said that X removed handle-follower targeting years ago... I will confirm in Ads Manager."</div></li>
     <li><strong>Cost.</strong> The average is approximately $0.75 per click and $5.80 CPM. A valid test needs $1,000 to $2,000 for each audience [12].</li>
     <li><strong>Policy step.</strong> X requires certification for most crypto products. Educational content about blockchain, cryptocurrency or DeFi is exempt [13]. A data product is not named. I will get a written answer from the rep.</li>
   </ul>
@@ -257,11 +275,13 @@
   </ul>
 
   <h2 id="cost">4. The cost per subscriber</h2>
-  <p>The price is $150 per month per stream, sold through a self-serve portal at app.chain.link, with card and bank transfer through Stripe [6]. One news article is the only public source for this figure. The Chainlink documentation page for Data Streams billing does not publish a price [45]. I will confirm the figure in the portal.</p>
+  <p class="fix">The price is $150 per month per stream, sold through a self-serve portal at app.chain.link, with card and bank transfer through Stripe [6]. One news article is the only public source for this figure. The Chainlink documentation page for Data Streams billing does not publish a price [45]. I will confirm the figure in the portal.</p>
+  <p class="was" data-nocopy>Was: "The public price is $150 per month per stream" with one source. Added: the official Chainlink billing page publishes no price, and the figure must be confirmed in the portal.</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
     <tbody>
-      <tr><td>Cost per click</td><td>$1.80 [44]</td><td>$3.00 (assumption)</td><td>$4.00 (assumption)</td></tr>
+      <tr class="fix"><td>Cost per click</td><td>$1.80 [44]</td><td>$3.00 (assumption)</td><td>$4.00 (assumption)</td></tr>
+      <tr class="was" data-nocopy><td colspan="4">Was: "$1.80 (August research)".</td></tr>
       <tr><td>Click to paid subscriber</td><td>1.5% (assumption)</td><td>1.0% (assumption)</td><td>0.5% (assumption)</td></tr>
       <tr class="hit"><td><strong>Cost per paid subscriber</strong></td><td><strong>$120</strong></td><td><strong>$300</strong></td><td><strong>$800</strong></td></tr>
     </tbody>
@@ -271,7 +291,7 @@
   <h3>How the $300 gate was calculated</h3>
   <p>The $300 is the base case in the table. I set it as the gate because it is a payback rule. The steps:</p>
   <ol>
-    <li><strong>Cost per click: $3 (assumption).</strong> Public benchmarks give $1.80 for developer tools and $2.50 for financial services on Reddit [44]. Finance is the most expensive Reddit category [9], so I put the base at $3 and the high case at $4.</li>
+    <li class="fix"><strong>Cost per click: $3 (assumption).</strong> Public benchmarks give $1.80 for developer tools and $2.50 for financial services on Reddit [44]. Finance is the most expensive Reddit category [9], so I put the base at $3 and the high case at $4.<div class="was" data-nocopy>Was: "The public range for Reddit is $1.80 at the low end (my August research)."</div></li>
     <li><strong>Click to paid subscriber: 1% (assumption).</strong> This is the rate of people who click the ad, go to the sign-up page, and pay. No data exists for this product. 1% is a usual rate for a paid tool with a self-serve checkout when the audience is targeted. The low case is 1.5% and the high case is 0.5%.</li>
     <li><strong>The division.</strong> $3 divided by 1% is $300. In other words, 100 clicks at $3 each cost $300, and 1 of those 100 people pays.</li>
     <li><strong>The payback test.</strong> The public price is $150 per month [6]. $300 divided by $150 is 2. Thus at $300 a subscriber pays back the ad cost in two months.</li>
@@ -392,12 +412,12 @@
       <tr><td>37</td><td>r/algotrading, "I open-sourced my Polymarket market-making bot (MIT)". <a href="https://www.reddit.com/r/algotrading/comments/1v2oyv1/i_opensourced_my_polymarket_marketmaking_bot_mit/">https://www.reddit.com/r/algotrading/comments/1v2oyv1/i_opensourced_my_polymarket_marketmaking_bot_mit/</a></td><td>40 or more comments. Found 22 Sept 2026.</td></tr>
       <tr><td>38</td><td>r/Kalshi, "[DEV] Async Python Kalshi REST API client library". <a href="https://www.reddit.com/r/Kalshi/comments/1qm2kf6/dev_async_python_kalshi_rest_api_client_library/">https://www.reddit.com/r/Kalshi/comments/1qm2kf6/dev_async_python_kalshi_rest_api_client_library/</a></td><td>A builder shares the client used in his own bot. Found 22 Sept 2026.</td></tr>
       <tr><td>39</td><td>r/Kalshi, "People who actually WIN MONEY on Kalshi". <a href="https://www.reddit.com/r/Kalshi/comments/1qd4ubf/people_who_actually_win_money_on_kalshi_whats/">https://www.reddit.com/r/Kalshi/comments/1qd4ubf/people_who_actually_win_money_on_kalshi_whats/</a></td><td>310 or more comments. Includes an automated Python weather bot. Found 22 Sept 2026.</td></tr>
-      <tr><td>40</td><td>Subreddit follower counts, read from Google search results for each subreddit on 24 Sept 2026. <a href="https://www.google.com/search?q=r%2FPolymarket+subreddit+members">https://www.google.com/search?q=r%2FPolymarket+subreddit+members</a> and the same query for r/Kalshi, r/quant, r/algotrading and r/AI_Agents</td><td>r/Polymarket 36.3K, r/Kalshi 42.6K, r/quant 205.2K, r/algotrading 1.9M, r/AI_Agents 440.8K.</td></tr>
-      <tr><td>41</td><td>X Business, "Interest and follower look-alikes targeting". <a href="https://business.x.com/en/help/campaign-setup/campaign-targeting/interest-and-follower-targeting">https://business.x.com/en/help/campaign-setup/campaign-targeting/interest-and-follower-targeting</a></td><td>Follower look-alike targeting exists. Approximately 30 handles per campaign recommended. Checked 24 Sept 2026.</td></tr>
-      <tr><td>42</td><td>Discord, "Discord Quests: Advertise Where the World Plays". <a href="https://discord.com/ads/quests">https://discord.com/ads/quests</a></td><td>"Discord Ads can only be purchased through our sales team." Format is sponsored Quests. Advertisers shown include film studios and consumer brands. No minimum spend published. Checked 24 Sept 2026.</td></tr>
-      <tr><td>43</td><td>TikTok, "Branded Content Policy". <a href="https://www.tiktok.com/legal/page/global/bc-policy/en">https://www.tiktok.com/legal/page/global/bc-policy/en</a></td><td>Prohibits branded content for "investment services", "trading platforms", "virtual currencies" and gambling. Checked 24 Sept 2026.</td></tr>
-      <tr><td>44</td><td>Benly, "Reddit Ads Cost: CPC, CPM and CPA by Industry (2026)". <a href="https://benly.ai/learn/reddit-ads/reddit-ads-cost-benchmarks">https://benly.ai/learn/reddit-ads/reddit-ads-cost-benchmarks</a></td><td>Developer tools $1.80 CPC and $9 CPM. Financial services $2.50 CPC and $12 CPM. Overall range $0.50 to $3.00.</td></tr>
-      <tr><td>45</td><td>Chainlink Documentation, "Data Streams Billing". <a href="https://docs.chain.link/data-streams/billing">https://docs.chain.link/data-streams/billing</a></td><td>Subscription billing. No public price. "Contact us to learn more about Mainnet pricing and subscription options."</td></tr>
+      <tr class="fix"><td>40</td><td><span class="tag" data-nocopy>New source</span>Subreddit follower counts, read from Google search results for each subreddit on 24 Sept 2026. <a href="https://www.google.com/search?q=r%2FPolymarket+subreddit+members">https://www.google.com/search?q=r%2FPolymarket+subreddit+members</a> and the same query for r/Kalshi, r/quant, r/algotrading and r/AI_Agents</td><td>r/Polymarket 36.3K, r/Kalshi 42.6K, r/quant 205.2K, r/algotrading 1.9M, r/AI_Agents 440.8K.</td></tr>
+      <tr class="fix"><td>41</td><td><span class="tag" data-nocopy>New source</span>X Business, "Interest and follower look-alikes targeting". <a href="https://business.x.com/en/help/campaign-setup/campaign-targeting/interest-and-follower-targeting">https://business.x.com/en/help/campaign-setup/campaign-targeting/interest-and-follower-targeting</a></td><td>Follower look-alike targeting exists. Approximately 30 handles per campaign recommended. Checked 24 Sept 2026.</td></tr>
+      <tr class="fix"><td>42</td><td><span class="tag" data-nocopy>New source</span>Discord, "Discord Quests: Advertise Where the World Plays". <a href="https://discord.com/ads/quests">https://discord.com/ads/quests</a></td><td>"Discord Ads can only be purchased through our sales team." Format is sponsored Quests. Advertisers shown include film studios and consumer brands. No minimum spend published. Checked 24 Sept 2026.</td></tr>
+      <tr class="fix"><td>43</td><td><span class="tag" data-nocopy>New source</span>TikTok, "Branded Content Policy". <a href="https://www.tiktok.com/legal/page/global/bc-policy/en">https://www.tiktok.com/legal/page/global/bc-policy/en</a></td><td>Prohibits branded content for "investment services", "trading platforms", "virtual currencies" and gambling. Checked 24 Sept 2026.</td></tr>
+      <tr class="fix"><td>44</td><td><span class="tag" data-nocopy>New source</span>Benly, "Reddit Ads Cost: CPC, CPM and CPA by Industry (2026)". <a href="https://benly.ai/learn/reddit-ads/reddit-ads-cost-benchmarks">https://benly.ai/learn/reddit-ads/reddit-ads-cost-benchmarks</a></td><td>Developer tools $1.80 CPC and $9 CPM. Financial services $2.50 CPC and $12 CPM. Overall range $0.50 to $3.00.</td></tr>
+      <tr class="fix"><td>45</td><td><span class="tag" data-nocopy>New source</span>Chainlink Documentation, "Data Streams Billing". <a href="https://docs.chain.link/data-streams/billing">https://docs.chain.link/data-streams/billing</a></td><td>Subscription billing. No public price. "Contact us to learn more about Mainnet pricing and subscription options."</td></tr>
     </tbody>
   </table></div>
 </article>
