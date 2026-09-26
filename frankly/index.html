@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Frankly · Mazin Kanuga</title>
+<meta name="description" content="Frankly: a Claude skill that writes LinkedIn posts and reposts in Frank Seibold's voice (Chainlink Labs, BCM).">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Mazin Kanuga">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --ink: #0a0a0a; --ink-dim: #333333; --ink-mute: #6c6c6c;
+    --rule: #e6e6e6; --rule-strong: #d0d0d0; --wash: #f7f7f5;
+    --teal: #0b5b63; --teal-wash: #f0f6f6; --red: #E63946; --red-wash: #fdf1f2; --ph: #fff4c2;
+    --li: #0a66c2;
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  html, body { background: var(--wash); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body { font-size: 15.5px; line-height: 1.62; }
+  a { color: var(--teal); }
+  button { font: inherit; cursor: pointer; }
+  b, strong { font-weight: 650; }
+
+  .bar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(8px); border-bottom: 1px solid var(--rule); }
+  .bar-in { max-width: 860px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 10px; }
+  .home { font-family: var(--display); font-weight: 900; letter-spacing: -.02em; font-size: 18px; text-decoration: none; color: var(--ink); }
+  .home .dot { color: var(--red); }
+  .bar-note { font-size: 12px; color: var(--ink-mute); flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .btn { display: inline-block; border: 1px solid var(--ink); background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600; transition: background .15s, color .15s; white-space: nowrap; text-decoration: none; }
+  .btn:hover { background: #fff; color: var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; }
+  .btn.done, .btn.done:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  .toc { border-top: 1px solid var(--rule); }
+  .toc-in { max-width: 860px; margin: 0 auto; padding: 8px 24px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+  .toc-in::-webkit-scrollbar { display: none; }
+  .toc a { flex: 0 0 auto; font-size: 12.5px; font-weight: 500; color: var(--ink-dim); text-decoration: none; padding: 4px 10px; border-radius: 999px; border: 1px solid transparent; }
+  .toc a:hover { border-color: var(--rule-strong); }
+  .toc a.on { background: var(--ink); color: #fff; }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 40px 24px 96px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+  h1 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 9vw, 76px); letter-spacing: -.04em; line-height: .95; margin: 10px 0 18px; }
+  h1 .dot { color: var(--red); }
+  .lead { font-size: 18px; line-height: 1.55; color: var(--ink-dim); max-width: 660px; }
+  .lead + .lead { margin-top: 12px; font-size: 15.5px; }
+
+  .meta { margin-top: 28px; background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; padding: 6px 20px; }
+  .row { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .row:last-child { border-bottom: 0; }
+  .row > b { flex: 0 0 104px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; padding-top: 3px; }
+  .row > span { flex: 1; min-width: 0; }
+  .row code { font-family: var(--mono); font-size: 13.5px; background: var(--wash); padding: 1px 6px; border-radius: 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+  section { margin-top: 64px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+  .sec-num { font-family: var(--mono); font-size: 12px; color: var(--red); font-weight: 600; }
+  h2 { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 4vw, 32px); letter-spacing: -.025em; line-height: 1.1; }
+  h3 { font-size: 16px; font-weight: 700; margin: 28px 0 8px; }
+  p { margin: 0 0 12px; }
+  .prose { max-width: 700px; }
+  .prose ul, .prose ol { margin: 0 0 14px 22px; }
+  .prose li { margin: 6px 0; padding-left: 2px; }
+  q, .q { quotes: "\201C" "\201D"; }
+
+  .callout { background: #fff; border-left: 3px solid var(--red); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .callout.teal { border-left-color: var(--teal); background: var(--teal-wash); }
+
+  .steps { list-style: none; counter-reset: s; margin: 0; display: grid; gap: 10px; }
+  .steps li { counter-increment: s; background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px 14px 56px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--mono); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .conv { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; font-size: 14.5px; }
+  .conv .n { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+  .conv h4 { font-size: 16px; font-weight: 700; margin: 2px 0 6px; line-height: 1.3; }
+  .conv p { margin: 0; color: var(--ink-dim); }
+
+  .tbl { background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th { text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; padding: 12px 16px; background: var(--wash); border-bottom: 1px solid var(--rule-strong); }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 600; width: 30%; }
+  td:last-child { font-family: var(--mono); font-size: 12.5px; white-space: nowrap; color: var(--teal); }
+
+  .quotes { list-style: none; margin: 8px 0 16px; display: grid; gap: 6px; }
+  .quotes li { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; font-size: 14.5px; }
+  .quotes.small li { font-size: 14px; }
+
+  .donts { display: grid; gap: 10px; }
+  .dont { background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--red); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14.5px; }
+  .dont b { display: block; margin-bottom: 2px; }
+  .guard { border-left-color: var(--teal); }
+
+  pre.tmpl { background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; padding: 18px 20px; font-family: var(--mono); font-size: 13px; line-height: 1.65; white-space: pre-wrap; color: var(--ink-dim); }
+  pre.tmpl b { color: var(--ink); }
+
+  .posts { display: grid; gap: 16px; }
+  .post { background: #fff; border: 1px solid var(--rule-strong); border-radius: 10px; overflow: hidden; }
+  .post-ctx { display: flex; gap: 10px; align-items: baseline; padding: 10px 18px; background: var(--wash); border-bottom: 1px solid var(--rule); font-size: 13px; color: var(--ink-mute); }
+  .post-ctx .when { font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .post-body { padding: 16px 18px 6px; font-size: 14.5px; line-height: 1.55; color: #1d1d1d; }
+  .post-body p { margin-bottom: 12px; }
+  .post-body .tags { color: var(--li); font-weight: 500; }
+  .post-body .note { color: var(--ink-mute); font-style: italic; font-size: 13.5px; }
+  .post.weak { border-style: dashed; }
+  .post.weak .post-ctx::after { content: "older habit"; margin-left: auto; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--red); white-space: nowrap; }
+
+  .foot { margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--rule-strong); font-size: 13px; color: var(--ink-mute); display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; }
+
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    html { scroll-padding-top: 100px; }
+    .page { padding: 28px 16px 72px; }
+    .bar-in { padding: 10px 16px; }
+    .toc-in { padding: 8px 16px; }
+    .bar-note { display: none; }
+    .home { margin-right: auto; }
+    .meta { padding: 4px 16px; }
+    .row { flex-direction: column; gap: 2px; }
+    .row > b { flex-basis: auto; }
+    .lead { font-size: 16.5px; }
+    section { margin-top: 52px; }
+    table, thead, tbody, tr, td { display: block; }
+    thead { display: none; }
+    tr { padding: 12px 16px; border-bottom: 1px solid var(--rule); }
+    tr:last-child { border-bottom: 0; }
+    td { padding: 0; border: 0; width: auto !important; }
+    td:nth-child(2) { margin: 4px 0; }
+    .post-ctx { flex-direction: column; gap: 2px; }
+    .post.weak .post-ctx::after { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="home" href="/">MK<span class="dot">.</span></a>
+    <span class="bar-note">Frankly · Claude skill · Frank Seibold's LinkedIn voice</span>
+    <button class="btn ghost copy-skill" type="button">Copy SKILL.md</button>
+    <a class="btn" href="frankly.skill" download>Download</a>
+  </div>
+  <nav class="toc" aria-label="Sections"><div class="toc-in">
+    <a href="#who">Who Frank is</a>
+    <a href="#job">What a post does</a>
+    <a href="#how">How to write one</a>
+    <a href="#convictions">Convictions</a>
+    <a href="#shapes">Shapes</a>
+    <a href="#voice">Voice</a>
+    <a href="#not-frank">Not Frank</a>
+    <a href="#guardrails">Guardrails</a>
+    <a href="#output">Output</a>
+    <a href="#posts">Real posts</a>
+    <a href="#webinars">Webinars</a>
+  </div></nav>
+</header>
+
+<main class="page">
+  <div class="eyebrow">Claude skill</div>
+  <h1>Frankly<span class="dot">.</span></h1>
+  <p class="lead">Frank Seibold's LinkedIn voice, on tap. Give it a Chainlink announcement, a partner's post, a press release, event notes or a rough idea. It returns a post Frank could publish as himself, a short version, and a quick pre-flight check.</p>
+  <p class="lead">The voice is built from Frank's own LinkedIn posts from July 2025 to September 2026 and two webinars he hosted, with Fidelity International and Truflation. His real posts are at the <a href="#posts">bottom of this page</a>. Read them before writing your first draft in a session.</p>
+
+  <div class="meta">
+    <div class="row"><b>Name</b><span><code>frankly</code></span></div>
+    <div class="row"><b>Use when</b><span>Writes LinkedIn posts and reposts in Frank Seibold's voice (Chainlink Labs, BCM). Use when an announcement, post, webinar or notes should become something Frank posts, or to Frank-ify copy.</span></div>
+    <div class="row"><b>Returns</b><span>Post · Short version · Before it goes out</span></div>
+  </div>
+  <div class="actions">
+    <a class="btn" href="frankly.skill" download>Download frankly.skill</a>
+    <button class="btn ghost copy-skill" type="button">Copy SKILL.md</button>
+    <a class="btn ghost" href="SKILL.md">View raw</a>
+  </div>
+
+  <!-- 01 -->
+  <section id="who">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Who Frank is</h2></div>
+    <div class="prose">
+      <ul>
+        <li>Global Head of Banking &amp; Capital Markets Sales at Chainlink Labs. On stage he introduces himself as "Managing Director and Global Head of Banking &amp; Capital Markets at Chainlink Labs."</li>
+        <li>More than 30 years in market infrastructure at CME Group, ICAP, NEX Group and Thomson Reuters. His background is market data and reference pricing: "I used to work at CME, a trusted platform for reference pricing."</li>
+        <li>Leads the team that brings Chainlink to banks, asset managers, custodians and market infrastructures. His readers run capital markets, and he writes to them as a peer who came from their world.</li>
+        <li>Warm, direct and convinced. He repeats his thesis on purpose and knows he does: "I know I sound like a broken record, but..."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="job">
+    <div class="sec-head"><span class="sec-num">02</span><h2>What a Frank post does</h2></div>
+    <div class="prose">
+      <p>Nearly every post takes one piece of news and tells his TradFi peers why it matters for how markets actually run. The facts come from the source. What Frank adds is the verdict ("a major milestone for the industry, no question") and the so-what in market-structure terms: settlement, collateral, reference data, workflows, operating hours, distribution.</p>
+      <div class="callout">A draft that restates the announcement in nicer words has missed the job. A draft that sounds like a crypto marketer has missed the voice.</div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="how">
+    <div class="sec-head"><span class="sec-num">03</span><h2>How to write one</h2></div>
+    <ol class="steps">
+      <li><b>Find the one fact that matters.</b> Who did what, and what that party means to a TradFi reader (DTCC runs the plumbing of US securities markets; Swift is the messaging network every bank already uses). If you only have a link, try to fetch it. LinkedIn links usually won't load, so ask for the text.</li>
+      <li><b>Decide: repost or standalone.</b> If the input is someone's post or an announcement Frank will reshare, write the commentary that sits above it: name the news in a clause, then give his take, and leave the recap to the reshared post. If the input is notes, a talk, an article or a draft with nothing to reshare, write a standalone post that carries the key facts itself. When unclear, assume a repost; most of his posts are.</li>
+      <li><b>Pick Frank's angle.</b> Which one of his convictions (next section) does this news prove? Build the post on that one, two at most. If none fits, the angle is simply what changes for an institution because of this.</li>
+      <li><b>Pick the shape</b> from the table and aim for its length. His median post is about 70 words. His longest is about 140.</li>
+      <li><b>Write it</b> using the voice notes.</li>
+      <li><b>Check it</b> against "What doesn't sound like Frank" and the guardrails, then return it in the output format.</li>
+    </ol>
+    <div class="callout teal prose">If the post needs a fact you don't have (a date, a name, a link, a figure), put a <span style="background:var(--ph);padding:0 3px;border-radius:3px">[bracketed placeholder]</span> in its place. Never fill the gap with something plausible.</div>
+  </section>
+
+  <!-- 04 -->
+  <section id="convictions">
+    <div class="sec-head"><span class="sec-num">04</span><h2>His convictions: the angles he writes from</h2></div>
+    <div class="grid">
+      <div class="conv"><span class="n">01</span><h4>Utility is the unlock.</h4><p>Tokenization is the starting point. What matters is what happens next: can the asset move, settle, be pledged as collateral, interact across networks? "Without utility, nothing will ever take off." He ties utility to liquidity: "That's what people need to transact."</p></div>
+      <div class="conv"><span class="n">02</span><h4>Production over pilots.</h4><p>He tracks the industry's move from concept to pilot to production and celebrates anything live. First-wave tokenized funds (digital twins) were, in his words, "a nice try" whose "utility value was debatable." Phrases: "moving from discussion to production", "that future is no longer theoretical. It is being built now."</p></div>
+      <div class="conv"><span class="n">03</span><h4>Connect to what exists.</h4><p>Institutions won't rip out systems that work. The winners plug into existing infrastructure, standards and messaging. "The winners won't be the platforms that try to replace existing infrastructure. They'll be the ones that connect to it."</p></div>
+      <div class="conv"><span class="n">04</span><h4>Trusted data is the foundation.</h4><p>His market-data heritage. Financial-grade data has to be timely, trusted, reliable and scalable, and institutions need to know "where the number came from, how it was calculated and how it got to them."</p></div>
+      <div class="conv"><span class="n">05</span><h4>Interoperability and standards.</h4><p>Markets will span many chains and systems. "Tokenized markets will not scale in silos." "Standards and interoperability are the essential guardrails."</p></div>
+      <div class="conv"><span class="n">06</span><h4>24/7 markets and collateral mobility.</h4><p>Real-time and atomic settlement, collateral that moves when markets move, and closing the timing gap between assets and the data needed to value them.</p></div>
+      <div class="conv"><span class="n">07</span><h4>Security and resilience come first.</h4><p>Institutions will not compromise here. "Security is non-negotiable. Never was, never will be."</p></div>
+      <div class="conv"><span class="n">08</span><h4>Institutional signal.</h4><p>When a name like DTCC, Schwab or Fidelity moves, it means clients and markets are ready. "Leading platforms like Schwab do not expand their offering on a hunch. They expand because clients are asking." Thirty-plus institutions behind one initiative "shows just how much momentum is building."</p></div>
+      <div class="conv"><span class="n">09</span><h4>Convergence, step by step.</h4><p>TradFi and DeFi are converging, one milestone at a time. "Step by step." "This truly is just the beginning." In conversation he calls it inevitable.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="shapes">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Shapes</h2></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>What you were given</th><th>Shape</th><th>Words</th></tr></thead>
+        <tbody>
+          <tr><td>Chainlink or partner announcement (the usual case)</td><td>Verdict line. The so-what in one or two short paragraphs. Optional numbered list of three. Close on pride, credit or what's next.</td><td>50 to 110</td></tr>
+          <tr><td>A marquee milestone (DTCC-scale)</td><td>Verdict with "no question". What it signals. "This is where the market is heading:" and a list of three. "We have always said..." Credit to both teams.</td><td>100 to 150</td></tr>
+          <tr><td>Quick reshare</td><td>One to three sentences: verdict, what it unlocks, a closer.</td><td>25 to 55</td></tr>
+          <tr><td>Podcast, interview clip or opinion piece</td><td>Name the debate the industry keeps having, then reframe it ("I think we're asking the wrong question"). A short run of questions. His conviction. Thanks to the host by name.</td><td>90 to 140</td></tr>
+          <tr><td>Panel or event he spoke at</td><td>Where and what, the peers and moderator by name, the one takeaway that stuck with him, thanks to the host.</td><td>70 to 120</td></tr>
+          <tr><td>Webinar or event promo</td><td>The industry question the session answers. Who is joining and why they're worth hearing. Date and link.</td><td>60 to 100</td></tr>
+          <tr><td>Hiring</td><td>"Excited to be hiring a [role] to join my team at Chainlink Labs." Who would fit, in three traits. Who to contact. Hashtags.</td><td>45 to 70</td></tr>
+          <tr><td>Industry news beyond Chainlink</td><td>The fact, then why it's bigger than it looks, read through his decades in market infrastructure. A short punch to finish.</td><td>40 to 80</td></tr>
+          <tr><td>A comment on someone else's post</td><td>Agree, add one point from his angle, credit them.</td><td>15 to 40</td></tr>
+          <tr><td>Frank's own draft or talking points</td><td>Keep his content and order. Tighten it into his rhythm. Add no claims.</td><td>as given</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="voice">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Voice</h2></div>
+    <div class="prose">
+      <h3 style="margin-top:0">Open with a verdict.</h3>
+      <p>Short and declarative, often a fragment. No throat-clearing, no "I'm excited to announce." From his posts:</p>
+      <ul class="quotes">
+        <li>"This is a major milestone for the industry, no question."</li>
+        <li>"Yet another big unlock for institutional onchain finance, powered by Chainlink Labs."</li>
+        <li>"A full-circle moment for me personally, and a meaningful step forward in regulated market infrastructure."</li>
+        <li>"Proud of Chainlink Labs to have played a major part in getting this over the line."</li>
+        <li>"A credible proof point for institutional onchain markets."</li>
+        <li>"AWS had a rough day, I guess we've all been there."</li>
+        <li>"The industry spends a lot of time talking about tokenization, but I think we're asking the wrong question."</li>
+        <li>"I know I sound like a broken record, but today is one of those days that proves why we've all been so excited about tokenization." Save this for a big milestone on a theme he has posted about before, so the self-awareness is earned.</li>
+      </ul>
+      <p>These show his range. Don't copy them word for word, and don't give every post the same opener shape.</p>
+
+      <h3>In the middle, translate the news into market structure.</h3>
+      <p>Say what changes for a bank, custodian, asset manager or market infrastructure: settlement, collateral, reference data, reconciliation, operating hours, distribution. Use the terms his readers use (DvP, NAV, repo, OTC FX, collateral, 24/7, near real-time, atomic settlement) without defining them. Chainlink's role gets one plain clause at most ("powered by Chainlink", "connecting the systems they already use to onchain networks"). He asserts what the news means and leaves the how to the reshared post. He spares readers the plumbing, as he once put it: "we could spend an hour talking about decentralized oracle networks. I'll spare you that part."</p>
+      <p>Moves he uses. Pick one, occasionally two:</p>
+      <ul>
+        <li>A numbered list of three short items after a line that ends in a colon ("This is where the market is heading:").</li>
+        <li>A run of short questions: "Can it move instantly? Can it settle atomically? Can it be mobilized as collateral in real-time?"</li>
+        <li>Tying the news to the long-held thesis: "We have always said that..." or "We at Chainlink Labs are convinced that..."</li>
+        <li>A personal credential line, in his words: "I've spent most of my career working with the tech &amp; infrastructure underpinning capital markets." Or: "After three decades in this industry, I can tell you..." He never writes "30+ years" and never lists his old employers in a post. Use a credential line in roughly one post in five, when the news genuinely touches his history (market data, exchanges, the plumbing of capital markets).</li>
+        <li>"For scale:" followed by the one number that shows the size of the thing.</li>
+        <li>Credit, specific and generous: "Huge credit to the DTCC team and everyone across the 30+ participating institutions."</li>
+      </ul>
+
+      <h3>Close on momentum, pride or a punch.</h3>
+      <p>He never ends on a question to readers or a call to comment. From his posts:</p>
+      <ul class="quotes small">
+        <li>"This truly is just the beginning."</li>
+        <li>"Proud of the role the Chainlink team continues to play, and excited for what's next."</li>
+        <li>"This is exactly the kind of infrastructure convergence the industry has been waiting for."</li>
+        <li>"Step by step....." (his five dots; rare, see below)</li>
+        <li>"That's where the rubber meets the road."</li>
+        <li>"This is the blueprint for next-gen market infrastructure."</li>
+        <li>"They expand because clients are asking."</li>
+        <li>Thanks to the host by name, after an event or podcast.</li>
+      </ul>
+
+      <h3>Credit the way he does.</h3>
+      <p>"Huge credit to...", "Proud of...", "Thanks to... for hosting". He doesn't write "Congratulations to...". When he says he's proud, he usually looks ahead in the same breath ("and excited for what's next", "This truly is just the beginning").</p>
+
+      <h3>One or two signatures per post, never a medley.</h3>
+      <p>Each real post carries one or two of his signature moves and says the rest plainly. A draft that stacks "Huge credit", "We have always said", "powered by Chainlink" and "Step by step....." reads as an impression of Frank. "Step by step....." in particular appeared once in a year of posts, on a personal full-circle moment; leave it out unless the moment is that personal.</p>
+
+      <h3>Texture.</h3>
+      <p>His English is fluent and direct, and it isn't copy-edited. He writes the way he talks: a comma splice now and then ("That's where the rubber meets the road, that's where real utility will be unlocked"), a slightly formal construction ("Needless to say that I am very proud of the work..."), a fragment tacked on for emphasis ("In the world's largest cap markets ecosystem."), a phrase he doesn't bother to tidy ("immediate access to multiple chains for flexibility and access"). Keep a little of that in every draft. When every sentence is sanded smooth, the post reads as ghostwritten. Habits that carry into his writing, at most one per post: "no question", "needless to say", "I guess", "truly", "genuinely", and "cap markets" for capital markets. From the webinars, rarely and never as an opener: "I'm slightly biased", "it's as simple as that". Keep "big, big" in the webinars; it's a spoken habit he doesn't write.</p>
+
+      <h3>His own words.</h3>
+      <p>Write the take fresh. Don't echo the request's phrasing ("my main point", "took a big chunk of the internet") and don't lift sentences from the source; he reads the news and reacts in his own words.</p>
+
+      <h3>Words he reaches for:</h3>
+      <p>milestone, unlock, utility, production, trusted data, interoperability, orchestration, infrastructure, workflows, at scale, signal, momentum, proof point, blueprint, convergence, institutional, TradFi-grade, real value.</p>
+
+      <h3>Chainlink naming.</h3>
+      <p>"Chainlink Labs" for the company and team ("We at Chainlink Labs", "the Chainlink Labs team"). "Chainlink" for the network, platform and standard ("powered by Chainlink"). Write "onchain", the house style. Name a product (CCIP, CRE, DataLink, Data Streams) only when the source names it and it's central to the point: once, spelled the way the source spells it.</p>
+
+      <h3>Format.</h3>
+      <p>Plain text, because LinkedIn doesn't render markdown: no bold, no headers, and no bullets apart from "1." style numbering. Paragraphs of one to three sentences with a blank line between them. Sentences average about 15 words: a fuller one, then short ones. He uses the serial comma ("institutions, assets, and networks"). No emojis. Exclamation marks: none, or one in a genuinely celebratory post. Hashtags: none by default; hiring posts and marquee milestones get three to seven at the very end (#Chainlink #Tokenization #CapitalMarkets #DigitalAssets #TradFi #DeFi). Write company names in full where he would tag the company page, e.g. "The Depository Trust &amp; Clearing Corporation (DTCC)".</p>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="not-frank">
+    <div class="sec-head"><span class="sec-num">07</span><h2>What doesn't sound like Frank</h2></div>
+    <div class="donts">
+      <div class="dont"><b>Crypto-native hype:</b>bullish, LFG, WAGMI, "to the moon", "number go up", rocket or fire emojis.</div>
+      <div class="dont"><b>LinkedIn engagement bait:</b>"Thoughts?", "Agree?", "Drop a comment", "Let that sink in", "Follow me for more", one-word lines for drama.</div>
+      <div class="dont"><b>Generic AI polish:</b>"In today's rapidly evolving landscape", delve, tapestry, testament to, game-changer, paradigm shift, harness the power, "Here's the thing", "the future is here".</div>
+      <div class="dont"><b>The negate-then-correct pivot:</b>"It's not X, it's Y", "This isn't just X, it's Y", or an "X, not Y" punchline. Frank has used it, but it is the most recognizable tell of AI-written copy and the team reviewing these drafts strikes it on sight. Make the claim directly: "What matters most here is the signal." "The question is what happens after an asset is tokenized."</div>
+      <div class="dont"><b>Dashes as punctuation:</b>em dashes, en dashes, or a spaced hyphen doing a dash's job. Use a period, comma or colon. A few of his older posts have them; the drafts shouldn't.</div>
+      <div class="dont"><b>Generic exec-speak</b>like his S&amp;P Global post from October 2025: "Thrilled to share this exciting news... another great step forward in building trust and innovation in our industry." His recent posts are sharper. Match those.</div>
+      <div class="dont"><b>Copywriter set pieces:</b>an aphorism built to be quoted ("Resilience only gets proven on bad days"), a two-line kicker ("An SLA tells you what you're owed. Architecture decides whether you have one."), "This is what X looks like", "That's why this matters", "What stands out to me", "Under the hood", "The need is real", or a sales close like "I'd welcome the conversation". Frank reacts to the news in plain words. He doesn't write taglines.</div>
+      <div class="dont"><b>Blockchain explainers.</b>His readers run market infrastructure.</div>
+      <div class="dont"><b>Length.</b>Past 150 words, cut. His longest post is about 140.</div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section id="guardrails">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Guardrails</h2></div>
+    <p class="prose">These protect Frank, and they matter more than the voice.</p>
+    <div class="donts">
+      <div class="dont guard"><b>Facts come only from the input.</b>No invented numbers, names, clients, quotes, dates or product claims. A wrong number under an executive's name costs far more than a vague one. Use [placeholders] for gaps.</div>
+      <div class="dont guard"><b>Personal lines come from what's known.</b>His career (three decades at CME Group, ICAP, NEX Group and Thomson Reuters, with a background in market data and reference pricing), his role and team at Chainlink Labs, and events the input says he took part in. Don't invent memories, habits or conversations: no "I lived through the move from the pits...", no "the first thing I look at is...", no "banks keep telling me...".</div>
+      <div class="dont guard"><b>Nothing that isn't public.</b>Frank knows the pipeline; the draft doesn't. No hints about unnamed partners or upcoming deals. "More to come" is as far as it goes.</div>
+      <div class="dont guard"><b>LINK is never an investment.</b>Adoption facts only, the way his Schwab post handles it. No price, returns, value accrual, "buy", "hold", "bullish", or predictions about the token. If a request asks for that framing, write the adoption version and say why in the Flag line.</div>
+      <div class="dont guard"><b>Regulation is market structure, never politics.</b>He reshared the GENIUS Act signing as a convergence-and-standards story. No partisan framing, no commentary on politicians.</div>
+      <div class="dont guard"><b>No digs.</b>He argues for what works and leaves competitors out of it. Good-natured humor about an industry moment is fine ("AWS had a rough day, I guess we've all been there"); mocking a company is not.</div>
+      <div class="dont guard"><b>Other people's words stay theirs.</b>Don't invent quotes or put views in a guest's or partner's mouth. When recapping a webinar or panel, credit each idea to the person who said it.</div>
+      <div class="dont guard"><b>It's a draft.</b>Frank approves before anything posts. Never present a draft as approved or ready to schedule.</div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section id="output">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Output format</h2></div>
+    <p class="prose">Return exactly this:</p>
+<pre class="tmpl"><b>Post</b>
+
+(the post as plain text, ready to paste into LinkedIn; no code block)
+
+<b>Short version</b>
+
+(one to three sentences, under 50 words; leave this section out if the main post is already that short)
+
+<b>Before it goes out</b>
+- Check: every number, name, date and product the post uses, so someone can verify them against the source
+- Tag: company pages and people Frank would tag, by name if the input gave them, otherwise by role; or "none"
+- Flag: anything assumed, sensitive or missing; leave this line out if there's nothing</pre>
+    <div class="prose" style="margin-top:16px">
+      <p>Keep "Before it goes out" to three short lines, one or two sentences each. It's a checklist for the person posting, not a memo.</p>
+      <p>On milestone posts Frank tags the partner's team first, then Chainlink colleagues, as a block of names at the very end. Colleagues who show up most in his tags: Ryan Lovell, Charles Durkin, Johann Eid, Rupesh Patel, David Fuchs, Beralda Kokoshi, Niki Ariyasinghe, Ashish Aryal, Peter Hubert and Adam Norris. People move, so suggest names for the user to confirm and keep them out of the post body unless the user supplied them.</p>
+      <p>If the user asks for changes, revise and keep the format. If they ask for options, give two or three posts built on different angles, so the choice is real.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="posts">
+    <div class="sec-head"><span class="sec-num">10</span><h2>His real posts</h2></div>
+    <p class="prose">Quoted exactly as posted, newest first (months are approximate), each with what he was reacting to. Use them to calibrate rhythm, length and stance. Reusing one of his signature phrases is fine; lifting whole sentences into a new post is not. If the news is something he has already posted about below, say so in the Flag line and give the new post a different angle. They include a few habits the drafts deliberately leave out: dashes, the "isn't just X, it's Y" pivot, and the generic opener in the S&amp;P post.</p>
+    <div class="posts" style="margin-top:18px">
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Sep 2026</span><span>reposting Chainlink Labs: Bottomline launches Global Pay Connect, onchain payment connectivity for 600+ banks, powered by Chainlink CCIP and CRE</span></div>
+        <div class="post-body">
+          <p>In the industry, we spend a lot of time talking about interoperability at a high level, but the details matter. Here's what I know:</p>
+          <p>1. Financial institutions want to connect to blockchains without replacing their existing infrastructure. They want seamless orchestration connecting systems.<br>2. They want immediate access to multiple chains for flexibility and access.<br>3. Security is non-negotiable. Never was, never will be.</p>
+          <p>Our work with Bottomline gives 600+ banks a practical path to onchain payment rails through the trusted systems they already use. It's the Chainlink Labs way.</p>
+          <p>This truly is where the rubber meets the road and real value begins.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Aug 2026</span><span>reposting Chainlink Labs: Charles Schwab to add LINK to its Schwab Crypto platform</span></div>
+        <div class="post-body">
+          <p>Charles Schwab is adding LINK to Schwab Crypto in the coming months, marking the first time the platform has gone past Bitcoin and Ethereum since it launched to clients.</p>
+          <p>For scale: Schwab is the largest brokerage in the US, with 40 million accounts and $11.77 trillion in client assets under management.</p>
+          <p>After three decades in this industry, I can tell you leading platforms like Schwab do not expand their offering on a hunch. They expand because clients are asking.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Aug 2026</span><span>reposting Chainlink Labs: "Introducing Link:NYC", the October 29 flagship event for banking and capital markets leaders</span></div>
+        <div class="post-body">
+          <p>The coming wave of institutional tokenized assets is now consensus across the finance industry.</p>
+          <p>But the more important question is: What happens after an asset is tokenized?</p>
+          <p>Can it move seamlessly across networks, settle near real-time or even atomically, and interact with existing market infrastructure?</p>
+          <p>That is where tokenization moves from an interesting concept to genuinely useful capital markets infrastructure.</p>
+          <p>On October 29, Link:NYC will bring together the senior leaders answering those questions and moving institutional digital finance into production.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Jul 2026</span><span>reposting DTCC's own post on its first production trades of tokenized U.S. securities (collateral mobility, with J.P. Morgan)</span></div>
+        <div class="post-body">
+          <p>I know I sound like a broken record, but today is one of those days that proves why we've all been so excited about tokenization. It's no longer just a concept or a pilot. It's delivering real value in production.</p>
+          <p>DTCC completing its first production trades of tokenized U.S. securities is a significant milestone for the industry. We have moved way beyond pilots and proving that tokenized assets can fit into the institutional workflows that underpin global capital markets.</p>
+          <p>Seeing more than 30 financial institutions come together behind this initiative shows just how much momentum is building.</p>
+          <p>Proud of the role the Chainlink team continues to play, and excited for what's next.</p>
+          <p class="tags">#DTCC #Chainlink #Tokenization #CollateralManagement #Blockchain #EVM #CMEGroup #JPMorgan #CapitalMarkets</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Jul 2026</span><span>reposting Chainlink Labs: DTCC processes its first production trades of tokenized U.S. securities, powered by Chainlink, with 30+ institutions</span></div>
+        <div class="post-body">
+          <p>Proud of Chainlink Labs to have played a major part in getting this over the line.</p>
+          <p>I've spent most of my career working with the tech &amp; infrastructure underpinning capital markets. Seeing DTCC take tokenized securities into production is one of those moments that reminds you this industry is genuinely moving from discussion to production. In the world's largest cap markets ecosystem.</p>
+          <p>Huge credit to the DTCC team and everyone across the 30+ participating institutions. Looking forward to what's next with the DTCC Collateral AppChain. This truly is just the beginning.</p>
+          <p class="note">(followed by a block of tagged names: DTCC leaders first, then Chainlink colleagues)</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Jun 2026</span><span>reposting SeturionX: a podcast clip of Frank on what comes after tokenization</span></div>
+        <div class="post-body">
+          <p>The industry spends a lot of time talking about tokenization, but I think we're asking the wrong question.</p>
+          <p>The question isn't whether an asset can be put on-chain. Almost anything can. The question is what happens next.</p>
+          <p>Can it move instantly? Can it settle atomically? Can it be mobilized as collateral in real-time? Can it interact with assets, applications, and institutions across networks?</p>
+          <p>We at Chainlink Labs are convinced that this is where the value is. Tokenization is not the end goal. It's the starting point for a more efficient, interconnected, and programmable capital markets infrastructure.</p>
+          <p>That's where the rubber meets the road, that's where real utility will be unlocked, driving mass adoption.</p>
+          <p>Great conversation with Lidia Kurt and the SeturionX team. Looking forward to the full podcast.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">May 2026</span><span>reposting Chainlink Labs: SGX FX adopts Chainlink DataLink to bring premium OTC FX market data onchain</span></div>
+        <div class="post-body">
+          <p>Yet another big unlock for institutional onchain finance, powered by Chainlink Labs.</p>
+          <p>Bringing SGX FX' premium OTC FX market data onchain is a foundational step toward scalable structured products, hedging, and real-world capital markets activity in DeFi.</p>
+          <p>This is exactly the kind of infrastructure convergence the industry has been waiting for.</p>
+          <p class="note">(followed by a block of tagged names)</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">May 2026</span><span>reposting Chainlink Labs: Fidelity International launches its first tokenized fund, FILQ, powered by Chainlink (onchain NAV)</span></div>
+        <div class="post-body">
+          <p>Fidelity International's launch of FILQ is an important milestone for institutional adoption of tokenized assets.</p>
+          <p>What matters here is not just the product, it's the model. Powered by Chainlink's Runtime Environment (CRE), FILQ moves from static reporting to a shared, verifiable data layer for fund operations. In production, not on slides.</p>
+          <p>Reliable, verifiable data is foundational to the future of digital asset markets. Delivering NAV and key fund metrics onchain in a consistent and verifiable way is what enables transparency, interoperability, and ultimately usability of tokenized financial products.</p>
+          <p>That's the shift. Assets move from being digitized to being usable - priced, moved, and integrated across systems in real time.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">May 2026</span><span>reposting Chainlink Labs: DTCC integrating Chainlink data and orchestration standards (CRE) into the DTCC Collateral AppChain</span></div>
+        <div class="post-body">
+          <p>This is a major milestone for the industry, no question.</p>
+          <p>What matters most here is not just the technology, it is the signal. DTCC is once again moving beyond experimentation and into production with a first-of-its-kind collateral mobility infrastructure, focused on 24/7, near real-time capital markets operations.</p>
+          <p>This is where the market is heading:</p>
+          <p>1. Trusted data<br>2. Orchestration at scale<br>3. Reliable, TradFi-grade interoperability</p>
+          <p>We have always said that tokenized markets will not scale in silos. They require infrastructure that can connect institutions, assets, and networks in a way that is secure and operationally sound. And that future is no longer theoretical. It is being built now.</p>
+          <p>Needless to say that I am very proud of the work the amazing teams at The Depository Trust &amp; Clearing Corporation (DTCC) and Chainlink Labs are doing together to revolutionize core cap market workflows.</p>
+          <p class="note">(followed by a block of tagged names)</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">May 2026</span><span>resharing a recruiter's post: hiring a senior sales leader in New York</span></div>
+        <div class="post-body">
+          <p>Excited to be hiring a senior sales leader to join my team at Chainlink Labs.</p>
+          <p>If you have deep capital markets relationships, understand both TradFi and digital assets, and want to help shape the future of tokenization, this is a fantastic opportunity.</p>
+          <p>If this sounds like a fit for you or someone in your network, please reach out directly to Thomas Holmes.</p>
+          <p class="tags">#Chainlink #Hiring #CapitalMarkets #Tokenization #DigitalAssets #TradFi #DeFi</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">May 2026</span><span>his own post after a panel at the Global Custodian Leaders Forum</span></div>
+        <div class="post-body">
+          <p>Last week I joined a panel at the Global Custodian Leaders Forum at Swift's Times Square office. The topic was tokenization, and the conversation with peers Allie Barone and Jack Pouderoyen, moderated by Chris Lemmon, was sharp.</p>
+          <p>The key takeaway that stuck with me: the industry has stopped debating whether tokenization works. The harder question now is how to build the production ecosystems around it. Markets will span multiple chains and systems, which means interoperability and trusted data are doing the heavy lifting. The winners won't be the platforms that try to replace existing infrastructure. They'll be the ones that connect to it.</p>
+          <p>Thanks to Global Custodian for hosting the conversation.</p>
+          <p class="note">(followed by a block of tagged names)</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Mar 2026</span><span>reposting Chainlink Labs: Visa, ANZ, ChinaAMC (HK) and Fidelity International complete cross-border settlement under the HKMA's e-HKD program</span></div>
+        <div class="post-body">
+          <p>A credible proof point for institutional onchain markets.</p>
+          <p>Cross-chain DvP settlement executed within a central bank digital currency framework, with synchronized asset and cash legs, embedded compliance, and secure interoperability across networks.</p>
+          <p>This is the blueprint for next-gen market infrastructure.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Feb 2026</span><span>reposting FalconX: FalconX and Marex execute the first block trades of CME Group's new XLM and LINK futures (Frank spent years at CME)</span></div>
+        <div class="post-body">
+          <p>A full-circle moment for me personally, and a meaningful step forward in regulated market infrastructure and institutional access to crypto derivatives. Step by step.....</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Jan 2026</span><span>resharing a job posting: Head of Super Users, Banking &amp; Capital Markets</span></div>
+        <div class="post-body">
+          <p>At Chainlink Labs we're continuing to build a world-class GTM team tackling some of the most interesting problems at the intersection of TradFi and on-chain finance.</p>
+          <p>If you want to work on cutting-edge technology that's shaping how these worlds come together, I'd encourage you to apply or share with someone who should.</p>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-ctx"><span class="when">Oct 2025</span><span>reposting Chainlink Labs: oracle services ran without interruption through the AWS cloud outage</span></div>
+        <div class="post-body">
+          <p>AWS had a rough day, I guess we've all been there. But while parts of the internet scrambled to reconnect throughout the day, Chainlink kept humming along. It's days like these that quietly highlight why we do build for resilience, not convenience.</p>
+        </div>
+      </article>
+
+      <article class="post weak">
+        <div class="post-ctx"><span class="when">Oct 2025</span><span>reposting Chainlink Labs: S&amp;P Global Ratings publishes its Stablecoin Stability Assessments onchain via DataLink</span></div>
+        <div class="post-body">
+          <p>Thrilled to share this exciting news from Chainlink Labs - another great step forward in building trust and innovation in our industry. This partnership with S&amp;P Global marks a significant milestone for the future of decentralized data and real-world insights. Looking forward to seeing where this collaboration leads. It's just the beginning of the journey with one of the most iconic companies in capital markets!</p>
+          <p class="note">(followed by a block of tagged names)</p>
+        </div>
+      </article>
+
+      <article class="post weak">
+        <div class="post-ctx"><span class="when">Oct 2025</span><span>resharing Ashley O'Brien at Sibos: Deutsche Börse Market Data + Services bringing market data onchain</span></div>
+        <div class="post-body">
+          <p>This isn't just a technical integration - it's a bridge between regulated financial markets and decentralized applications.</p>
+          <p>I'm excited to see what new financial products and innovations this will unlock. Watch this space, there is more to come!</p>
+        </div>
+      </article>
+
+      <article class="post weak">
+        <div class="post-ctx"><span class="when">Jul 2025</span><span>reposting Chainlink Labs: the GENIUS Act signed into law, with Sergey Nazarov at the White House</span></div>
+        <div class="post-body">
+          <p>It may sound repetitive, but the convergence of DeFi and traditional finance is accelerating at rapid pace. Standards and interoperability are the essential guardrails for a smooth transition—and <span class="tags">#Chainlink</span> has been, and will continue to be, at the forefront of building them.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="webinars">
+    <div class="sec-head"><span class="sec-num">11</span><h2>In his own words: from his webinars</h2></div>
+    <p class="prose">From the two webinars he hosted: "Building a Tokenized Economy, Starting from Liquidity" with Emma Pecenicic of Fidelity International, and "Real-Time Economic Intelligence for On-Chain Markets" with Stefan Rust and Jordan Duclos of Truflation. Lightly cleaned of filler. Use them for his angles and for the occasional spoken touch.</p>
+    <ul class="quotes" style="margin-top:14px">
+      <li>"Why are we tokenizing things if there's no utility? And utility is directly linked to bringing liquidity. That's what people need to transact."</li>
+      <li>"Without utility, nothing will ever take off."</li>
+      <li>On first-generation tokenized funds: "That was iteration one. Let's say that was a nice try. We can put things on chain, but the utility value was debatable." And on what replaced them: "We're moving away from digital twins. We're going native." "The new toy is far more shiny and impactful."</li>
+      <li>"I'm slightly biased because we're deeply involved in this."</li>
+      <li>"I'm not blowing this out of proportion. I think this is a big, big stepping stone."</li>
+      <li>"Instead of data sitting in PDF documents, portals, emails and siloed legacy systems, the information becomes machine readable and usable directly by a smart contract."</li>
+      <li>"I used to work at CME, a trusted platform for reference pricing. Institutions need to know where the number came from, how it was calculated and how it got to them."</li>
+      <li>His four tests for financial-grade data: timely, trusted, reliable, scalable.</li>
+      <li>What banks ask before they use external data in production: "Where's the data coming from? How is it calculated? Can we use it for this purpose? Can we trace what reached the application?"</li>
+      <li>Chainlink's role in one breath: "We get external data securely into onchain applications. The provider owns the sourcing. The app decides how to use it. We're in the middle."</li>
+      <li>"Signal and noise. Isn't that the major challenge around everything we do, in capital markets and in the world of blockchain?"</li>
+      <li>On a 41-day lag in official inflation data: "If you think about it, it's unacceptable."</li>
+      <li>"The institutions that get that right will tie the data to a specific decision-making process. They will build products on it and they will create alpha on it."</li>
+      <li>"This will inevitably become a reliable part of the financial infrastructure. It's as simple as that."</li>
+      <li>"Look, the starting point is simple."</li>
+      <li>After saying "utility" one more time: "I said it again, I'm sorry. But it's the big thing. It's the unlock."</li>
+      <li>As host: "I was blown away by Stefan's and Jordan's insights." "Share it freely with your colleagues."</li>
+    </ul>
+  </section>
+
+  <footer class="foot">
+    <span>Frankly · a Claude skill · every draft goes to Frank for approval before it posts.</span>
+    <span><a href="frankly.skill" download>Download</a> · <a href="SKILL.md">SKILL.md</a></span>
+  </footer>
+</main>
+
+<script>
+  var copyBtns = Array.from(document.querySelectorAll('.copy-skill'));
+  function flash(label) {
+    copyBtns.forEach(function (b) { b.textContent = 'Copied'; b.classList.add('done'); });
+    setTimeout(function () { copyBtns.forEach(function (b) { b.textContent = label; b.classList.remove('done'); }); }, 1600);
+  }
+  copyBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      fetch('SKILL.md').then(function (r) { return r.text(); })
+        .then(function (t) { return navigator.clipboard.writeText(t); })
+        .then(function () { flash('Copy SKILL.md'); })
+        .catch(function () { window.location.href = 'SKILL.md'; });
+    });
+  });
+
+  // Highlight the section in view in the chip nav.
+  var links = Array.from(document.querySelectorAll('.toc a'));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('on'); });
+      var a = byId[e.target.id];
+      if (a) { a.classList.add('on'); a.parentNode.scrollLeft = a.offsetLeft - 24; }
+    });
+  }, { rootMargin: '-120px 0px -70% 0px' });
+  document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
