@@ -12,18 +12,18 @@
 
   // Recipe metadata. serves = servings the listed amounts make (the scaler's base). per = shown as "Makes …" when serves is 1.
   const DATA = {
-    'yellow-rice':               { name: 'Instant Pot Yellow Rice', course: 'Side', method: 'Instant Pot', time: '~25 min', serves: 4, per: '1 of 4', pairs: ['daal', 'jerk-chicken'] },
-    'pizza-dipping-sauce':       { name: 'Pepperoncini Dipping Sauce', course: 'Condiment', method: 'No cook', time: '~10 min', serves: 12, per: '2 tbsp' },
-    'daal':                      { name: 'Instant Pot Daal', course: 'Main', method: 'Instant Pot', time: '~50 min', serves: 4, per: 'per bowl', pairs: ['rice-and-peas', 'yellow-rice'] },
-    'jerk-chicken':              { name: 'Jerk Chicken', course: 'Main', method: 'Oven', time: '4–8 hr + 25', serves: 8, per: '2 thighs', pairs: ['rice-and-peas', 'cilantro-lime-rice'] },
-    'rice-and-peas':             { name: 'Rice and Peas', course: 'Side', method: 'Instant Pot', time: '~30 min', serves: 6, per: 'per cup', pairs: ['jerk-chicken'] },
-    'fettuccine':                { name: 'Fresh Fettuccine', course: 'Pasta', method: 'Stand mixer', time: '~1 hr', serves: 3, per: 'per nest', pairs: ['cajun-sausage-fettuccine'] },
-    'cajun-sausage-fettuccine':  { name: 'Cajun Sausage Fettuccine', course: 'Main', method: 'Skillet', time: '~25 min', serves: 2, per: 'per plate, incl. pasta', pairs: ['fettuccine'] },
-    'birria-tacos':              { name: 'Birria Tacos', course: 'Main', method: 'Instant Pot', time: '~2 hr', serves: 5, per: '3 tacos' },
-    'banana-pudding-ice-cream':  { name: 'Banana Pudding Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['chocolate-banana-ice-cream'] },
-    'strawberry-ice-cream':      { name: 'Strawberry Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['banana-pudding-ice-cream'] },
-    'chocolate-banana-ice-cream':{ name: 'Chocolate Banana Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['banana-pudding-ice-cream'] },
-    'cilantro-lime-rice':        { name: 'Cilantro Lime Rice', course: 'Side', method: 'Instant Pot', time: '~25 min', serves: 2, per: 'per serving', pairs: ['jerk-chicken'] }
+    'yellow-rice':               { name: '🍚 Instant Pot Yellow Rice', course: 'Side', method: 'Instant Pot', time: '~25 min', serves: 4, per: '1 of 4', pairs: ['daal', 'jerk-chicken'] },
+    'pizza-dipping-sauce':       { name: '🍕 Pepperoncini Dipping Sauce', course: 'Condiment', method: 'No cook', time: '~10 min', serves: 12, per: '2 tbsp' },
+    'daal':                      { name: '🍲 Instant Pot Daal', course: 'Main', method: 'Instant Pot', time: '~50 min', serves: 4, per: 'per bowl', pairs: ['rice-and-peas', 'yellow-rice'] },
+    'jerk-chicken':              { name: '🍗 Jerk Chicken', course: 'Main', method: 'Oven', time: '4–8 hr + 25', serves: 8, per: '2 thighs', pairs: ['rice-and-peas', 'cilantro-lime-rice'] },
+    'rice-and-peas':             { name: '🫘 Rice and Peas', course: 'Side', method: 'Instant Pot', time: '~30 min', serves: 6, per: 'per cup', pairs: ['jerk-chicken'] },
+    'fettuccine':                { name: '🍝 Fresh Fettuccine', course: 'Pasta', method: 'Stand mixer', time: '~1 hr', serves: 3, per: 'per nest', pairs: ['cajun-sausage-fettuccine'] },
+    'cajun-sausage-fettuccine':  { name: '🌶️ Cajun Sausage Fettuccine', course: 'Main', method: 'Skillet', time: '~25 min', serves: 2, per: 'per plate, incl. pasta', pairs: ['fettuccine'] },
+    'birria-tacos':              { name: '🌮 Birria Tacos', course: 'Main', method: 'Instant Pot', time: '~2 hr', serves: 5, per: '3 tacos' },
+    'banana-pudding-ice-cream':  { name: '🍌 Banana Pudding Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['chocolate-banana-ice-cream'] },
+    'strawberry-ice-cream':      { name: '🍓 Strawberry Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['banana-pudding-ice-cream'] },
+    'chocolate-banana-ice-cream':{ name: '🍫 Chocolate Banana Ice Cream', course: 'Dessert', method: 'Ninja Creami', time: '24 hr freeze', serves: 1, per: 'half pint', pairs: ['banana-pudding-ice-cream'] },
+    'cilantro-lime-rice':        { name: '🌿 Cilantro Lime Rice', course: 'Side', method: 'Instant Pot', time: '~25 min', serves: 2, per: 'per serving', pairs: ['jerk-chicken'] }
   };
 
   const $ = (s, el = document) => el.querySelector(s);
