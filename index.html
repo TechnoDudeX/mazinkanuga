@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mazin Kanuga · Digital Marketing</title>
-<meta name="description" content="Mazin Kanuga — Digital Marketing Manager. Full-stack marketing generalist across crypto, fintech, and compliance. Toronto, Canada.">
+<title>Mazin Kanuga · Growth Marketing</title>
+<meta name="description" content="Mazin Kanuga, Growth Marketing Manager at Chainlink Labs. Full-stack marketing generalist across crypto, fintech, and compliance. Toronto, Canada.">
 <meta name="author" content="Mazin Kanuga">
 <link rel="canonical" href="https://mazinkanuga.ca/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
-<meta property="og:title" content="Mazin Kanuga · Digital Marketing">
-<meta property="og:description" content="Digital marketing generalist — lifecycle, growth, content, and GTM for crypto and fintech.">
+<meta property="og:title" content="Mazin Kanuga · Growth Marketing">
+<meta property="og:description" content="Growth marketing generalist: lifecycle, growth, content, and GTM for crypto and fintech.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mazinkanuga.ca/">
 <meta property="og:image" content="https://mazinkanuga.ca/headshot.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mazin Kanuga · Digital Marketing">
-<meta name="twitter:description" content="Digital marketing generalist — lifecycle, growth, content, and GTM for crypto and fintech.">
+<meta name="twitter:title" content="Mazin Kanuga · Growth Marketing">
+<meta name="twitter:description" content="Growth marketing generalist: lifecycle, growth, content, and GTM for crypto and fintech.">
 <meta name="twitter:image" content="https://mazinkanuga.ca/headshot.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,8 @@
   "name": "Mazin Kanuga",
   "url": "https://mazinkanuga.ca/",
   "image": "https://mazinkanuga.ca/headshot.webp",
-  "jobTitle": "Digital Marketing Manager",
+  "jobTitle": "Growth Marketing Manager",
+  "worksFor": { "@type": "Organization", "name": "Chainlink Labs" },
   "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressCountry": "CA" },
   "sameAs": ["https://www.linkedin.com/in/mazinkanuga/"]
 }
@@ -44,6 +45,7 @@
     --rule: #e8e8e8;
 
     /* ─── Brand ─── */
+    --chainlink: #2A5ADA;
     --kraken: #6B4EFF;
     --solidus: #FFC933;
     --solidus-deep: #9a7400;
@@ -59,7 +61,7 @@
     --mono: 'JetBrains Mono', ui-monospace, monospace;
     --fw-display: 900;
 
-    /* ─── Spacing scale (empirical — captures most-used values) ─── */
+    /* ─── Spacing scale (empirical – captures most-used values) ─── */
     --s-1: 4px;
     --s-2: 8px;
     --s-3: 10px;
@@ -84,7 +86,7 @@
     --o-high: 0.7;
     --o-strong: 0.85;
 
-    /* ─── Section paddings (responsive — redefined per breakpoint below) ─── */
+    /* ─── Section paddings (responsive – redefined per breakpoint below) ─── */
     --pad-section: 64px 56px;
     --pad-about: 88px 56px;
     --pad-hero-left: 72px 56px 56px;
@@ -325,6 +327,7 @@
     cursor: pointer; border: none; font: inherit;
   }
   .acc-head:hover { background: var(--bg-hover); }
+  .acc-row.is-open[data-co="chainlink"] .acc-head { background: var(--chainlink); color: var(--bg); }
   .acc-row.is-open[data-co="kraken"] .acc-head { background: var(--kraken); color: var(--bg); }
   .acc-row.is-open[data-co="solidus"] .acc-head { background: var(--solidus); color: var(--ink); }
   .acc-row.is-open[data-co="coinsquare"] .acc-head { background: var(--coinsquare); color: var(--ink); }
@@ -354,6 +357,7 @@
   .tab-detail { padding: var(--pad-tab); display: grid; gap: var(--s-8); align-content: start; }
   .tab-detail-head { display: grid; gap: var(--s-3); padding-bottom: var(--s-7); border-bottom: 1px solid var(--rule); }
   .tab-detail-role { font-family: var(--display); font-size: 40px; font-weight: var(--fw-display); letter-spacing: -1.2px; line-height: 1.05; color: var(--ink); }
+  .tab-detail-head.c-chainlink .tab-detail-role { color: var(--chainlink); }
   .tab-detail-head.c-kraken .tab-detail-role { color: var(--kraken); }
   .tab-detail-head.c-solidus .tab-detail-role { color: var(--solidus-deep); }
   .tab-detail-head.c-coinsquare .tab-detail-role { color: var(--coinsquare-deep); }
@@ -364,6 +368,7 @@
     padding: var(--s-5) 0; border-top: 1px solid var(--rule);
   }
   .bullet-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; }
+  .bullet-label.c-chainlink { color: var(--chainlink); }
   .bullet-label.c-kraken { color: var(--kraken); }
   .bullet-label.c-solidus { color: var(--solidus-deep); }
   .bullet-label.c-coinsquare { color: var(--coinsquare-deep); }
@@ -489,7 +494,7 @@
   .section-title { font-size: clamp(56px, 10vw, 108px); letter-spacing: clamp(-2.5px, -0.4vw, -4.5px); }
   .footer-hello { font-size: clamp(80px, 17vw, 192px); letter-spacing: clamp(-4px, -0.7vw, -8px); }
 
-  /* ≤1200 — tighten section paddings */
+  /* ≤1200 – tighten section paddings */
   @media (max-width: 1200px) {
     :root {
       --pad-section: 56px 40px;
@@ -509,7 +514,7 @@
     .beyond-watermark { font-size: clamp(200px, 30vw, 320px); }
   }
 
-  /* ≤1024 — tablet: stack hero 2-col → 1-col, adjust nav */
+  /* ≤1024 – tablet: stack hero 2-col → 1-col, adjust nav */
   @media (max-width: 1024px) {
     :root {
       --pad-section: 48px 32px;
@@ -549,7 +554,7 @@
     .beyond-watermark { font-size: 240px; bottom: -50px; }
   }
 
-  /* ≤768 — narrow tablet / large phone: stack everything, burger nav */
+  /* ≤768 – narrow tablet / large phone: stack everything, burger nav */
   @media (max-width: 768px) {
     :root {
       --pad-section: 40px 24px;
@@ -649,7 +654,7 @@
     .footer-bottom { flex-direction: column; gap: var(--s-2); text-align: left; }
   }
 
-  /* ≤480 — small phone: single-col toolkit, smaller watermarks */
+  /* ≤480 – small phone: single-col toolkit, smaller watermarks */
   @media (max-width: 480px) {
     :root {
       --pad-section: 40px 20px;
@@ -719,7 +724,7 @@
         </div>
         <div>
           <div class="label">Since</div>
-          <div class="val">2020 → Present</div>
+          <div class="val">2019 → Present</div>
         </div>
       </div>
     </div>
@@ -734,7 +739,7 @@
 
   <div class="stats-row">
     <div class="stat-cell">
-      <div class="stat-num">6+</div>
+      <div class="stat-num">7+</div>
       <div class="stat-label">Years in digital</div>
     </div>
     <div class="stat-cell bg-solidus">
@@ -768,7 +773,7 @@
         <span class="dropcap">I</span>'ve spent the last several years doing marketing for crypto and fintech companies. B2B on the institutional side, B2C on the consumer side. The products are always technical, the regulations are always shifting, and the audience always needs things explained before they'll do anything.
       </p>
       <p>
-        I'm a generalist by shape — lifecycle and email, SEO and content, paid, events, web, and a lot of time inside HubSpot. <strong>I've built things from zero more than once.</strong> I like the work that's hard to figure out, and I'd rather ship something imperfect than plan something forever.
+        I'm a generalist by shape: lifecycle and email, SEO and content, paid, events, web, and a lot of time inside HubSpot. <strong>I've built things from zero more than once.</strong> I like the work that's hard to figure out, and I'd rather ship something imperfect than plan something forever.
       </p>
     </div>
   </div>
@@ -781,25 +786,41 @@
       <h2 class="section-title">Work<span class="dot">.</span></h2>
     </div>
     <div style="font-family: var(--sans); font-size: 14px; color: var(--ink-dim); max-width: 380px; line-height: 1.55; text-wrap: pretty;">
-      Three companies. Two audiences. One through-line — making complicated products make sense to real people.
+      Four companies. Two audiences. One through-line: making complicated products make sense to real people.
     </div>
   </div>
 
   <div class="positions">
     <div class="accordion" id="positions-accordion">
-      <article class="acc-row is-open" data-co="kraken">
+      <article class="acc-row is-open" data-co="chainlink">
         <button class="acc-head" type="button" aria-expanded="true">
-          <img class="acc-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
+          <img class="acc-logo" src="chainlink_logo.svg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
-            <div class="acc-tag">2026 · Apr — Jul</div>
-            <div class="acc-co">Kraken<span class="dot">.</span><span class="acc-role">Lifecycle Marketing Manager</span></div>
+            <div class="acc-tag">2026 · Aug – Now</div>
+            <div class="acc-co">Chainlink Labs<span class="dot">.</span><span class="acc-role">Growth Marketing Manager</span></div>
           </div>
           <div class="acc-head-right">
-            <span class="acc-meta">Apr 2026 — Jul 2026 · Remote · Canada</span>
+            <span class="acc-meta">Aug 2026 – Present · Remote · Canada</span>
             <span class="acc-chev" aria-hidden="true">+</span>
           </div>
         </button>
         <div class="acc-body">
+          <div class="acc-body-inner" data-host="chainlink"></div>
+        </div>
+      </article>
+      <article class="acc-row" data-co="kraken">
+        <button class="acc-head" type="button" aria-expanded="false">
+          <img class="acc-logo" src="krakenfx_kraken_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
+          <div class="acc-head-main">
+            <div class="acc-tag">2026 · Apr – Jul</div>
+            <div class="acc-co">Kraken<span class="dot">.</span><span class="acc-role">Lifecycle Marketing Manager</span></div>
+          </div>
+          <div class="acc-head-right">
+            <span class="acc-meta">Apr 2026 – Jul 2026 · Remote · Canada</span>
+            <span class="acc-chev" aria-hidden="true">+</span>
+          </div>
+        </button>
+        <div class="acc-body" aria-hidden="true">
           <div class="acc-body-inner" data-host="kraken"></div>
         </div>
       </article>
@@ -807,11 +828,11 @@
         <button class="acc-head" type="button" aria-expanded="false">
           <img class="acc-logo" src="soliduslabs_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
-            <div class="acc-tag">2023 — 26</div>
+            <div class="acc-tag">2023 – 26</div>
             <div class="acc-co">Solidus<span class="dot">.</span><span class="acc-role">Senior Digital Marketing Manager</span></div>
           </div>
           <div class="acc-head-right">
-            <span class="acc-meta">Sep 2023 — Mar 2026 · Remote · New York HQ</span>
+            <span class="acc-meta">Sep 2023 – Mar 2026 · Remote · New York HQ</span>
             <span class="acc-chev" aria-hidden="true">+</span>
           </div>
         </button>
@@ -823,11 +844,11 @@
         <button class="acc-head" type="button" aria-expanded="false">
           <img class="acc-logo" src="coinsquare_logo.jpeg" alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async">
           <div class="acc-head-main">
-            <div class="acc-tag">2019 — 23</div>
+            <div class="acc-tag">2019 – 23</div>
             <div class="acc-co">Coinsquare<span class="dot">.</span><span class="acc-role">Digital Marketing Specialist</span></div>
           </div>
           <div class="acc-head-right">
-            <span class="acc-meta">2019 — 2023 · Toronto · Canada</span>
+            <span class="acc-meta">2019 – 2023 · Toronto · Canada</span>
             <span class="acc-chev" aria-hidden="true">+</span>
           </div>
         </button>
@@ -978,7 +999,7 @@
       <div class="beyond-inner">
         <div class="beyond-tag">Side project · AI</div>
         <h3 class="beyond-title">Track My<br>Skincare.</h3>
-        <p class="beyond-desc">A personalized skincare routine generator. Answer a few questions about your skin, and Claude builds a 7-day AM/PM routine using the products you already own — then you track your streak day-by-day.</p>
+        <p class="beyond-desc">A personalized skincare routine generator. Answer a few questions about your skin, and Claude builds a 7-day AM/PM routine using the products you already own. Then you track your streak day-by-day.</p>
       </div>
       <div class="beyond-foot">→ trackmyskincare.app</div>
     </a>
@@ -996,7 +1017,7 @@
       <div class="beyond-inner">
         <div class="beyond-tag">Every Ramadan</div>
         <h3 class="beyond-title">Ramadan<br>Sammich.</h3>
-        <p class="beyond-desc">Every Ramadan I handle marketing for Ramadan Sammich — a community initiative that feeds people in need. The kind of work that puts everything else in perspective.</p>
+        <p class="beyond-desc">Every Ramadan I handle marketing for Ramadan Sammich, a community initiative that feeds people in need. The kind of work that puts everything else in perspective.</p>
       </div>
       <div class="beyond-foot">→ ramadansammich.ca</div>
     </a>
@@ -1049,7 +1070,7 @@
     });
   })();
 
-  // Ticker — duplicate strip for seamless loop
+  // Ticker – duplicate strip for seamless loop
   (function () {
     var items = ['Digital Marketing','Lifecycle & Email','HubSpot (Admin)','SEO & AEO','Content Strategy','Paid Media','Event Strategy','B2B + B2C','Braze','Campaign Management','Brand Building','Crypto Compliance','Podcast Production'];
     var track = document.getElementById('ticker-track');
@@ -1064,43 +1085,57 @@
   // Positions tabs
   (function () {
     var POSITIONS = {
+      chainlink: {
+        co: 'Chainlink Labs', role: 'Growth Marketing Manager',
+        date: 'Aug 2026 – Present', loc: 'Remote · Canada',
+        tag: '2026 · Aug – Now',
+        logo: 'chainlink_logo.svg',
+        body: "Owning growth and lifecycle marketing for the Banking & Capital Markets business, reaching financial institutions, asset managers, and market infrastructure players. Paid, webinars, events, CRM, and the governance that holds it all together.",
+        bullets: [
+          ['Paid media', 'LinkedIn and partner channels. Consolidated a fragmented campaign structure into fewer campaigns under one naming convention, tied to pipeline goals.'],
+          ['Webinars & events', 'Webinar programme end to end, plus email cadences for tier-one events and executive meetings, segmented by account tier and sales ownership.'],
+          ['CRM & data', 'CRM cleanup: tens of thousands of stale contacts removed, deliverability audited on every sending domain.'],
+          ['Governance', 'Campaign registry, standardized UTM and QR tracking, and a single intake process for email requests.'],
+          ['AI-native', 'Claude Code and custom agents to ship tooling, analysis, and executive content fast in a regulated environment.'],
+        ],
+      },
       kraken: {
         co: 'Kraken', role: 'Lifecycle Marketing Manager',
-        date: 'Apr 2026 — Jul 2026', loc: 'Remote · Canada',
-        tag: '2026 · Apr — Jul',
+        date: 'Apr 2026 – Jul 2026', loc: 'Remote · Canada',
+        tag: '2026 · Apr – Jul',
         logo: 'krakenfx_kraken_logo.jpeg',
-        body: "Owning lifecycle marketing for Kraken's Pro trading pod. I build the journeys, activation sequences, and campaign infrastructure that move users up the product ladder — across multiple geos, languages, and regulatory environments where every message has to clear compliance before it ships.",
+        body: "Owning lifecycle marketing for Kraken's Pro trading pod. I build the journeys, activation sequences, and campaign infrastructure that move users up the product ladder across multiple geos, languages, and regulatory environments where every message has to clear compliance before it ships.",
         bullets: [
-          ['Lifecycle', 'End-to-end journey design in Braze — welcome, activation, conversion, and incentive flows with geo-targeting and compliance logic built in.'],
+          ['Lifecycle', 'End-to-end journey design in Braze: welcome, activation, conversion, and incentive flows with geo-targeting and compliance logic built in.'],
           ['Experimentation', 'Holdout testing in Statsig to measure incremental revenue lift and prove lifecycle as a real growth lever.'],
-          ['Cross-functional', 'Driving campaigns across PMM, CRM ops, and compliance — turning technical products and shifting regulation into messaging real people actually act on.'],
+          ['Cross-functional', 'Driving campaigns across PMM, CRM ops, and compliance, turning technical products and shifting regulation into messaging real people actually act on.'],
         ],
       },
       solidus: {
         co: 'Solidus', role: 'Senior Digital Marketing Manager',
-        date: 'Sep 2023 — Mar 2026', loc: 'Remote · New York HQ',
-        tag: '2023 — 26',
+        date: 'Sep 2023 – Mar 2026', loc: 'Remote · New York HQ',
+        tag: '2023 – 26',
         logo: 'soliduslabs_logo.jpeg',
         body: "Ran the full digital marketing operation for a crypto market-integrity platform. Grew organic 239%, drove 146K+ sessions, and built programs that generated over $6.5M in sales pipeline. If it touched marketing, I was probably in the room.",
         bullets: [
           ['Growth', '+239% organic · +275% top-3 keyword rankings · site health 26 → 75 · ~1,950 referring domains.'],
           ['HubSpot', 'Full lifecycle, scoring, segmentation, consent, attribution dashboards · RB2B + Slack lead alerts.'],
           ['DACOM Summit', 'NY / AMS / PAR / SIN. 196 companies · 295 attendees · $6.5M pipeline @ 1:57 MROI.'],
-          ['TSA', 'Built from zero — 444 enrolled, 170 graduates, 4.6/5 relevancy, Fidelity pilot 5/5.'],
+          ['TSA', 'Built from zero. 444 enrolled, 170 graduates, 4.6/5 relevancy, Fidelity pilot 5/5.'],
           ['AI or Die', 'Content + Compliance Survival Kit direct mail to 100+ CCOs at Robinhood, RBC, Barclays.'],
           ['Podcast', '60+ eps · 10K+ plays · 2,200+ listen hours · +999% listeners.'],
         ],
       },
       coinsquare: {
         co: 'Coinsquare', role: 'Digital Marketing Specialist',
-        date: '2019 — 2023', loc: 'Toronto · Canada',
-        tag: '2019 — 23',
+        date: '2019 – 2023', loc: 'Toronto · Canada',
+        tag: '2019 – 23',
         logo: 'coinsquare_logo.jpeg',
-        body: "Consumer-facing digital marketing for one of Canada's biggest crypto exchanges. The job was getting people to sign up, start trading, and stick around — inside a heavily regulated market.",
+        body: "Consumer-facing digital marketing for one of Canada's biggest crypto exchanges. The job was getting people to sign up, start trading, and stick around, inside a heavily regulated market.",
         bullets: [
           ['B2C Lifecycle', 'Acquisition, onboarding, and the path to first trade.'],
           ['Regional', 'Campaign strategies with liquid logic for segments across Canada.'],
-          ['Reg context', 'Where my consumer-marketing instincts got built — under real constraints.'],
+          ['Reg context', 'Where my consumer-marketing instincts got built, under real constraints.'],
         ],
       },
     };
