@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buffet Cabinet Build · Mazin Kanuga</title>
+<meta name="description" content="My plywood buffet cabinet build: a rotatable 3D model, to-scale drawing, cut list, plywood sheet layout, shopping list, cost and step-by-step instructions. 94 x 42 x 92 cm, one sheet of plywood.">
+<meta name="author" content="Mazin Kanuga">
+<link rel="canonical" href="https://mazinkanuga.ca/cabinet/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<meta property="og:title" content="Buffet Cabinet Build · Mazin Kanuga">
+<meta property="og:description" content="My plywood buffet cabinet build: a rotatable 3D model, to-scale drawing, cut list, plywood sheet layout, shopping list, cost and step-by-step instructions. 94 x 42 x 92 cm, one sheet of plywood.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mazinkanuga.ca/cabinet/">
+<meta property="og:image" content="https://mazinkanuga.ca/cabinet/cabinet.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-hover: #fafafa;
+    --ink: #0a0a0a;
+    --ink-dim: #404040;
+    --ink-mute: #767676;
+    --rule: #e8e8e8;
+
+    --solidus: #FFC933;
+    --coinsquare: #00D1A4;
+    --kraken: #6B4EFF;
+    --wheat: #E8DCC0;
+    --paprika: #C1440E;
+    --oxblood: #6E1423;
+    --red: #E63946;
+    --berry: #F7B2C1;
+    --cocoa: #4A2C1D;
+    --cilantro: #2E6B34;
+    --accent: #E63946;
+
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --fw-display: 900;
+
+    --s-1: 4px;  --s-2: 8px;  --s-3: 10px; --s-4: 12px;
+    --s-5: 16px; --s-6: 20px; --s-7: 24px; --s-8: 28px;
+    --s-9: 32px; --s-10: 36px; --s-11: 40px; --s-12: 48px;
+    --s-13: 56px; --s-14: 64px;
+
+    --o-high: 0.7;
+    --o-strong: 0.85;
+
+    --pad-section: 64px 56px;
+    --pad-block: 48px 56px;
+    --pad-footer: 88px 56px 48px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--red); color: var(--bg); }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 0; z-index: 100;
+    background: var(--ink); color: var(--bg);
+    padding: 12px 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: top .15s;
+  }
+  .skip-link:focus { top: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .page-title { animation: none !important; }
+  }
+
+  /* ─── nav ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ink);
+    transition: box-shadow .2s;
+  }
+  .nav.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04); }
+  .nav-grid { display: grid; grid-template-columns: 140px 1fr 160px; align-items: stretch; }
+  .nav-burger {
+    display: none;
+    border-left: 1px solid var(--ink);
+    padding: 0 22px;
+    background: var(--bg);
+    align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    gap: var(--s-3);
+  }
+  .nav-burger-icon { display: inline-flex; flex-direction: column; gap: var(--s-1); }
+  .nav-burger-icon span { width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+  .nav.is-open .nav-burger-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav.is-open .nav-burger-icon span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .nav-logo {
+    border-right: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--display); font-size: 26px; font-weight: var(--fw-display); letter-spacing: -1.2px;
+    display: flex; align-items: center; gap: var(--s-2);
+  }
+  .nav-logo .dot { color: var(--accent); }
+  .nav-links { display: flex; }
+  .nav-link {
+    padding: 18px var(--s-7);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink);
+    border-right: 1px solid var(--rule);
+    display: flex; align-items: center; gap: var(--s-3);
+    transition: background .15s;
+  }
+  .nav-link:last-child { border-right: none; }
+  .nav-link:hover { background: var(--bg-hover); }
+  .nav-link .num { color: var(--ink-mute); }
+  .nav-link.is-current { background: var(--ink); color: var(--bg); }
+  .nav-link.is-current .num { color: rgba(255,255,255,var(--o-mute, .55)); }
+  .nav-cta {
+    border-left: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--bg); background: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+    transition: background .15s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ─── page head ─── */
+  .page-head {
+    padding: var(--pad-section);
+    border-bottom: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr 300px; gap: var(--s-12); align-items: end;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-dim); margin-bottom: var(--s-8);
+    display: inline-flex; align-items: center; gap: var(--s-3);
+  }
+  .eyebrow .bar { width: var(--s-7); height: 1px; background: var(--accent); display: inline-block; }
+  .page-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(64px, 13vw, 168px); letter-spacing: clamp(-4px, -0.6vw, -7px);
+    line-height: 0.84;
+    animation: fadeUp .7s ease both;
+  }
+  .page-title .dot { color: var(--accent); }
+  .page-lede {
+    font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--ink-dim);
+    border-top: 1px solid var(--ink); padding-top: var(--s-6); text-wrap: pretty;
+  }
+
+  /* ─── recipe ─── */
+  .recipe { border-bottom: 1px solid var(--ink); scroll-margin-top: 16px; }
+  .recipe-anchor { color: inherit; text-decoration: none; }
+  .recipe-emoji { font-size: .8em; margin-left: .12em; }
+  .recipe-anchor:hover, .recipe-anchor:focus-visible { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .recipe:last-of-type { border-bottom: none; }
+
+  .recipe-head {
+    padding: var(--pad-block);
+    border-bottom: 1px solid var(--ink);
+    background: var(--solidus);
+  }
+  .recipe-head.c-red { background: var(--red); color: var(--bg); }
+  .recipe-head.c-green { background: var(--coinsquare); color: var(--ink); }
+  .recipe-head.c-purple { background: var(--kraken); color: var(--bg); }
+  .recipe-head.c-ink { background: var(--ink); color: var(--bg); }
+  .recipe-head.c-wheat { background: var(--wheat); color: var(--ink); }
+  .recipe-head.c-paprika { background: var(--paprika); color: var(--bg); }
+  .recipe-head.c-oxblood { background: var(--oxblood); color: var(--bg); }
+  .recipe-head.c-berry { background: var(--berry); color: var(--ink); }
+  .recipe-head.c-cocoa { background: var(--cocoa); color: var(--bg); }
+  .recipe-head.c-cilantro { background: var(--cilantro); color: var(--bg); }
+  .recipe-credit {
+    margin-top: var(--s-5);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: var(--o-high);
+  }
+  .recipe-index {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    opacity: var(--o-strong); margin-bottom: var(--s-6);
+  }
+  .recipe-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(38px, 6.5vw, 76px); letter-spacing: clamp(-1.4px, -0.28vw, -3px);
+    line-height: 0.92;
+  }
+  .recipe-note {
+    margin-top: var(--s-6); font-family: var(--sans); font-size: 15px; line-height: 1.6;
+    max-width: 620px; text-wrap: pretty;
+  }
+
+  .recipe-meta { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .meta-cell { padding: var(--s-8) var(--s-10); border-right: 1px solid var(--rule); }
+  .meta-cell:last-child { border-right: none; }
+  .meta-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-3);
+  }
+  .meta-val { font-family: var(--display); font-size: 26px; font-weight: var(--fw-display); letter-spacing: -1px; line-height: 1; }
+
+  .recipe-body { display: grid; grid-template-columns: 380px 1fr; align-items: start; }
+
+  .ingredients { border-right: 1px solid var(--ink); padding: var(--pad-block); position: sticky; top: 90px; }
+  .block-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-7);
+  }
+  .ing-list { list-style: none; border-top: 1px solid var(--ink); }
+  .ing-list li {
+    display: grid; grid-template-columns: 1fr auto; gap: var(--s-5); align-items: baseline;
+    padding: var(--s-4) 0; border-bottom: 1px solid var(--rule);
+  }
+  .ing-name { font-family: var(--sans); font-size: 15px; font-weight: 600; }
+  .ing-name .opt { display: block; font-weight: 400; font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .ing-qty {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .5px; color: var(--ink-dim);
+    text-align: right;
+  }
+  .ing-group {
+    display: block; padding: var(--s-6) 0 var(--s-3);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--rule);
+  }
+  .ing-list li.ing-group:first-child { padding-top: var(--s-4); }
+
+  .method { padding: var(--pad-block); }
+  .step {
+    display: grid; grid-template-columns: 64px 1fr; gap: var(--s-7);
+    padding: var(--s-8) 0; border-top: 1px solid var(--rule);
+  }
+  .step:first-of-type { border-top: 1px solid var(--ink); }
+  .step-num {
+    font-family: var(--display); font-size: 44px; font-weight: var(--fw-display);
+    letter-spacing: -2px; line-height: 0.9; color: var(--accent);
+  }
+  .step-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: var(--s-3);
+  }
+  .step-body { font-family: var(--sans); font-size: 17px; line-height: 1.55; color: var(--ink); text-wrap: pretty; }
+
+  .callout {
+    margin-top: var(--s-9);
+    border: 1px solid var(--ink); border-left: 4px solid var(--accent);
+    padding: var(--s-6) var(--s-7);
+  }
+  .callout-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--s-3);
+  }
+  .callout p { font-family: var(--sans); font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+  .callout p + p { margin-top: var(--s-4); }
+
+  /* ─── footer ─── */
+  footer { background: var(--ink); color: var(--bg); }
+  .footer-inner { padding: var(--pad-footer); }
+  .footer-top {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: var(--s-11);
+    margin-bottom: var(--s-13);
+  }
+  .footer-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,var(--o-high)); margin-bottom: var(--s-3); }
+  .footer-hello {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(64px, 14vw, 148px); letter-spacing: clamp(-3px, -0.6vw, -6px); line-height: 0.86;
+  }
+  .footer-hello .dot { color: var(--accent); }
+  .footer-cta {
+    border: 1px solid var(--bg); padding: var(--s-6) var(--s-8);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: background .15s, color .15s;
+  }
+  .footer-cta:hover { background: var(--bg); color: var(--ink); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.2); padding-top: var(--s-6);
+    display: flex; justify-content: space-between; gap: var(--s-5);
+    font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,.55); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  /* ─── responsive ─── */
+  @media (max-width: 1200px) {
+    :root { --pad-section: 56px 40px; --pad-block: 40px 40px; --pad-footer: 72px 40px 40px; }
+  }
+  @media (max-width: 1024px) {
+    :root { --pad-section: 48px 32px; --pad-block: 36px 32px; --pad-footer: 64px 32px 36px; }
+    .nav-grid { grid-template-columns: 110px 1fr 130px; }
+    .nav-link { padding: var(--s-5) var(--s-5); font-size: 10px; }
+    .nav-link .num { display: none; }
+    .nav-logo { padding: var(--s-5) 18px; font-size: 22px; }
+    .nav-cta { padding: var(--s-5) 14px; font-size: 10px; }
+
+    .page-head { grid-template-columns: 1fr; gap: var(--s-8); align-items: start; }
+    .recipe-body { grid-template-columns: 300px 1fr; }
+    .meta-cell { padding: var(--s-7) var(--s-7); }
+    .meta-val { font-size: 22px; }
+  }
+  @media (max-width: 768px) {
+    :root { --pad-section: 40px 24px; --pad-block: 32px 24px; --pad-footer: 56px 24px 32px; }
+    .nav-grid { display: flex; flex-wrap: wrap; align-items: stretch; }
+    .nav-logo { flex: 1; border-right: none; padding: var(--s-5) var(--s-6); font-size: 22px; }
+    .nav-burger { display: flex; order: 2; }
+    .nav-links {
+      display: none; flex-basis: 100%; order: 3;
+      flex-direction: column; border-top: 1px solid var(--ink);
+    }
+    .nav.is-open .nav-links { display: flex; }
+    .nav-link {
+      border-right: none; border-bottom: 1px solid var(--rule);
+      padding: var(--s-5) 22px; font-size: 12px;
+    }
+    .nav-link:last-child { border-bottom: none; }
+    .nav-link .num { display: inline; }
+    .nav-cta {
+      display: none; flex-basis: 100%; order: 4;
+      border-left: none; border-top: 1px solid var(--ink);
+      padding: var(--s-5) 22px; font-size: 11px;
+    }
+    .nav.is-open .nav-cta { display: flex; }
+
+    .recipe-meta { grid-template-columns: 1fr 1fr; }
+    .meta-cell:nth-child(2) { border-right: none; }
+    .meta-cell:nth-child(1), .meta-cell:nth-child(2) { border-bottom: 1px solid var(--rule); }
+
+    .recipe-body { grid-template-columns: 1fr; }
+    .ingredients { position: static; border-right: none; border-bottom: 1px solid var(--ink); }
+    .step { grid-template-columns: 44px 1fr; gap: var(--s-5); padding: var(--s-7) 0; }
+    .step-num { font-size: 32px; letter-spacing: -1.4px; }
+    .step-body { font-size: 16px; }
+
+    .footer-top { grid-template-columns: 1fr; gap: var(--s-8); margin-bottom: var(--s-10); }
+    .footer-cta { justify-self: start; padding: var(--s-5) var(--s-7); }
+    .footer-bottom { flex-direction: column; gap: var(--s-2); }
+  }
+  @media (max-width: 480px) {
+    :root { --pad-section: 40px 20px; --pad-block: 28px 20px; --pad-footer: 56px 20px 32px; }
+    .recipe-meta { grid-template-columns: 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+    .meta-cell:last-child { border-bottom: none; }
+    .ing-list li { grid-template-columns: 1fr; gap: var(--s-1); }
+    .ing-qty { text-align: left; }
+  }
+
+  @media print {
+    .nav, footer, .skip-link { display: none; }
+    .recipe-head { background: none; border-bottom: 1px solid #000; }
+    .ingredients { position: static; }
+    .recipe-body { grid-template-columns: 280px 1fr; }
+  }
+</style>
+
+<style>
+  main { border-bottom: 1px solid var(--ink); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .stat { padding: var(--s-8) var(--s-10); border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-k { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-mute); margin-bottom: var(--s-3); }
+  .stat-v { font-family: var(--display); font-weight: var(--fw-display); font-size: 28px; letter-spacing: -1px; line-height: 1; }
+  .stat-v small { font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--ink-mute); margin-left: 6px; }
+
+  .sec { padding: var(--pad-block); border-bottom: 1px solid var(--ink); }
+  .sec-last { border-bottom: none; }
+  .sec-head { display: grid; grid-template-columns: 96px 1fr; gap: var(--s-7); margin-bottom: var(--s-10); max-width: 980px; }
+  .sec-num { font-family: var(--display); font-weight: var(--fw-display); font-size: 56px; letter-spacing: -2px; line-height: .85; color: var(--accent); }
+  .sec-title { font-family: var(--display); font-weight: var(--fw-display); font-size: clamp(32px, 4.4vw, 52px); letter-spacing: -1.5px; line-height: .95; margin-bottom: var(--s-5); }
+  .sec-lede { font-size: 17px; line-height: 1.55; color: var(--ink-dim); max-width: 680px; text-wrap: pretty; }
+  .sub { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 600; margin: var(--s-10) 0 var(--s-5); }
+  .body { font-size: 16px; line-height: 1.6; color: var(--ink-dim); max-width: 760px; margin: var(--s-5) 0; }
+  .body b { color: var(--ink); }
+  .fine { font-size: 13px; line-height: 1.55; color: var(--ink-mute); margin-top: var(--s-4); max-width: 640px; }
+
+  .model-frame { border: 1px solid var(--ink); height: min(680px, 78vh); min-height: 460px; background: #f3f3f1; }
+  .model-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-6); }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--s-7); border: 1px solid var(--ink); font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; transition: background .15s, color .15s; }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn-solid { background: var(--ink); color: var(--bg); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
+
+  .facts { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--rule); }
+  .facts li { padding: var(--s-7); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.55; color: var(--ink-dim); }
+  .facts li b { display: block; color: var(--ink); font-size: 16px; margin-bottom: var(--s-2); }
+
+  .drawing, .sheet { border: 1px solid var(--ink); padding: var(--s-7); background: #fff; }
+  .drawing svg { display: block; width: 100%; max-width: 860px; height: auto; margin: 0 auto; }
+  .sheet svg { display: block; width: 100%; height: auto; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-11); align-items: start; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .tbl caption { text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 600; padding-bottom: var(--s-4); }
+  .tbl th, .tbl td { text-align: left; padding: 12px 10px 12px 0; border-top: 1px solid var(--rule); vertical-align: top; line-height: 1.45; }
+  .tbl tbody tr:first-child th, .tbl tbody tr:first-child td { border-top: 1px solid var(--ink); }
+  .tbl tbody th { font-weight: 600; width: 44%; }
+  .tbl td { color: var(--ink-dim); }
+  .tbl-cols thead th { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; border-top: none; padding-bottom: var(--s-3); white-space: nowrap; }
+  .tbl-cols tbody td:first-child { color: var(--ink); font-weight: 600; }
+  .tbl-cols { min-width: 620px; }
+  .tbl .m { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .tbl-cost td { font-family: var(--mono); font-size: 13px; white-space: nowrap; text-align: right; }
+  .tbl-cost tr.total th, .tbl-cost tr.total td { border-top: 2px solid var(--ink); font-weight: 700; color: var(--ink); }
+
+  .list { list-style: none; border-top: 1px solid var(--ink); }
+  .list li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.5; color: var(--ink-dim); }
+  .list.small li { font-size: 14px; }
+  .list a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .list a:hover { color: var(--accent); }
+  .steps { max-width: 860px; }
+  .steps .sub:first-child { margin-top: 0; }
+
+  @media (max-width: 1024px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .two { grid-template-columns: 1fr; gap: var(--s-9); }
+  }
+  @media (max-width: 768px) {
+    .sec-head { grid-template-columns: 1fr; gap: var(--s-4); margin-bottom: var(--s-8); }
+    .sec-num { font-size: 40px; }
+    .stat { padding: var(--s-6) var(--s-6); }
+    .stat-v { font-size: 22px; }
+    .drawing, .sheet { padding: var(--s-4); }
+    .model-frame { height: 72vh; min-height: 420px; }
+  }
+  @media print { .model-frame, .btn-row { display: none; } }
+</style>
+
+</head>
+<body>
+
+<a href="#build" class="skip-link">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-grid">
+    <a href="/" class="nav-logo">MK<span class="dot">.</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#index" class="nav-link"><span class="num">01</span>Index</a>
+      <a href="/#work" class="nav-link"><span class="num">02</span>Work</a>
+      <a href="/#shipped" class="nav-link"><span class="num">03</span>Shipped</a>
+      <a href="/#toolkit" class="nav-link"><span class="num">04</span>Toolkit</a>
+      <a href="/#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
+      <a href="/recipes/" class="nav-link"><span class="num">06</span>Recipes</a>
+    </div>
+    <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-burger-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div>
+    <div class="eyebrow"><span class="bar"></span>Workshop · Build plan</div>
+    <h1 class="page-title">Cabinet<span class="dot">.</span></h1>
+  </div>
+  <p class="page-lede">A plywood buffet cabinet on short legs. The microwave lives on top, six more appliances live behind two doors. 94 x 42 x 92 cm, one sheet of plywood, every cut a whole centimetre.</p>
+</header>
+
+<main id="build">
+
+<div class="stats">
+  <div class="stat"><div class="stat-k">Size</div><div class="stat-v">94 x 42 x 92<small>cm</small></div></div>
+  <div class="stat"><div class="stat-k">Parts</div><div class="stat-v">13</div></div>
+  <div class="stat"><div class="stat-k">Plywood</div><div class="stat-v">1<small>sheet</small></div></div>
+  <div class="stat"><div class="stat-k">Cost</div><div class="stat-v">~$340 to $480<small>CAD</small></div></div>
+</div>
+
+<section class="sec" id="model">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <h2 class="sec-title">The 3D model</h2>
+      <p class="sec-lede">Drag to rotate, scroll or pinch to zoom, tap any part for its size. Turn on <b>Assembly steps</b> for a 10-step build walkthrough, or <b>Screws</b> to see every fastener.</p>
+    </div>
+  </div>
+  <div class="model-frame">
+    <iframe src="/cabinet/model.html?embed" title="Rotatable 3D model of the buffet cabinet" loading="lazy"></iframe>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-solid" href="/cabinet/model.html">Open the full model →</a>
+    <a class="btn" href="/cabinet/model.html#pieces">Every wood piece →</a>
+  </div>
+  <p class="fine">The full model adds every measurement, a page of every wood piece with the plywood cutting layout, and a cm or inches switch.</p>
+</section>
+
+<section class="sec" id="why">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <h2 class="sec-title">Why it's built this way</h2>
+      <p class="sec-lede">It started as a copy of a YouTube microwave cart: four legs, three rings of rails, slatted shelves. Once my appliances were measured and I wanted doors, closed sides and a gap for the floor vent behind it, it turned into a buffet cabinet. So it's built like one.</p>
+    </div>
+  </div>
+  <ul class="facts">
+    <li><b>A plywood box, not a frame.</b> Two 3/4" plywood sides with the bottom and a fixed middle shelf glued and pocket-screwed between them. No rails, no notches, no back.</li>
+    <li><b>Square with an open back.</b> The bottom and shelf are glued along the full depth of each side, which locks the box far better than narrow rails. A wall strap does the rest.</li>
+    <li><b>Front rails stop the sag.</b> A 1x2 on edge is glued to the front of the bottom and the shelf. It hangs 2 cm below and makes each one several times stiffer.</li>
+    <li><b>Short legs for the vent.</b> Four 3.8 cm blocks leave 7 cm clear underneath so the floor vent can blow out the front.</li>
+    <li><b>Full overlay doors.</b> Two plywood doors on standard soft-close cabinet hinges cover the whole front. Plywood stays flat, and soft-close means no catches.</li>
+    <li><b>Solid wood top.</b> A 1x12 and a 1x6 glued up, held on with figure-8 fasteners so it can move with the seasons.</li>
+  </ul>
+</section>
+
+<section class="sec" id="drawing">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <h2 class="sec-title">Everything fits behind the doors</h2>
+      <p class="sec-lede">To scale. Front view with the doors off, side view with a door closed. Dashed boxes are my appliances at their measured sizes, pushed to the back.</p>
+    </div>
+  </div>
+  <figure class="drawing"><svg viewBox="0 52 760 712" role="img" aria-label="Front and side view of the cabinet with the appliances in place" font-size="13" font-family="Inter, system-ui, sans-serif"><defs><marker id="cab-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0a0a0a"></path></marker></defs><g><line x1="58" x2="505" y1="670" y2="670" stroke="#c4c4c4" stroke-width="1.25"></line><line x1="496" x2="717" y1="670" y2="670" stroke="#c4c4c4" stroke-width="1.25"></line></g><g><rect x="70" y="256.45" width="423" height="8.55" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="82.15" y="265" width="8.1" height="373.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="472.75" y="265" width="8.1" height="373.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="82.15" y="638.5" width="17.1" height="31.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="463.75" y="638.5" width="17.1" height="31.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="90.25" y="265" width="382.5" height="8.55" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="90.25" y="446.8" width="382.5" height="17.1" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="90.25" y="630.4" width="382.5" height="17.1" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect></g><g><rect x="512" y="256.45" width="189" height="8.55" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="512" y="265" width="171" height="373.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="512" y="265" width="28.8" height="8.55" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="654.2" y="265" width="28.8" height="8.55" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="512.45" y="446.8" width="162" height="8.1" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="674.45" y="446.8" width="8.55" height="17.1" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="512.45" y="630.4" width="162" height="8.1" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="674.45" y="630.4" width="8.55" height="17.1" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="4 3"></rect><rect x="683" y="267.25" width="8.1" height="369" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="512" y="638.5" width="17.1" height="31.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect><rect x="656.9" y="638.5" width="17.1" height="31.5" fill="#f4efe6" stroke="#8f8f8f" stroke-width="1.25"></rect></g><g><rect x="112" y="137.2" width="216" height="119.25" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="370" y="67.45" width="81" height="189" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><text x="220" y="200.45" text-anchor="middle" font-size="12" fill="#0a0a0a">Microwave</text><text x="410.5" y="166.45" text-anchor="middle" font-size="12" fill="#0a0a0a">CREAMi</text></g><g><rect x="115.25" y="298.3" width="126" height="148.5" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="263.55" y="302.8" width="81" height="144" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="366.85" y="356.8" width="81" height="90" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><text x="178.25" y="376.8" text-anchor="middle" font-size="12" fill="#0a0a0a">Air fryer</text><text x="304.05" y="378.8" text-anchor="middle" font-size="12" fill="#0a0a0a">Juicer</text><text x="407.35" y="405.8" text-anchor="middle" font-size="12" fill="#0a0a0a">Blender</text></g><g><rect x="132.95" y="471.55" width="99.45" height="158.85" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="272.4" y="472.9" width="157.5" height="157.5" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><text x="182.68" y="555.4" text-anchor="middle" font-size="12" fill="#0a0a0a">KitchenAid</text><text x="351.15" y="555.4" text-anchor="middle" font-size="12" fill="#0a0a0a">Instant Pot</text></g><g><rect x="527.75" y="137.2" width="157.5" height="119.25" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="512" y="302.8" width="144" height="144" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><rect x="512" y="471.55" width="161.1" height="158.85" rx="4" fill="#E63946" fill-opacity="0.06" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4"></rect><text x="606.5" y="200.45" text-anchor="middle" font-size="12" fill="#767676">35 cm deep</text><text x="584" y="378.8" text-anchor="middle" font-size="12" fill="#767676">juicer 32 deep</text><text x="592" y="555.4" text-anchor="middle" font-size="12" fill="#767676">mixer 36 deep</text></g><g><path d="M72 698H491" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><path d="M514 698H699" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><path d="M48 258.45V668" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><path d="M720 275.55V444.79999999999995" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><path d="M720 456.9V628.4" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><path d="M720 640.5V668" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cab-arrow)" marker-end="url(#cab-arrow)"></path><text x="281.5" y="718" text-anchor="middle" fill="#0a0a0a">94 cm top, 88.6 cm body</text><text x="606.5" y="718" text-anchor="middle" fill="#0a0a0a">42 cm</text><text x="42" y="467.23" text-anchor="end" fill="#0a0a0a">92</text><text x="727" y="364.17" font-size="12" fill="#0a0a0a">38.5</text><text x="727" y="546.65" font-size="12" fill="#0a0a0a">39</text><text x="727" y="658.25" font-size="12" fill="#0a0a0a">7</text></g><text x="281.5" y="746" text-anchor="middle" font-weight="600" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1.5" fill="#0a0a0a">FRONT</text><text x="606.5" y="746" text-anchor="middle" font-weight="600" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1.5" fill="#0a0a0a">SIDE</text></svg></figure>
+</section>
+
+<section class="sec" id="dimensions">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <h2 class="sec-title">Dimensions</h2>
+      <p class="sec-lede">The body is 88.6 cm wide so it clears the baseboards, and the 94 cm top covers the rest. Height works out to 91.9 cm, 1 mm under 92.</p>
+    </div>
+  </div>
+  <div class="two">
+    <table class="tbl">
+      <caption>Outside, heights from the floor</caption>
+      <tbody>
+        <tr><th>Top</th><td>94 x 42 x 1.9 cm, solid wood</td></tr>
+        <tr><th>Overall height</th><td>91.9 cm</td></tr>
+        <tr><th>Body</th><td>88.6 W x 38 D cm</td></tr>
+        <tr><th>Depth with the doors</th><td>39.8 cm</td></tr>
+        <tr><th>Top overhang</th><td>2.7 cm each side, flush at the back, 2.2 cm past the doors</td></tr>
+        <tr><th>Legs</th><td>0 to 7 cm</td></tr>
+        <tr><th>Bottom panel</th><td>7 to 8.8 cm, rail down to 5</td></tr>
+        <tr><th>Middle shelf</th><td>47.8 to 49.6 cm, rail down to 45.8</td></tr>
+        <tr><th>Top stretchers</th><td>88.1 to 90 cm</td></tr>
+        <tr><th>Doors</th><td>7.5 to 89.5 cm</td></tr>
+      </tbody>
+    </table>
+    <table class="tbl">
+      <caption>Inside</caption>
+      <tbody>
+        <tr><th>Between the sides</th><td>85 cm</td></tr>
+        <tr><th>Depth, wall to doors</th><td>38 cm</td></tr>
+        <tr><th>Bottom opening</th><td>39 cm, 37 under the shelf rail</td></tr>
+        <tr><th>Top opening</th><td>38.5 cm, 40.4 between the stretchers</td></tr>
+        <tr><th>Hinge arms</th><td>stick in about 2.5 cm at the front</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="appliances">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <h2 class="sec-title">What goes in it</h2>
+      <p class="sec-lede">Only the microwave stays plugged in. Everything else is storage, so the doors stay shut. The tightest fit is the KitchenAid: 2.2 cm spare in front, 1.7 cm under the shelf rail.</p>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+  <table class="tbl tbl-cols">
+    <thead><tr><th>Appliance</th><th>W x D x H (cm)</th><th>Goes on</th><th>Headroom</th></tr></thead>
+    <tbody>
+      <tr><td>Danby microwave</td><td class="m">48 x 35 x 26.5</td><td>Top</td><td>open</td></tr>
+      <tr><td>Ninja CREAMi Deluxe XL</td><td class="m">18 x 31 x 42</td><td>Top</td><td>open</td></tr>
+      <tr><td>Cosori air fryer</td><td class="m">28 x 29 x 33</td><td>Middle shelf</td><td class="m">5.5 cm</td></tr>
+      <tr><td>Ninja juicer</td><td class="m">18 x 32 x 32</td><td>Middle shelf</td><td class="m">6.5 cm</td></tr>
+      <tr><td>Ninja blender base</td><td class="m">18 x 24 x 20</td><td>Middle shelf</td><td class="m">18.5 cm</td></tr>
+      <tr><td>KitchenAid Artisan</td><td class="m">22 x 36 x 35.3</td><td>Bottom</td><td class="m">3.7 cm</td></tr>
+      <tr><td>Instant Pot</td><td class="m">35 x 35 x 35</td><td>Bottom</td><td class="m">4 cm</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="sec" id="cuts">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <h2 class="sec-title">Cut list</h2>
+      <p class="sec-lede">13 parts, every one a whole centimetre. The 6 plywood parts come out of one 4 x 8 sheet; the top, stretchers, rails and legs are solid wood.</p>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+  <table class="tbl tbl-cols">
+    <thead><tr><th>Part</th><th>Qty</th><th>Material</th><th>Size (cm)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Sides</td><td class="m">2</td><td>3/4" plywood</td><td class="m">38 x 83</td><td>Grain up and down, band the front edge</td></tr>
+      <tr><td>Bottom panel</td><td class="m">1</td><td>3/4" plywood</td><td class="m">85 x 36</td><td>Front rail makes up the depth</td></tr>
+      <tr><td>Middle shelf</td><td class="m">1</td><td>3/4" plywood</td><td class="m">85 x 36</td><td>Fixed, front rail makes up the depth</td></tr>
+      <tr><td>Doors</td><td class="m">2</td><td>3/4" plywood</td><td class="m">44 x 82</td><td>Grain up and down, band all 4 edges</td></tr>
+      <tr><td>Front rails</td><td class="m">2</td><td>1x2, on edge</td><td class="m">85</td><td>Flush with the top, hang 2 cm below</td></tr>
+      <tr><td>Top stretchers</td><td class="m">2</td><td>1x3, flat</td><td class="m">85</td><td>One front, one back</td></tr>
+      <tr><td>Legs</td><td class="m">4</td><td>Two 1x2 pieces glued</td><td class="m">7 tall</td><td>Cut 8 pieces at 8 cm, glue in pairs, trim</td></tr>
+      <tr><td>Top</td><td class="m">1</td><td>1x12 + 1x6 glued</td><td class="m">94 x 42</td><td>Rip to 42 off the back edge</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3 class="sub">Plywood sheet layout</h3>
+  <p class="body">Rip three strips along the full 8 ft length first (44, 38 and 36 cm), then crosscut. The grain runs up and down on the doors and sides. Strips this wide are too big for a miter saw, so crosscut them on a table saw sled, a track saw, or a circular saw with a straightedge.</p>
+  <figure class="sheet"><svg viewBox="0 0 734 368" role="img" aria-label="Cutting layout for one 4 by 8 foot sheet of plywood" font-family="Inter, system-ui, sans-serif"><rect x="1" y="1" width="732.0" height="366.0" fill="#fafafa" stroke="#767676" stroke-dasharray="5 4"/><rect x="1.0" y="1.0" width="246.0" height="132.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="124.0" y="63.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Door</text><text x="124.0" y="81.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">82 x 44 cm</text><rect x="248.0" y="1.0" width="246.0" height="132.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="371.0" y="63.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Door</text><text x="371.0" y="81.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">82 x 44 cm</text><text x="505.0" y="71.0" font-family="JetBrains Mono, monospace" font-size="11" fill="#767676">offcut</text><rect x="1.0" y="134.0" width="249.0" height="114.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="125.5" y="187.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Side</text><text x="125.5" y="205.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">83 x 38 cm</text><rect x="251.0" y="134.0" width="249.0" height="114.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="375.5" y="187.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Side</text><text x="375.5" y="205.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">83 x 38 cm</text><text x="511.0" y="195.0" font-family="JetBrains Mono, monospace" font-size="11" fill="#767676">offcut</text><rect x="1.0" y="249.0" width="255.0" height="108.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="128.5" y="299.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Bottom</text><text x="128.5" y="317.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">85 x 36 cm</text><rect x="257.0" y="249.0" width="255.0" height="108.0" fill="#f4efe6" stroke="#0a0a0a"/><text x="384.5" y="299.0" text-anchor="middle" font-weight="700" font-size="15" fill="#0a0a0a">Shelf</text><text x="384.5" y="317.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#404040">85 x 36 cm</text><text x="523.0" y="307.0" font-family="JetBrains Mono, monospace" font-size="11" fill="#767676">offcut</text></svg></figure>
+</section>
+
+<section class="sec" id="shopping">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div>
+      <h2 class="sec-title">Shopping list and cost</h2>
+      <p class="sec-lede">For a clear finish, match the species: birch plywood with a maple or poplar top, or oak with oak. Painting? Birch plywood and a poplar top is the cheapest.</p>
+    </div>
+  </div>
+  <div class="two">
+    <div>
+      <table class="tbl">
+        <caption>Wood</caption>
+        <tbody>
+          <tr><th>3/4" plywood, good one face</th><td>1 sheet, 4 x 8 ft</td></tr>
+          <tr><th>1x12</th><td>1 x 4 ft</td></tr>
+          <tr><th>1x6</th><td>1 x 4 ft</td></tr>
+          <tr><th>1x3</th><td>1 x 6 ft</td></tr>
+          <tr><th>1x2</th><td>1 x 6 ft + 1 x 3 ft</td></tr>
+          <tr><th>Iron-on edge banding</th><td>1 roll, 50 ft</td></tr>
+        </tbody>
+      </table>
+      <h3 class="sub">Hardware</h3>
+      <ul class="list">
+        <li>4 frameless full overlay soft-close hinges, 35 mm cup, with plates (2 per door)</li>
+        <li>2 knobs</li>
+        <li>32 pocket screws, 1-1/4" coarse thread</li>
+        <li>8 #8 x 2" wood screws for the legs</li>
+        <li>6 figure-8 tabletop fasteners</li>
+        <li>Anti-tip wall strap, felt pads</li>
+        <li>Wood glue, sandpaper (120 to 320), wipe-on poly</li>
+      </ul>
+    </div>
+    <div>
+      <table class="tbl tbl-cost">
+        <caption>Rough cost, CAD before tax</caption>
+        <tbody>
+          <tr><th>Plywood sheet</th><td>$95 to $130</td></tr>
+          <tr><th>Solid wood boards</th><td>$73 to $104</td></tr>
+          <tr><th>Edge banding</th><td>$15 to $25</td></tr>
+          <tr><th>Hinges (Blum, 2 pairs)</th><td>$50 to $60</td></tr>
+          <tr><th>Knobs, screws, fasteners, strap, pads</th><td>$56 to $93</td></tr>
+          <tr><th>Glue, sandpaper, finish</th><td>$48 to $64</td></tr>
+          <tr class="total"><th>Total</th><td>~$340 to $480</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">Typical big-box prices (Home Depot, RONA), not quotes. Budget-brand hinges and skipping supplies you already have gets it closer to $300.</p>
+    </div>
+  </div>
+  <p class="body"><b>Tools:</b> table saw or track saw, miter saw, pocket-hole jig, drill and driver, drill press with a 3/4" Forstner bit, concealed hinge jig, household iron and edge banding trimmer, clamps that open past 90 cm, random orbital sander.</p>
+</section>
+
+<section class="sec" id="steps">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div>
+      <h2 class="sec-title">Build steps</h2>
+      <p class="sec-lede">Two shop sessions, then finishing at home.</p>
+    </div>
+  </div>
+  <div class="steps">
+    <h3 class="sub">Session 1: cut, glue and band</h3>
+    <div class="step"><div class="step-num">01</div><div><div class="step-title">Break down the sheet</div><p class="step-body">Rip the 3 strips (44, 38 and 36 cm), then crosscut the doors (82), sides (83), bottom and shelf (85). Check every part is square.</p></div></div>
+    <div class="step"><div class="step-num">02</div><div><div class="step-title">Cut the solid wood</div><p class="step-body">2 stretchers at 85 from the 1x3, 2 front rails at 85 and 8 leg pieces at 8 cm from the 1x2s, and the 1x12 and 1x6 at about 96 cm for the top.</p></div></div>
+    <div class="step"><div class="step-num">03</div><div><div class="step-title">Glue-ups</div><p class="step-body">Edge-glue the 1x12 to the 1x6 for the top, alternating clamps over and under. Glue the leg pieces face to face in pairs. Leave them overnight.</p></div></div>
+    <div class="step"><div class="step-num">04</div><div><div class="step-title">Edge band</div><p class="step-body">All 4 edges of both doors, and the front edges of the sides. Trim flush.</p></div></div>
+    <h3 class="sub">Session 2: build it</h3>
+    <div class="step"><div class="step-num">05</div><div><div class="step-title">Glue on the front rails</div><p class="step-body">Glue a rail to the front edge of the bottom panel and of the shelf, flush with the top face and both ends. Clamp and let them set.</p></div></div>
+    <div class="step"><div class="step-num">06</div><div><div class="step-title">Pocket holes and recesses</div><p class="step-body">4 per end under the bottom and shelf, 2 per end under each stretcher and on the back of each rail. Bore 3 figure-8 recesses in the top of each stretcher. Sand the inside faces to 180 while it's easy.</p></div></div>
+    <div class="step"><div class="step-num">07</div><div><div class="step-title">Bottom into the sides</div><p class="step-body">Glue and screw the bottom panel between the sides, flush with their bottom edges, with the rail's face flush with their front edges.</p></div></div>
+    <div class="step"><div class="step-num">08</div><div><div class="step-title">Fix the shelf</div><p class="step-body">Stand two 39 cm spacer boards on the bottom panel, rest the shelf on them, then glue and screw it. No measuring.</p></div></div>
+    <div class="step"><div class="step-num">09</div><div><div class="step-title">Stretchers</div><p class="step-body">Laid flat and flush with the tops of the sides, one at the front and one at the back. Check the diagonals match within 2 mm.</p></div></div>
+    <div class="step"><div class="step-num">10</div><div><div class="step-title">Legs</div><p class="step-body">Trim the blocks to 7 cm and glue one under each corner, front pair set 2 cm back behind the bottom rail. 2 #8 x 2" screws down into each from inside.</p></div></div>
+    <div class="step"><div class="step-num">11</div><div><div class="step-title">Top</div><p class="step-body">Trim to 94 x 42. Set the box upside down on it, flush at the back and centred side to side, and screw the figure-8s up into it. No glue.</p></div></div>
+    <div class="step"><div class="step-num">12</div><div><div class="step-title">Hang the doors</div><p class="step-body">Hinge cups 10 cm from the top and bottom of each door. Plates on the inside of each side, centred 10.5 cm from its top and bottom edges. Adjust to a 3 mm gap in the middle, then knobs 6 cm down and 4 cm in.</p></div></div>
+    <h3 class="sub">At home</h3>
+    <div class="step"><div class="step-num">13</div><div><div class="step-title">Finish</div><p class="step-body">Doors and hardware off, ease the edges, then 3 coats of wipe-on poly with a light 320 scuff between. Both faces of the doors and top. Cure about a week.</p></div></div>
+    <div class="step"><div class="step-num">14</div><div><div class="step-title">Strap it to the wall</div><p class="step-body">Anti-tip strap from the back stretcher into a stud before anything goes on or in it.</p></div></div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Before you cut</div>
+    <p>3/4" plywood usually measures about 1.8 cm. If yours is a little different, keep every cut size the same: the body just comes out a few millimetres wider or narrower, and the doors still cover it.</p>
+    <p>Measure your own appliances. The KitchenAid here is the Artisan tilt-head's listed size; a bowl-lift model is about 41 cm tall and won't fit.</p>
+  </div>
+</section>
+
+<section class="sec sec-last" id="sources">
+  <h2 class="sub">Sources</h2>
+  <ul class="list small">
+    <li>KitchenAid Artisan KSM150 specs: <a href="https://www.ajmadison.com/cgi-bin/ajmadison/KSM150PSCU.html" target="_blank" rel="noopener">ajmadison.com</a></li>
+    <li>Tilt-head vs bowl-lift heights: <a href="https://betterbakerclub.com/how-tall-is-a-kitchen-aid-mixer/" target="_blank" rel="noopener">Better Baker Club</a></li>
+    <li>Pocket screw thread by species: <a href="https://learn.kregtool.com/?p=1272" target="_blank" rel="noopener">Kreg</a></li>
+    <li>Figure-8 fastener size: <a href="https://www.mcfeelys.com/figure-8-table-top-fasteners-qty-15.html" target="_blank" rel="noopener">McFeely's</a></li>
+    <li>Blum Clip Top Blumotion hinge price: <a href="https://www.woodcraft.com/products/blum-clip-top-hinges-for-frameless-cabinets-full-overlay-110-degree-with-blumotion-1-pair" target="_blank" rel="noopener">Woodcraft</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-label">§ Workshop · Cabinet</div>
+        <h3 class="footer-hello">Build<span class="dot">.</span></h3>
+      </div>
+      <a href="/" class="footer-cta">← Back to portfolio</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mazin Kanuga</span>
+      <span>Marketing · Crypto · Burgers</span>
+      <span>Toronto, CA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('nav');
+    var burger = document.getElementById('nav-burger');
+    window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+    var close = function () { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); };
+    burger.addEventListener('click', function () { var open = nav.classList.toggle('is-open'); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+    nav.querySelectorAll('.nav-link, .nav-cta').forEach(function (a) { a.addEventListener('click', close); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
+  })();
+</script>
+
+</body>
+</html>

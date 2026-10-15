@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buffet Cabinet 3D Model · Mazin Kanuga</title>
+<meta name="description" content="Rotatable 3D model of my plywood buffet cabinet, with every measurement, hinge and screw, a step-by-step assembly walkthrough and a page of every wood piece.">
+<meta name="author" content="Mazin Kanuga">
+<link rel="canonical" href="https://mazinkanuga.ca/cabinet/model.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<script>if (/[?&]embed\b/.test(location.search)) document.documentElement.className += " embed";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: shop-drawing bench. 3D stage on the left (sticky), measurement sheet on the right; stacks on phones. */
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --stage: #f3f3f1;
+  --ink: #0a0a0a;
+  --muted: #767676;
+  --rule: #e8e8e8;
+  --accent: #E63946;
+  --accent-soft: rgba(230, 57, 70, 0.10);
+  --appliance: #2A5ADA;
+  --wood: #DCC7A2;
+  --wood-edge: #8A7350;
+  --grid: #dcdcd8;
+  --display: "Inter", -apple-system, system-ui, sans-serif;
+  --body: "Inter", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.back { font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 10px; }
+.back:hover { color: var(--accent); }
+.embed body { background: var(--stage); }
+.embed .app { max-width: none; padding: 0; }
+.embed .head, .embed .sheet, .embed .legend { display: none; }
+.embed .layout { grid-template-columns: minmax(0, 1fr); }
+.embed .stage { height: 100vh; min-height: 0; border: 0; border-radius: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.45; }
+.app { max-width: 1320px; margin: 0 auto; padding-inline: 20px; padding-block: 20px 48px; }
+@media (max-width: 480px) { .app { padding-inline: 16px; } }
+
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 16px; }
+.head h1 { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; margin: 0; letter-spacing: 0.01em; text-wrap: balance; }
+.head .sub { margin: 4px 0 0; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
+
+.seg { display: inline-flex; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 3px; gap: 2px; }
+.seg button { font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--muted); background: none; border: 0; border-radius: 5px; padding: 7px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.seg button:hover:not([aria-pressed="true"]) { color: var(--ink); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 20px; align-items: start; }
+.stage-wrap { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); min-width: 0; }
+.stage { position: relative; height: min(680px, calc(100vh - 140px)); min-height: 440px; border-radius: 10px; overflow: hidden; background: var(--stage); border: 1px solid var(--rule); }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.stage canvas:active { cursor: grabbing; }
+@media (max-width: 920px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .stage-wrap { position: static; }
+  .stage { height: 500px; min-height: 0; }
+  .info { padding: 8px 10px; }
+  .info p, .info .hint { font-size: 12.5px; }
+}
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lbl { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform; }
+.lbl.dim { font: 500 11px/1 var(--mono); background: var(--panel); color: var(--ink); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 5px; font-variant-numeric: tabular-nums; }
+.lbl.app { font: 600 12px/1 var(--display); letter-spacing: 0.03em; color: var(--appliance); background: color-mix(in srgb, var(--panel) 78%, transparent); border-radius: 3px; padding: 2px 4px; }
+
+.toolbar { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; }
+.toolbar > * { pointer-events: auto; }
+.chip { font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--muted); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 9px 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.chip .box { width: 11px; height: 11px; border-radius: 3px; border: 1.5px solid var(--muted); }
+.chip[aria-pressed="true"] { color: var(--ink); border-color: var(--accent); }
+.chip[aria-pressed="true"] .box { background: var(--accent); border-color: var(--accent); }
+
+.info { position: absolute; left: 12px; bottom: 12px; width: min(330px, calc(100% - 24px)); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; }
+.info h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin: 0 0 2px; letter-spacing: 0.01em; }
+.info h3 .qty { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); margin-left: 4px; }
+.info .size { font-family: var(--mono); font-size: 12.5px; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+.info p { margin: 2px 0; color: var(--muted); font-size: 13px; }
+.info .hint { color: var(--muted); margin: 0; }
+.legend { margin: 8px 2px 0; color: var(--muted); font-size: 12.5px; }
+
+.sheet { min-width: 0; }
+.sheet section { border-top: 1px solid var(--rule); padding-block: 14px 10px; }
+.sheet section:first-child { border-top: 0; padding-top: 0; }
+.sheet h2 { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.sheet .hint { margin: -2px 0 6px; color: var(--muted); font-size: 12.5px; }
+.rows { display: flex; flex-direction: column; gap: 1px; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 8px; border-radius: 6px; width: 100%; text-align: left; background: none; border: 0; color: inherit; font: inherit; }
+button.row { cursor: pointer; }
+button.row:hover, .row.active { background: var(--accent-soft); }
+.row .k { min-width: 0; }
+.row .k small { display: block; color: var(--muted); font-size: 12px; }
+.row .v { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.row .q { font-family: var(--mono); color: var(--muted); font-size: 12px; margin-right: 6px; }
+.tag { display: inline-block; font: 500 11px/1.4 var(--mono); color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; margin-left: 6px; vertical-align: 1px; }
+.ok { color: var(--ink); }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; vertical-align: 0; }
+.parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.pcard { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+.pcard img, .pcard .noimg { display: block; width: 100%; aspect-ratio: 280 / 190; background: var(--stage); object-fit: contain; }
+.pbody { padding: 10px 12px 12px; }
+.pbody h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin: 0; display: flex; justify-content: space-between; align-items: baseline; }
+.pbody .qty { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.pbody .size { font-family: var(--mono); font-size: 13px; margin: 2px 0 4px; font-variant-numeric: tabular-nums; }
+.pbody .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 6px; }
+.pbody ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+.ph { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+.parts-head { margin-bottom: 12px; }
+.parts-head .hint, .parts-cols .hint { margin: 0 0 8px; color: var(--muted); font-size: 12.5px; }
+.parts-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 760px) { .parts-cols { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <div>
+      <a class="back" href="/cabinet/">← The build write-up</a>
+      <h1>Buffet cabinet</h1>
+      <p class="sub">94 x 42 x 92 cm · plywood box on short legs · open back · closed sides · 2 doors</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="seg" role="group" aria-label="Page">
+      <button type="button" id="pg-model" aria-pressed="true">3D model</button>
+      <button type="button" id="pg-parts" aria-pressed="false">Wood pieces</button>
+    </div>
+    <div class="seg" role="group" aria-label="Units">
+      <button type="button" id="u-mm" aria-pressed="true">cm</button>
+      <button type="button" id="u-in" aria-pressed="false">inches</button>
+    </div>
+    </div>
+  </header>
+
+  <main class="layout" id="page-model">
+    <section class="stage-wrap" aria-label="3D model">
+      <div class="stage" id="stage">
+        <div class="labels" id="labels"></div>
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="View">
+            <button type="button" data-view="iso" aria-pressed="true">3/4</button>
+            <button type="button" data-view="front" aria-pressed="false">Front</button>
+            <button type="button" data-view="side" aria-pressed="false">Side</button>
+            <button type="button" data-view="top" aria-pressed="false">Top</button>
+          </div>
+          <button type="button" class="chip" id="t-apps" aria-pressed="true"><span class="box"></span>Appliances</button>
+          <button type="button" class="chip" id="t-dims" aria-pressed="true"><span class="box"></span>Measurements</button>
+          <button type="button" class="chip" id="t-doors" aria-pressed="false"><span class="box"></span>Doors closed</button>
+          <button type="button" class="chip" id="t-fast" aria-pressed="false"><span class="box"></span>Screws</button>
+          <button type="button" class="chip" id="t-asm" aria-pressed="false"><span class="box"></span>Assembly steps</button>
+        </div>
+        <div class="info" id="info" aria-live="polite"></div>
+      </div>
+      <p class="legend">Tap Assembly steps for a build walkthrough · drag to rotate · scroll or pinch to zoom · right-drag or two-finger drag to pan · tap any part for its size · floor grid is 10 cm squares</p>
+    </section>
+
+    <aside class="sheet" id="sheet"></aside>
+  </main>
+  <section id="page-parts" hidden><div id="parts"></div></section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- units ----------
+  var S = { units: "mm", apps: true, dims: true, sel: null };
+  function trimNum(v) { return (Math.round(v * 10) / 10).toString(); }
+  function inch(mm) {
+    var t = Math.round(mm / 25.4 * 16), w = Math.floor(t / 16), f = t % 16, d = 16;
+    if (!f) return w + '"';
+    while (f % 2 === 0) { f /= 2; d /= 2; }
+    return (w ? w + "-" : "") + f + "/" + d + '"';
+  }
+  function f(mm) { return S.units === "mm" ? trimNum(mm / 10) + " cm" : inch(mm); }
+  function L(vals) { return S.units === "mm" ? vals.map(function (x) { return trimNum(x / 10); }).join(" x ") + " cm" : vals.map(inch).join(" x "); }
+  function R(a, b) { return S.units === "mm" ? trimNum(a / 10) + " to " + trimNum(b / 10) + " cm" : inch(a) + " to " + inch(b); }
+
+  // ---------- data (mm) ----------
+  // x = width, y = height, z = depth (front is +z). Body 886 wide x 380 deep, centred on x = 0, z = 0.
+  var T = 18;                       // plywood thickness
+  // every cut is a whole cm; plywood is 1.8 cm
+  var LEG = 70, FLOOR = 88, SHELF_B = 478, SHELF_T = 496, CEIL = 881, TOP_B = 900, TOP_T = 919, SIDE_H = 830;
+  var OPEN_B = 390, OPEN_T = 385, DEPTH = 380, INNER = 850, BODY = 886, HB = 443, PDEPTH = 360, RAIL_H = 38, UNDER_RAIL = 370;
+  var DOOR_B = 75, DOOR_T = 895, DOOR_W = 440, DOOR_H = 820;
+  var HINGE_Y = [175, 795], KNOB_Y = 835;
+  var APPS = [
+    { id: "mw", name: "Danby microwave", short: "Microwave", w: 480, d: 350, h: 265, x: -137, z: 45, base: TOP_T, where: "Top", note: "Sits fully on the top with about 3.5 cm to spare front and back." },
+    { id: "cr", name: "Ninja CREAMi", short: "CREAMi", w: 180, d: 310, h: 420, x: 287, z: 45, base: TOP_T, where: "Top" },
+    { id: "af", name: "Cosori air fryer", short: "Air fryer", w: 280, d: 290, h: 330, x: -229.4, z: -42.5, base: SHELF_T, where: "Middle shelf" },
+    { id: "ju", name: "Ninja juicer", short: "Juicer", w: 180, d: 320, h: 320, x: 50, z: -27.5, base: SHELF_T, where: "Middle shelf" },
+    { id: "bl", name: "Ninja blender base", short: "Blender", w: 180, d: 240, h: 200, x: 279.7, z: -67.5, base: SHELF_T, where: "Middle shelf" },
+    { id: "ka", name: "KitchenAid mixer", short: "KitchenAid", w: 221, d: 358, h: 353, x: -219.6, z: -8.5, base: FLOOR, where: "Bottom", note: "Artisan tilt-head listed size. About 1.7 cm under the shelf's front rail, so measure yours: it is the tightest fit." },
+    { id: "ip", name: "Instant Pot", short: "Instant Pot", w: 350, d: 350, h: 350, x: 154.8, z: -12.5, base: FLOOR, where: "Bottom", cyl: true }
+  ];
+  APPS.forEach(function (a) {
+    a.head = a.base === TOP_T ? null : (a.base === FLOOR ? OPEN_B : OPEN_T) - a.h;
+    a.over = a.d - (a.base === TOP_T ? 420 : DEPTH);
+  });
+
+  var META = {
+    legs: { title: "Legs", size: function () { return L([38, 38, LEG]); }, lines: function () { return ["Two short 1x2 pieces glued face to face", "Glued and screwed under each corner of the bottom panel; the front pair sits 2 cm back, tucked behind the bottom front rail", "Leaves " + f(LEG) + " clear under the cabinet for the floor vent"]; } },
+    top: { title: "Top", size: function () { return L([940, 420, 19]); }, lines: function () { return ["Solid wood: 1x12 + 1x6 glued, ripped to 42 cm", R(TOP_B, TOP_T) + " from the floor", "Flush with the back, " + f(27) + " past each side, " + f(22) + " past the closed doors", "Held on with figure-8 fasteners, no glue"]; } },
+    stretchers: { title: "Top stretchers", size: function () { return L([19, 64, INNER]); }, lines: function () { return ["1x3 laid flat, one at the front and one at the back", R(CEIL, TOP_B) + " from the floor, flush with the top of the sides", "They square up the top of the box and hold the top on"]; } },
+    sides: { title: "Sides", size: function () { return L([T, DEPTH, SIDE_H]); }, lines: function () { return ["3/4 in plywood, grain running up and down", R(LEG, TOP_B) + " from the floor", "Edge banding on the front edge", "Closed sides, nothing on the outside faces"]; } },
+    bottom: { title: "Bottom panel", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, between the sides, with a 1x2 front rail glued to its front edge", R(LEG, FLOOR) + " from the floor", "Opening above it: " + f(OPEN_B) + " to the underside of the shelf, " + f(UNDER_RAIL) + " under the shelf's front rail", "Pocket-screwed and glued to the sides from underneath"]; } },
+    shelf: { title: "Middle shelf", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, fixed (glued and screwed), with a 1x2 front rail glued to its front edge", R(SHELF_B, SHELF_T) + " from the floor", "Opening above it: " + f(OPEN_T) + " to the stretchers", "Fixing it in place is what keeps the open-back box from racking"]; } },
+    frontRails: { title: "Front rails", size: function () { return L([19, RAIL_H, INNER]); }, lines: function () { return ["1x2 on edge, glued to the front edge of the shelf and the bottom panel, flush with their tops", "They hang " + f(20) + " below the panel and stiffen it so it can't sag", "Shelf rail " + R(SHELF_T - RAIL_H, SHELF_T) + ", bottom rail " + R(FLOOR - RAIL_H, FLOOR) + " from the floor", "2 pocket screws into the side at each end, plus glue along the panel"]; } },
+    doors: { title: "Doors", size: function () { return L([T, DOOR_W, DOOR_H]); }, lines: function () { return ["3/4 in plywood, edge banding on all 4 edges", "Full overlay: they cover the front edges of the sides", R(DOOR_B, DOOR_T) + " from the floor", "3 mm gap in the middle, 1.5 mm at the outside edges"]; } },
+    hinges: { count: 4, title: "Hinges", size: function () { return "35 mm cup, full overlay, 2 per door"; }, lines: function () { return ["Centred " + f(HINGE_Y[0]) + " and " + f(HINGE_Y[1]) + " from the floor (10 cm in from the bottom and top of each door)", "The plate screws to the inside face of the side, 3.7 cm back from its front edge, centred " + f(105) + " from the side's bottom and top edges", "The cup sits in a 35 mm hole in the back of the door, its centre 2.15 cm in from the outer edge"]; } },
+    knobs: { count: 2, title: "Knobs", size: function () { return "2, one per door"; }, lines: function () { return [f(60) + " down from the top of each door, " + f(40) + " in from its middle edge", "Soft-close hinges hold the doors shut, so no catches"]; } },
+    fBox: { title: "Pocket screws, bottom and shelf into the sides", size: function () { return "16 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["4 per end, in pocket holes on the underside of the bottom panel and the shelf", "Glue the joints too: plywood does not move with the seasons"]; } },
+    fStr: { title: "Pocket screws, stretchers into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per end, pocket holes on the underside of each stretcher", "Plus glue"]; } },
+    fLeg: { title: "Screws, bottom panel into the legs", size: function () { return "8 screws, #8 x 2 in"; }, lines: function () { return ["2 per leg, driven down through the bottom panel from inside", "Countersink them so they sit flush, and glue the legs too"]; } },
+    fRail: { title: "Pocket screws, front rails into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per end, pocket holes on the back face of each rail", "Plus glue along the plywood edge"]; } },
+    fTop: { title: "Figure-8 fasteners, stretchers to top", size: function () { return "6 fasteners, each with 2 #6 x 5/8 in screws"; }, lines: function () { return ["3 along each stretcher, recessed into its top face at the back edge", "Screwed up into the top, no glue, so the solid top can move"]; } }
+  };
+  APPS.forEach(function (a) {
+    META["app-" + a.id] = {
+      title: a.name,
+      size: function () { return L([a.w, a.d, a.h]) + " (W x D x H)"; },
+      lines: function () {
+        var out = [a.where + (a.head !== null ? ": " + f(a.head) + " of headroom" : "")];
+        if (a.base !== TOP_T) out.push(a.over > 0 ? "About " + f(a.over) + " too deep for the doors" : "Fits behind the doors with " + f(-a.over) + " to spare");
+        if (a.note) out.push(a.note);
+        return out;
+      }
+    };
+  });
+
+  // ---------- measurement sheet ----------
+  var sheet = document.getElementById("sheet");
+  function v(text) { return '<span class="v">' + text + "</span>"; }
+  function renderSheet() {
+    var h = "";
+    h += '<section><h2>Overall</h2><div class="rows">' +
+      row("Top", L([940, 420, 19])) +
+      row("Overall height<small>1 mm under 92</small>", f(TOP_T)) +
+      row("Body, outside of the sides<small>clears the baseboards</small>", L([BODY, DEPTH])) +
+      row("Depth with the doors", f(DEPTH + T)) +
+      row("Top overhang, sides", f(27)) +
+      row("Top overhang, back and front", "flush / " + f(22)) +
+      row("Clear under the cabinet", f(LEG)) +
+      "</div></section>";
+
+    h += '<section><h2>Heights from the floor</h2><p class="hint">Tap a row to see it in the model.</p><div class="rows">' +
+      btn("top", "Top surface", f(TOP_T)) +
+      btn("stretchers", "Top stretchers", R(CEIL, TOP_B)) +
+      btn("shelf", "Middle shelf, top surface", f(SHELF_T)) +
+      btn("shelf", "Middle shelf, underside", f(SHELF_B)) +
+      btn("frontRails", "Shelf front rail", R(SHELF_T - RAIL_H, SHELF_T)) +
+      btn("bottom", "Bottom panel", R(LEG, FLOOR)) +
+      btn("frontRails", "Bottom front rail", R(FLOOR - RAIL_H, FLOOR)) +
+      btn("legs", "Legs", R(0, LEG)) +
+      btn("doors", "Doors, left and right", R(DOOR_B, DOOR_T)) +
+      btn("hinges", "Hinges, 2 per door<small>cups from the door ends</small>", f(100)) +
+      btn("knobs", "Knobs<small>down from the top, in from the middle edge</small>", f(60) + " / " + f(40)) +
+      "</div></section>";
+
+    h += '<section><h2>Inside measurements</h2><div class="rows">' +
+      row("Between the sides", f(INNER)) +
+      row("Depth<small>wall to the inside of the doors (open back)</small>", f(DEPTH)) +
+      btn("shelf", "Top opening<small>shelf to the underside of the stretchers</small>", f(OPEN_T)) +
+      row("Top opening between the stretchers<small>up to the underside of the top</small>", f(OPEN_T + 19)) +
+      btn("bottom", "Bottom opening<small>bottom panel to the underside of the shelf</small>", f(OPEN_B)) +
+      btn("frontRails", "Bottom opening at the front<small>under the shelf's front rail</small>", f(UNDER_RAIL)) +
+      row("Clear under the bottom rail<small>at the front</small>", f(FLOOR - RAIL_H)) +
+      row("Hinge arms<small>stick in at each side, near the front</small>", "about " + f(25)) +
+      "</div></section>";
+
+    h += '<section><h2>Parts</h2><p class="hint">Thickness x width x length.</p><div class="rows">' +
+      btn("sides", "Sides<small>3/4 in plywood</small>", '<span class="q">2x</span>' + L([T, DEPTH, SIDE_H])) +
+      btn("bottom", "Bottom panel<small>3/4 in plywood</small>", '<span class="q">1x</span>' + L([T, PDEPTH, INNER])) +
+      btn("shelf", "Middle shelf<small>3/4 in plywood</small>", '<span class="q">1x</span>' + L([T, PDEPTH, INNER])) +
+      btn("frontRails", "Front rails<small>1x2 on edge</small>", '<span class="q">2x</span>' + L([19, RAIL_H, INNER])) +
+      btn("doors", "Doors<small>3/4 in plywood</small>", '<span class="q">2x</span>' + L([T, DOOR_W, DOOR_H])) +
+      btn("stretchers", "Top stretchers<small>1x3</small>", '<span class="q">2x</span>' + L([19, 64, INNER])) +
+      btn("legs", "Legs<small>two 1x2 pieces glued</small>", '<span class="q">4x</span>' + L([38, 38, LEG])) +
+      btn("top", "Top<small>1x12 + 1x6 glued</small>", '<span class="q">1x</span>' + L([19, 420, 940])) +
+      "</div></section>";
+
+    h += '<section><h2>Screws and fasteners</h2><p class="hint">Tap a row to see where each one goes. Screws show through the wood so you can find them; the one you pick turns white.</p><div class="rows">' +
+      btn("fBox", '<span class="dot" style="background:#9B59D0"></span>Pocket screws, bottom and shelf<small>4 per end, 1-1/4 in coarse, plus glue</small>', "16") +
+      btn("fRail", '<span class="dot" style="background:#3A8FD9"></span>Pocket screws, front rails<small>2 per end, 1-1/4 in coarse, plus glue</small>', "8") +
+      btn("fStr", '<span class="dot" style="background:#D9822B"></span>Pocket screws, stretchers<small>2 per end, 1-1/4 in coarse, plus glue</small>', "8") +
+      btn("fLeg", '<span class="dot" style="background:#D04A4A"></span>Screws into the legs<small>#8 x 2 in, 2 per leg, plus glue</small>', "8") +
+      btn("fTop", '<span class="dot" style="background:#21A08A"></span>Figure-8 fasteners, top<small>3 per stretcher, no glue</small>', "6") +
+      btn("hinges", "Hinges<small>35 mm cup, full overlay, soft close</small>", "4") +
+      btn("knobs", "Knobs", "2") +
+      "</div></section>";
+
+    h += '<section><h2>Appliances</h2><p class="hint">W x D x H, and the space left above each one.</p><div class="rows">';
+    APPS.forEach(function (a) {
+      var right = L([a.w, a.d, a.h]);
+      var sub = a.where + (a.head !== null ? ", " + f(a.head) + " headroom" : "");
+      h += btn("app-" + a.id, a.name + "<small>" + sub + "</small>", right);
+    });
+    h += "</div></section>";
+    sheet.innerHTML = h;
+    markActive();
+  }
+  function row(k, val) { return '<div class="row"><span class="k">' + k + "</span>" + v(val) + "</div>"; }
+  function btn(key, k, val) { return '<button type="button" class="row" data-key="' + key + '"><span class="k">' + k + "</span>" + v(val) + "</button>"; }
+  function markActive() {
+    sheet.querySelectorAll("button.row").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-key") === S.sel); });
+  }
+  sheet.addEventListener("click", function (e) {
+    var b = e.target.closest("button.row");
+    if (!b) return;
+    var key = b.getAttribute("data-key");
+    if (S.asm) setAsm(false);
+    if (key.indexOf("app-") === 0 && !S.apps && pickables) setApps(true);
+    if (/^f[A-Z]/.test(key) && typeof setFast === "function") setFast(true);
+    select(S.sel === key ? null : key);
+  });
+
+  // ---------- three.js scene ----------
+  var stage = document.getElementById("stage");
+  var labelLayer = document.getElementById("labels");
+  var info = document.getElementById("info");
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+  if (!window.THREE || !THREE.OrbitControls) {
+    info.innerHTML = '<p class="hint">The 3D viewer could not load. The measurements on this page are still complete.</p>';
+    renderSheet();
+    return;
+  }
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.insertBefore(renderer.domElement, stage.firstChild);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(35, 1, 10, 20000);
+  var VIEWS = {
+    iso: { p: [1900, 1430, 2450], t: [0, 430, 0] },
+    front: { p: [0, 560, 3150], t: [0, 470, 0] },
+    side: { p: [3150, 560, 0], t: [0, 470, 0] },
+    top: { p: [0, 3400, 1], t: [0, 400, 0] }
+  };
+  camera.position.fromArray(VIEWS.iso.p);
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.target.fromArray(VIEWS.iso.t);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 600;
+  controls.maxDistance = 6000;
+  controls.maxPolarAngle = Math.PI * 0.497;
+  controls.update();
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x9a968c, 0.85));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.7);
+  sun.position.set(900, 2300, 1500);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024);
+  sun.shadow.camera.left = -1200; sun.shadow.camera.right = 1200;
+  sun.shadow.camera.top = 1200; sun.shadow.camera.bottom = -1200;
+  sun.shadow.camera.near = 200; sun.shadow.camera.far = 6000;
+  sun.shadow.bias = -0.0004;
+  scene.add(sun);
+  var fillLight = new THREE.DirectionalLight(0xffffff, 0.28);
+  fillLight.position.set(-1600, 900, -700);
+  scene.add(fillLight);
+
+  var floor = new THREE.Mesh(new THREE.PlaneGeometry(8000, 8000), new THREE.ShadowMaterial({ opacity: 0.16 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.receiveShadow = true;
+  scene.add(floor);
+  var grid = null;
+
+  // wood grain (deterministic)
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function grainCanvas() {
+    var c = document.createElement("canvas"); c.width = 512; c.height = 128;
+    var g = c.getContext("2d"), r = rng(7);
+    g.fillStyle = "#ffffff"; g.fillRect(0, 0, 512, 128);
+    for (var i = 0; i < 54; i++) {
+      var y0 = r() * 128, amp = 0.6 + r() * 2.4, ph = r() * 6.28, a = 0.035 + r() * 0.075;
+      g.strokeStyle = "rgba(60,40,10," + a.toFixed(3) + ")";
+      g.lineWidth = 0.6 + r() * 1.4;
+      g.beginPath();
+      for (var x = 0; x <= 512; x += 16) {
+        var y = y0 + Math.sin(x * 0.012 + ph) * amp;
+        if (x === 0) g.moveTo(x, y); else g.lineTo(x, y);
+      }
+      g.stroke();
+    }
+    return c;
+  }
+  var gc = grainCanvas();
+  function tex(rot, rx, ry) {
+    var t = new THREE.CanvasTexture(gc);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    if (rot) { t.center.set(0.5, 0.5); t.rotation = Math.PI / 2; }
+    t.repeat.set(rx || 1, ry || 1);
+    t.anisotropy = 4;
+    t.needsUpdate = true;
+    return t;
+  }
+  function woodMat(t) { return new THREE.MeshStandardMaterial({ color: 0xffffff, map: t, roughness: 0.82, metalness: 0 }); }
+  var matH = woodMat(tex(false)), matV = woodMat(tex(true));
+  var woodMats = [matH, matV];
+  var hlCache = new Map();
+  function hlFor(m) {
+    if (!hlCache.has(m)) { var c = m.clone(); c.emissiveIntensity = 0.55; hlCache.set(m, c); }
+    return hlCache.get(m);
+  }
+  var edgeMat = new THREE.LineBasicMaterial({ color: 0x8a7350, transparent: true, opacity: 0.6 });
+  var appMat = new THREE.MeshStandardMaterial({ color: 0x33689a, transparent: true, opacity: 0.22, roughness: 0.4, depthWrite: false });
+  var appEdge = new THREE.LineBasicMaterial({ color: 0x33689a, transparent: true, opacity: 0.85 });
+  var dimMat = new THREE.LineBasicMaterial({ color: 0xa97f00 });
+  var metalMat = new THREE.MeshStandardMaterial({ color: 0x9aa1a8, metalness: 0.55, roughness: 0.35 });
+
+  var pickables = [];
+  var labels = [];
+
+  function addMesh(geo, mat, pos, ud, edges) {
+    var m = new THREE.Mesh(geo, mat);
+    m.position.set(pos[0], pos[1], pos[2]);
+    m.castShadow = !ud.app; m.receiveShadow = true;
+    m.userData = ud; ud.base = mat; ud.hl = hlFor(mat);
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo, 30), edges || edgeMat));
+    scene.add(m);
+    pickables.push(m);
+    return m;
+  }
+  function box(size, mat, pos, ud) { return addMesh(new THREE.BoxGeometry(size[0], size[1], size[2]), mat, pos, ud); }
+
+  // ---------- the cabinet ----------
+  var ZB = -DEPTH / 2, ZF = DEPTH / 2;              // back and front of the body
+  // legs, flush with the outside corners
+  // front legs sit 2 cm back so the bottom front rail runs across in front of them
+  [[-(HB - 19), ZB + 19], [HB - 19, ZB + 19], [-(HB - 19), ZF - 39], [HB - 19, ZF - 39]].forEach(function (c) {
+    box([38, LEG, 38], matV, [c[0], LEG / 2, c[1]], { group: "legs", kind: "legs" });
+  });
+  // plywood box
+  [-1, 1].forEach(function (s) {
+    box([T, TOP_B - LEG, DEPTH], matV, [s * (HB - T / 2), (LEG + TOP_B) / 2, 0], { group: "sides", kind: "sides" });
+  });
+  box([INNER, T, PDEPTH], matH, [0, (LEG + FLOOR) / 2, ZB + 1 + PDEPTH / 2], { group: "bottom", kind: "bottom" });
+  box([INNER, T, PDEPTH], matH, [0, (SHELF_B + SHELF_T) / 2, ZB + 1 + PDEPTH / 2], { group: "shelf", kind: "shelf" });
+  [SHELF_T, FLOOR].forEach(function (yt) {
+    box([INNER, RAIL_H, 19], matH, [0, yt - RAIL_H / 2, ZF - 9.5], { group: "frontRails", kind: "frontRails" });
+  });
+  [ZF - 32, ZB + 32].forEach(function (z) {
+    box([INNER, 19, 64], matH, [0, (CEIL + TOP_B) / 2, z], { group: "stretchers", kind: "stretchers" });
+  });
+  box([940, 19, 420], matH, [0, (TOP_B + TOP_T) / 2, ZB + 210], { group: "top", kind: "top" });
+
+  // appliances
+  var appMeshes = [];
+  APPS.forEach(function (a) {
+    var geo = a.cyl ? new THREE.CylinderGeometry(a.w / 2, a.w / 2, a.h, 40) : new THREE.BoxGeometry(a.w, a.h, a.d);
+    var m = addMesh(geo, appMat, [a.x, a.base + a.h / 2, a.z || 0], { group: "app-" + a.id, kind: "app-" + a.id, app: true }, appEdge);
+    m.userData.hl = appMat.clone(); m.userData.hl.opacity = 0.45;
+    appMeshes.push(m);
+    labels.push({ el: mkLabel("app", a.short), p: new THREE.Vector3(a.x, a.base + a.h / 2, (a.z || 0) + (a.cyl ? a.w / 2 : a.d / 2)), kind: "app", inside: a.base !== TOP_T });
+  });
+
+  function mkLabel(kind, text) {
+    var el = document.createElement("div");
+    el.className = "lbl " + kind;
+    el.textContent = text;
+    labelLayer.appendChild(el);
+    return el;
+  }
+
+  // doors: full overlay on the front of the box, hinged at the outer edges
+  var doorPivots = [];
+  var DOOR_MID = (DOOR_B + DOOR_T) / 2;
+  [-1, 1].forEach(function (side) {
+    var pivot = new THREE.Group();
+    pivot.position.set(side * (HB - 1.5), DOOR_MID, ZF);
+    scene.add(pivot);
+    var m = addMesh(new THREE.BoxGeometry(DOOR_W, DOOR_H, T), matV, [0, 0, 0], { group: "doors", kind: "doors" });
+    pivot.add(m);
+    m.position.set(-side * DOOR_W / 2, 0, T / 2);
+    pivot.userData.side = side;
+    doorPivots.push(pivot);
+    // hinges: cup in the back of the door (moves with it), arm, and plate on the inside face of the side
+    HINGE_Y.forEach(function (hy) {
+      var cup = addMesh(new THREE.CylinderGeometry(17.5, 17.5, 4, 24), metalMat, [0, 0, 0], { group: "hinges", kind: "hinges" });
+      pivot.add(cup);
+      cup.rotation.x = Math.PI / 2;
+      cup.position.set(-side * 21.5, hy - DOOR_MID, 1);
+      var arm = addMesh(new THREE.BoxGeometry(14, 12, 36), metalMat, [0, 0, 0], { group: "hinges", kind: "hinges" });
+      pivot.add(arm);
+      arm.position.set(-side * 20, hy - DOOR_MID, -18);
+      addMesh(new THREE.BoxGeometry(4, 50, 40), metalMat, [side * (INNER / 2 - 2), hy, ZF - 37], { group: "hinges", kind: "hinges" });
+    });
+    // knob near the top of the middle edge
+    var knob = addMesh(new THREE.CylinderGeometry(15, 12, 26, 24), metalMat, [0, 0, 0], { group: "knobs", kind: "knobs" });
+    pivot.add(knob);
+    knob.rotation.x = Math.PI / 2;
+    knob.position.set(-side * (DOOR_W - 40), KNOB_Y - DOOR_MID, T + 13);
+  });
+  var doorAngle = 1.75, doorTarget = 1.75;
+
+  // fastener markers
+  var fastGroup = new THREE.Group(); scene.add(fastGroup);
+  var FCOL = { fRail: 0x3A8FD9, fBox: 0x9B59D0, fStr: 0xD9822B, fLeg: 0xD04A4A, fTop: 0x21A08A };
+  var fGeo = new THREE.SphereGeometry(9, 12, 10);
+  function fast(type, x, y, z) {
+    var mat = new THREE.MeshBasicMaterial({ color: FCOL[type], depthTest: false });
+    var m = new THREE.Mesh(fGeo, mat);
+    m.position.set(x, y, z);
+    m.renderOrder = 10;
+    var hl = new THREE.MeshBasicMaterial({ color: 0xffffff, depthTest: false });
+    m.userData = { group: type, kind: type, base: mat, hl: hl, fast: true };
+    fastGroup.add(m); pickables.push(m);
+  }
+  // bottom and shelf into the sides: 4 per end, from underneath
+  [LEG + 6, SHELF_B + 6].forEach(function (y) {
+    [-1, 1].forEach(function (sx) { [-150, -65, 20, 105].forEach(function (z) { fast("fBox", sx * (INNER / 2 - 14), y, z); }); });
+  });
+  // front rails into the sides: 2 per end
+  [SHELF_T, FLOOR].forEach(function (yt) {
+    [-1, 1].forEach(function (sx) { [-10, -28].forEach(function (dy) { fast("fRail", sx * (INNER / 2 - 14), yt + dy, ZF - 12); }); });
+  });
+  // stretchers into the sides: 2 per end
+  [ZF - 32, ZB + 32].forEach(function (zc) {
+    [-1, 1].forEach(function (sx) { [-16, 16].forEach(function (dz) { fast("fStr", sx * (INNER / 2 - 14), CEIL + 6, zc + dz); }); });
+  });
+  // down through the bottom panel into the legs
+  [[-(HB - 19), ZB + 19], [HB - 19, ZB + 19], [-(HB - 19), ZF - 39], [HB - 19, ZF - 39]].forEach(function (c) {
+    [-1, 1].forEach(function (k) { fast("fLeg", c[0] + k * 8, FLOOR - 4, c[1] + k * 8); });
+  });
+  // figure-8s on the stretchers
+  [ZF - 32, ZB + 32].forEach(function (zc) {
+    [-300, 0, 300].forEach(function (x) { fast("fTop", x, TOP_B - 2, zc + (zc > 0 ? -24 : 24)); });
+  });
+  fastGroup.visible = false;
+
+  // dimension lines
+  var dimGroup = new THREE.Group();
+  scene.add(dimGroup);
+  function dim(a, b, tick, mm, word) {
+    var A = new THREE.Vector3().fromArray(a), B = new THREE.Vector3().fromArray(b), T3 = new THREE.Vector3().fromArray(tick).multiplyScalar(22);
+    var pts = [A, B, A.clone().add(T3), A.clone().sub(T3), B.clone().add(T3), B.clone().sub(T3)];
+    var g = new THREE.BufferGeometry().setFromPoints(pts);
+    dimGroup.add(new THREE.LineSegments(g, dimMat));
+    var lab = { el: mkLabel("dim", ""), p: A.clone().add(B).multiplyScalar(0.5), kind: "dim", mm: mm, word: word };
+    labels.push(lab);
+  }
+  dim([-540, 0, 240], [-540, TOP_T, 240], [1, 0, 0], TOP_T, "high");
+  dim([-HB, 0, 330], [HB, 0, 330], [0, 0, 1], BODY, "body");
+  dim([-INNER / 2, 30, 260], [INNER / 2, 30, 260], [0, 0, 1], INNER, "inside");
+  dim([540, 0, ZB], [540, 0, ZF], [1, 0, 0], DEPTH, "body");
+  dim([-470, TOP_T, 300], [470, TOP_T, 300], [0, 1, 0], 940, "top");
+  dim([540, TOP_T, ZB], [540, TOP_T, ZB + 420], [1, 0, 0], 420, "top");
+  dim([520, SHELF_T, 250], [520, CEIL, 250], [1, 0, 0], OPEN_T, "opening");
+  dim([520, FLOOR, 250], [520, SHELF_B, 250], [1, 0, 0], OPEN_B, "opening");
+  dim([560, 0, ZB + 30], [560, LEG, ZB + 30], [1, 0, 0], LEG, "clear");
+
+  function updateLabelText() {
+    labels.forEach(function (l) { if (l.kind === "dim") l.el.textContent = f(l.mm) + " " + l.word; });
+  }
+
+
+  // ---------- theme ----------
+  function color(name, fallback) { var c = css(name); try { return new THREE.Color(c || fallback); } catch (e) { return new THREE.Color(fallback); } }
+  function applyTheme() {
+    scene.background = color("--stage", "#E1E5DF");
+    var wood = color("--wood", "#DCC7A2");
+    woodMats.forEach(function (m) { m.color.copy(wood); });
+    var acc = color("--accent", "#A97F00");
+    hlCache.forEach(function (m, src) { m.color.copy(wood); m.emissive.copy(acc); });
+    edgeMat.color.copy(color("--wood-edge", "#8A7350"));
+    var ap = color("--appliance", "#33689A");
+    appMat.color.copy(ap); appEdge.color.copy(ap);
+    appMeshes.forEach(function (m) { m.userData.hl.color.copy(ap); });
+    dimMat.color.copy(acc);
+    if (grid) { scene.remove(grid); grid.geometry.dispose(); grid.material.dispose(); }
+    var gcol = color("--grid", "#C6CDC5");
+    grid = new THREE.GridHelper(3000, 30, gcol, gcol);
+    grid.position.y = 0.5;
+    scene.add(grid);
+  }
+  applyTheme();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme); } catch (e) {}
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---------- selection ----------
+  function select(key) {
+    S.sel = key;
+    if (!pickables) { markActive(); return; }
+    var count = 0;
+    pickables.forEach(function (m) {
+      var on = key && (m.userData.group === key || m.userData.kind === key);
+      if (on) count++;
+      m.material = on ? m.userData.hl : m.userData.base;
+    });
+    showInfo(key, count);
+    markActive();
+  }
+  function showInfo(key, count) {
+    var meta = key && META[key];
+    if (!meta) {
+      info.innerHTML = '<p class="hint">Tap a part or an appliance to see its size and height from the floor.</p>';
+      return;
+    }
+    if (meta.count) count = meta.count;
+    info.innerHTML = "<h3>" + meta.title + (count > 1 ? '<span class="qty">' + count + " pieces</span>" : "") + "</h3>" +
+      '<p class="size">' + meta.size() + "</p>" + meta.lines().map(function (l) { return "<p>" + l + "</p>"; }).join("");
+  }
+
+  var ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), down = null;
+  renderer.domElement.addEventListener("pointerdown", function (e) { down = { x: e.clientX, y: e.clientY }; });
+  renderer.domElement.addEventListener("pointerup", function (e) {
+    if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; }
+    down = null;
+    if (S.asm) return;
+    var r = renderer.domElement.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    var hits = ray.intersectObjects(pickables.filter(function (m) { return m.visible && (!m.userData.fast || fastGroup.visible); }), false);
+    var hit = hits.length ? hits[0].object : null;
+    // prefer wood over a translucent appliance in front of it only when the appliance is not the first hit
+    select(hit ? (S.sel === hit.userData.group ? null : hit.userData.group) : null);
+  });
+
+  // ---------- toolbar ----------
+  var tApps = document.getElementById("t-apps"), tDims = document.getElementById("t-dims");
+  function setApps(on) {
+    S.apps = on; tApps.setAttribute("aria-pressed", on);
+    appMeshes.forEach(function (m) { m.visible = on; });
+    if (!on && S.sel && S.sel.indexOf("app-") === 0) select(null);
+  }
+  function setDims(on) { S.dims = on; tDims.setAttribute("aria-pressed", on); dimGroup.visible = on; }
+  tApps.addEventListener("click", function () { setApps(!S.apps); });
+  tDims.addEventListener("click", function () { setDims(!S.dims); });
+
+  var tFast = document.getElementById("t-fast");
+  function setFast(on) { tFast.setAttribute("aria-pressed", on); fastGroup.visible = on; }
+  tFast.addEventListener("click", function () { setFast(tFast.getAttribute("aria-pressed") !== "true"); });
+  var tDoors = document.getElementById("t-doors");
+  tDoors.addEventListener("click", function () {
+    var closed = tDoors.getAttribute("aria-pressed") !== "true";
+    tDoors.setAttribute("aria-pressed", closed);
+    doorTarget = closed ? 0 : 1.75;
+    if (reduce) doorAngle = doorTarget;
+  });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tween = null;
+  document.querySelectorAll("[data-view]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll("[data-view]").forEach(function (o) { o.setAttribute("aria-pressed", o === b); });
+      var v = VIEWS[b.getAttribute("data-view")];
+      var to = { p: new THREE.Vector3().fromArray(v.p), t: new THREE.Vector3().fromArray(v.t) };
+      if (reduce) { camera.position.copy(to.p); controls.target.copy(to.t); controls.update(); return; }
+      tween = { t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), to: to };
+    });
+  });
+
+  function setUnits(u) {
+    S.units = u;
+    document.getElementById("u-mm").setAttribute("aria-pressed", u === "mm");
+    document.getElementById("u-in").setAttribute("aria-pressed", u === "in");
+    renderSheet(); if (!pgParts.hidden) renderParts(); updateLabelText(); if (S.asm) applyStep(); else showInfo(S.sel, countSel());
+    try { localStorage.setItem("cart-units", u); } catch (e) {}
+  }
+  function countSel() { var n = 0; pickables.forEach(function (m) { if (S.sel && (m.userData.group === S.sel || m.userData.kind === S.sel)) n++; }); return n; }
+  document.getElementById("u-mm").addEventListener("click", function () { setUnits("mm"); });
+  document.getElementById("u-in").addEventListener("click", function () { setUnits("in"); });
+
+  // ---------- assembly walkthrough ----------
+  pickables.forEach(function (m) {
+    var g = m.userData.group, hi = m.getWorldPosition(new THREE.Vector3()).y > 300;
+    if (g === "frontRails") m.userData.tag = hi ? "shelfRail" : "bottomRail";
+    else if (g === "hinges") m.userData.tag = m.parent === scene ? "plates" : "cups";
+    else if (g === "fBox") m.userData.tag = hi ? "fBoxS" : "fBoxB";
+    else if (g === "fRail") m.userData.tag = hi ? "fRailS" : "fRailB";
+    else m.userData.tag = g;
+  });
+  var BOX = ["sides", "bottom", "bottomRail", "shelf", "shelfRail", "stretchers"];
+  var STEPS = [
+    { t: "Glue the front rails on", show: ["bottom", "bottomRail", "shelf", "shelfRail"], hl: ["bottomRail", "shelfRail"], view: "close",
+      d: function () { return ["Glue a 1x2 rail, on edge, to the front edge of the bottom panel and of the shelf. Keep the rail flush with the top face and with both ends; it hangs " + f(20) + " below.", "Clamp every 15 cm or so and let the glue set. Iron the edge banding onto the doors and the front edges of the sides in the same session."]; } },
+    { t: "Drill the pocket holes", show: ["bottom", "bottomRail", "shelf", "shelfRail", "stretchers"], hl: ["stretchers"], fast: ["fBoxB", "fBoxS", "fRailB", "fRailS", "fStr", "fTop"], view: "close",
+      d: function () { return ["Jig set for 3/4 in stock. 4 holes per end on the underside of the bottom panel and the shelf (purple), 2 per end on the back face of each front rail (blue), 2 per end on the underside of each stretcher (orange).", "On the drill press, bore 3 figure-8 recesses in the top face of each stretcher (teal), near its inside edge. Sand all the inside faces to 180 now."]; } },
+    { t: "Screw the bottom into the sides", show: ["sides", "bottom", "bottomRail"], hl: ["sides"], fast: ["fBoxB", "fRailB"], view: "iso",
+      d: function () { return ["Stand the sides up, glue the bottom panel's ends and screw it in, flush with the bottom and back edges of the sides, the rail's face flush with their front edges."]; } },
+    { t: "Fix the middle shelf", show: ["sides", "bottom", "bottomRail", "shelf", "shelfRail"], hl: ["shelf", "shelfRail"], fast: ["fBoxS", "fRailS"], view: "iso",
+      d: function () { return ["Cut two spacer boards " + f(OPEN_B) + " long and stand them on the bottom panel, one at each side.", "Rest the shelf on them, glue the ends and drive the pocket screws. No measuring needed: the spacers set it."]; } },
+    { t: "Add the top stretchers", show: BOX, hl: ["stretchers"], fast: ["fStr"], view: "iso",
+      d: function () { return ["Glue and screw the 2 stretchers between the tops of the sides, laid flat and flush with the top edges: one flush with the front, one flush with the back.", "Measure both diagonals across the front. They should match within " + f(2) + "; push the long corner in if they don't, before the glue sets."]; } },
+    { t: "Put the legs on", show: BOX.concat(["legs"]), hl: ["legs"], fast: ["fLeg"], view: "low",
+      d: function () { return ["Trim the leg blocks to " + f(LEG) + ". Glue one under each corner, flush with the outside faces. Set the front pair " + f(20) + " back so they tuck behind the bottom rail.", "Drive 2 #8 x 2 in screws down through the bottom panel into each leg from inside. Pre-drill and countersink."]; } },
+    { t: "Attach the top", show: BOX.concat(["legs", "top"]), hl: ["top"], fast: ["fTop"], view: "iso",
+      d: function () { return ["Screw the figure-8s into their recesses on the stretchers.", "Lay the top face down on a blanket, set the cabinet upside down on it, flush at the back and centred side to side (" + f(27) + " over each side), and screw the figure-8s into the top with 5/8 in screws. No glue."]; } },
+    { t: "Mount the hinge plates", show: BOX.concat(["legs", "top", "plates"]), hl: ["plates"], view: "iso",
+      d: function () { return ["Screw a plate to the inside face of each side, centred " + f(105) + " from its bottom edge and " + f(105) + " from its top edge, " + f(37) + " back from the front edge (the hinge jig or template marks this).", "4 plates in total, 2 per side."]; } },
+    { t: "Hang the doors", show: BOX.concat(["legs", "top", "plates", "doors", "cups", "knobs"]), hl: ["doors", "cups"], doors: "open", view: "iso",
+      d: function () { return ["With the hinge jig, drill 2 cups in the back of each door, centred " + f(100) + " from its top and bottom. Press the hinges in and screw them down.", "Clip each door onto its plates, then fit a knob " + f(40) + " in from the middle edge and " + f(60) + " down from the top."]; } },
+    { t: "Adjust, finish, strap it", show: BOX.concat(["legs", "top", "plates", "doors", "cups", "knobs"]), hl: [], doors: "closed", view: "iso",
+      d: function () { return ["Turn the hinge screws until the doors have a " + f(3) + " gap in the middle and sit level.", "Take the doors off to finish: 3 coats of wipe-on poly, both faces of the doors and top. Then run the anti-tip strap from the back stretcher into a wall stud before loading anything."]; } }
+  ];
+  VIEWS.close = { p: [1250, 1250, 1750], t: [0, 300, 0] };
+  VIEWS.low = { p: [1500, 420, 2100], t: [0, 230, 0] };
+  S.asm = false; S.step = 0;
+  var saveApps = true, saveDims = true;
+  function goView(name) {
+    var v = VIEWS[name];
+    var to = { p: new THREE.Vector3().fromArray(v.p), t: new THREE.Vector3().fromArray(v.t) };
+    if (reduce) { camera.position.copy(to.p); controls.target.copy(to.t); controls.update(); return; }
+    tween = { t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), to: to };
+  }
+  function applyStep() {
+    var st = STEPS[S.step];
+    fastGroup.visible = true;
+    pickables.forEach(function (m) {
+      if (m.userData.app) return;
+      var tag = m.userData.tag;
+      m.visible = m.userData.fast ? (st.fast || []).indexOf(tag) >= 0 : st.show.indexOf(tag) >= 0;
+      m.material = st.hl.indexOf(tag) >= 0 ? m.userData.hl : m.userData.base;
+    });
+    doorTarget = st.doors === "closed" ? 0 : 1.75;
+    if (reduce) doorAngle = doorTarget;
+    goView(st.view);
+    info.innerHTML = '<p class="hint" style="font-family:var(--mono);font-size:12px">Step ' + (S.step + 1) + " of " + STEPS.length + "</p><h3>" + st.t + "</h3>" +
+      st.d().map(function (l) { return "<p>" + l + "</p>"; }).join("") +
+      '<div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="chip" data-step="-1"' + (S.step ? "" : " disabled") + '>Back</button>' +
+      '<button type="button" class="chip" data-step="1" style="color:var(--ink);border-color:var(--accent)">' + (S.step < STEPS.length - 1 ? "Next step" : "Done") + "</button></div>";
+  }
+  function setAsm(on) {
+    S.asm = on; tAsm.setAttribute("aria-pressed", on);
+    [tApps, tDims, tDoors, tFast].forEach(function (b) { b.disabled = on; b.style.opacity = on ? 0.45 : ""; });
+    if (on) {
+      saveApps = S.apps; saveDims = S.dims; S.sel = null; markActive();
+      setApps(false); setDims(false); S.step = 0; applyStep();
+    } else {
+      pickables.forEach(function (m) { if (!m.userData.app) { m.visible = true; m.material = m.userData.base; } });
+      fastGroup.visible = tFast.getAttribute("aria-pressed") === "true";
+      doorTarget = tDoors.getAttribute("aria-pressed") === "true" ? 0 : 1.75;
+      setApps(saveApps); setDims(saveDims); goView("iso"); showInfo(null, 0);
+    }
+  }
+  var tAsm = document.getElementById("t-asm");
+  tAsm.addEventListener("click", function () { setAsm(!S.asm); });
+  info.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-step]");
+    if (!b || !S.asm) return;
+    var n = S.step + Number(b.getAttribute("data-step"));
+    if (n >= STEPS.length) { setAsm(false); return; }
+    S.step = Math.max(0, n); applyStep();
+  });
+
+  // ---------- parts page ----------
+  var PARTS = [
+    { id: "sides", name: "Sides", qty: 2, l: SIDE_H, w: DEPTH, t: T, geo: [T, SIDE_H, DEPTH], v: true, mat: "3/4 in plywood", from: "Sheet, strip 2",
+      notes: function () { return ["Grain runs up and down", "Edge band the front edge", "Hinge plates go " + f(105) + " from the top and bottom edges"]; } },
+    { id: "bottom", name: "Bottom panel", qty: 1, l: INNER, w: PDEPTH, t: T, geo: [INNER, T, PDEPTH], mat: "3/4 in plywood", from: "Sheet, strip 3",
+      notes: function () { return ["Front rail glued to its front edge", "4 pocket holes per end, underneath"]; } },
+    { id: "shelf", name: "Middle shelf", qty: 1, l: INNER, w: PDEPTH, t: T, geo: [INNER, T, PDEPTH], mat: "3/4 in plywood", from: "Sheet, strip 3",
+      notes: function () { return ["Front rail glued to its front edge", "4 pocket holes per end, underneath", "Fixed, glued and screwed"]; } },
+    { id: "doors", name: "Doors", qty: 2, l: DOOR_H, w: DOOR_W, t: T, geo: [DOOR_W, DOOR_H, T], v: true, mat: "3/4 in plywood", from: "Sheet, strip 1",
+      notes: function () { return ["Grain runs up and down", "Edge band all 4 edges", "2 hinge cups each, " + f(100) + " from the top and bottom"]; } },
+    { id: "frontRails", name: "Front rails", qty: 2, l: INNER, w: RAIL_H, t: 19, geo: [INNER, RAIL_H, 19], mat: "1x2 solid wood", from: "6 ft 1x2",
+      notes: function () { return ["Stand on edge, glued to the front of the bottom and the shelf", "Top flush, hangs " + f(20) + " below", "2 pocket holes per end, on the back face"]; } },
+    { id: "stretchers", name: "Top stretchers", qty: 2, l: INNER, w: 64, t: 19, geo: [INNER, 19, 64], mat: "1x3 solid wood", from: "6 ft 1x3",
+      notes: function () { return ["Laid flat, one at the front, one at the back", "2 pocket holes per end, underneath", "3 figure-8 recesses on the top face"]; } },
+    { id: "legs", name: "Legs", qty: 4, l: LEG, w: 38, t: 38, geo: [38, LEG, 38], v: true, mat: "Two 1x2 pieces glued", from: "3 ft 1x2",
+      notes: function () { return ["Cut 8 pieces " + f(80) + " long, glue in pairs, trim to " + f(LEG)]; } },
+    { id: "top", name: "Top", qty: 1, l: 940, w: 420, t: 19, geo: [940, 19, 420], mat: "1x12 + 1x6 glued", from: "4 ft 1x12 + 4 ft 1x6",
+      notes: function () { return ["Cut both boards about " + f(960) + " and edge-glue", "Rip to " + f(420) + " off the back edge, trim to " + f(940)]; } }
+  ];
+  var thumbs = {};
+  (function makeThumbs() {
+    var tr;
+    try { tr = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); } catch (e) { return; }
+    tr.setPixelRatio(2); tr.setSize(280, 190, false);
+    var ts = new THREE.Scene();
+    ts.add(new THREE.HemisphereLight(0xffffff, 0x9a968c, 0.9));
+    var dl = new THREE.DirectionalLight(0xffffff, 0.6); dl.position.set(1, 2, 1.4); ts.add(dl);
+    var cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -5000, 5000);
+    var tH = woodMat(tex(false)), tV = woodMat(tex(true));
+    var wood = color("--wood", "#DCC7A2"); tH.color.copy(wood); tV.color.copy(wood);
+    var lineMat = new THREE.LineBasicMaterial({ color: 0x6b5a3e });
+    PARTS.forEach(function (p) {
+      var g = new THREE.BoxGeometry(p.geo[0], p.geo[1], p.geo[2]);
+      var m = new THREE.Mesh(g, p.v ? tV : tH);
+      m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g), lineMat));
+      ts.add(m);
+      cam.position.set(1, 0.75, 1.25).normalize().multiplyScalar(2000);
+      cam.lookAt(0, 0, 0);
+      cam.updateMatrixWorld();
+      // fit the projected box into the frame
+      var pts = [], hx = p.geo[0] / 2, hy = p.geo[1] / 2, hz = p.geo[2] / 2, minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+      [-1, 1].forEach(function (a) { [-1, 1].forEach(function (b) { [-1, 1].forEach(function (c) {
+        var v = new THREE.Vector3(a * hx, b * hy, c * hz).applyMatrix4(cam.matrixWorldInverse);
+        minX = Math.min(minX, v.x); maxX = Math.max(maxX, v.x); minY = Math.min(minY, v.y); maxY = Math.max(maxY, v.y);
+      }); }); });
+      var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2, hw = (maxX - minX) / 2 * 1.12, hh = (maxY - minY) / 2 * 1.12, asp = 280 / 190;
+      if (hw / hh > asp) hh = hw / asp; else hw = hh * asp;
+      cam.left = cx - hw; cam.right = cx + hw; cam.top = cy + hh; cam.bottom = cy - hh;
+      cam.updateProjectionMatrix();
+      tr.render(ts, cam);
+      try { thumbs[p.id] = tr.domElement.toDataURL("image/png"); } catch (e) {}
+      ts.remove(m); g.dispose();
+    });
+    tr.dispose();
+  })();
+
+  var partsEl = document.getElementById("parts");
+  function boardSvg() {
+    // plywood sheet: 2440 x 1220, ripped along the length into 3 strips
+    var k = 0.27, W = 2440 * k, H = 1220 * k, x0 = 8, y0 = 8, rows = [[440, [[820, "Door"], [820, "Door"]]], [380, [[830, "Side"], [830, "Side"]]], [360, [[850, "Bottom"], [850, "Shelf"]]]];
+    var s = '<svg viewBox="0 0 ' + (W + 16) + " " + (H + 16) + '" role="img" aria-label="Plywood sheet cutting layout" style="width:100%;height:auto;display:block">';
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + W + '" height="' + H + '" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>';
+    var y = y0;
+    rows.forEach(function (r) {
+      var x = x0, h = r[0] * k;
+      r[1].forEach(function (c) {
+        var w = c[0] * k;
+        s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="var(--wood)" stroke="var(--wood-edge)"/>';
+        s += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 - 3) + '" text-anchor="middle" font-family="var(--display)" font-weight="600" font-size="12" fill="#1D2320">' + c[1] + "</text>";
+        s += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 12) + '" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="#1D2320">' + L([c[0], r[0]]) + "</text>";
+        x += w + 3 * k;
+      });
+      s += '<text x="' + (x + 6) + '" y="' + (y + h / 2 + 4) + '" font-family="var(--mono)" font-size="10" fill="var(--muted)">offcut</text>';
+      y += h + 3 * k;
+    });
+    return s + "</svg>";
+  }
+  function lumberRows() {
+    var B = [["1x12, 4 ft", "Top board, about " + f(960)], ["1x6, 4 ft", "Top board, about " + f(960)], ["1x3, 6 ft", "2 stretchers, " + f(INNER) + " each"], ["1x2, 6 ft", "2 front rails, " + f(INNER) + " each"], ["1x2, 3 ft", "8 leg pieces, " + f(80) + " each"]];
+    return B.map(function (b) { return '<div class="row"><span class="k">' + b[0] + '</span><span class="v" style="white-space:normal">' + b[1] + "</span></div>"; }).join("");
+  }
+  function renderParts() {
+    var h = '<div class="parts-head"><div><h2 class="ph">Every wood piece</h2><p class="hint">13 pieces in 8 shapes. Thumbnails are not to the same scale. Sizes are length x width x thickness.</p></div></div><div class="parts-grid">';
+    PARTS.forEach(function (p) {
+      h += '<article class="pcard">' + (thumbs[p.id] ? '<img src="' + thumbs[p.id] + '" alt="' + p.name + '">' : '<div class="noimg"></div>') +
+        '<div class="pbody"><h3>' + p.name + '<span class="qty">' + p.qty + "x</span></h3>" +
+        '<p class="size">' + L([p.l, p.w, p.t]) + "</p>" +
+        '<p class="meta">' + p.mat + " · from " + p.from + "</p><ul>" + p.notes().map(function (n) { return "<li>" + n + "</li>"; }).join("") + "</ul></div></article>";
+    });
+    h += "</div>";
+    h += '<div class="parts-cols"><section><h2 class="ph">Plywood sheet layout</h2><p class="hint">One 4 x 8 ft sheet. Rip 3 strips along the full length first (44, 38 and 36 cm), then crosscut. Grain runs along the length.</p>' + boardSvg() + "</section>" +
+      '<section><h2 class="ph">Solid wood boards</h2><p class="hint">Same species as you want the top to be.</p><div class="rows">' + lumberRows() + "</div></section></div>";
+    partsEl.innerHTML = h;
+  }
+  var pgModel = document.getElementById("page-model"), pgParts = document.getElementById("page-parts");
+  function setPage(which) {
+    document.getElementById("pg-model").setAttribute("aria-pressed", which === "model");
+    document.getElementById("pg-parts").setAttribute("aria-pressed", which === "parts");
+    pgModel.hidden = which !== "model"; pgParts.hidden = which !== "parts";
+    if (which === "parts") renderParts(); else resize();
+  }
+  document.getElementById("pg-model").addEventListener("click", function () { setPage("model"); });
+  document.getElementById("pg-parts").addEventListener("click", function () { setPage("parts"); });
+  if (location.hash === "#pieces") setPage("parts");
+
+  // ---------- size + loop ----------
+  var W = 1, H = 1;
+  function resize() {
+    var r = stage.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    renderer.setSize(W, H, false);
+    camera.aspect = W / H;
+    // keep the same sideways field of view on tall, narrow screens so the cart is not cropped
+    var a = W / H;
+    camera.fov = a < 1.3 ? 2 * Math.atan(Math.tan(17.5 * Math.PI / 180) * 1.3 / a) * 180 / Math.PI : 35;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener("resize", resize);
+  resize();
+
+  var tmp = new THREE.Vector3();
+  function placeLabels() {
+    labels.forEach(function (l) {
+      var show = l.kind === "dim" ? S.dims : (S.apps && !(l.inside && doorAngle < 0.3));
+      if (!show) { l.el.hidden = true; return; }
+      tmp.copy(l.p).project(camera);
+      if (tmp.z > 1 || tmp.z < -1) { l.el.hidden = true; return; }
+      l.el.hidden = false;
+      var x = (tmp.x + 1) / 2 * W, y = (1 - tmp.y) / 2 * H;
+      l.el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) translate(-50%,-50%)";
+    });
+  }
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function loop(now) {
+    if (tween) {
+      var k = Math.min(1, (now - tween.t0) / 650), e = ease(k);
+      camera.position.lerpVectors(tween.fp, tween.to.p, e);
+      controls.target.lerpVectors(tween.ft, tween.to.t, e);
+      if (k >= 1) tween = null;
+    }
+    doorAngle += (doorTarget - doorAngle) * 0.12;
+    if (Math.abs(doorTarget - doorAngle) < 0.001) doorAngle = doorTarget;
+    doorPivots.forEach(function (pv) { pv.rotation.y = pv.userData.side * doorAngle; });
+    controls.update();
+    renderer.render(scene, camera);
+    placeLabels();
+    requestAnimationFrame(loop);
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem("cart-units"); } catch (e) {}
+  S.units = saved === "in" ? "in" : "mm";
+  document.getElementById("u-mm").setAttribute("aria-pressed", S.units === "mm");
+  document.getElementById("u-in").setAttribute("aria-pressed", S.units === "in");
+  renderSheet();
+  updateLabelText();
+  showInfo(null, 0);
+  if (document.documentElement.classList.contains("embed") && window.innerWidth < 640) setDims(false);
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
