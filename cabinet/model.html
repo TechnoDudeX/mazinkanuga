@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buffet Cabinet 3D Model · Mazin Kanuga</title>
-<meta name="description" content="Rotatable 3D model of my plywood buffet cabinet, with every measurement, hinge and screw, a step-by-step assembly walkthrough and a page of every wood piece.">
+<meta name="description" content="Rotatable 3D model of my plywood buffet cabinet, with every measurement, hinge and screw modelled at its real size and angle, a step-by-step assembly walkthrough, a page of every wood piece and a screws and tools list.">
 <meta name="author" content="Mazin Kanuga">
 <link rel="canonical" href="https://mazinkanuga.ca/cabinet/model.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
@@ -116,6 +116,30 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 .parts-head .hint, .parts-cols .hint { margin: 0 0 8px; color: var(--muted); font-size: 12.5px; }
 .parts-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
 @media (max-width: 760px) { .parts-cols { grid-template-columns: minmax(0, 1fr); } }
+.info .need { margin: 6px 0 0; font-size: 12.5px; color: var(--muted); }
+.info .need b { color: var(--ink); font-weight: 600; }
+.info .need .dot, .scard .dot { width: 8px; height: 8px; margin-right: 4px; }
+.joint { margin: 6px 0 2px; }
+.joint svg { display: block; width: 100%; height: auto; max-height: 150px; }
+.info .joint svg { max-height: 140px; }
+.linkrow { margin-top: 10px; font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--ink); background: var(--panel); border: 1px solid var(--accent); border-radius: 8px; padding: 9px 11px; cursor: pointer; }
+.hw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.scard { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.scard h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin: 4px 0 0; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.scard h3 .qty { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; }
+.scard .spec { font-family: var(--mono); font-size: 12.5px; margin: 0; }
+.scard p { margin: 0; color: var(--muted); font-size: 13px; }
+.scard .joint { background: var(--stage); border-radius: 6px; padding: 8px; margin: 0; }
+.scard .joint svg { max-height: 190px; }
+.scard .chip { align-self: flex-start; margin-top: 6px; }
+.hw-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 26px; }
+@media (max-width: 760px) { .hw-cols { grid-template-columns: minmax(0, 1fr); } }
+.tgroup { margin: 0 0 14px; }
+.tgroup h3 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 2px; }
+.hw-cols .row .v { white-space: normal; max-width: 45%; }
+.where { font: 500 10.5px/1.6 var(--mono); border-radius: 4px; padding: 0 5px; white-space: nowrap; border: 1px solid var(--rule); color: var(--muted); }
+.where.buy { border-color: var(--accent); color: var(--ink); }
+@media (max-width: 600px) { .stage { height: 560px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
@@ -132,6 +156,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     <div class="seg" role="group" aria-label="Page">
       <button type="button" id="pg-model" aria-pressed="true">3D model</button>
       <button type="button" id="pg-parts" aria-pressed="false">Wood pieces</button>
+      <button type="button" id="pg-hw" aria-pressed="false">Screws &amp; tools</button>
     </div>
     <div class="seg" role="group" aria-label="Units">
       <button type="button" id="u-mm" aria-pressed="true">cm</button>
@@ -160,12 +185,13 @@ button.row:hover, .row.active { background: var(--accent-soft); }
         </div>
         <div class="info" id="info" aria-live="polite"></div>
       </div>
-      <p class="legend">Tap Assembly steps for a build walkthrough · drag to rotate · scroll or pinch to zoom · right-drag or two-finger drag to pan · tap any part for its size · floor grid is 10 cm squares</p>
+      <p class="legend">Tap Assembly steps for a build walkthrough · tap a screw row to zoom in on it · drag to rotate · scroll or pinch to zoom · right-drag or two-finger drag to pan · tap any part for its size · floor grid is 10 cm squares</p>
     </section>
 
     <aside class="sheet" id="sheet"></aside>
   </main>
   <section id="page-parts" hidden><div id="parts"></div></section>
+  <section id="page-hw" hidden><div id="hw"></div></section>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
@@ -203,13 +229,126 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     { id: "af", name: "Cosori air fryer", short: "Air fryer", w: 280, d: 290, h: 330, x: -229.4, z: -28, base: SHELF_T, where: "Middle shelf" },
     { id: "ju", name: "Ninja juicer", short: "Juicer", w: 180, d: 320, h: 320, x: 50, z: -13, base: SHELF_T, where: "Middle shelf" },
     { id: "bl", name: "Ninja blender base", short: "Blender", w: 180, d: 240, h: 200, x: 279.7, z: -53, base: SHELF_T, where: "Middle shelf" },
-    { id: "ka", name: "KitchenAid mixer", short: "KitchenAid", w: 221, d: 358, h: 353, x: -219.6, z: 6, base: FLOOR, where: "Bottom", note: "Artisan tilt-head listed size. About 1.7 cm under the shelf's front rail and 1 cm in front of it, so measure yours: it is the tightest fit." },
-    { id: "ip", name: "Instant Pot", short: "Instant Pot", w: 350, d: 350, h: 350, x: 154.8, z: 2, base: FLOOR, where: "Bottom", cyl: true }
+    { id: "ip", name: "Instant Pot", short: "Instant Pot", w: 350, d: 350, h: 350, x: 154.8, z: 2, base: FLOOR, where: "Bottom", cyl: true, note: "The tightest fit now: 2 cm under the shelf's front rail and about 1.8 cm in front of it." }
   ];
   APPS.forEach(function (a) {
     a.head = a.base === TOP_T ? null : (a.base === FLOOR ? OPEN_B : OPEN_T) - a.h;
     a.over = a.d - (a.base === TOP_T ? 420 : USE_D);
   });
+
+  // ---------- screws (mm) ----------
+  // Pocket holes: Kreg jig, 15 degrees to the face, set for 3/4 in stock. The screw leaves the end or edge
+  // at mid-thickness; its head sits about 18 mm back along the hole, so the tip goes about 1.3 cm into the next piece.
+  var POCKET = 15, SCREW_P = 31.75, POCKET_BACK = 18;
+  var C15 = Math.cos(POCKET * Math.PI / 180), S15 = Math.sin(POCKET * Math.PI / 180);
+  function profile(L, kind) {
+    // half-profile of a screw as [radius, height] pairs: tip at 0, top of the head at L
+    var p = [[0, 0], [0.9, 1.4]], headH = kind === "pocket" ? 2.6 : 3.4, up = true;
+    var top = kind === "pocket" ? L - headH - 6 : L - headH - Math.max(7, L * 0.3);
+    for (var y = 2.4; y < top; y += 1.05) { p.push([up ? 2.1 : 1.45, y]); up = !up; }
+    p.push([1.6, top + 0.5], [1.6, L - headH]);
+    if (kind === "pocket") p.push([2.8, L - headH + 0.3], [4.3, L - 0.9], [4.3, L]);   // washer head
+    else p.push([4.2, L - 0.4], [4.2, L]);                                              // 82 degree flat head
+    p.push([0, L]);
+    return p;
+  }
+  var PROF = { pocket: profile(SCREW_P, "pocket"), s125: profile(31.75, "flat"), s250: profile(63.5, "flat") };
+  var SORDER = ["fFrame", "fPanel", "fSide", "fBox", "fLeg", "fTop"];   // build order
+  var PK = "Kreg #8 x 1-1/4 in pocket screws: coarse thread, washer head, square drive";
+  function pocketHow(under) { return "Jig and stepped bit set for 3/4 in stock. The hole goes in at 15° to the face" + (under ? ", on the underside" : ", on the face that gets hidden") + ". Drive with the 6 in #2 square bit, snug, not hard"; }
+  var SCR = {
+    fFrame: { n: 16, kind: "pocket", hex: "#E3B23C", tA: 19, mate: "long", A: "Short piece", B: "Long piece",
+      title: "Pocket screws, frame corners", short: "Kreg #8 x 1-1/4 in coarse pocket screws", spec: PK,
+      where: "2 per corner, from the ends of the short pieces into the long pieces",
+      how: function () { return pocketHow(false); },
+      bite: function () { return "Goes about " + f(13) + " into the long piece. Glue the corner too"; } },
+    fSide: { n: 8, kind: "pocket", hex: "#D9822B", tA: 19, mate: "side", A: "Frame", B: "Side",
+      title: "Pocket screws, frames into the sides", short: "Kreg #8 x 1-1/4 in coarse pocket screws", spec: PK,
+      where: "2 per short piece, out through its outside edge into the side. Pockets under the bottom frame, on top of the top frame",
+      how: function () { return pocketHow(false); },
+      bite: function () { return "About " + f(13) + " into the " + f(18) + " side, so about " + f(5) + " short of the outside. Glue too"; } },
+    fBox: { n: 8, kind: "pocket", hex: "#9B59D0", tA: 18, mate: "side", under: true, A: "Shelf", B: "Side",
+      title: "Pocket screws, shelf into the sides", short: "Kreg #8 x 1-1/4 in coarse pocket screws", spec: PK,
+      where: "4 per end, pockets on the underside of the shelf. Clamp a ledger block under it so the screws can't pull it out of line",
+      how: function () { return pocketHow(true); },
+      bite: function () { return "About " + f(13) + " into the side, about " + f(5) + " short of the outside. Glue too"; } },
+    fPanel: { n: 6, kind: "flat", geo: "s125", L: 31.75, hex: "#6E9E2E",
+      title: "Screws, bottom panel into its frame", short: "#8 x 1-1/4 in flat-head wood screws", spec: "#8 x 1-1/4 in flat-head wood screws, square drive",
+      where: "Straight down through the panel into the long frame pieces, 3 front and 3 back",
+      how: function () { return "Pre-drill with a #8 countersink bit (1/8 in pilot) and set the heads just below the surface, then fill"; },
+      bite: function () { return "About " + f(14) + " into the frame, " + f(5) + " short of its underside. Glue too"; } },
+    fTop: { n: 10, kind: "flat", geo: "s125", L: 31.75, hex: "#21A08A",
+      title: "Screws, top frame into the top", short: "#8 x 1-1/4 in flat-head wood screws", spec: "#8 x 1-1/4 in flat-head wood screws, square drive",
+      where: "Straight up through the top frame into the top: 3 per long piece, 2 per short piece",
+      how: function () { return "Pre-drill with a #8 countersink bit and stop when the heads are flush. Any deeper pushes the tips toward the top's surface"; },
+      bite: function () { return "About " + f(13) + " into the top, " + f(5) + " short of its surface. Glue too"; } },
+    fLeg: { n: 8, kind: "flat", geo: "s250", L: 63.5, hex: "#D04A4A",
+      title: "Screws into the legs", short: "#8 x 2-1/2 in flat-head wood screws", spec: "#8 x 2-1/2 in flat-head wood screws, square drive",
+      where: "2 per leg, straight down through the bottom panel and frame, about " + "1 cm in from the side",
+      how: function () { return "Pre-drill 1/8 in about " + f(60) + " deep, then countersink"; },
+      bite: function () { return "About " + f(26) + " into the leg. Glue the leg too"; } }
+  };
+
+  // section through one joint, to scale (mm), as SVG
+  function jointSvg(k) {
+    var c = SCR[k], o = [], flip = !!c.under, tA = c.tA || 0, ink = "var(--ink)";
+    function n(v) { return (Math.round(v * 100) / 100).toString(); }
+    function Y(y) { return flip ? tA - y : y; }
+    function pts(p) { return p.map(function (q) { return n(q[0]) + "," + n(Y(q[1])); }).join(" "); }
+    function poly(p, style) { o.push('<polygon points="' + pts(p) + '" style="' + style + '"/>'); }
+    function wood(p) { poly(p, "fill:var(--wood);stroke:var(--wood-edge);stroke-width:0.35;stroke-linejoin:round"); }
+    function line(p, style) { o.push('<polyline points="' + pts(p) + '" style="fill:none;' + style + '"/>'); }
+    var fs = k === "fLeg" ? 4.8 : 4;
+    function txt(x, y, t, anchor, col) { o.push('<text x="' + n(x) + '" y="' + n(flip ? Y(y) + fs * 0.72 : y) + '" text-anchor="' + (anchor || "start") + '" style="font-family:var(--body);font-size:' + fs + "px;fill:" + (col || ink) + '">' + t + "</text>"); }
+    function screw(prof, tip, u) {
+      var px = -u[1], py = u[0], A = [], B = [];
+      prof.forEach(function (q) { var cx = tip[0] + u[0] * q[1], cy = tip[1] + u[1] * q[1]; A.push([cx + px * q[0], cy + py * q[0]]); B.unshift([cx - px * q[0], cy - py * q[0]]); });
+      poly(A.concat(B), "fill:" + c.hex + ";stroke:" + ink + ";stroke-width:0.25;stroke-linejoin:round");
+    }
+    var vb;
+    if (c.kind === "pocket") {
+      var E = [0, tA / 2], a = [C15, S15], pp = [-S15, C15], r = 4.76, sb = -POCKET_BACK + 2.6;
+      var at = function (sv, kk) { return [E[0] + a[0] * sv + pp[0] * kk, E[1] + a[1] * sv + pp[1] * kk]; };
+      var su = (r * pp[1] - E[1]) / a[1], sl = (-r * pp[1] - E[1]) / a[1];
+      wood([[-64, 0], [0, 0], [0, tA], [-64, tA], [-62, tA * 0.62], [-66, tA * 0.38]]);
+      var bx, y0, y1;
+      if (c.mate === "side") { wood([[0, -14], [6, -12], [12, -15], [18, -13], [18, tA + 13], [12, tA + 15], [6, tA + 12], [0, tA + 14]]); bx = 18; y0 = -21; y1 = tA + 17; }
+      else { wood([[0, 0], [34, 0], [32, tA * 0.38], [36, tA * 0.62], [34, tA], [0, tA]]); bx = 36; y0 = -7; y1 = tA + 3; }
+      poly([at(sb, -r), at(su, -r), at(sl, r), at(sb, r)], "fill:var(--stage);stroke:var(--muted);stroke-width:0.3;stroke-dasharray:1.2 0.8");
+      screw(PROF.pocket, at(SCREW_P - POCKET_BACK, 0), [-a[0], -a[1]]);
+      var F = at(-E[1] / a[1], 0);
+      line([F, at(-POCKET_BACK, 0)], "stroke:" + ink + ";stroke-width:0.3;stroke-dasharray:1 1");
+      line([[F[0] - 4, 0], [F[0] + 15, 0]], "stroke:" + ink + ";stroke-width:0.3");
+      var a1 = [F[0] + 11, 0], a2 = [F[0] + 11 * C15, 11 * S15];
+      o.push('<path d="M' + n(a1[0]) + " " + n(Y(a1[1])) + " A11 11 0 0 " + (flip ? 0 : 1) + " " + n(a2[0]) + " " + n(Y(a2[1])) + '" style="fill:none;stroke:' + ink + ';stroke-width:0.35"/>');
+      txt(F[0] + 9, -2, "15°");
+      txt(-61, tA - 3, c.A);
+      if (c.mate === "side") txt(9, -16, c.B, "middle"); else txt(19, tA - 1.6, c.B, "middle");
+      txt(-61, -3, flip ? "underside" : "hidden face", "start", "var(--muted)");
+      vb = [-68, flip ? tA - y1 : y0, bx + 4 + 68, y1 - y0];
+    } else {
+      var xs = 12;
+      if (k === "fLeg") {
+        wood([[-40, 0], [10, 0], [10, 18], [-40, 18], [-38, 11], [-42, 7]]);
+        wood([[-40, 18], [10, 18], [10, 37], [-40, 37], [-38, 30], [-42, 26]]);
+        wood([[10, -6], [16, -4], [22, -7], [28, -5], [28, 37], [10, 37]]);
+        wood([[-10, 37], [28, 37], [28, 72], [22, 74], [16, 71], [9, 74], [3, 71], [-4, 74], [-10, 72]]);
+        xs = 0;
+        screw(PROF.s250, [xs, 63.5], [0, -1]);
+        txt(-37, 11.3, "Panel"); txt(-37, 30.3, "Frame"); txt(19, -9, "Side", "middle"); txt(14, 52, "Leg", "middle");
+        txt(4, 66, f(26) + " in");
+        vb = [-45, -15, 78, 92];
+      } else {
+        var top = k === "fTop";
+        wood([[-40, 0], [40, 0], [38, 7], [42, 11], [40, 18], [-40, 18], [-38, 11], [-42, 7]]);
+        wood([[-40, 18], [40, 18], [38, 26], [42, 30], [40, 37], [-40, 37], [-38, 30], [-42, 26]]);
+        if (top) { screw(PROF.s125, [xs, 37 - 31.75], [0, 1]); txt(-37, 11.3, "Top"); txt(-37, 30.3, "Top frame"); txt(17, 4.6, f(5) + " left"); }
+        else { screw(PROF.s125, [xs, 31.75], [0, -1]); txt(-37, 11.3, "Bottom panel"); txt(-37, 30.3, "Frame"); txt(17, 35.2, f(5) + " left"); }
+        vb = [-45, -4, 90, 45];
+      }
+    }
+    return '<svg viewBox="' + vb.map(n).join(" ") + '" role="img" aria-label="Section through the joint: ' + c.title + '">' + o.join("") + "</svg>";
+  }
 
   var META = {
     legs: { title: "Legs", size: function () { return L([38, 38, LEG]); }, lines: function () { return ["Two short 1x2 pieces glued face to face", "Glued and screwed under each corner of the bottom frame; the front pair sits 2 cm back, tucked behind the bottom front rail", "The back pair also holds the back panel in its grooves", "Leaves " + f(LEG) + " clear under the cabinet"]; } },
@@ -221,15 +360,13 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     shelf: { title: "Middle shelf", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, fixed (glued and pocket-screwed), with a 1x2 front rail", R(SHELF_B, SHELF_T) + " from the floor", "Opening above it: " + f(OPEN_T) + " to the top frame", "Set on two " + f(OPEN_B) + " spacers, kept behind the front rail"]; } },
     frontRails: { title: "Front rails", size: function () { return L([19, RAIL_H, INNER]); }, lines: function () { return ["1x2 on edge, glued to the front edge of the shelf and the bottom panel, flush with their tops", "They stiffen the shelf and cover the plywood edges", "Shelf rail " + R(SHELF_T - RAIL_H, SHELF_T) + ", bottom rail " + R(FLOOR - RAIL_H, FLOOR) + " from the floor", "Glued and clamped along the panel edge, no screws needed"]; } },
     doors: { title: "Doors", size: function () { return L([T, DOOR_W, DOOR_H]); }, lines: function () { return ["3/4 in plywood, edge banding on all 4 edges", "Full overlay: they cover the front edges of the sides", R(DOOR_B, DOOR_T) + " from the floor", "3 mm gap in the middle, 1.5 mm at the outside edges"]; } },
-    hinges: { count: 4, title: "Hinges", size: function () { return "35 mm cup, full overlay, 2 per door"; }, lines: function () { return ["Cups centred " + f(100) + " from the top and bottom of each door", "The plate screws to the inside face of the side, 3.7 cm back from its front edge, centred " + f(105) + " from the side's bottom and top edges", "Drill the cups with the Kreg concealed hinge jig"]; } },
-    knobs: { count: 2, title: "Knobs", size: function () { return "2, one per door"; }, lines: function () { return [f(60) + " down from the top of each door, " + f(40) + " in from its middle edge", "Soft-close hinges hold the doors shut, so no catches"]; } },
-    fFrame: { title: "Pocket screws, frame corners", size: function () { return "16 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per corner, pocket holes in the ends of the short pieces, into the long pieces", "Glue the corners and check the diagonals before the glue sets"]; } },
-    fSide: { title: "Pocket screws, frames into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per short piece, into the side, with the pocket holes on the hidden face: underneath the bottom frame, on top of the top frame", "Plus glue"]; } },
-    fBox: { title: "Pocket screws, shelf into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["4 per end, pocket holes on the underside of the shelf", "Clamp a ledger block under the shelf so the screws can't pull it out of line"]; } },
-    fPanel: { title: "Screws, bottom panel into the bottom frame", size: function () { return "6 screws, #8 x 1-1/4 in"; }, lines: function () { return ["Down through the panel into the long frame pieces, 3 front and 3 back", "Glue too. Countersink and fill before painting"]; } },
-    fTop: { title: "Screws, top frame into the top", size: function () { return "10 screws, #8 x 1-1/4 in"; }, lines: function () { return ["Up through the top frame into the top: 3 per long piece, 2 per short piece", "Plywood doesn't move with the seasons, so glue it too"]; } },
-    fLeg: { title: "Screws into the legs", size: function () { return "8 screws, #8 x 2-1/2 in"; }, lines: function () { return ["2 per leg, down through the bottom panel and frame from inside", "Pre-drill, countersink and fill, and glue the legs too"]; } }
+    hinges: { count: 4, title: "Hinges", size: function () { return "35 mm cup, full overlay, 2 per door"; }, lines: function () { return ["Cups centred " + f(100) + " from the top and bottom of each door", "The plate screws to the inside face of the side, 3.7 cm back from its front edge, centred " + f(105) + " from the side's bottom and top edges", "Drill the cups with the Kreg concealed hinge jig", "16 #6 x 5/8 in pan-head screws: 2 in each cup, 2 in each plate"]; } },
+    knobs: { count: 2, title: "Knobs", size: function () { return "2, one per door"; }, lines: function () { return [f(60) + " down from the top of each door, " + f(40) + " in from its middle edge", "A 3/16 in hole through the door and the 8-32 x 1 in screw that comes with the knob", "Soft-close hinges hold the doors shut, so no catches"]; } }
   };
+  Object.keys(SCR).forEach(function (k) {
+    var c = SCR[k];
+    META[k] = { title: c.title, size: function () { return c.n + " x " + c.short; }, lines: function () { return [c.where, c.how(), c.bite()]; } };
+  });
   APPS.forEach(function (a) {
     META["app-" + a.id] = {
       title: a.name,
@@ -296,16 +433,16 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       btn("legs", "Legs<small>two 1x2 pieces glued</small>", '<span class="q">4x</span>' + L([38, 38, LEG])) +
       "</div></section>";
 
-    h += '<section><h2>Screws and fasteners</h2><p class="hint">Tap a row to see where each one goes. Screws show through the wood so you can find them; the one you pick turns white.</p><div class="rows">' +
-      btn("fFrame", '<span class="dot" style="background:#E3B23C"></span>Pocket screws, frame corners<small>2 per corner, 1-1/4 in coarse, plus glue</small>', "16") +
-      btn("fSide", '<span class="dot" style="background:#D9822B"></span>Pocket screws, frames into sides<small>2 per short piece, plus glue</small>', "8") +
-      btn("fBox", '<span class="dot" style="background:#9B59D0"></span>Pocket screws, shelf into sides<small>4 per end, plus glue</small>', "8") +
-      btn("fPanel", '<span class="dot" style="background:#6E9E2E"></span>Screws, bottom panel into frame<small>#8 x 1-1/4 in, plus glue</small>', "6") +
-      btn("fTop", '<span class="dot" style="background:#21A08A"></span>Screws, top frame into top<small>#8 x 1-1/4 in, plus glue</small>', "10") +
-      btn("fLeg", '<span class="dot" style="background:#D04A4A"></span>Screws into the legs<small>#8 x 2-1/2 in, 2 per leg, plus glue</small>', "8") +
+    h += '<section><h2>Screws</h2><p class="hint">Tap a row to zoom in on that joint. The wood turns see-through and each screw is drawn at its real size and angle.</p><div class="rows">';
+    SORDER.forEach(function (k) {
+      var c = SCR[k];
+      h += btn(k, '<span class="dot" style="background:' + c.hex + '"></span>' + c.title + "<small>" + c.short + (c.kind === "pocket" ? ", 15° pockets" : ", countersunk") + "</small>", String(c.n));
+    });
+    h += row("Hinge screws<small>#6 x 5/8 in pan-head, 2 per cup and 2 per plate</small>", "16") +
+      row("Knob screws<small>8-32 x 1 in machine screws, come with the knobs</small>", "2") +
       btn("hinges", "Hinges<small>35 mm cup, full overlay, soft close</small>", "4") +
       btn("knobs", "Knobs", "2") +
-      "</div></section>";
+      '</div><button type="button" class="linkrow" id="go-hw">Full list: every screw, hardware and tool</button></section>';
 
     h += '<section><h2>Appliances</h2><p class="hint">W x D x H, and the space left above each one.</p><div class="rows">';
     APPS.forEach(function (a) {
@@ -323,6 +460,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     sheet.querySelectorAll("button.row").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-key") === S.sel); });
   }
   sheet.addEventListener("click", function (e) {
+    if (e.target.closest("#go-hw")) { setPage("hw"); return; }
     var b = e.target.closest("button.row");
     if (!b) return;
     var key = b.getAttribute("data-key");
@@ -348,6 +486,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.autoClear = false;
   stage.insertBefore(renderer.domElement, stage.firstChild);
 
   var scene = new THREE.Scene();
@@ -363,7 +502,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   controls.target.fromArray(VIEWS.iso.t);
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
-  controls.minDistance = 600;
+  controls.minDistance = 150;
   controls.maxDistance = 6000;
   controls.maxPolarAngle = Math.PI * 0.497;
   controls.update();
@@ -431,6 +570,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var appEdge = new THREE.LineBasicMaterial({ color: 0x33689a, transparent: true, opacity: 0.85 });
   var dimMat = new THREE.LineBasicMaterial({ color: 0xa97f00 });
   var metalMat = new THREE.MeshStandardMaterial({ color: 0x9aa1a8, metalness: 0.55, roughness: 0.35 });
+  var headMat = new THREE.MeshStandardMaterial({ color: 0x6c7279, metalness: 0.6, roughness: 0.35 });
 
   var pickables = [];
   var labels = [];
@@ -520,43 +660,118 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     pivot.add(knob);
     knob.rotation.x = Math.PI / 2;
     knob.position.set(-side * (DOOR_W - 40), KNOB_Y - DOOR_MID, T + 13);
+    // screw heads you can see: #6 x 5/8 in pan heads in the plates and cups, and the knob's screw on the back of the door
+    HINGE_Y.forEach(function (hy) {
+      [-1, 1].forEach(function (s2) {
+        var ph = addMesh(new THREE.CylinderGeometry(3, 3, 2.2, 12), headMat, [side * (INNER / 2 - 5.1), hy + s2 * 16, ZF - 37], { group: "hinges", kind: "hinges" });
+        ph.rotation.z = Math.PI / 2;
+        var ch = addMesh(new THREE.CylinderGeometry(3, 3, 2.2, 12), headMat, [0, 0, 0], { group: "hinges", kind: "hinges" });
+        pivot.add(ch); ch.rotation.x = Math.PI / 2; ch.position.set(-side * 31, hy - DOOR_MID + s2 * 22.5, -1.1);
+      });
+    });
+    var kh = addMesh(new THREE.CylinderGeometry(3.6, 3.6, 2.4, 12), headMat, [0, 0, 0], { group: "knobs", kind: "knobs" });
+    pivot.add(kh); kh.rotation.x = Math.PI / 2; kh.position.set(-side * (DOOR_W - 40), KNOB_Y - DOOR_MID, -1.2);
   });
   var doorAngle = 1.75, doorTarget = 1.75;
 
-  // fastener markers
-  var fastGroup = new THREE.Group(); scene.add(fastGroup);
-  var FCOL = { fFrame: 0xE3B23C, fSide: 0xD9822B, fBox: 0x9B59D0, fRail: 0x3A8FD9, fPanel: 0x6E9E2E, fTop: 0x21A08A, fLeg: 0xD04A4A };
-  var fGeo = new THREE.SphereGeometry(9, 12, 10);
-  function fast(type, x, y, z) {
-    var mat = new THREE.MeshBasicMaterial({ color: FCOL[type], depthTest: false });
-    var m = new THREE.Mesh(fGeo, mat);
-    m.position.set(x, y, z);
-    m.renderOrder = 10;
-    var hl = new THREE.MeshBasicMaterial({ color: 0xffffff, depthTest: false });
-    m.userData = { group: type, kind: type, base: mat, hl: hl, fast: true };
+  // ---------- screws: real size and angle, drawn in a second pass over the wood so they show through ----------
+  var fscene = new THREE.Scene();
+  fscene.add(new THREE.HemisphereLight(0xffffff, 0x6f6a60, 0.95));
+  var fsun = new THREE.DirectionalLight(0xffffff, 0.75); fsun.position.set(900, 2300, 1500); fscene.add(fsun);
+  var fback = new THREE.DirectionalLight(0xffffff, 0.35); fback.position.set(-1600, 600, -900); fscene.add(fback);
+  var fastGroup = new THREE.Group(); fscene.add(fastGroup);
+  var FCOL = {}; Object.keys(SCR).forEach(function (k) { FCOL[k] = new THREE.Color(SCR[k].hex).getHex(); });
+  function lathe(prof) { return new THREE.LatheGeometry(prof.map(function (q) { return new THREE.Vector2(q[0], q[1]); }), 16); }
+  var SGEO = { pocket: lathe(PROF.pocket), s125: lathe(PROF.s125), s250: lathe(PROF.s250) };
+  function V(x, y, z) { return new THREE.Vector3(x, y, z); }
+  var UPV = V(0, 1, 0), smats = {};
+  function smat(k) {
+    if (!smats[k]) smats[k] = [
+      new THREE.MeshStandardMaterial({ color: FCOL[k], metalness: 0.3, roughness: 0.38 }),
+      new THREE.MeshStandardMaterial({ color: FCOL[k], emissive: FCOL[k], emissiveIntensity: 0.45, metalness: 0.2, roughness: 0.4 }),
+      new THREE.MeshStandardMaterial({ color: FCOL[k], metalness: 0.3, roughness: 0.38, transparent: true, opacity: 0.16, depthWrite: false })
+    ];
+    return smats[k];
+  }
+  var boreMats = [
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.42, depthWrite: false, side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.6, depthWrite: false, side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.1, depthWrite: false, side: THREE.DoubleSide })
+  ];
+  function addScrew(k, geo, len, head, dir) {
+    // head: the top of the screw head; dir: the way it drives
+    var d = dir.clone().normalize(), mt = smat(k), m = new THREE.Mesh(geo, mt[0]);
+    m.position.copy(head).addScaledVector(d, len);
+    m.quaternion.setFromUnitVectors(UPV, d.clone().negate());
+    m.userData = { group: k, kind: k, base: mt[0], hl: mt[1], dim: mt[2], fast: true, wy: head.y };
     fastGroup.add(m); pickables.push(m);
   }
-  [LEG + FR / 2, CEIL + FR / 2].forEach(function (y) {
-    // frame corners: short pieces into long pieces
+  function pocket(k, exit, along, out, thick) {
+    // exit: where the screw leaves the end or edge, at mid-thickness; along: toward the next piece; out: the pocket face's outward normal
+    var a = along.clone().multiplyScalar(C15).addScaledVector(out, -S15).normalize();
+    var head = exit.clone().addScaledVector(a, -POCKET_BACK);
+    addScrew(k, SGEO.pocket, SCREW_P, head, a);
+    // the 3/8 in pocket: from under the head back out through the face
+    var face = exit.clone().addScaledVector(out, thick / 2), bot = head.clone().addScaledVector(a, 2.6);
+    var e1 = along.clone().cross(out).normalize(), e2 = a.clone().cross(e1).normalize();
+    var N = 18, r = 4.76, pos = [], ind = [], ad = a.dot(out), i;
+    for (i = 0; i < N; i++) {
+      var th = i / N * Math.PI * 2;
+      var b = bot.clone().addScaledVector(e1, Math.cos(th) * r).addScaledVector(e2, Math.sin(th) * r);
+      var tp = b.clone().addScaledVector(a, face.clone().sub(b).dot(out) / ad);
+      pos.push(b.x, b.y, b.z, tp.x, tp.y, tp.z);
+    }
+    var ct = bot.clone().addScaledVector(a, face.clone().sub(bot).dot(out) / ad);
+    pos.push(bot.x, bot.y, bot.z, ct.x, ct.y, ct.z);
+    for (i = 0; i < N; i++) {
+      var j = (i + 1) % N;
+      ind.push(2 * i, 2 * j, 2 * i + 1, 2 * j, 2 * j + 1, 2 * i + 1, 2 * N, 2 * j, 2 * i, 2 * N + 1, 2 * i + 1, 2 * j + 1);
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(ind);
+    var m = new THREE.Mesh(g, boreMats[0]);
+    m.userData = { group: k, kind: k, base: boreMats[0], hl: boreMats[1], dim: boreMats[2], fast: true, wy: exit.y };
+    fastGroup.add(m); pickables.push(m);
+  }
+  [[LEG, -1], [CEIL, 1]].forEach(function (fr) {
+    // bottom frame: pockets underneath; top frame: pockets on top (the top covers them)
+    var ym = fr[0] + FR / 2, out = V(0, fr[1], 0);
     [-1, 1].forEach(function (sx) {
-      [FZ1 - FW / 2 - 12, FZ2 + FW / 2 + 12].forEach(function (z) { [-14, 14].forEach(function (dx) { fast("fFrame", sx * (INNER / 2 - FW / 2) + dx, y, z); }); });
-      // short pieces into the sides
-      [-60, 60].forEach(function (dz) { fast("fSide", sx * (INNER / 2 - 6), y, FZS + dz); });
+      [[FZ1 - FW / 2, 1], [FZ2 + FW / 2, -1]].forEach(function (end) {
+        [-14, 14].forEach(function (dx) { pocket("fFrame", V(sx * (INNER / 2 - FW / 2) + dx, ym, end[0]), V(0, 0, end[1]), out, FR); });
+      });
+      [-45, 45].forEach(function (dz) { pocket("fSide", V(sx * INNER / 2, ym, FZS + dz), V(sx, 0, 0), out, FR); });
     });
   });
-  // shelf into the sides: 4 per end, from underneath
-  [-1, 1].forEach(function (sx) { [-130, -60, 10, 80].forEach(function (dz) { fast("fBox", sx * (INNER / 2 - 14), SHELF_B + 6, PZ + dz); }); });
-  // bottom panel down into the bottom frame
-  [FZ1, FZ2].forEach(function (z) { [-300, 0, 300].forEach(function (x) { fast("fPanel", x, FLOOR - 4, z); }); });
-  // top frame up into the top
-  [FZ1, FZ2].forEach(function (z) { [-300, 0, 300].forEach(function (x) { fast("fTop", x, TOP_B + 4, z); }); });
-  [-1, 1].forEach(function (sx) { [-60, 60].forEach(function (dz) { fast("fTop", sx * (INNER / 2 - FW / 2), TOP_B + 4, FZS + dz); }); });
-  // down through the bottom panel and frame into the legs
+  [-1, 1].forEach(function (sx) { [-130, -60, 10, 80].forEach(function (dz) { pocket("fBox", V(sx * INNER / 2, (SHELF_B + SHELF_T) / 2, PZ + dz), V(sx, 0, 0), V(0, -1, 0), T); }); });
+  [FZ1, FZ2].forEach(function (z) { [-300, 0, 300].forEach(function (x) { addScrew("fPanel", SGEO.s125, 31.75, V(x, FLOOR, z), V(0, -1, 0)); }); });
+  [FZ1, FZ2].forEach(function (z) { [-300, 0, 300].forEach(function (x) { addScrew("fTop", SGEO.s125, 31.75, V(x, CEIL, z), V(0, 1, 0)); }); });
+  [-1, 1].forEach(function (sx) { [-60, 60].forEach(function (dz) { addScrew("fTop", SGEO.s125, 31.75, V(sx * (INNER / 2 - FW / 2), CEIL, FZS + dz), V(0, 1, 0)); }); });
   LEGS.forEach(function (c) {
     // only the inner 2 cm of each leg sits under the panel and frame, so the screws go there
-    (c[1] < 0 ? [ZB + 22, ZB + 33] : [ZF - 48, ZF - 30]).forEach(function (z) { fast("fLeg", (c[0] > 0 ? 1 : -1) * (INNER / 2 - 10), FLOOR - 4, z); });
+    (c[1] < 0 ? [ZB + 22, ZB + 33] : [ZF - 48, ZF - 30]).forEach(function (z) { addScrew("fLeg", SGEO.s250, 63.5, V((c[0] > 0 ? 1 : -1) * (INNER / 2 - 10), FLOOR, z), V(0, -1, 0)); });
   });
   fastGroup.visible = false;
+  // close-ups on one joint of each kind
+  var CU = {
+    fFrame: { t: [392, 885, 90], p: [150, 1140, 410] },
+    fSide: { t: [405, 885, -3], p: [60, 1120, 330] },
+    fBox: { t: [412, 506, -20], p: [150, 720, 330] },
+    fPanel: { t: [150, 92, 0], p: [300, 440, 480] },
+    fTop: { t: [150, 895, 30], p: [380, 1060, 540] },
+    fLeg: { t: [412, 70, 150], p: [760, 270, 500] }
+  };
+  Object.keys(CU).forEach(function (k) { VIEWS["cu-" + k] = { t: CU[k].t, p: CU[k].p, cu: true }; });
+  // see-through wood for the close-ups
+  var ghost = false;
+  function setGhost(on) {
+    if (ghost === on) return;
+    ghost = on;
+    var ms = [matH, matV, matB];
+    ms.concat(ms.map(hlFor)).forEach(function (m) { m.transparent = on; m.opacity = on ? 0.2 : 1; m.depthWrite = !on; m.needsUpdate = true; });
+    [metalMat, headMat, hlFor(metalMat), hlFor(headMat)].forEach(function (m) { m.transparent = on; m.opacity = on ? 0.3 : 1; m.depthWrite = !on; m.needsUpdate = true; });
+    edgeMat.opacity = on ? 0.9 : 0.6;
+  }
 
   // dimension lines
   var dimGroup = new THREE.Group();
@@ -611,13 +826,17 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   // ---------- selection ----------
   function select(key) {
     S.sel = key;
-    if (!pickables) { markActive(); return; }
-    var count = 0;
+    var count = 0, isScrew = !!(key && SCR[key]);
     pickables.forEach(function (m) {
       var on = key && (m.userData.group === key || m.userData.kind === key);
-      if (on) count++;
-      m.material = on ? m.userData.hl : m.userData.base;
+      if (on && m.userData.base !== boreMats[0]) count++;
+      // a picked screw glows; the other screws fade back
+      m.material = on ? m.userData.hl : (isScrew && m.userData.dim && !S.asm ? m.userData.dim : m.userData.base);
     });
+    if (!S.asm) {
+      setGhost(isScrew);
+      if (isScrew) { setFast(true); setApps(false); setDims(false); goView("cu-" + key); }
+    }
     showInfo(key, count);
     markActive();
   }
@@ -628,8 +847,10 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       return;
     }
     if (meta.count) count = meta.count;
-    info.innerHTML = "<h3>" + meta.title + (count > 1 ? '<span class="qty">' + count + " pieces</span>" : "") + "</h3>" +
-      '<p class="size">' + meta.size() + "</p>" + meta.lines().map(function (l) { return "<p>" + l + "</p>"; }).join("");
+    var scr = SCR[key];
+    info.innerHTML = "<h3>" + meta.title + (scr ? "" : count > 1 ? '<span class="qty">' + count + " pieces</span>" : "") + "</h3>" +
+      '<p class="size">' + meta.size() + "</p>" + (scr ? '<div class="joint">' + jointSvg(key) + "</div>" : "") +
+      meta.lines().map(function (l) { return "<p>" + l + "</p>"; }).join("");
   }
 
   var ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), down = null;
@@ -641,7 +862,10 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     var r = renderer.domElement.getBoundingClientRect();
     ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
-    var hits = ray.intersectObjects(pickables.filter(function (m) { return m.visible && (!m.userData.fast || fastGroup.visible); }), false);
+    var vis = pickables.filter(function (m) { return m.visible; });
+    // screws are drawn on top, so they win the tap when they're showing
+    var hits = fastGroup.visible ? ray.intersectObjects(vis.filter(function (m) { return m.userData.fast; }), false) : [];
+    if (!hits.length) hits = ray.intersectObjects(vis.filter(function (m) { return !m.userData.fast; }), false);
     var hit = hits.length ? hits[0].object : null;
     // prefer wood over a translucent appliance in front of it only when the appliance is not the first hit
     select(hit ? (S.sel === hit.userData.group ? null : hit.userData.group) : null);
@@ -684,7 +908,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     S.units = u;
     document.getElementById("u-mm").setAttribute("aria-pressed", u === "mm");
     document.getElementById("u-in").setAttribute("aria-pressed", u === "in");
-    renderSheet(); if (!pgParts.hidden) renderParts(); updateLabelText(); if (S.asm) applyStep(); else showInfo(S.sel, countSel());
+    renderSheet(); if (!pgParts.hidden) renderParts(); if (!pgHw.hidden) renderHw(); updateLabelText(); if (S.asm) applyStep(); else showInfo(S.sel, countSel());
     try { localStorage.setItem("cart-units", u); } catch (e) {}
   }
   function countSel() { var n = 0; pickables.forEach(function (m) { if (S.sel && (m.userData.group === S.sel || m.userData.kind === S.sel)) n++; }); return n; }
@@ -693,7 +917,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
   // ---------- assembly walkthrough ----------
   pickables.forEach(function (m) {
-    var g = m.userData.group, hi = m.getWorldPosition(new THREE.Vector3()).y > 300;
+    var g = m.userData.group, hi = (m.userData.wy !== undefined ? m.userData.wy : m.getWorldPosition(new THREE.Vector3()).y) > 300;
     if (g === "frontRails") m.userData.tag = hi ? "shelfRail" : "bottomRail";
     else if (g === "frames") m.userData.tag = hi ? "topFrame" : "botFrame";
     else if (g === "hinges") m.userData.tag = m.parent === scene ? "plates" : "cups";
@@ -703,40 +927,59 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     else m.userData.tag = g;
   });
   var BOX = ["sides", "botFrame", "bottom", "bottomRail", "topFrame", "shelf", "shelfRail"];
+  var JIG = "pocket hole jig and its stepped bit, both set for 3/4 in stock";
   var STEPS = [
     { t: "Groove the sides for the back", show: ["sides"], hl: ["sides"], view: "iso",
-      d: function () { return ["Cut a " + f(6) + " groove, " + f(6) + " deep, " + f(6) + " in from the back edge, the full length of each side. A router or two passes on the table saw.", "Lay the sides out as a mirror pair and mark the back edges first, so both grooves end up at the back, facing in."]; } },
-    { t: "Build the two frames", show: ["botFrame", "topFrame"], hl: ["botFrame", "topFrame"], fast: ["fFrameB", "fFrameT"], view: "iso",
-      d: function () { return ["Cut all 4 long pieces (" + f(INNER) + ") together, then all 4 short pieces (" + f(FS) + ") together, against a stop block.", "2 pocket holes in each end of the short pieces, on the face that will be hidden. Glue and screw the corners, then check that both diagonals match."]; } },
+      tools: "Router with a 1/4 in straight bit and an edge guide (or the table saw, 2 passes), a hardboard offcut to test the fit",
+      d: function () { return ["Cut a " + f(6) + " groove, " + f(6) + " deep, " + f(6) + " in from the back edge, the full length of each side.", "Lay the sides out as a mirror pair and mark the back edges first, so both grooves end up at the back, facing in."]; } },
+    { t: "Build the two frames", show: ["botFrame", "topFrame"], hl: ["botFrame", "topFrame"], fast: ["fFrameB", "fFrameT"], view: "iso", scr: ["fFrame"],
+      tools: JIG + ", drill, 6 in #2 square driver bit, face clamp, glue, tape measure",
+      d: function () { return ["Cut all 4 long pieces (" + f(INNER) + ") together, then all 4 short pieces (" + f(FS) + ") together, against a stop block.", "Drill 6 pocket holes in each short piece, all on one face: 2 in each end for the corners and 2 in the outside edge for the sides later. Glue and screw the corners, then check that both diagonals match."]; } },
     { t: "Glue the front rails on", show: ["bottom", "bottomRail", "shelf", "shelfRail"], hl: ["bottomRail", "shelfRail"], view: "close",
-      d: function () { return ["Glue a 1x2 rail, on edge, to the front edge of the bottom panel and of the shelf, flush with the top face and both ends.", "Clamp and let them set; the glue is all they need. Then drill 4 pocket holes per end under the shelf."]; } },
-    { t: "Bottom panel onto its frame", show: ["botFrame", "bottom", "bottomRail"], hl: ["bottom", "bottomRail"], fast: ["fPanel"], view: "close",
-      d: function () { return ["Glue the bottom panel onto the bottom frame, flush at the back and ends, so the rail covers the front of the frame.", "6 screws down through the panel into the long frame pieces. Countersink them; you'll fill them before painting."]; } },
-    { t: "Put the box together", show: ["sides", "botFrame", "bottom", "bottomRail", "topFrame"], hl: ["sides", "topFrame"], fast: ["fSideB", "fSideT"], view: "iso",
-      d: function () { return ["Stand the sides up with the grooves at the back. Glue and pocket-screw the bottom assembly in, flush with the bottom of the sides, rail flush with the front.", "Then the top frame, flush with the top of the sides and set " + f(19) + " back like the bottom one. Check the diagonals."]; } },
-    { t: "Fix the middle shelf", show: BOX, hl: ["shelf", "shelfRail"], fast: ["fBox"], view: "iso",
-      d: function () { return ["Stand two " + f(OPEN_B) + " spacer boards on the bottom panel, behind the front rails so the rail doesn't land on them, rest the shelf on them, and clamp a ledger block under each end so the pocket screws can't pull it out of line.", "Glue and drive the screws. No measuring needed."]; } },
+      tools: "Glue, 4 to 6 clamps, then the " + JIG,
+      d: function () { return ["Glue a 1x2 rail, on edge, to the front edge of the bottom panel and of the shelf, flush with the top face and both ends.", "Clamp and let them set; the glue is all they need. Then drill 4 pocket holes in each end of the shelf, on the underside."]; } },
+    { t: "Bottom panel onto its frame", show: ["botFrame", "bottom", "bottomRail"], hl: ["bottom", "bottomRail"], fast: ["fPanel"], view: "close", scr: ["fPanel"],
+      tools: "#8 countersink bit, drill, #2 square bit, glue, clamps",
+      d: function () { return ["Frame pockets facing down. Glue the bottom panel onto it, flush at the back and ends, so the rail covers the front of the frame.", "Screw straight down through the panel into the long frame pieces, 3 front and 3 back. Countersink just below the surface; you'll fill them before painting."]; } },
+    { t: "Put the box together", show: ["sides", "botFrame", "bottom", "bottomRail", "topFrame"], hl: ["sides", "topFrame"], fast: ["fSideB", "fSideT"], view: "iso", scr: ["fSide"],
+      tools: "2 bar clamps that open past 90 cm, driver with the 6 in square bit, glue, tape measure",
+      d: function () { return ["Sides up, grooves at the back. Glue the bottom assembly in, flush with the bottom of the sides and the rail flush with the front, and drive 2 pocket screws from underneath through each short piece into the side.", "Then the top frame, pockets up, flush with the top of the sides and set " + f(19) + " back like the bottom one. Check the diagonals."]; } },
+    { t: "Fix the middle shelf", show: BOX, hl: ["shelf", "shelfRail"], fast: ["fBox"], view: "iso", scr: ["fBox"],
+      tools: "2 spacer boards cut to " + f(OPEN_B) + ", 2 scrap ledger blocks, 4 clamps, driver with the 6 in square bit, glue",
+      d: function () { return ["Stand two " + f(OPEN_B) + " spacer boards on the bottom panel, behind the front rails so the rail doesn't land on them, rest the shelf on them, and clamp a ledger block under each end so the pocket screws can't pull it out of line.", "Glue and drive 4 screws into each side. No measuring needed."]; } },
     { t: "Slide the back in", show: BOX.concat(["back"]), hl: ["back"], view: "back",
-      d: function () { return ["Lay the cabinet on its front and slide the hardboard back up into the grooves from underneath.", "It runs the full height of the sides. Prime and paint it first if that's easier."]; } },
-    { t: "Put the legs on", show: BOX.concat(["back", "legs"]), hl: ["legs"], fast: ["fLeg"], view: "low",
-      d: function () { return ["Glue a leg under each corner, flush with the outside. Front pair " + f(20) + " back, behind the bottom rail.", "2 #8 x 2-1/2 in screws down through the panel and frame into each leg. The back legs now hold the back in."]; } },
-    { t: "Attach the top", show: BOX.concat(["back", "legs", "top"]), hl: ["top"], fast: ["fTop"], view: "iso",
-      d: function () { return ["Lay the top face down on a blanket, set the cabinet upside down on it, flush at the back and centred side to side (" + f(27) + " over each side).", "Glue, then 10 screws up through the top frame into the top."]; } },
+      tools: "Nothing but your hands. Prime and paint it first if that's easier",
+      d: function () { return ["Lay the cabinet on its front and slide the hardboard back up into the grooves from underneath.", "It runs the full height of the sides. No screws or glue: the legs hold it in."]; } },
+    { t: "Put the legs on", show: BOX.concat(["back", "legs"]), hl: ["legs"], fast: ["fLeg"], view: "low", scr: ["fLeg"],
+      tools: "1/8 in drill bit, #8 countersink bit, drill, glue, 2 clamps",
+      d: function () { return ["Glue a leg under each corner, flush with the outside. Front pair " + f(20) + " back, behind the bottom rail.", "2 long screws per leg, straight down through the panel and frame from inside, about " + f(10) + " in from the side. The back legs now hold the back in."]; } },
+    { t: "Attach the top", show: BOX.concat(["back", "legs", "top"]), hl: ["top"], fast: ["fTop"], view: "iso", scr: ["fTop"],
+      tools: "#8 countersink bit with a depth stop, drill, glue, a blanket",
+      d: function () { return ["Lay the top face down on a blanket, set the cabinet upside down on it, flush at the back and centred side to side (" + f(27) + " over each side).", "Glue, then 10 screws straight up through the top frame into the top. Heads flush, no deeper."]; } },
     { t: "Mount the hinge plates", show: BOX.concat(["back", "legs", "top", "plates"]), hl: ["plates"], view: "iso",
+      other: "8 #6 x 5/8 in pan-head screws, 2 per plate", tools: "Hinge jig or a scrap template, square, awl, driver bit to fit the hinge screws",
       d: function () { return ["Screw a plate to the inside face of each side, centred " + f(105) + " from its bottom and top edges, " + f(37) + " back from the front edge (the hinge jig or template marks this).", "4 plates, 2 per side."]; } },
     { t: "Hang the doors", show: BOX.concat(["back", "legs", "top", "plates", "doors", "cups", "knobs"]), hl: ["doors", "cups"], doors: "open", view: "iso",
-      d: function () { return ["With the Kreg hinge jig, drill 2 cups in the back of each door, centred " + f(100) + " from its top and bottom. Press the hinges in and screw them down.", "Clip the doors on and adjust to a " + f(3) + " gap in the middle."]; } },
+      other: "8 #6 x 5/8 in pan-head screws, 2 per hinge cup", tools: "Kreg concealed hinge jig with its 35 mm Forstner bit, drill, screwdriver, a drill bit or a few playing cards as a gap spacer",
+      d: function () { return ["With the hinge jig, drill 2 cups in the back of each door, centred " + f(100) + " from its top and bottom. Press the hinges in and screw them down.", "Clip the doors on and set the middle gap with the hinges' side screws. About " + f(3) + " is the target; anything from 2 to 5 mm looks fine."]; } },
     { t: "Fill, paint, strap it", show: BOX.concat(["back", "legs", "top", "plates", "doors", "cups", "knobs"]), hl: [], doors: "closed", paint: true, view: "iso",
-      d: function () { return ["Doors and hardware off. Fill screw holes and any voids, sand to 180, prime, then 2 coats of black. Fit the knobs " + f(60) + " down and " + f(40) + " in.", "Strap it to a wall stud from the top frame before loading anything."]; } }
+      other: "2 knob screws (8-32 x 1 in, come with the knobs); the anti-tip kit's screws, one into a wall stud", tools: "Filler and putty knife, sander with 120 and 180, primer, black paint, foam roller, 3/16 in bit for the knobs, stud finder",
+      d: function () { return ["Doors and hardware off. Fill screw holes and any voids, sand to 180, prime, then 2 coats of black. Drill 3/16 in knob holes " + f(60) + " down and " + f(40) + " in.", "Strap it to a wall stud from the top frame before loading anything."]; } }
   ];
   VIEWS.close = { p: [1250, 1250, 1750], t: [0, 300, 0] };
   VIEWS.low = { p: [1500, 420, 2100], t: [0, 230, 0] };
   VIEWS.back = { p: [-1700, 1100, -2200], t: [0, 430, 0] };
-  S.asm = false; S.step = 0;
+  S.asm = false; S.step = 0; S.cu = false;
   var saveApps = true, saveDims = true;
   function goView(name) {
     var v = VIEWS[name];
     var to = { p: new THREE.Vector3().fromArray(v.p), t: new THREE.Vector3().fromArray(v.t) };
+    if (v.cu) {
+      // keep the joint clear of the info card: right of centre on wide screens, above centre on tall ones
+      var dv = to.t.clone().sub(to.p), rt = dv.clone().cross(UPV).normalize(), upv = rt.clone().cross(dv).normalize();
+      var sh = W / H >= 1 ? rt.multiplyScalar(-0.13 * dv.length()) : upv.multiplyScalar(-0.2 * dv.length());
+      to.p.add(sh); to.t.add(sh);
+    }
     if (reduce) { camera.position.copy(to.p); controls.target.copy(to.t); controls.update(); return; }
     tween = { t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), to: to };
   }
@@ -752,15 +995,27 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     doorTarget = st.doors === "closed" ? 0 : 1.75;
     if (reduce) doorAngle = doorTarget;
     S.paint = !!st.paint; applyTheme();
+    S.cu = false; setGhost(false);
     goView(st.view);
+    stepInfo();
+  }
+  function stepInfo() {
+    var st = STEPS[S.step];
+    var sc = (st.scr || []).map(function (k) { var c = SCR[k]; return '<span class="dot" style="background:' + c.hex + '"></span>' + c.n + " " + c.short + (c.kind === "pocket" ? " (15° pockets)" : ""); });
+    if (st.other) sc.push(st.other);
     info.innerHTML = '<p class="hint" style="font-family:var(--mono);font-size:12px">Step ' + (S.step + 1) + " of " + STEPS.length + "</p><h3>" + st.t + "</h3>" +
-      st.d().map(function (l) { return "<p>" + l + "</p>"; }).join("") +
-      '<div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="chip" data-step="-1"' + (S.step ? "" : " disabled") + '>Back</button>' +
+      (S.cu ? "" : st.d().map(function (l) { return "<p>" + l + "</p>"; }).join("")) +
+      '<p class="need"><b>Screws:</b> ' + (sc.length ? sc.join("; ") : "none") + "</p>" +
+      (S.cu ? "" : '<p class="need"><b>Tools:</b> ' + st.tools + "</p>") +
+      (S.cu ? st.scr.map(function (k) { return '<div class="joint">' + jointSvg(k) + "</div><p>" + SCR[k].bite() + "</p>"; }).join("") : "") +
+      '<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button type="button" class="chip" data-step="-1"' + (S.step ? "" : " disabled") + '>Back</button>' +
+      (st.scr ? '<button type="button" class="chip" data-cu="1" aria-pressed="' + S.cu + '"><span class="box"></span>Close-up on the screws</button>' : "") +
       '<button type="button" class="chip" data-step="1" style="color:var(--ink);border-color:var(--accent)">' + (S.step < STEPS.length - 1 ? "Next step" : "Done") + "</button></div>";
   }
   function setAsm(on) {
     S.asm = on; tAsm.setAttribute("aria-pressed", on);
     [tApps, tDims, tDoors, tFast, tPaint].forEach(function (b) { b.disabled = on; b.style.opacity = on ? 0.45 : ""; });
+    setGhost(false); S.cu = false;
     if (on) {
       saveApps = S.apps; saveDims = S.dims; S.sel = null; markActive();
       setApps(false); setDims(false); S.step = 0; applyStep();
@@ -777,6 +1032,12 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var tAsm = document.getElementById("t-asm");
   tAsm.addEventListener("click", function () { setAsm(!S.asm); });
   info.addEventListener("click", function (e) {
+    var cu = e.target.closest("[data-cu]");
+    if (cu && S.asm) {
+      var st = STEPS[S.step];
+      S.cu = !S.cu; setGhost(S.cu); goView(S.cu ? "cu-" + st.scr[0] : st.view); stepInfo();
+      return;
+    }
     var b = e.target.closest("[data-step]");
     if (!b || !S.asm) return;
     var n = S.step + Number(b.getAttribute("data-step"));
@@ -882,16 +1143,75 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       '<section><h2 class="ph">Other boards</h2><p class="hint">Poplar for the frames, rails and legs; paints well.</p><div class="rows">' + lumberRows() + "</div></section></div>";
     partsEl.innerHTML = h;
   }
+  // ---------- screws and tools page ----------
+  var HW = [
+    ["Kreg pocket screws, #8 x 1-1/4 in, coarse thread, washer head (Kreg SML-C125)", "32, so a 100-pack"],
+    ["#8 x 1-1/4 in flat-head wood screws, square drive", "16"],
+    ["#8 x 2-1/2 in flat-head wood screws, square drive", "8"],
+    ["#6 x 5/8 in pan-head screws, for the hinges", "16, if the hinges don't include them"],
+    ["Concealed hinges: frameless, full overlay, 35 mm cup, soft-close, with mounting plates", "4 (2 pairs)"],
+    ["Knobs, with 8-32 x 1 in machine screws", "2"],
+    ["Anti-tip furniture strap kit", "1"],
+    ["Felt pads, about 3.8 cm (1-1/2 in) square", "4"]
+  ];
+  var SUPPLIES = [
+    ["Wood glue (Titebond II or similar)", "1 bottle"],
+    ["Iron-on edge banding, 13/16 in wide", "1 roll, 50 ft"],
+    ["Paintable wood filler", "1 small tub"],
+    ["Sandpaper or sander discs, 120 and 180", "a few of each"],
+    ["Primer, and black cabinet paint (satin)", "about 1 L of each"]
+  ];
+  var TOOLS = [
+    ["Measure and mark", [["Metric tape measure"], ["Combination square"], ["Machinist square, to check the saw setups and the shop's squares"], ["Pencil"]]],
+    ["Cut", [["Table saw", "club"], ["Miter saw, with a stop block", "club"], ["Router, 1/4 in straight bit and edge guide for the grooves (or the table saw, 2 passes)", "club"]]],
+    ["Pocket holes", [["Kreg pocket hole jig. The club has an older one; Kent reckons it's worth owning", "buy"], ["Stepped drill bit with its stop collar, and a 6 in #2 square driver bit (both come with the jig)"], ["Face clamp, to hold each joint flush while you drive"]]],
+    ["Drill and drive", [["Drill/driver, plus an impact driver if you have one"], ["#8 countersink bit with a 1/8 in pilot"], ["1/8 in drill bit, for the long leg screws"], ["3/16 in drill bit, for the knob holes"], ["#2 square (Robertson) and #2 Phillips bits"]]],
+    ["Clamp", [["2 bar or pipe clamps that open past 90 cm"], ["4 to 6 quick clamps or F-clamps, about 30 cm"], ["2 spacer boards cut to 39 cm, and 2 scrap ledger blocks"]]],
+    ["Hinges", [["Kreg concealed hinge jig, comes with the 35 mm Forstner bit", "buy"], ["Awl, to start the small screws"]]],
+    ["Edges and finish", [["Clothes iron, no steam"], ["Edge banding trimmer"], ["Random orbit sander"], ["Putty knife, foam roller and tray, small angled brush"]]],
+    ["Safety", [["Safety glasses and hearing protection"], ["Dust mask for sanding"], ["Push stick for the table saw"]]],
+    ["Install", [["Stud finder, for the wall strap"]]]
+  ];
+  var pgHw = document.getElementById("page-hw"), hwEl = document.getElementById("hw");
+  function renderHw() {
+    var h = '<div class="parts-head"><h2 class="ph">Screws</h2><p class="hint">56 screws in 6 joints, 3 kinds. Each drawing is a section through one joint, to scale. Every joint gets glue as well.</p></div><div class="hw-grid">';
+    SORDER.forEach(function (k) {
+      var c = SCR[k];
+      h += '<article class="scard"><div class="joint">' + jointSvg(k) + '</div><h3><span><span class="dot" style="background:' + c.hex + '"></span>' + c.title + '</span><span class="qty">' + c.n + "x</span></h3>" +
+        '<p class="spec">' + c.spec + "</p><p>" + c.where + ".</p><p>" + c.how() + ".</p><p>" + c.bite() + '.</p><button type="button" class="chip" data-show="' + k + '">See it in 3D</button></article>';
+    });
+    h += "</div>";
+    function rowsOf(list) { return list.map(function (r) { return '<div class="row"><span class="k">' + r[0] + '</span><span class="v">' + r[1] + "</span></div>"; }).join(""); }
+    h += '<div class="hw-cols"><section><h2 class="ph">Hardware to buy</h2><p class="hint" style="margin:0 0 6px;color:var(--muted);font-size:12.5px">Exact counts. Buy a few spares.</p><div class="rows">' + rowsOf(HW) + "</div>" +
+      '<h2 class="ph" style="margin-top:20px">Supplies</h2><div class="rows">' + rowsOf(SUPPLIES) + "</div></section>" +
+      '<section><h2 class="ph">Tools, by job</h2><p class="hint" style="margin:0 0 6px;color:var(--muted);font-size:12.5px"><span class="where">club</span> the club shop has it · <span class="where buy">buy</span> worth getting your own</p>' +
+      TOOLS.map(function (g) {
+        return '<div class="tgroup"><h3>' + g[0] + '</h3><div class="rows">' + g[1].map(function (t) {
+          return '<div class="row"><span class="k">' + t[0] + "</span>" + (t[1] ? '<span class="where' + (t[1] === "buy" ? " buy" : "") + '">' + t[1] + "</span>" : "") + "</div>";
+        }).join("") + "</div></div>";
+      }).join("") + "</section></div>";
+    hwEl.innerHTML = h;
+  }
+  hwEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-show]");
+    if (!b) return;
+    setPage("model");
+    if (S.asm) setAsm(false);
+    select(b.getAttribute("data-show"));
+    try { stage.scrollIntoView({ block: "nearest" }); } catch (err) {}
+  });
+
   var pgModel = document.getElementById("page-model"), pgParts = document.getElementById("page-parts");
   function setPage(which) {
-    document.getElementById("pg-model").setAttribute("aria-pressed", which === "model");
-    document.getElementById("pg-parts").setAttribute("aria-pressed", which === "parts");
-    pgModel.hidden = which !== "model"; pgParts.hidden = which !== "parts";
-    if (which === "parts") renderParts(); else resize();
+    ["model", "parts", "hw"].forEach(function (p) { document.getElementById("pg-" + p).setAttribute("aria-pressed", which === p); });
+    pgModel.hidden = which !== "model"; pgParts.hidden = which !== "parts"; pgHw.hidden = which !== "hw";
+    if (which === "parts") renderParts(); else if (which === "hw") renderHw(); else resize();
   }
   document.getElementById("pg-model").addEventListener("click", function () { setPage("model"); });
   document.getElementById("pg-parts").addEventListener("click", function () { setPage("parts"); });
   if (location.hash === "#pieces") setPage("parts");
+  if (location.hash === "#hardware") setPage("hw");
+  document.getElementById("pg-hw").addEventListener("click", function () { setPage("hw"); });
 
   // ---------- size + loop ----------
   var W = 1, H = 1;
@@ -932,7 +1252,9 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     if (Math.abs(doorTarget - doorAngle) < 0.001) doorAngle = doorTarget;
     doorPivots.forEach(function (pv) { pv.rotation.y = pv.userData.side * doorAngle; });
     controls.update();
+    renderer.clear();
     renderer.render(scene, camera);
+    if (fastGroup.visible) { renderer.clearDepth(); renderer.render(fscene, camera); }
     placeLabels();
     requestAnimationFrame(loop);
   }
