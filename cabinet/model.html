@@ -193,7 +193,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var T = 18, FR = 19;
   var LEG = 70, FLOOR = 107, SHELF_B = 497, SHELF_T = 515, CEIL = 881, TOP_B = 900, TOP_T = 918, SIDE_H = 830;
   var OPEN_B = 390, OPEN_T = 366, DEPTH = 380, INNER = 850, BODY = 886, HB = 443, PDEPTH = 340, RAIL_H = 38, UNDER_RAIL = 370;
-  var FD = 338, FW = 64, FS = 210;            // frames: outer depth, member width, short piece length
+  var FD = 348, FW = 64, FS = 220;            // frames: outer depth, member width, short piece length
   var BACK_W = 860, BACK_H = 830, USE_D = 368; // back panel, usable depth (back to doors)
   var DOOR_B = 75, DOOR_T = 895, DOOR_W = 440, DOOR_H = 820;
   var HINGE_Y = [175, 795], KNOB_Y = 835;
@@ -215,18 +215,17 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     legs: { title: "Legs", size: function () { return L([38, 38, LEG]); }, lines: function () { return ["Two short 1x2 pieces glued face to face", "Glued and screwed under each corner of the bottom frame; the front pair sits 2 cm back, tucked behind the bottom front rail", "The back pair also holds the back panel in its grooves", "Leaves " + f(LEG) + " clear under the cabinet"]; } },
     top: { title: "Top", size: function () { return L([T, 420, 940]); }, lines: function () { return ["3/4 in plywood, cut from a 2 x 4 ft panel", R(TOP_B, TOP_T) + " from the floor", "Flush with the back, " + f(27) + " past each side, " + f(22) + " past the closed doors", "Glued and screwed up through the top frame"]; } },
     frames: { count: 2, title: "Frames", size: function () { return L([FR, FD, INNER]) + " outside"; }, lines: function () { return ["Poplar 1x3, laid flat: 2 long pieces " + f(INNER) + " and 2 short pieces " + f(FS) + " each", "Bottom frame " + R(LEG, LEG + FR) + ", top frame " + R(CEIL, TOP_B) + " from the floor", "Built square first, so the box goes together square", "Set " + f(19) + " back from the front edge of the sides"]; } },
-    sides: { title: "Sides", size: function () { return L([T, DEPTH, SIDE_H]); }, lines: function () { return ["3/4 in plywood, grain running up and down", R(LEG, TOP_B) + " from the floor", "A 6 mm groove, 6 mm deep, 6 mm in from the back edge, full length, for the back", "Edge banding on the front edge"]; } },
+    sides: { title: "Sides", size: function () { return L([T, DEPTH, SIDE_H]); }, lines: function () { return ["3/4 in plywood, grain running up and down", R(LEG, TOP_B) + " from the floor", "A groove for the back, 6 mm in from the back edge, 6 mm deep, as wide as your hardboard is thick (test on an offcut)", "Edge banding on the front edge"]; } },
     back: { title: "Back", size: function () { return L([6, BACK_W, BACK_H]); }, lines: function () { return ["1/4 in hardboard (Masonite), painted", "Slides up into the grooves in the sides from underneath", "Rests on the back legs, so nothing else holds it", "Stops things getting pushed out the back"]; } },
     bottom: { title: "Bottom panel", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, glued and screwed down onto the bottom frame", R(LEG + FR, FLOOR) + " from the floor", "Opening above it: " + f(OPEN_B) + " to the underside of the shelf, " + f(UNDER_RAIL) + " under the shelf's front rail", "A 1x2 front rail glued to its front edge covers the frame too"]; } },
-    shelf: { title: "Middle shelf", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, fixed (glued and pocket-screwed), with a 1x2 front rail", R(SHELF_B, SHELF_T) + " from the floor", "Opening above it: " + f(OPEN_T) + " to the top frame", "Set on two " + f(OPEN_B) + " spacers, no measuring"]; } },
-    frontRails: { title: "Front rails", size: function () { return L([19, RAIL_H, INNER]); }, lines: function () { return ["1x2 on edge, glued to the front edge of the shelf and the bottom panel, flush with their tops", "They stiffen the shelf and cover the plywood edges", "Shelf rail " + R(SHELF_T - RAIL_H, SHELF_T) + ", bottom rail " + R(FLOOR - RAIL_H, FLOOR) + " from the floor", "2 pocket screws into the side at each end"]; } },
+    shelf: { title: "Middle shelf", size: function () { return L([T, PDEPTH, INNER]); }, lines: function () { return ["3/4 in plywood, fixed (glued and pocket-screwed), with a 1x2 front rail", R(SHELF_B, SHELF_T) + " from the floor", "Opening above it: " + f(OPEN_T) + " to the top frame", "Set on two " + f(OPEN_B) + " spacers, kept behind the front rail"]; } },
+    frontRails: { title: "Front rails", size: function () { return L([19, RAIL_H, INNER]); }, lines: function () { return ["1x2 on edge, glued to the front edge of the shelf and the bottom panel, flush with their tops", "They stiffen the shelf and cover the plywood edges", "Shelf rail " + R(SHELF_T - RAIL_H, SHELF_T) + ", bottom rail " + R(FLOOR - RAIL_H, FLOOR) + " from the floor", "Glued and clamped along the panel edge, no screws needed"]; } },
     doors: { title: "Doors", size: function () { return L([T, DOOR_W, DOOR_H]); }, lines: function () { return ["3/4 in plywood, edge banding on all 4 edges", "Full overlay: they cover the front edges of the sides", R(DOOR_B, DOOR_T) + " from the floor", "3 mm gap in the middle, 1.5 mm at the outside edges"]; } },
     hinges: { count: 4, title: "Hinges", size: function () { return "35 mm cup, full overlay, 2 per door"; }, lines: function () { return ["Cups centred " + f(100) + " from the top and bottom of each door", "The plate screws to the inside face of the side, 3.7 cm back from its front edge, centred " + f(105) + " from the side's bottom and top edges", "Drill the cups with the Kreg concealed hinge jig"]; } },
     knobs: { count: 2, title: "Knobs", size: function () { return "2, one per door"; }, lines: function () { return [f(60) + " down from the top of each door, " + f(40) + " in from its middle edge", "Soft-close hinges hold the doors shut, so no catches"]; } },
     fFrame: { title: "Pocket screws, frame corners", size: function () { return "16 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per corner, pocket holes in the ends of the short pieces, into the long pieces", "Glue the corners and check the diagonals before the glue sets"]; } },
-    fSide: { title: "Pocket screws, frames into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per short piece, pocket holes on its inside face, into the side", "Plus glue"]; } },
+    fSide: { title: "Pocket screws, frames into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per short piece, into the side, with the pocket holes on the hidden face: underneath the bottom frame, on top of the top frame", "Plus glue"]; } },
     fBox: { title: "Pocket screws, shelf into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["4 per end, pocket holes on the underside of the shelf", "Clamp a ledger block under the shelf so the screws can't pull it out of line"]; } },
-    fRail: { title: "Pocket screws, front rails into the sides", size: function () { return "8 screws, 1-1/4 in coarse thread"; }, lines: function () { return ["2 per end, pocket holes on the back face of each rail", "Plus glue along the plywood edge"]; } },
     fPanel: { title: "Screws, bottom panel into the bottom frame", size: function () { return "6 screws, #8 x 1-1/4 in"; }, lines: function () { return ["Down through the panel into the long frame pieces, 3 front and 3 back", "Glue too. Countersink and fill before painting"]; } },
     fTop: { title: "Screws, top frame into the top", size: function () { return "10 screws, #8 x 1-1/4 in"; }, lines: function () { return ["Up through the top frame into the top: 3 per long piece, 2 per short piece", "Plywood doesn't move with the seasons, so glue it too"]; } },
     fLeg: { title: "Screws into the legs", size: function () { return "8 screws, #8 x 2-1/2 in"; }, lines: function () { return ["2 per leg, down through the bottom panel and frame from inside", "Pre-drill, countersink and fill, and glue the legs too"]; } }
@@ -301,7 +300,6 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       btn("fFrame", '<span class="dot" style="background:#E3B23C"></span>Pocket screws, frame corners<small>2 per corner, 1-1/4 in coarse, plus glue</small>', "16") +
       btn("fSide", '<span class="dot" style="background:#D9822B"></span>Pocket screws, frames into sides<small>2 per short piece, plus glue</small>', "8") +
       btn("fBox", '<span class="dot" style="background:#9B59D0"></span>Pocket screws, shelf into sides<small>4 per end, plus glue</small>', "8") +
-      btn("fRail", '<span class="dot" style="background:#3A8FD9"></span>Pocket screws, front rails<small>2 per end, plus glue</small>', "8") +
       btn("fPanel", '<span class="dot" style="background:#6E9E2E"></span>Screws, bottom panel into frame<small>#8 x 1-1/4 in, plus glue</small>', "6") +
       btn("fTop", '<span class="dot" style="background:#21A08A"></span>Screws, top frame into top<small>#8 x 1-1/4 in, plus glue</small>', "10") +
       btn("fLeg", '<span class="dot" style="background:#D04A4A"></span>Screws into the legs<small>#8 x 2-1/2 in, 2 per leg, plus glue</small>', "8") +
@@ -548,10 +546,6 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   });
   // shelf into the sides: 4 per end, from underneath
   [-1, 1].forEach(function (sx) { [-130, -60, 10, 80].forEach(function (dz) { fast("fBox", sx * (INNER / 2 - 14), SHELF_B + 6, PZ + dz); }); });
-  // front rails into the sides: 2 per end
-  [SHELF_T, FLOOR].forEach(function (yt) {
-    [-1, 1].forEach(function (sx) { [-10, -28].forEach(function (dy) { fast("fRail", sx * (INNER / 2 - 14), yt + dy, ZF - 12); }); });
-  });
   // bottom panel down into the bottom frame
   [FZ1, FZ2].forEach(function (z) { [-300, 0, 300].forEach(function (x) { fast("fPanel", x, FLOOR - 4, z); }); });
   // top frame up into the top
@@ -559,7 +553,8 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   [-1, 1].forEach(function (sx) { [-60, 60].forEach(function (dz) { fast("fTop", sx * (INNER / 2 - FW / 2), TOP_B + 4, FZS + dz); }); });
   // down through the bottom panel and frame into the legs
   LEGS.forEach(function (c) {
-    [-1, 1].forEach(function (k) { fast("fLeg", Math.max(-(INNER / 2 - 10), Math.min(INNER / 2 - 10, c[0] + (c[0] > 0 ? -8 : 8) + k * 4)), FLOOR - 4, c[1] + k * 8); });
+    // only the inner 2 cm of each leg sits under the panel and frame, so the screws go there
+    (c[1] < 0 ? [ZB + 22, ZB + 33] : [ZF - 48, ZF - 30]).forEach(function (z) { fast("fLeg", (c[0] > 0 ? 1 : -1) * (INNER / 2 - 10), FLOOR - 4, z); });
   });
   fastGroup.visible = false;
 
@@ -712,19 +707,19 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     { t: "Groove the sides for the back", show: ["sides"], hl: ["sides"], view: "iso",
       d: function () { return ["Cut a " + f(6) + " groove, " + f(6) + " deep, " + f(6) + " in from the back edge, the full length of each side. A router or two passes on the table saw.", "Lay the sides out as a mirror pair and mark the back edges first, so both grooves end up at the back, facing in."]; } },
     { t: "Build the two frames", show: ["botFrame", "topFrame"], hl: ["botFrame", "topFrame"], fast: ["fFrameB", "fFrameT"], view: "iso",
-      d: function () { return ["Cut all 4 long pieces (" + f(INNER) + ") together, then all 4 short pieces (" + f(FS) + ") together, against a stop block.", "2 pocket holes in each end of the short pieces. Glue and screw the corners, then check that both diagonals match."]; } },
+      d: function () { return ["Cut all 4 long pieces (" + f(INNER) + ") together, then all 4 short pieces (" + f(FS) + ") together, against a stop block.", "2 pocket holes in each end of the short pieces, on the face that will be hidden. Glue and screw the corners, then check that both diagonals match."]; } },
     { t: "Glue the front rails on", show: ["bottom", "bottomRail", "shelf", "shelfRail"], hl: ["bottomRail", "shelfRail"], view: "close",
-      d: function () { return ["Glue a 1x2 rail, on edge, to the front edge of the bottom panel and of the shelf, flush with the top face and both ends.", "Clamp and let them set. Drill 2 pocket holes in each end of the rails, on the back face, and 4 per end under the shelf."]; } },
+      d: function () { return ["Glue a 1x2 rail, on edge, to the front edge of the bottom panel and of the shelf, flush with the top face and both ends.", "Clamp and let them set; the glue is all they need. Then drill 4 pocket holes per end under the shelf."]; } },
     { t: "Bottom panel onto its frame", show: ["botFrame", "bottom", "bottomRail"], hl: ["bottom", "bottomRail"], fast: ["fPanel"], view: "close",
       d: function () { return ["Glue the bottom panel onto the bottom frame, flush at the back and ends, so the rail covers the front of the frame.", "6 screws down through the panel into the long frame pieces. Countersink them; you'll fill them before painting."]; } },
-    { t: "Put the box together", show: ["sides", "botFrame", "bottom", "bottomRail", "topFrame"], hl: ["sides", "topFrame"], fast: ["fSideB", "fSideT", "fRailB"], view: "iso",
+    { t: "Put the box together", show: ["sides", "botFrame", "bottom", "bottomRail", "topFrame"], hl: ["sides", "topFrame"], fast: ["fSideB", "fSideT"], view: "iso",
       d: function () { return ["Stand the sides up with the grooves at the back. Glue and pocket-screw the bottom assembly in, flush with the bottom of the sides, rail flush with the front.", "Then the top frame, flush with the top of the sides and set " + f(19) + " back like the bottom one. Check the diagonals."]; } },
-    { t: "Fix the middle shelf", show: BOX, hl: ["shelf", "shelfRail"], fast: ["fBox", "fRailS"], view: "iso",
-      d: function () { return ["Stand two " + f(OPEN_B) + " spacer boards on the bottom panel, rest the shelf on them, and clamp a ledger block under each end so the pocket screws can't pull it out of line.", "Glue and drive the screws. No measuring needed."]; } },
+    { t: "Fix the middle shelf", show: BOX, hl: ["shelf", "shelfRail"], fast: ["fBox"], view: "iso",
+      d: function () { return ["Stand two " + f(OPEN_B) + " spacer boards on the bottom panel, behind the front rails so the rail doesn't land on them, rest the shelf on them, and clamp a ledger block under each end so the pocket screws can't pull it out of line.", "Glue and drive the screws. No measuring needed."]; } },
     { t: "Slide the back in", show: BOX.concat(["back"]), hl: ["back"], view: "back",
       d: function () { return ["Lay the cabinet on its front and slide the hardboard back up into the grooves from underneath.", "It runs the full height of the sides. Prime and paint it first if that's easier."]; } },
     { t: "Put the legs on", show: BOX.concat(["back", "legs"]), hl: ["legs"], fast: ["fLeg"], view: "low",
-      d: function () { return ["Trim the leg blocks to " + f(LEG) + " and glue one under each corner, flush with the outside. Front pair " + f(20) + " back, behind the bottom rail.", "2 #8 x 2-1/2 in screws down through the panel and frame into each leg. The back legs now hold the back in."]; } },
+      d: function () { return ["Glue a leg under each corner, flush with the outside. Front pair " + f(20) + " back, behind the bottom rail.", "2 #8 x 2-1/2 in screws down through the panel and frame into each leg. The back legs now hold the back in."]; } },
     { t: "Attach the top", show: BOX.concat(["back", "legs", "top"]), hl: ["top"], fast: ["fTop"], view: "iso",
       d: function () { return ["Lay the top face down on a blanket, set the cabinet upside down on it, flush at the back and centred side to side (" + f(27) + " over each side).", "Glue, then 10 screws up through the top frame into the top."]; } },
     { t: "Mount the hinge plates", show: BOX.concat(["back", "legs", "top", "plates"]), hl: ["plates"], view: "iso",
@@ -806,11 +801,11 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     { id: "frameLong", name: "Frame, long pieces", qty: 4, l: INNER, w: FW, t: FR, geo: [INNER, FR, FW], mat: "Poplar 1x3", from: "8 ft 1x3",
       notes: function () { return ["2 per frame, front and back", "Cut all 4 together against a stop block"]; } },
     { id: "frameShort", name: "Frame, short pieces", qty: 4, l: FS, w: FW, t: FR, geo: [FW, FR, FS], mat: "Poplar 1x3", from: "8 ft 1x3",
-      notes: function () { return ["2 per frame, between the long pieces", "2 pocket holes in each end, 2 on the inside face for the side"]; } },
-    { id: "frontRails", name: "Front rails", qty: 2, l: INNER, w: RAIL_H, t: 19, geo: [INNER, RAIL_H, 19], mat: "Poplar 1x2", from: "8 ft 1x2",
-      notes: function () { return ["Stand on edge, glued to the front of the bottom and the shelf", "Top flush, hangs " + f(20) + " below", "2 pocket holes per end, on the back face"]; } },
-    { id: "legs", name: "Legs", qty: 4, l: LEG, w: 38, t: 38, geo: [38, LEG, 38], v: true, mat: "Two 1x2 pieces glued", from: "8 ft 1x2",
-      notes: function () { return ["Cut 8 pieces " + f(80) + " long, glue in pairs, trim to " + f(LEG)]; } }
+      notes: function () { return ["2 per frame, between the long pieces", "2 pocket holes in each end and 2 for the side, all on the hidden face"]; } },
+    { id: "frontRails", name: "Front rails", qty: 2, l: INNER, w: RAIL_H, t: 19, geo: [INNER, RAIL_H, 19], mat: "Poplar 1x2", from: "6 ft 1x2",
+      notes: function () { return ["Stand on edge, glued to the front of the bottom and the shelf", "Top flush, hangs " + f(20) + " below", "Glued and clamped to the panel edge, no screws"]; } },
+    { id: "legs", name: "Legs", qty: 4, l: LEG, w: 38, t: 38, geo: [38, LEG, 38], v: true, mat: "Two 1x2 pieces glued", from: "3 ft 1x2",
+      notes: function () { return ["Glue two " + f(350) + " pieces face to face, then cut 4 legs at " + f(LEG) + " from the clamped blank"]; } }
   ];
   var thumbs = {};
   (function makeThumbs() {
@@ -871,7 +866,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     return s + "</svg>";
   }
   function lumberRows() {
-    var B = [["3/4 in plywood, 2 x 4 ft", "Top, " + L([940, 420])], ["1/4 in hardboard, 4 x 4 ft", "Back, " + L([BACK_W, BACK_H])], ["Poplar 1x3, 8 ft (2)", "Each: 2 long frame pieces (" + f(INNER) + ") and 2 short (" + f(FS) + ")"], ["Poplar 1x2, 8 ft", "2 front rails (" + f(INNER) + ") and 8 leg pieces (" + f(80) + ")"]];
+    var B = [["3/4 in plywood, 2 x 4 ft", "Top, " + L([940, 420])], ["1/4 in hardboard, 4 x 4 ft", "Back, " + L([BACK_W, BACK_H])], ["Poplar 1x3, 8 ft (2)", "Each: 2 long frame pieces (" + f(INNER) + ") and 2 short (" + f(FS) + ")"], ["Poplar 1x2, 6 ft", "2 front rails (" + f(INNER) + ")"], ["Poplar 1x2, 3 ft", "2 leg blanks (" + f(350) + "), glued into one"]];
     return B.map(function (b) { return '<div class="row"><span class="k">' + b[0] + '</span><span class="v" style="white-space:normal">' + b[1] + "</span></div>"; }).join("");
   }
   function renderParts() {
