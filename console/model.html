@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console Table 3D Model · Mazin Kanuga</title>
+<meta name="description" content="Rotatable 3D model of my solid-wood console table with splayed legs, with every measurement and screw modelled at its real size and angle, a step-by-step assembly walkthrough, a page of every wood piece and a screws and tools list.">
+<meta name="author" content="Mazin Kanuga">
+<link rel="canonical" href="https://mazinkanuga.ca/console/model.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<script>if (/[?&]embed\b/.test(location.search)) document.documentElement.className += " embed";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: shop-drawing bench. 3D stage on the left (sticky), measurement sheet on the right; stacks on phones. */
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --stage: #f3f3f1;
+  --ink: #0a0a0a;
+  --muted: #767676;
+  --rule: #e8e8e8;
+  --accent: #E63946;
+  --accent-soft: rgba(230, 57, 70, 0.10);
+  --appliance: #2A5ADA;
+  --wood: #DCC7A2;
+  --wood-edge: #8A7350;
+  --grid: #dcdcd8;
+  --display: "Inter", -apple-system, system-ui, sans-serif;
+  --body: "Inter", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.back { font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 10px; }
+.back:hover { color: var(--accent); }
+.embed body { background: var(--stage); }
+.embed .app { max-width: none; padding: 0; }
+.embed .head, .embed .sheet, .embed .legend { display: none; }
+.embed .layout { grid-template-columns: minmax(0, 1fr); }
+.embed .stage { height: 100vh; min-height: 0; border: 0; border-radius: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.45; }
+.app { max-width: 1320px; margin: 0 auto; padding-inline: 20px; padding-block: 20px 48px; }
+@media (max-width: 480px) { .app { padding-inline: 16px; } }
+
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 16px; }
+.head h1 { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(26px, 4vw, 34px); line-height: 1.05; margin: 0; letter-spacing: 0.01em; text-wrap: balance; }
+.head .sub { margin: 4px 0 0; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
+
+.seg { display: inline-flex; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 3px; gap: 2px; }
+.seg button { font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--muted); background: none; border: 0; border-radius: 5px; padding: 7px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.seg button:hover:not([aria-pressed="true"]) { color: var(--ink); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 20px; align-items: start; }
+.stage-wrap { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); min-width: 0; }
+.stage { position: relative; height: min(680px, calc(100vh - 140px)); min-height: 440px; border-radius: 10px; overflow: hidden; background: var(--stage); border: 1px solid var(--rule); }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.stage canvas:active { cursor: grabbing; }
+@media (max-width: 920px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .stage-wrap { position: static; }
+  .stage { height: 500px; min-height: 0; }
+  .info { padding: 8px 10px; }
+  .info p, .info .hint { font-size: 12.5px; }
+}
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lbl { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform; }
+.lbl.dim { font: 500 11px/1 var(--mono); background: var(--panel); color: var(--ink); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 5px; font-variant-numeric: tabular-nums; }
+.lbl.app { font: 600 12px/1 var(--display); letter-spacing: 0.03em; color: var(--appliance); background: color-mix(in srgb, var(--panel) 78%, transparent); border-radius: 3px; padding: 2px 4px; }
+
+.toolbar { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; }
+.toolbar > * { pointer-events: auto; }
+.chip { font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--muted); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 9px 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.chip .box { width: 11px; height: 11px; border-radius: 3px; border: 1.5px solid var(--muted); }
+.chip[aria-pressed="true"] { color: var(--ink); border-color: var(--accent); }
+.chip[aria-pressed="true"] .box { background: var(--accent); border-color: var(--accent); }
+
+.info { position: absolute; left: 12px; bottom: 12px; width: min(330px, calc(100% - 24px)); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; }
+.info h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin: 0 0 2px; letter-spacing: 0.01em; }
+.info h3 .qty { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); margin-left: 4px; }
+.info .size { font-family: var(--mono); font-size: 12.5px; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+.info p { margin: 2px 0; color: var(--muted); font-size: 13px; }
+.info .hint { color: var(--muted); margin: 0; }
+.legend { margin: 8px 2px 0; color: var(--muted); font-size: 12.5px; }
+
+.sheet { min-width: 0; }
+.sheet section { border-top: 1px solid var(--rule); padding-block: 14px 10px; }
+.sheet section:first-child { border-top: 0; padding-top: 0; }
+.sheet h2 { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.sheet .hint { margin: -2px 0 6px; color: var(--muted); font-size: 12.5px; }
+.rows { display: flex; flex-direction: column; gap: 1px; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 8px; border-radius: 6px; width: 100%; text-align: left; background: none; border: 0; color: inherit; font: inherit; }
+button.row { cursor: pointer; }
+button.row:hover, .row.active { background: var(--accent-soft); }
+.row .k { min-width: 0; }
+.row .k small { display: block; color: var(--muted); font-size: 12px; }
+.row .v { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.row .q { font-family: var(--mono); color: var(--muted); font-size: 12px; margin-right: 6px; }
+.tag { display: inline-block; font: 500 11px/1.4 var(--mono); color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; margin-left: 6px; vertical-align: 1px; }
+.ok { color: var(--ink); }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; vertical-align: 0; }
+.parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.pcard { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+.pcard img, .pcard .noimg { display: block; width: 100%; aspect-ratio: 280 / 190; background: var(--stage); object-fit: contain; }
+.pbody { padding: 10px 12px 12px; }
+.pbody h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin: 0; display: flex; justify-content: space-between; align-items: baseline; }
+.pbody .qty { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.pbody .size { font-family: var(--mono); font-size: 13px; margin: 2px 0 4px; font-variant-numeric: tabular-nums; }
+.pbody .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 6px; }
+.pbody ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+.ph { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+.parts-head { margin-bottom: 12px; }
+.parts-head .hint, .parts-cols .hint { margin: 0 0 8px; color: var(--muted); font-size: 12.5px; }
+.parts-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 760px) { .parts-cols { grid-template-columns: minmax(0, 1fr); } }
+.info .need { margin: 6px 0 0; font-size: 12.5px; color: var(--muted); }
+.info .need b { color: var(--ink); font-weight: 600; }
+.info .need .dot, .scard .dot { width: 8px; height: 8px; margin-right: 4px; }
+.joint { margin: 6px 0 2px; }
+.joint svg { display: block; width: 100%; height: auto; max-height: 150px; }
+.info .joint svg { max-height: 140px; }
+.linkrow { margin-top: 10px; font: 500 13px/1 var(--display); letter-spacing: 0.03em; color: var(--ink); background: var(--panel); border: 1px solid var(--accent); border-radius: 8px; padding: 9px 11px; cursor: pointer; }
+.hw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.scard { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.scard h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin: 4px 0 0; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.scard h3 .qty { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; }
+.scard .spec { font-family: var(--mono); font-size: 12.5px; margin: 0; }
+.scard p { margin: 0; color: var(--muted); font-size: 13px; }
+.scard .joint { background: var(--stage); border-radius: 6px; padding: 8px; margin: 0; }
+.scard .joint svg { max-height: 190px; }
+.scard .chip { align-self: flex-start; margin-top: 6px; }
+.hw-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 26px; }
+@media (max-width: 760px) { .hw-cols { grid-template-columns: minmax(0, 1fr); } }
+.tgroup { margin: 0 0 14px; }
+.tgroup h3 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 2px; }
+.hw-cols .row .v { white-space: normal; max-width: 45%; }
+.where { font: 500 10.5px/1.6 var(--mono); border-radius: 4px; padding: 0 5px; white-space: nowrap; border: 1px solid var(--rule); color: var(--muted); }
+.where.buy { border-color: var(--accent); color: var(--ink); }
+@media (max-width: 600px) { .stage { height: 560px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <div>
+      <a class="back" href="/console/">← The build write-up</a>
+      <h1>Console table</h1>
+      <p class="sub">48 x 14 x 30 in (draft) · glued 2x8 top · splayed 2x4 legs · low basket shelf · dark stain</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="seg" role="group" aria-label="Page">
+      <button type="button" id="pg-model" aria-pressed="true">3D model</button>
+      <button type="button" id="pg-parts" aria-pressed="false">Wood pieces</button>
+      <button type="button" id="pg-hw" aria-pressed="false">Screws &amp; tools</button>
+    </div>
+    <div class="seg" role="group" aria-label="Units">
+      <button type="button" id="u-in" aria-pressed="true">inches</button>
+      <button type="button" id="u-mm" aria-pressed="false">cm</button>
+    </div>
+    </div>
+  </header>
+
+  <main class="layout" id="page-model">
+    <section class="stage-wrap" aria-label="3D model">
+      <div class="stage" id="stage">
+        <div class="labels" id="labels"></div>
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="View">
+            <button type="button" data-view="iso" aria-pressed="true">3/4</button>
+            <button type="button" data-view="front" aria-pressed="false">Front</button>
+            <button type="button" data-view="side" aria-pressed="false">Side</button>
+            <button type="button" data-view="top" aria-pressed="false">Top</button>
+          </div>
+          <button type="button" class="chip" id="t-apps" aria-pressed="true"><span class="box"></span>Baskets</button>
+          <button type="button" class="chip" id="t-dims" aria-pressed="true"><span class="box"></span>Measurements</button>
+          <button type="button" class="chip" id="t-fast" aria-pressed="false"><span class="box"></span>Screws</button>
+          <button type="button" class="chip" id="t-paint" aria-pressed="false"><span class="box"></span>Dark stain</button>
+          <button type="button" class="chip" id="t-asm" aria-pressed="false"><span class="box"></span>Assembly steps</button>
+        </div>
+        <div class="info" id="info" aria-live="polite"></div>
+      </div>
+      <p class="legend">Tap Assembly steps for a build walkthrough · tap a screw row to zoom in on it · drag to rotate · scroll or pinch to zoom · right-drag or two-finger drag to pan · tap any part for its size · floor grid is 6 in squares</p>
+    </section>
+
+    <aside class="sheet" id="sheet"></aside>
+  </main>
+  <section id="page-parts" hidden><div id="parts"></div></section>
+  <section id="page-hw" hidden><div id="hw"></div></section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- units ----------
+  var S = { units: "in", apps: true, dims: true, sel: null };
+  function trimNum(v) { return (Math.round(v * 10) / 10).toString(); }
+  function inch(mm) {
+    var t = Math.round(mm / 25.4 * 16), w = Math.floor(t / 16), f = t % 16, d = 16;
+    if (!f) return w + '"';
+    while (f % 2 === 0) { f /= 2; d /= 2; }
+    return (w ? w + "-" : "") + f + "/" + d + '"';
+  }
+  function f(mm) { return S.units === "mm" ? trimNum(mm / 10) + " cm" : inch(mm); }
+  function L(vals) { return S.units === "mm" ? vals.map(function (x) { return trimNum(x / 10); }).join(" x ") + " cm" : vals.map(inch).join(" x "); }
+  function R(a, b) { return S.units === "mm" ? trimNum(a / 10) + " to " + trimNum(b / 10) + " cm" : inch(a) + " to " + inch(b); }
+
+  // ---------- data (designed in inches, drawn in mm) ----------
+  // x = length, y = height, z = depth (front is +z). Centred on x = 0, z = 0.
+  // Lumber is 2x stock (1-1/2 in thick), legs and rails ripped to 2-1/2 in. Draft sizes.
+  var IN = 25.4;
+  function M(v) { return v * IN; }
+  var LW = 48, DW = 14, HW = 30, SHF = 8, SPLAY = 8;
+  var tT = 1.5, cT = 1.5, cW = 3.5, lW = 2.5, lT = 1.5, sH = 2.5, shT = 0.75, ovZ = 0.75, proj = 0.5, ovX = 3.75;
+  var TN = Math.tan(SPLAY * Math.PI / 180), CS = Math.cos(SPLAY * Math.PI / 180);
+  var HLEG = HW - tT - cT, LEGEDGE = HLEG / CS, KICK = HLEG * TN;
+  var SPAN = DW - 2 * ovZ, SHELFW = SPAN - 2 * lT, CLEATL = SPAN + 2 * proj;
+  var XT = ovX + cW / 2;
+  function cx(y) { return XT - (HLEG - y) * TN; }
+  var YS = SHF - shT, YM = YS - sH / 2, XS = cx(YM);
+  var RAILL = LW - 2 * XS - 1.5, SHELFL = RAILL + 3, CLEAR = HW - tT - SHF;
+  var FOOT = cx(0) - lW / 2, FOOTSPAN = LW - 2 * FOOT;
+  function X(x) { return (x - LW / 2) * IN; }
+  function Y(y) { return y * IN; }
+  function Z(z) { return (z - DW / 2) * IN; }
+  var ZB = ovZ + lT / 2, ZF = DW - ovZ - lT / 2;                 // leg centres, back and front
+  var RZB = ovZ + lT + 0.75, RZF = DW - ovZ - lT - 0.75;          // rail centres
+  var APPS = [
+    { id: "b1", name: "Basket, left", short: "Basket", w: M(13), d: M(9), h: M(10), x: M(-14.4), z: 0, base: M(SHF), where: "Shelf" },
+    { id: "b2", name: "Basket, middle", short: "Basket", w: M(13), d: M(9), h: M(10), x: 0, z: 0, base: M(SHF), where: "Shelf" },
+    { id: "b3", name: "Basket, right", short: "Basket", w: M(13), d: M(9), h: M(10), x: M(14.4), z: 0, base: M(SHF), where: "Shelf" }
+  ];
+
+  // ---------- screws (mm) ----------
+  // Pocket holes: Kreg jig set for 1-1/2 in stock, 15 degrees to the face, 2-1/2 in coarse screws.
+  // The screw leaves the end at mid-thickness; its head sits about 38 mm back, so the tip goes about 1 in into the next piece.
+  var POCKET = 15, SCREW_P = 63.5, POCKET_BACK = 38;
+  var C15 = Math.cos(POCKET * Math.PI / 180), S15 = Math.sin(POCKET * Math.PI / 180);
+  function profile(Ln, kind) {
+    var p = [[0, 0], [0.9, 1.4]], headH = kind === "pocket" ? 2.6 : 3.4, up = true;
+    var top = kind === "pocket" ? Ln - headH - 6 : Ln - headH - Math.max(7, Ln * 0.3);
+    for (var y = 2.4; y < top; y += 1.05) { p.push([up ? 2.1 : 1.45, y]); up = !up; }
+    p.push([1.6, top + 0.5], [1.6, Ln - headH]);
+    if (kind === "pocket") p.push([2.8, Ln - headH + 0.3], [4.3, Ln - 0.9], [4.3, Ln]);
+    else p.push([4.2, Ln - 0.4], [4.2, Ln]);
+    p.push([0, Ln]);
+    return p;
+  }
+  var PROF = { pocket: profile(SCREW_P, "pocket"), s200: profile(50.8, "flat"), w250: profile(63.5, "pocket") };
+  var SORDER = ["fLegs", "fStr", "fRail", "fShelf", "fTop"];
+  var PK = "Kreg 2-1/2 in pocket screws: coarse thread, washer head, square drive";
+  function pocketHow(face) { return "Jig and stepped bit set for 1-1/2 in stock. The hole goes in at 15° to the face, on " + face + ". Drive with the 6 in #2 square bit, snug, not hard"; }
+  var SCR = {
+    fLegs: { n: 8, kind: "pocket", hex: "#E3B23C", A: "Leg", B: "Cleat", face: "inside face",
+      title: "Pocket screws, legs into the cleats", short: "Kreg 2-1/2 in coarse pocket screws", spec: PK,
+      where: "2 per leg, from the inside face near the top, up into the cleat",
+      how: function () { return pocketHow("the inside face of the leg (it looks at the other leg)"); },
+      bite: function () { return "Goes about " + f(25) + " into the " + f(M(1.5)) + " cleat. Glue too"; } },
+    fStr: { n: 8, kind: "pocket", hex: "#D9822B", A: "Stretcher", B: "Leg", face: "inner face",
+      title: "Pocket screws, stretchers into the legs", short: "Kreg 2-1/2 in coarse pocket screws", spec: PK,
+      where: "2 per end, from the stretcher's face that looks at the middle of the table, into the legs",
+      how: function () { return pocketHow("the face that looks at the middle of the table"); },
+      bite: function () { return "About " + f(25) + " into the leg. Glue too"; } },
+    fRail: { n: 8, kind: "pocket", hex: "#9B59D0", A: "Rail", B: "Stretcher", face: "inside face",
+      title: "Pocket screws, rails into the stretchers", short: "Kreg 2-1/2 in coarse pocket screws", spec: PK,
+      where: "2 per end, from the inside face of each rail into the stretcher",
+      how: function () { return pocketHow("the inside face of the rail"); },
+      bite: function () { return "About " + f(25) + " into the stretcher. Glue too"; } },
+    fShelf: { n: 8, kind: "flat", hex: "#6E9E2E",
+      title: "Screws, shelf onto the frame", short: "#8 x 2 in flat-head wood screws", spec: "#8 x 2 in flat-head wood screws, square drive",
+      where: "Straight down through the shelf: 2 into each stretcher, 2 into each rail",
+      how: function () { return "Pre-drill with a #8 countersink bit (1/8 in pilot) and set the heads just below the surface, then fill. The baskets hide them"; },
+      bite: function () { return "About " + f(32) + " into the rail or stretcher"; } },
+    fTop: { n: 6, kind: "flat", hex: "#21A08A",
+      title: "Screws, cleats into the top", short: "#10 x 2-1/2 in washer-head screws", spec: "#10 x 2-1/2 in washer-head (or pan-head) screws",
+      where: "Straight up through the cleats into the top, 3 per cleat",
+      how: function () { return "Middle hole 3/16 in, round. Outer 2 holes 3/16 in wide and slotted " + f(12.7) + " long, front to back, so the solid top can move with the seasons. No glue here"; },
+      bite: function () { return "About " + f(25) + " into the top, " + f(12.7) + " short of its surface"; } }
+  };
+
+  // section through one joint, to scale (mm), as SVG
+  function jointSvg(k) {
+    var c = SCR[k], o = [], tA = 38, ink = "var(--ink)", fs = 5.5;
+    function n(v) { return (Math.round(v * 100) / 100).toString(); }
+    function pts(p) { return p.map(function (q) { return n(q[0]) + "," + n(q[1]); }).join(" "); }
+    function poly(p, style) { o.push('<polygon points="' + pts(p) + '" style="' + style + '"/>'); }
+    function wood(p) { poly(p, "fill:var(--wood);stroke:var(--wood-edge);stroke-width:0.4;stroke-linejoin:round"); }
+    function line(p, style) { o.push('<polyline points="' + pts(p) + '" style="fill:none;' + style + '"/>'); }
+    function txt(x, y, t, anchor, col) { o.push('<text x="' + n(x) + '" y="' + n(y) + '" text-anchor="' + (anchor || "start") + '" style="font-family:var(--body);font-size:' + fs + "px;fill:" + (col || ink) + '">' + t + "</text>"); }
+    function screw(prof, tip, u) {
+      var px = -u[1], py = u[0], A = [], B = [];
+      prof.forEach(function (q) { var x = tip[0] + u[0] * q[1], y = tip[1] + u[1] * q[1]; A.push([x + px * q[0], y + py * q[0]]); B.unshift([x - px * q[0], y - py * q[0]]); });
+      poly(A.concat(B), "fill:" + c.hex + ";stroke:" + ink + ";stroke-width:0.3;stroke-linejoin:round");
+    }
+    var vb;
+    if (c.kind === "pocket") {
+      var E = [0, tA / 2], a = [C15, S15], pp = [-S15, C15], r = 4.76, sb = -POCKET_BACK + 2.6;
+      var at = function (sv, kk) { return [E[0] + a[0] * sv + pp[0] * kk, E[1] + a[1] * sv + pp[1] * kk]; };
+      var su = (r * pp[1] - E[1]) / a[1];
+      wood([[-100, 0], [0, 0], [0, tA], [-100, tA], [-98, tA * 0.62], [-102, tA * 0.38]]);
+      wood([[0, -20], [10, -18], [20, -21], [30, -19], [38, -20], [38, tA + 20], [28, tA + 22], [18, tA + 19], [8, tA + 21], [0, tA + 20]]);
+      var sl = (-r * pp[1] - E[1]) / a[1];
+      poly([at(sb, -r), at(su, -r), at(sl, r), at(sb, r)], "fill:var(--stage);stroke:var(--muted);stroke-width:0.35;stroke-dasharray:1.4 1");
+      screw(PROF.pocket, at(SCREW_P - POCKET_BACK, 0), [-a[0], -a[1]]);
+      var F = at(-E[1] / a[1], 0);
+      line([F, at(-POCKET_BACK, 0)], "stroke:" + ink + ";stroke-width:0.35;stroke-dasharray:1.2 1.2");
+      line([[F[0] - 4, 0], [F[0] + 18, 0]], "stroke:" + ink + ";stroke-width:0.35");
+      var a1 = [F[0] + 13, 0], a2 = [F[0] + 13 * C15, 13 * S15];
+      o.push('<path d="M' + n(a1[0]) + " " + n(a1[1]) + " A13 13 0 0 1 " + n(a2[0]) + " " + n(a2[1]) + '" style="fill:none;stroke:' + ink + ';stroke-width:0.4"/>');
+      txt(F[0] + 10, -2.5, "15°");
+      txt(-96, tA - 5, c.A);
+      txt(19, -24, c.B, "middle");
+      txt(-96, -3, c.face, "start", "var(--muted)");
+      vb = [-106, -32, 150, tA + 58];
+    } else if (k === "fShelf") {
+      wood([[-50, 0], [50, 0], [48, 7], [52, 12], [50, 19], [-50, 19], [-48, 12], [-52, 7]]);
+      wood([[-50, 19], [50, 19], [50, 76], [40, 78], [28, 75], [16, 78], [4, 75], [-8, 78], [-20, 75], [-32, 78], [-50, 76]]);
+      screw(PROF.s200, [12, 50.8], [0, -1]);
+      txt(-46, 12.5, "Shelf"); txt(-46, 42, "Rail or stretcher"); txt(18, 54, f(32) + " in");
+      vb = [-56, -6, 112, 90];
+    } else {
+      wood([[-50, 0], [50, 0], [48, 14], [52, 24], [50, 38], [-50, 38], [-48, 24], [-52, 14]]);
+      wood([[-30, 38], [30, 38], [30, 76], [-30, 76]]);
+      screw(PROF.w250, [12, 76 - 63.5], [0, 1]);
+      txt(-46, 22, "Top"); txt(-26, 60, "Cleat"); txt(18, 10, f(12.7) + " left");
+      vb = [-56, -6, 112, 88];
+    }
+    return '<svg viewBox="' + vb.map(n).join(" ") + '" role="img" aria-label="Section through the joint: ' + c.title + '">' + o.join("") + "</svg>";
+  }
+
+  var META = {
+    top: { title: "Top", size: function () { return L([M(tT), M(DW), M(LW)]); }, lines: function () { return ["Two 2x8s ripped to " + f(M(7)) + " and glued edge to edge", R(M(HW - tT), M(HW)) + " from the floor", f(M(ovX)) + " past the cleats at each end, " + f(M(ovZ)) + " past the legs front and back", "Screwed up through the cleats, no glue, so it can move"]; } },
+    cleats: { title: "Cleats", size: function () { return L([M(cT), M(cW), M(CLEATL)]); }, lines: function () { return ["2x4 laid flat, full " + f(M(cW)) + " wide", R(M(HLEG), M(HLEG + cT)) + " from the floor", f(M(ovX)) + " in from each end of the top", "3 holes each: middle round, outer 2 slotted front to back"]; } },
+    legs: { title: "Legs", size: function () { return L([M(lT), M(lW), M(LEGEDGE)]) + " on the long edge"; }, lines: function () { return ["2x4 ripped to " + f(M(lW)) + ". Both ends cut at " + SPLAY + "°, parallel", "They lean out along the length only. Each foot sits " + f(M(KICK)) + " further out than the top of its leg", "Feet end " + f(M(FOOT)) + " in from the ends of the top", "Pocket-screwed up into the cleats"]; } },
+    stretchers: { title: "End stretchers", size: function () { return L([M(1.5), M(sH), M(SHELFW)]); }, lines: function () { return ["2x4 ripped to " + f(M(sH)) + ", square ends", R(M(YS - sH), M(YS)) + " from the floor", "Between the front and back legs at each end", "Hold the shelf ends"]; } },
+    rails: { title: "Shelf rails", size: function () { return L([M(1.5), M(sH), M(RAILL)]); }, lines: function () { return ["2x4 ripped to " + f(M(sH)) + ", square ends", R(M(YS - sH), M(YS)) + " from the floor", "Front and back, between the stretchers, tops flush", "They tie the two ends together and stop it racking"]; } },
+    shelf: { title: "Shelf", size: function () { return L([M(shT), M(SHELFW), M(SHELFL)]); }, lines: function () { return ["1x12 pine ripped to " + f(M(SHELFW)), R(M(YS), M(SHF)) + " from the floor", "Ends flush with the outside of the stretchers", f(M(CLEAR)) + " clear above it, to the underside of the top"]; } }
+  };
+  Object.keys(SCR).forEach(function (k) {
+    var c = SCR[k];
+    META[k] = { title: c.title, size: function () { return c.n + " x " + c.short; }, lines: function () { return [c.where, c.how(), c.bite()]; } };
+  });
+  APPS.forEach(function (a) {
+    META["app-" + a.id] = {
+      title: a.name,
+      size: function () { return L([a.w, a.d, a.h]) + " (W x D x H), example"; },
+      lines: function () { return ["An example basket. Measure yours before you settle the depth and shelf height", f(M(CLEAR) - a.h) + " above it to the underside of the top", "The shelf is " + f(M(SHELFW)) + " deep and " + f(M(SHELFL)) + " long"]; }
+    };
+  });
+
+  // ---------- measurement sheet ----------
+  var sheet = document.getElementById("sheet");
+  function v(text) { return '<span class="v">' + text + "</span>"; }
+  function renderSheet() {
+    var h = "";
+    h += '<section><h2>Overall</h2><p class="hint">Draft sizes, to be settled before cutting.</p><div class="rows">' +
+      row("Top", L([M(LW), M(DW), M(tT)])) +
+      row("Overall height", f(M(HW))) +
+      row("Leg splay<small>along the length only</small>", SPLAY + "°") +
+      row("Across the feet", f(M(FOOTSPAN))) +
+      row("Top past the cleats, each end", f(M(ovX))) +
+      row("Top past the legs, front and back", f(M(ovZ))) +
+      row("Finish", "dark stain") +
+      "</div></section>";
+
+    h += '<section><h2>Heights from the floor</h2><p class="hint">Tap a row to see it in the model.</p><div class="rows">' +
+      btn("top", "Top", R(M(HW - tT), M(HW))) +
+      btn("cleats", "Cleats", R(M(HLEG), M(HLEG + cT))) +
+      btn("legs", "Legs", R(0, M(HLEG))) +
+      btn("shelf", "Shelf", R(M(YS), M(SHF))) +
+      btn("rails", "Shelf rails", R(M(YS - sH), M(YS))) +
+      btn("stretchers", "End stretchers", R(M(YS - sH), M(YS))) +
+      "</div></section>";
+
+    h += '<section><h2>Shelf space</h2><div class="rows">' +
+      btn("shelf", "Length<small>outside of one stretcher to the other</small>", f(M(SHELFL))) +
+      btn("shelf", "Depth", f(M(SHELFW))) +
+      btn("shelf", "Height<small>shelf to the underside of the top</small>", f(M(CLEAR))) +
+      row("Clear under the rails", f(M(YS - sH))) +
+      "</div></section>";
+
+    h += '<section><h2>Parts</h2><p class="hint">Thickness x width x length.</p><div class="rows">' +
+      btn("top", "Top<small>two 2x8s, glued</small>", '<span class="q">1x</span>' + L([M(tT), M(DW), M(LW)])) +
+      btn("legs", "Legs<small>2x4 ripped, ends at " + SPLAY + "°</small>", '<span class="q">4x</span>' + L([M(lT), M(lW), M(LEGEDGE)])) +
+      btn("cleats", "Cleats<small>2x4</small>", '<span class="q">2x</span>' + L([M(cT), M(cW), M(CLEATL)])) +
+      btn("stretchers", "End stretchers<small>2x4 ripped</small>", '<span class="q">2x</span>' + L([M(1.5), M(sH), M(SHELFW)])) +
+      btn("rails", "Shelf rails<small>2x4 ripped</small>", '<span class="q">2x</span>' + L([M(1.5), M(sH), M(RAILL)])) +
+      btn("shelf", "Shelf<small>1x12 pine, ripped</small>", '<span class="q">1x</span>' + L([M(shT), M(SHELFW), M(SHELFL)])) +
+      "</div></section>";
+
+    h += '<section><h2>Screws</h2><p class="hint">Tap a row to zoom in on that joint. The wood turns see-through and each screw is drawn at its real size and angle.</p><div class="rows">';
+    SORDER.forEach(function (k) {
+      var c = SCR[k];
+      h += btn(k, '<span class="dot" style="background:' + c.hex + '"></span>' + c.title + "<small>" + c.short + (c.kind === "pocket" ? ", 15° pockets" : k === "fTop" ? ", slotted holes" : ", countersunk") + "</small>", String(c.n));
+    });
+    h += '</div><button type="button" class="linkrow" id="go-hw">Full list: every screw, hardware and tool</button></section>';
+
+    h += '<section><h2>Baskets</h2><p class="hint">Example baskets, W x D x H. Measure yours.</p><div class="rows">';
+    APPS.forEach(function (a) { h += btn("app-" + a.id, a.name + "<small>" + f(M(CLEAR) - a.h) + " above it</small>", L([a.w, a.d, a.h])); });
+    h += "</div></section>";
+    sheet.innerHTML = h;
+    markActive();
+  }
+  function row(k, val) { return '<div class="row"><span class="k">' + k + "</span>" + v(val) + "</div>"; }
+  function btn(key, k, val) { return '<button type="button" class="row" data-key="' + key + '"><span class="k">' + k + "</span>" + v(val) + "</button>"; }
+  function markActive() {
+    sheet.querySelectorAll("button.row").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-key") === S.sel); });
+  }
+  sheet.addEventListener("click", function (e) {
+    if (e.target.closest("#go-hw")) { setPage("hw"); return; }
+    var b = e.target.closest("button.row");
+    if (!b) return;
+    var key = b.getAttribute("data-key");
+    if (S.asm) setAsm(false);
+    if (key.indexOf("app-") === 0 && !S.apps && pickables) setApps(true);
+    if (/^f[A-Z]/.test(key) && typeof setFast === "function") setFast(true);
+    select(S.sel === key ? null : key);
+  });
+
+  // ---------- three.js scene ----------
+  var stage = document.getElementById("stage");
+  var labelLayer = document.getElementById("labels");
+  var info = document.getElementById("info");
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+  if (!window.THREE || !THREE.OrbitControls) {
+    info.innerHTML = '<p class="hint">The 3D viewer could not load. The measurements on this page are still complete.</p>';
+    renderSheet();
+    return;
+  }
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.autoClear = false;
+  stage.insertBefore(renderer.domElement, stage.firstChild);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(35, 1, 10, 20000);
+  var VIEWS = {
+    iso: { p: [1900, 1250, 2500], t: [0, 360, 0] },
+    front: { p: [0, 430, 3400], t: [0, 380, 0] },
+    side: { p: [3000, 430, 0], t: [0, 380, 0] },
+    top: { p: [0, 3600, 1], t: [0, 380, 0] }
+  };
+  camera.position.fromArray(VIEWS.iso.p);
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.target.fromArray(VIEWS.iso.t);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 150;
+  controls.maxDistance = 6000;
+  controls.maxPolarAngle = Math.PI * 0.497;
+  controls.update();
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x9a968c, 0.85));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.7);
+  sun.position.set(900, 2300, 1500);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024);
+  sun.shadow.camera.left = -1200; sun.shadow.camera.right = 1200;
+  sun.shadow.camera.top = 1200; sun.shadow.camera.bottom = -1200;
+  sun.shadow.camera.near = 200; sun.shadow.camera.far = 6000;
+  sun.shadow.bias = -0.0004;
+  scene.add(sun);
+  var fillLight = new THREE.DirectionalLight(0xffffff, 0.28);
+  fillLight.position.set(-1600, 900, -700);
+  scene.add(fillLight);
+
+  var floor = new THREE.Mesh(new THREE.PlaneGeometry(8000, 8000), new THREE.ShadowMaterial({ opacity: 0.16 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.receiveShadow = true;
+  scene.add(floor);
+  var grid = null;
+
+  // wood grain (deterministic)
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function grainCanvas() {
+    var c = document.createElement("canvas"); c.width = 512; c.height = 128;
+    var g = c.getContext("2d"), r = rng(11);
+    g.fillStyle = "#ffffff"; g.fillRect(0, 0, 512, 128);
+    for (var i = 0; i < 60; i++) {
+      var y0 = r() * 128, amp = 0.6 + r() * 2.8, ph = r() * 6.28, a = 0.04 + r() * 0.09;
+      g.strokeStyle = "rgba(60,40,10," + a.toFixed(3) + ")";
+      g.lineWidth = 0.6 + r() * 1.6;
+      g.beginPath();
+      for (var x = 0; x <= 512; x += 16) {
+        var y = y0 + Math.sin(x * 0.012 + ph) * amp;
+        if (x === 0) g.moveTo(x, y); else g.lineTo(x, y);
+      }
+      g.stroke();
+    }
+    return c;
+  }
+  var gc = grainCanvas();
+  function tex(rot, rx, ry) {
+    var t = new THREE.CanvasTexture(gc);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    if (rot) { t.center.set(0.5, 0.5); t.rotation = Math.PI / 2; }
+    t.repeat.set(rx || 1, ry || 1);
+    t.anisotropy = 4;
+    t.needsUpdate = true;
+    return t;
+  }
+  function woodMat(t) { return new THREE.MeshStandardMaterial({ color: 0xffffff, map: t, roughness: 0.82, metalness: 0 }); }
+  var matH = woodMat(tex(false)), matV = woodMat(tex(true));
+  var woodMats = [matH, matV];
+  var hlCache = new Map();
+  function hlFor(m) {
+    if (!hlCache.has(m)) { var c = m.clone(); c.emissiveIntensity = 0.55; hlCache.set(m, c); }
+    return hlCache.get(m);
+  }
+  var edgeMat = new THREE.LineBasicMaterial({ color: 0x8a7350, transparent: true, opacity: 0.6 });
+  var appMat = new THREE.MeshStandardMaterial({ color: 0x33689a, transparent: true, opacity: 0.22, roughness: 0.4, depthWrite: false });
+  var appEdge = new THREE.LineBasicMaterial({ color: 0x33689a, transparent: true, opacity: 0.85 });
+  var dimMat = new THREE.LineBasicMaterial({ color: 0xa97f00 });
+
+  var pickables = [];
+  var labels = [];
+
+  function addMesh(geo, mat, pos, ud, edges) {
+    var m = new THREE.Mesh(geo, mat);
+    m.position.set(pos[0], pos[1], pos[2]);
+    m.castShadow = !ud.app; m.receiveShadow = true;
+    m.userData = ud; ud.base = mat; ud.hl = hlFor(mat);
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo, 30), edges || edgeMat));
+    scene.add(m);
+    pickables.push(m);
+    return m;
+  }
+  function box(size, mat, pos, ud) { return addMesh(new THREE.BoxGeometry(size[0], size[1], size[2]), mat, pos, ud); }
+  function legGeo(lean) {
+    // a leg with level ends: a box sheared along x so the top sits over the cleat and the foot kicks out
+    var g = new THREE.BoxGeometry(M(lW), M(HLEG), M(lT)), pa = g.attributes.position;
+    for (var i = 0; i < pa.count; i++) pa.setX(i, pa.getX(i) + pa.getY(i) * TN * lean);
+    pa.needsUpdate = true; g.computeVertexNormals();
+    return g;
+  }
+
+  // ---------- the console ----------
+  box([M(LW), M(tT), M(DW)], matH, [0, Y(HW - tT / 2), 0], { group: "top", kind: "top" });
+  [-1, 1].forEach(function (s) {
+    function mx(x) { return s * -X(x); }   // left end (s = -1) uses x as measured from the left; right end mirrors it
+    box([M(cW), M(cT), M(CLEATL)], matH, [mx(XT), Y(HLEG + cT / 2), 0], { group: "cleats", kind: "cleats" });
+    [ZB, ZF].forEach(function (z) {
+      addMesh(legGeo(-s), matV, [mx(cx(HLEG / 2)), Y(HLEG / 2), Z(z)], { group: "legs", kind: "legs" });
+    });
+    box([M(1.5), M(sH), M(SHELFW)], matH, [mx(XS), Y(YS - sH / 2), 0], { group: "stretchers", kind: "stretchers" });
+  });
+  [RZB, RZF].forEach(function (z) { box([M(RAILL), M(sH), M(1.5)], matH, [0, Y(YS - sH / 2), Z(z)], { group: "rails", kind: "rails" }); });
+  box([M(SHELFL), M(shT), M(SHELFW)], matH, [0, Y(SHF - shT / 2), 0], { group: "shelf", kind: "shelf" });
+
+  // baskets
+  var appMeshes = [];
+  APPS.forEach(function (a) {
+    var m = addMesh(new THREE.BoxGeometry(a.w, a.h, a.d), appMat, [a.x, a.base + a.h / 2, a.z || 0], { group: "app-" + a.id, kind: "app-" + a.id, app: true }, appEdge);
+    m.userData.hl = appMat.clone(); m.userData.hl.opacity = 0.45;
+    appMeshes.push(m);
+    labels.push({ el: mkLabel("app", a.short), p: new THREE.Vector3(a.x, a.base + a.h / 2, (a.z || 0) + a.d / 2), kind: "app" });
+  });
+
+  function mkLabel(kind, text) {
+    var el = document.createElement("div");
+    el.className = "lbl " + kind;
+    el.textContent = text;
+    labelLayer.appendChild(el);
+    return el;
+  }
+
+  // ---------- screws: real size and angle, drawn in a second pass over the wood so they show through ----------
+  var fscene = new THREE.Scene();
+  fscene.add(new THREE.HemisphereLight(0xffffff, 0x6f6a60, 0.95));
+  var fsun = new THREE.DirectionalLight(0xffffff, 0.75); fsun.position.set(900, 2300, 1500); fscene.add(fsun);
+  var fback = new THREE.DirectionalLight(0xffffff, 0.35); fback.position.set(-1600, 600, -900); fscene.add(fback);
+  var fastGroup = new THREE.Group(); fscene.add(fastGroup);
+  var FCOL = {}; Object.keys(SCR).forEach(function (k) { FCOL[k] = new THREE.Color(SCR[k].hex).getHex(); });
+  function lathe(prof) { return new THREE.LatheGeometry(prof.map(function (q) { return new THREE.Vector2(q[0], q[1]); }), 16); }
+  var SGEO = { pocket: lathe(PROF.pocket), s200: lathe(PROF.s200), w250: lathe(PROF.w250) };
+  function V(x, y, z) { return new THREE.Vector3(x, y, z); }
+  var UPV = V(0, 1, 0), smats = {};
+  function smat(k) {
+    if (!smats[k]) smats[k] = [
+      new THREE.MeshStandardMaterial({ color: FCOL[k], metalness: 0.3, roughness: 0.38 }),
+      new THREE.MeshStandardMaterial({ color: FCOL[k], emissive: FCOL[k], emissiveIntensity: 0.45, metalness: 0.2, roughness: 0.4 }),
+      new THREE.MeshStandardMaterial({ color: FCOL[k], metalness: 0.3, roughness: 0.38, transparent: true, opacity: 0.16, depthWrite: false })
+    ];
+    return smats[k];
+  }
+  var boreMats = [
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.42, depthWrite: false, side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.6, depthWrite: false, side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial({ color: 0x15130f, transparent: true, opacity: 0.1, depthWrite: false, side: THREE.DoubleSide })
+  ];
+  function addScrew(k, geo, len, head, dir) {
+    var d = dir.clone().normalize(), mt = smat(k), m = new THREE.Mesh(geo, mt[0]);
+    m.position.copy(head).addScaledVector(d, len);
+    m.quaternion.setFromUnitVectors(UPV, d.clone().negate());
+    m.userData = { group: k, kind: k, base: mt[0], hl: mt[1], dim: mt[2], fast: true, wy: head.y };
+    fastGroup.add(m); pickables.push(m);
+  }
+  function pocket(k, exit, along, out, thick) {
+    var a = along.clone().multiplyScalar(C15).addScaledVector(out, -S15).normalize();
+    var head = exit.clone().addScaledVector(a, -POCKET_BACK);
+    addScrew(k, SGEO.pocket, SCREW_P, head, a);
+    var face = exit.clone().addScaledVector(out, thick / 2), bot = head.clone().addScaledVector(a, 2.6);
+    var e1 = along.clone().cross(out).normalize(), e2 = a.clone().cross(e1).normalize();
+    var N = 18, r = 4.76, pos = [], ind = [], ad = a.dot(out), i;
+    for (i = 0; i < N; i++) {
+      var th = i / N * Math.PI * 2;
+      var b = bot.clone().addScaledVector(e1, Math.cos(th) * r).addScaledVector(e2, Math.sin(th) * r);
+      var tp = b.clone().addScaledVector(a, face.clone().sub(b).dot(out) / ad);
+      pos.push(b.x, b.y, b.z, tp.x, tp.y, tp.z);
+    }
+    var ct = bot.clone().addScaledVector(a, face.clone().sub(bot).dot(out) / ad);
+    pos.push(bot.x, bot.y, bot.z, ct.x, ct.y, ct.z);
+    for (i = 0; i < N; i++) {
+      var j = (i + 1) % N;
+      ind.push(2 * i, 2 * j, 2 * i + 1, 2 * j, 2 * j + 1, 2 * i + 1, 2 * N, 2 * j, 2 * i, 2 * N + 1, 2 * i + 1, 2 * j + 1);
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(ind);
+    var m = new THREE.Mesh(g, boreMats[0]);
+    m.userData = { group: k, kind: k, base: boreMats[0], hl: boreMats[1], dim: boreMats[2], fast: true, wy: exit.y };
+    fastGroup.add(m); pickables.push(m);
+  }
+  [-1, 1].forEach(function (s) {
+    function mx(x) { return s * -X(x); }
+    // legs into cleats: pockets on each leg's inside face, screws up out of the top end
+    [[ZB, 1], [ZF, -1]].forEach(function (lg) {
+      [-16, 16].forEach(function (dx) { pocket("fLegs", V(mx(XT) + dx, Y(HLEG), Z(lg[0])), V(0, 1, 0), V(0, 0, lg[1]), M(lT)); });
+    });
+    // stretchers into legs: pockets on the face that looks at the middle of the table
+    [[ovZ + lT, -1], [DW - ovZ - lT, 1]].forEach(function (en) {
+      [-16, 16].forEach(function (dy) { pocket("fStr", V(mx(XS), Y(YM) + dy, Z(en[0])), V(0, 0, en[1]), V(-s, 0, 0), M(1.5)); });
+    });
+    // rails into stretchers: pockets on the inside face of each rail
+    [[RZB, 1], [RZF, -1]].forEach(function (rl) {
+      [-16, 16].forEach(function (dy) { pocket("fRail", V(mx(XS + 0.75), Y(YS - sH / 2) + dy, Z(rl[0])), V(s, 0, 0), V(0, 0, rl[1]), M(1.5)); });
+    });
+    // shelf into the stretchers
+    [-1, 1].forEach(function (o) { addScrew("fShelf", SGEO.s200, 50.8, V(mx(XS), Y(SHF), M(o * SHELFW / 4)), V(0, -1, 0)); });
+    // top: up through the cleats
+    [-1, 0, 1].forEach(function (o) { addScrew("fTop", SGEO.w250, 63.5, V(mx(XT), Y(HLEG), M(o * (CLEATL / 2 - 1.5))), V(0, 1, 0)); });
+  });
+  [RZB, RZF].forEach(function (z) { [-1, 1].forEach(function (o) { addScrew("fShelf", SGEO.s200, 50.8, V(M(o * RAILL / 4), Y(SHF), Z(z)), V(0, -1, 0)); }); });
+  fastGroup.visible = false;
+
+  // close-ups on one joint of each kind (left end)
+  function cu(t, off) { return { t: t, p: [t[0] + off[0] * 1.4, t[1] + off[1] * 1.4, t[2] + off[2] * 1.4] }; }
+  var CU = {
+    fLegs: cu([X(XT), Y(HLEG - 1), Z(ovZ + lT)], [520, 160, 620]),
+    fStr: cu([X(XS), Y(YM), Z(ovZ + lT + 1)], [560, 260, 620]),
+    fRail: cu([X(XS + 1.5), Y(YS - 1.25), Z(RZB)], [560, 300, 640]),
+    fShelf: cu([X(XS), Y(SHF), 0], [480, 520, 620]),
+    fTop: cu([X(XT), Y(HLEG + 1), 0], [620, 120, 680])
+  };
+  Object.keys(CU).forEach(function (k) { VIEWS["cu-" + k] = { t: CU[k].t, p: CU[k].p, cu: true }; });
+  var ghost = false;
+  function setGhost(on) {
+    if (ghost === on) return;
+    ghost = on;
+    var ms = [matH, matV];
+    ms.concat(ms.map(hlFor)).forEach(function (m) { m.transparent = on; m.opacity = on ? 0.2 : 1; m.depthWrite = !on; m.needsUpdate = true; });
+    edgeMat.opacity = on ? 0.9 : 0.6;
+  }
+
+  // dimension lines
+  var dimGroup = new THREE.Group();
+  scene.add(dimGroup);
+  function dim(a, b, tick, mm, word) {
+    var A = new THREE.Vector3().fromArray(a), B = new THREE.Vector3().fromArray(b), T3 = new THREE.Vector3().fromArray(tick).multiplyScalar(22);
+    var pts = [A, B, A.clone().add(T3), A.clone().sub(T3), B.clone().add(T3), B.clone().sub(T3)];
+    dimGroup.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), dimMat));
+    labels.push({ el: mkLabel("dim", ""), p: A.clone().add(B).multiplyScalar(0.5), kind: "dim", mm: mm, word: word });
+  }
+  var xL = X(0) - 90, xR = X(LW) + 90;
+  dim([xL, 0, Z(DW)], [xL, Y(HW), Z(DW)], [0, 0, 1], M(HW), "high");
+  dim([X(0), Y(HW), Z(DW) + 70], [X(LW), Y(HW), Z(DW) + 70], [0, 1, 0], M(LW), "long");
+  dim([xR, Y(HW), Z(0)], [xR, Y(HW), Z(DW)], [1, 0, 0], M(DW), "deep");
+  dim([xR, 0, Z(DW) - 40], [xR, Y(SHF), Z(DW) - 40], [0, 0, 1], M(SHF), "to the shelf");
+  dim([xR, Y(SHF), Z(DW) - 40], [xR, Y(HW - tT), Z(DW) - 40], [0, 0, 1], M(CLEAR), "clear");
+  dim([X(FOOT), 0, Z(DW) + 110], [X(LW - FOOT), 0, Z(DW) + 110], [0, 0, 1], M(FOOTSPAN), "at the feet");
+
+  function updateLabelText() {
+    labels.forEach(function (l) { if (l.kind === "dim") l.el.textContent = f(l.mm) + " " + l.word; });
+  }
+
+  // ---------- theme ----------
+  function color(name, fallback) { var c = css(name); try { return new THREE.Color(c || fallback); } catch (e) { return new THREE.Color(fallback); } }
+  function applyTheme() {
+    scene.background = color("--stage", "#E1E5DF");
+    var wood = S.paint ? new THREE.Color("#6a4329") : color("--wood", "#DCC7A2");
+    woodMats.forEach(function (m) { m.color.copy(wood); });
+    var acc = color("--accent", "#A97F00");
+    hlCache.forEach(function (m) { m.color.copy(wood); m.emissive.copy(acc); });
+    edgeMat.color.copy(S.paint ? new THREE.Color("#2a1a10") : color("--wood-edge", "#8A7350"));
+    var ap = color("--appliance", "#33689A");
+    appMat.color.copy(ap); appEdge.color.copy(ap);
+    appMeshes.forEach(function (m) { m.userData.hl.color.copy(ap); });
+    dimMat.color.copy(acc);
+    if (grid) { scene.remove(grid); grid.geometry.dispose(); grid.material.dispose(); }
+    var gcol = color("--grid", "#C6CDC5");
+    grid = new THREE.GridHelper(M(120), 20, gcol, gcol);
+    grid.position.y = 0.5;
+    scene.add(grid);
+  }
+  applyTheme();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme); } catch (e) {}
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---------- selection ----------
+  function select(key) {
+    S.sel = key;
+    var count = 0, isScrew = !!(key && SCR[key]);
+    pickables.forEach(function (m) {
+      var on = key && (m.userData.group === key || m.userData.kind === key);
+      if (on && m.userData.base !== boreMats[0]) count++;
+      m.material = on ? m.userData.hl : (isScrew && m.userData.dim && !S.asm ? m.userData.dim : m.userData.base);
+    });
+    if (!S.asm) {
+      setGhost(isScrew);
+      if (isScrew) { setFast(true); setApps(false); setDims(false); goView("cu-" + key); }
+    }
+    showInfo(key, count);
+    markActive();
+  }
+  function showInfo(key, count) {
+    var meta = key && META[key];
+    if (!meta) {
+      info.innerHTML = '<p class="hint">Tap a part or a basket to see its size and height from the floor.</p>';
+      return;
+    }
+    var scr = SCR[key];
+    info.innerHTML = "<h3>" + meta.title + (scr ? "" : count > 1 ? '<span class="qty">' + count + " pieces</span>" : "") + "</h3>" +
+      '<p class="size">' + meta.size() + "</p>" + (scr ? '<div class="joint">' + jointSvg(key) + "</div>" : "") +
+      meta.lines().map(function (l) { return "<p>" + l + "</p>"; }).join("");
+  }
+
+  var ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), down = null;
+  renderer.domElement.addEventListener("pointerdown", function (e) { down = { x: e.clientX, y: e.clientY }; });
+  renderer.domElement.addEventListener("pointerup", function (e) {
+    if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; }
+    down = null;
+    if (S.asm) return;
+    var r = renderer.domElement.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    var vis = pickables.filter(function (m) { return m.visible; });
+    var hits = fastGroup.visible ? ray.intersectObjects(vis.filter(function (m) { return m.userData.fast; }), false) : [];
+    if (!hits.length) hits = ray.intersectObjects(vis.filter(function (m) { return !m.userData.fast; }), false);
+    var hit = hits.length ? hits[0].object : null;
+    select(hit ? (S.sel === hit.userData.group ? null : hit.userData.group) : null);
+  });
+
+  // ---------- toolbar ----------
+  var tApps = document.getElementById("t-apps"), tDims = document.getElementById("t-dims");
+  function setApps(on) {
+    S.apps = on; tApps.setAttribute("aria-pressed", on);
+    appMeshes.forEach(function (m) { m.visible = on; });
+    if (!on && S.sel && S.sel.indexOf("app-") === 0) select(null);
+  }
+  function setDims(on) { S.dims = on; tDims.setAttribute("aria-pressed", on); dimGroup.visible = on; }
+  tApps.addEventListener("click", function () { setApps(!S.apps); });
+  tDims.addEventListener("click", function () { setDims(!S.dims); });
+
+  var tFast = document.getElementById("t-fast");
+  function setFast(on) { tFast.setAttribute("aria-pressed", on); fastGroup.visible = on; }
+  tFast.addEventListener("click", function () { setFast(tFast.getAttribute("aria-pressed") !== "true"); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tween = null;
+  document.querySelectorAll("[data-view]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll("[data-view]").forEach(function (o) { o.setAttribute("aria-pressed", o === b); });
+      var vw = VIEWS[b.getAttribute("data-view")];
+      var to = { p: new THREE.Vector3().fromArray(vw.p), t: new THREE.Vector3().fromArray(vw.t) };
+      if (reduce) { camera.position.copy(to.p); controls.target.copy(to.t); controls.update(); return; }
+      tween = { t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), to: to };
+    });
+  });
+
+  function setUnits(u) {
+    S.units = u;
+    document.getElementById("u-mm").setAttribute("aria-pressed", u === "mm");
+    document.getElementById("u-in").setAttribute("aria-pressed", u === "in");
+    renderSheet(); if (!pgParts.hidden) renderParts(); if (!pgHw.hidden) renderHw(); updateLabelText(); if (S.asm) applyStep(); else showInfo(S.sel, countSel());
+    try { localStorage.setItem("console-units", u); } catch (e) {}
+  }
+  function countSel() { var n = 0; pickables.forEach(function (m) { if (S.sel && (m.userData.group === S.sel || m.userData.kind === S.sel)) n++; }); return n; }
+  document.getElementById("u-mm").addEventListener("click", function () { setUnits("mm"); });
+  document.getElementById("u-in").addEventListener("click", function () { setUnits("in"); });
+
+  // ---------- assembly walkthrough ----------
+  pickables.forEach(function (m) { m.userData.tag = m.userData.group; });
+  var BASE = ["cleats", "legs", "stretchers", "rails", "shelf"];
+  var JIG = "Kreg pocket hole jig and its stepped bit, both set for 1-1/2 in stock";
+  var STEPS = [
+    { t: "Glue up the top", show: ["top"], hl: ["top"], view: "iso",
+      tools: "Table saw, 4 bar clamps that open past 16 in, glue, the planer or a sander",
+      d: function () { return ["Rip about " + f(3.2) + " off each edge of the two 2x8s to take off the round corners, so each is " + f(M(7)) + " wide.", "Glue them edge to edge and clamp every " + f(M(10)) + ", clamps over and under. Next day, flatten it and cut it to " + L([M(LW), M(DW)]) + "."]; } },
+    { t: "Cut the legs", show: ["legs"], hl: ["legs"], view: "iso",
+      tools: "Table saw to rip the 2x4s to 2-1/2 in, miter saw set to " + SPLAY + "°, a stop block",
+      d: function () { return ["Rip the 2x4s for the legs, stretchers and rails to " + f(M(lW)) + " wide. Keep the cleat stock at full width.", "Cut one end of a leg at " + SPLAY + "°. Slide the board along without flipping it and cut the other end at the same setting, so the ends are parallel. Set a stop block at " + f(M(LEGEDGE)) + " on the long edge and cut all 4."]; } },
+    { t: "Legs into the cleats", show: ["cleats", "legs"], hl: ["cleats", "legs"], fast: ["fLegs"], view: "ends", scr: ["fLegs"],
+      tools: JIG + ", drill, 6 in #2 square driver bit, face clamp, glue",
+      d: function () { return ["Drill 2 pocket holes near the top of each leg, on the inside face (the face that looks at the other leg at the same end).", "Cleat upside down on the bench. Set each leg " + f(M(proj)) + " in from a cleat end, centred on the cleat's width, leaning out. Glue and screw. Build both ends the same."]; } },
+    { t: "End stretchers", show: ["cleats", "legs", "stretchers"], hl: ["stretchers"], fast: ["fStr"], view: "ends", scr: ["fStr"],
+      tools: JIG + ", 2 clamps, a scrap support block cut to " + f(M(YS - sH)),
+      d: function () { return ["2 pocket holes in each end of each stretcher, on the face that will look at the middle of the table.", "Stand the support block on the bench under it so the stretcher top sits " + f(M(YS)) + " from the floor. Glue and screw into both legs."]; } },
+    { t: "Join the ends with the rails", show: BASE.slice(0, 4), hl: ["rails"], fast: ["fRail"], view: "iso", scr: ["fRail"],
+      tools: JIG + ", 2 clamps, tape measure",
+      d: function () { return ["2 pocket holes in each end of both rails, on the inside face.", "Stand both ends up. Glue and screw the rails between the stretchers, tops flush. Measure both diagonals of the base and push it until they match."]; } },
+    { t: "Put the shelf on", show: BASE, hl: ["shelf"], fast: ["fShelf"], view: "iso", scr: ["fShelf"],
+      tools: "#8 countersink bit, drill, #2 square bit, stainable wood filler",
+      d: function () { return ["Set the shelf on the rails and stretchers. Its ends line up with the outside of the stretchers.", "2 screws into each stretcher and 2 into each rail, countersunk just below the surface. Fill the holes; the baskets hide them."]; } },
+    { t: "Sand and stain", show: BASE.concat(["top"]), hl: [], paint: true, view: "iso",
+      tools: "Random orbit sander with 120, 180 and 220, pre-stain conditioner, stain, wipe-on poly, rags, gloves",
+      d: function () { return ["Sand every part to 180, then 220. Ease the sharp edges.", "Pre-stain conditioner, then the stain. Test on an offcut first. Then 3 coats of wipe-on poly, on the underside of the top too, so it stays flat."]; } },
+    { t: "Attach the top", show: BASE.concat(["top"]), hl: ["top"], fast: ["fTop"], paint: true, view: "under", scr: ["fTop"],
+      tools: "Drill, 3/16 in bit, 6 in bit extension, a blanket",
+      d: function () { return ["Drill 3 holes in each cleat: the middle one round, the outer 2 slotted " + f(12.7) + " long front to back.", "Top face down on a blanket, base upside down on it, centred: " + f(M(ovX)) + " from each end of the top to the cleats. 6 screws up through the cleats. No glue, so the top can move with the seasons."]; } }
+  ];
+  VIEWS.ends = { p: [1500, 1250, 2600], t: [-420, 380, 0] };
+  VIEWS.under = { p: [1600, 820, 2300], t: [0, 600, 0] };
+  S.asm = false; S.step = 0; S.cu = false;
+  var saveApps = true, saveDims = true;
+  function goView(name) {
+    var vw = VIEWS[name];
+    var to = { p: new THREE.Vector3().fromArray(vw.p), t: new THREE.Vector3().fromArray(vw.t) };
+    if (vw.cu) {
+      var dv = to.t.clone().sub(to.p), rt = dv.clone().cross(UPV).normalize(), upv = rt.clone().cross(dv).normalize();
+      var sh = W / H >= 1 ? rt.multiplyScalar(-0.13 * dv.length()) : upv.multiplyScalar(-0.2 * dv.length());
+      to.p.add(sh); to.t.add(sh);
+    }
+    if (reduce) { camera.position.copy(to.p); controls.target.copy(to.t); controls.update(); return; }
+    tween = { t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), to: to };
+  }
+  function applyStep() {
+    var st = STEPS[S.step];
+    fastGroup.visible = true;
+    pickables.forEach(function (m) {
+      if (m.userData.app) return;
+      var tag = m.userData.tag;
+      m.visible = m.userData.fast ? (st.fast || []).indexOf(tag) >= 0 : st.show.indexOf(tag) >= 0;
+      m.material = st.hl.indexOf(tag) >= 0 ? m.userData.hl : m.userData.base;
+    });
+    S.paint = !!st.paint; applyTheme();
+    S.cu = false; setGhost(false);
+    goView(st.view);
+    stepInfo();
+  }
+  function stepInfo() {
+    var st = STEPS[S.step];
+    var sc = (st.scr || []).map(function (k) { var c = SCR[k]; return '<span class="dot" style="background:' + c.hex + '"></span>' + c.n + " " + c.short + (c.kind === "pocket" ? " (15° pockets)" : ""); });
+    info.innerHTML = '<p class="hint" style="font-family:var(--mono);font-size:12px">Step ' + (S.step + 1) + " of " + STEPS.length + "</p><h3>" + st.t + "</h3>" +
+      (S.cu ? "" : st.d().map(function (l) { return "<p>" + l + "</p>"; }).join("")) +
+      '<p class="need"><b>Screws:</b> ' + (sc.length ? sc.join("; ") : "none") + "</p>" +
+      (S.cu ? "" : '<p class="need"><b>Tools:</b> ' + st.tools + "</p>") +
+      (S.cu ? st.scr.map(function (k) { return '<div class="joint">' + jointSvg(k) + "</div><p>" + SCR[k].bite() + "</p>"; }).join("") : "") +
+      '<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button type="button" class="chip" data-step="-1"' + (S.step ? "" : " disabled") + '>Back</button>' +
+      (st.scr ? '<button type="button" class="chip" data-cu="1" aria-pressed="' + S.cu + '"><span class="box"></span>Close-up on the screws</button>' : "") +
+      '<button type="button" class="chip" data-step="1" style="color:var(--ink);border-color:var(--accent)">' + (S.step < STEPS.length - 1 ? "Next step" : "Done") + "</button></div>";
+  }
+  function setAsm(on) {
+    S.asm = on; tAsm.setAttribute("aria-pressed", on);
+    [tApps, tDims, tFast, tPaint].forEach(function (b) { b.disabled = on; b.style.opacity = on ? 0.45 : ""; });
+    setGhost(false); S.cu = false;
+    if (on) {
+      saveApps = S.apps; saveDims = S.dims; S.sel = null; markActive();
+      setApps(false); setDims(false); S.step = 0; applyStep();
+    } else {
+      pickables.forEach(function (m) { if (!m.userData.app) { m.visible = true; m.material = m.userData.base; } });
+      fastGroup.visible = tFast.getAttribute("aria-pressed") === "true";
+      S.paint = tPaint.getAttribute("aria-pressed") === "true"; applyTheme();
+      setApps(saveApps); setDims(saveDims); goView("iso"); showInfo(null, 0);
+    }
+  }
+  var tPaint = document.getElementById("t-paint");
+  tPaint.addEventListener("click", function () { S.paint = tPaint.getAttribute("aria-pressed") !== "true"; tPaint.setAttribute("aria-pressed", S.paint); applyTheme(); });
+  var tAsm = document.getElementById("t-asm");
+  tAsm.addEventListener("click", function () { setAsm(!S.asm); });
+  info.addEventListener("click", function (e) {
+    var cuB = e.target.closest("[data-cu]");
+    if (cuB && S.asm) {
+      var st = STEPS[S.step];
+      S.cu = !S.cu; setGhost(S.cu); goView(S.cu ? "cu-" + st.scr[0] : st.view); stepInfo();
+      return;
+    }
+    var b = e.target.closest("[data-step]");
+    if (!b || !S.asm) return;
+    var nx = S.step + Number(b.getAttribute("data-step"));
+    if (nx >= STEPS.length) { setAsm(false); return; }
+    S.step = Math.max(0, nx); applyStep();
+  });
+
+  // ---------- parts page ----------
+  var PARTS = [
+    { id: "top", name: "Top", qty: 1, l: M(LW), w: M(DW), t: M(tT), geo: [M(LW), M(tT), M(DW)], mat: "Two 2x8s, glued", from: "2x8 x 10 ft",
+      notes: function () { return ["Rip each 2x8 to " + f(M(7)) + ", glue edge to edge, trim to size", "Best faces up, alternate the growth rings", "Screwed to the cleats, no glue"]; } },
+    { id: "legs", name: "Legs", qty: 4, l: M(LEGEDGE), w: M(lW), t: M(lT), lean: true, mat: "2x4, ripped", from: "2x4 boards 2 and 3",
+      notes: function () { return ["Both ends at " + SPLAY + "°, parallel", "Length is on the long edge", "2 pocket holes on the inside face, near the top"]; } },
+    { id: "cleats", name: "Cleats", qty: 2, l: M(CLEATL), w: M(cW), t: M(cT), geo: [M(cW), M(cT), M(CLEATL)], mat: "2x4, full width", from: "2x4 board 3",
+      notes: function () { return ["Laid flat under each end of the top", "3 holes: middle round, outer 2 slotted " + f(12.7)]; } },
+    { id: "stretchers", name: "End stretchers", qty: 2, l: M(SHELFW), w: M(sH), t: M(1.5), geo: [M(1.5), M(sH), M(SHELFW)], mat: "2x4, ripped", from: "2x4 board 3",
+      notes: function () { return ["Square ends", "2 pocket holes in each end, on the inner face"]; } },
+    { id: "rails", name: "Shelf rails", qty: 2, l: M(RAILL), w: M(sH), t: M(1.5), geo: [M(RAILL), M(sH), M(1.5)], mat: "2x4, ripped", from: "2x4 board 1",
+      notes: function () { return ["Square ends. Cut long, then trim to fit between the stretchers", "2 pocket holes in each end, on the inside face"]; } },
+    { id: "shelf", name: "Shelf", qty: 1, l: M(SHELFL), w: M(SHELFW), t: M(shT), geo: [M(SHELFL), M(shT), M(SHELFW)], mat: "1x12 pine, ripped", from: "1x12 x 4 ft",
+      notes: function () { return ["Rip to " + f(M(SHELFW)) + " wide", "Ends flush with the outside of the stretchers"]; } }
+  ];
+  var thumbs = {};
+  (function makeThumbs() {
+    var tr;
+    try { tr = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); } catch (e) { return; }
+    tr.setPixelRatio(2); tr.setSize(280, 190, false);
+    var ts = new THREE.Scene();
+    ts.add(new THREE.HemisphereLight(0xffffff, 0x9a968c, 0.9));
+    var dl = new THREE.DirectionalLight(0xffffff, 0.6); dl.position.set(1, 2, 1.4); ts.add(dl);
+    var cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -5000, 5000);
+    var tH = woodMat(tex(false)), tV = woodMat(tex(true));
+    var wood = color("--wood", "#DCC7A2"); tH.color.copy(wood); tV.color.copy(wood);
+    var lineMat = new THREE.LineBasicMaterial({ color: 0x6b5a3e });
+    PARTS.forEach(function (p) {
+      var g = p.lean ? legGeo(1) : new THREE.BoxGeometry(p.geo[0], p.geo[1], p.geo[2]);
+      g.computeBoundingBox();
+      var bb = g.boundingBox;
+      var m = new THREE.Mesh(g, p.lean ? tV : tH);
+      m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g), lineMat));
+      ts.add(m);
+      cam.position.set(1, 0.75, 1.25).normalize().multiplyScalar(2000);
+      cam.lookAt(0, 0, 0);
+      cam.updateMatrixWorld();
+      var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+      [bb.min.x, bb.max.x].forEach(function (a) { [bb.min.y, bb.max.y].forEach(function (b) { [bb.min.z, bb.max.z].forEach(function (c) {
+        var q = new THREE.Vector3(a, b, c).applyMatrix4(cam.matrixWorldInverse);
+        minX = Math.min(minX, q.x); maxX = Math.max(maxX, q.x); minY = Math.min(minY, q.y); maxY = Math.max(maxY, q.y);
+      }); }); });
+      var cxp = (minX + maxX) / 2, cyp = (minY + maxY) / 2, hw = (maxX - minX) / 2 * 1.12, hh = (maxY - minY) / 2 * 1.12, asp = 280 / 190;
+      if (hw / hh > asp) hh = hw / asp; else hw = hh * asp;
+      cam.left = cxp - hw; cam.right = cxp + hw; cam.top = cyp + hh; cam.bottom = cyp - hh;
+      cam.updateProjectionMatrix();
+      tr.render(ts, cam);
+      try { thumbs[p.id] = tr.domElement.toDataURL("image/png"); } catch (e) {}
+      ts.remove(m); g.dispose();
+    });
+    tr.dispose();
+  })();
+
+  var partsEl = document.getElementById("parts");
+  function boardSvg() {
+    // each board drawn to scale along its length; cuts include a little extra for trimming
+    var k = 5.6, x0 = 8, y = 8, BOARDS = [
+      ["2x8 x 10 ft", 120, 7.25, [[LW + 3, "Top board"], [LW + 3, "Top board"]]],
+      ["2x4 x 8 ft, board 1", 96, 3.5, [[RAILL + 1, "Rail"], [RAILL + 1, "Rail"]]],
+      ["2x4 x 8 ft, board 2", 96, 3.5, [[LEGEDGE + 1, "Leg"], [LEGEDGE + 1, "Leg"], [LEGEDGE + 1, "Leg"]]],
+      ["2x4 x 8 ft, board 3", 96, 3.5, [[CLEATL + 1, "Cleat"], [CLEATL + 1, "Cleat"], [LEGEDGE + 1, "Leg"], [SHELFW + 1, "Stretcher"], [SHELFW + 1, "Stretcher"]]],
+      ["1x12 x 4 ft", 48, 11.25, [[SHELFL + 1, "Shelf"]]]
+    ];
+    var W = 120 * k + 16, out = "";
+    BOARDS.forEach(function (b) {
+      var h = Math.max(30, b[2] * k * 0.9);
+      out += '<text x="' + x0 + '" y="' + (y + 11) + '" font-family="var(--mono)" font-size="11" fill="var(--muted)">' + b[0] + "</text>";
+      y += 16;
+      out += '<rect x="' + x0 + '" y="' + y + '" width="' + b[1] * k + '" height="' + h + '" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>';
+      var x = x0;
+      b[3].forEach(function (c) {
+        var w = c[0] * k;
+        out += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="var(--wood)" stroke="var(--wood-edge)"/>';
+        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 - 2) + '" text-anchor="middle" font-family="var(--display)" font-weight="600" font-size="11" fill="#1D2320">' + c[1] + "</text>";
+        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 11) + '" text-anchor="middle" font-family="var(--mono)" font-size="9.5" fill="#1D2320">' + f(M(c[0])) + "</text>";
+        x += w + 0.25 * k;
+      });
+      y += h + 12;
+    });
+    return '<svg viewBox="0 0 ' + W + " " + y + '" role="img" aria-label="Board cutting layout" style="width:100%;height:auto;display:block">' + out + "</svg>";
+  }
+  function lumberRows() {
+    var B = [["2x8 x 10 ft (1)", "2 top boards, ripped to " + f(M(7)) + " and glued"], ["2x4 x 8 ft (3, plus 1 spare)", "Legs, cleats, stretchers and rails"], ["1x12 pine x 4 ft (1)", "Shelf, ripped to " + f(M(SHELFW))]];
+    return B.map(function (b) { return '<div class="row"><span class="k">' + b[0] + '</span><span class="v" style="white-space:normal">' + b[1] + "</span></div>"; }).join("");
+  }
+  function renderParts() {
+    var h = '<div class="parts-head"><div><h2 class="ph">Every wood piece</h2><p class="hint">12 pieces in 6 shapes. Thumbnails are not to the same scale. Sizes are length x width x thickness.</p></div></div><div class="parts-grid">';
+    PARTS.forEach(function (p) {
+      h += '<article class="pcard">' + (thumbs[p.id] ? '<img src="' + thumbs[p.id] + '" alt="' + p.name + '">' : '<div class="noimg"></div>') +
+        '<div class="pbody"><h3>' + p.name + '<span class="qty">' + p.qty + "x</span></h3>" +
+        '<p class="size">' + L([p.l, p.w, p.t]) + "</p>" +
+        '<p class="meta">' + p.mat + " · from " + p.from + "</p><ul>" + p.notes().map(function (n) { return "<li>" + n + "</li>"; }).join("") + "</ul></div></article>";
+    });
+    h += "</div>";
+    h += '<div class="parts-cols"><section><h2 class="ph">Board layout</h2><p class="hint">Cuts include about 1 in extra to trim. On board 3, crosscut the cleats off first, then rip the rest to 2-1/2 in.</p>' + boardSvg() + "</section>" +
+      '<section><h2 class="ph">Boards to buy</h2><p class="hint">Pick straight boards with few knots and let them sit inside for a week.</p><div class="rows">' + lumberRows() + "</div></section></div>";
+    partsEl.innerHTML = h;
+  }
+  // ---------- screws and tools page ----------
+  var HWLIST = [
+    ["Kreg pocket screws, 2-1/2 in, coarse thread, washer head (Kreg SML-C250)", "24, so a 50-pack"],
+    ["#8 x 2 in flat-head wood screws, square drive", "8"],
+    ["#10 x 2-1/2 in washer-head or pan-head screws", "6"],
+    ["Felt pads or furniture glides", "4"],
+    ["Anti-tip wall strap, optional", "1"]
+  ];
+  var SUPPLIES = [
+    ["Wood glue (Titebond II or similar)", "1 bottle"],
+    ["Stainable wood filler", "1 small tub"],
+    ["Sandpaper or sander discs, 120, 180 and 220", "a few of each"],
+    ["Pre-stain wood conditioner", "1 can"],
+    ["Dark walnut stain, or a gel stain", "1 can"],
+    ["Wipe-on poly, satin", "1 can"],
+    ["Rags and gloves", ""]
+  ];
+  var TOOLS = [
+    ["Measure and mark", [["Tape measure"], ["Combination square"], ["Sliding bevel, set to " + SPLAY + "°"], ["Pencil"]]],
+    ["Cut", [["Table saw", "club"], ["Miter saw, with a stop block", "club"], ["Jointer and planer, to flatten the top boards if free", "club"]]],
+    ["Pocket holes", [["Kreg pocket hole jig, set for 1-1/2 in stock", "buy"], ["Stepped drill bit with its stop collar, and a 6 in #2 square driver bit (both come with the jig)"], ["Face clamp, to hold each joint flush while you drive"]]],
+    ["Drill and drive", [["Drill/driver, plus an impact driver if you have one"], ["#8 countersink bit with a 1/8 in pilot"], ["3/16 in drill bit, for the cleat holes"], ["6 in bit extension"], ["#2 square (Robertson) bits"]]],
+    ["Clamp", [["4 bar or pipe clamps that open past 16 in, for the top"], ["4 quick clamps or F-clamps"], ["Scrap blocks, one cut to " + f(M(YS - sH)) + " to hold the stretchers"]]],
+    ["Finish", [["Random orbit sander"], ["Rags, foam brush"]]],
+    ["Safety", [["Safety glasses and hearing protection"], ["Dust mask for sanding"], ["Push stick for the table saw"]]]
+  ];
+  var pgHw = document.getElementById("page-hw"), hwEl = document.getElementById("hw");
+  function renderHw() {
+    var h = '<div class="parts-head"><h2 class="ph">Screws</h2><p class="hint">38 screws in 5 joints, 3 kinds. Each drawing is a section through one joint, to scale. Every joint gets glue except the top.</p></div><div class="hw-grid">';
+    SORDER.forEach(function (k) {
+      var c = SCR[k];
+      h += '<article class="scard"><div class="joint">' + jointSvg(k) + '</div><h3><span><span class="dot" style="background:' + c.hex + '"></span>' + c.title + '</span><span class="qty">' + c.n + "x</span></h3>" +
+        '<p class="spec">' + c.spec + "</p><p>" + c.where + ".</p><p>" + c.how() + ".</p><p>" + c.bite() + '.</p><button type="button" class="chip" data-show="' + k + '">See it in 3D</button></article>';
+    });
+    h += "</div>";
+    function rowsOf(list) { return list.map(function (r) { return '<div class="row"><span class="k">' + r[0] + '</span><span class="v">' + r[1] + "</span></div>"; }).join(""); }
+    h += '<div class="hw-cols"><section><h2 class="ph">Hardware to buy</h2><p class="hint" style="margin:0 0 6px;color:var(--muted);font-size:12.5px">Exact counts. Buy a few spares.</p><div class="rows">' + rowsOf(HWLIST) + "</div>" +
+      '<h2 class="ph" style="margin-top:20px">Supplies</h2><div class="rows">' + rowsOf(SUPPLIES) + "</div></section>" +
+      '<section><h2 class="ph">Tools, by job</h2><p class="hint" style="margin:0 0 6px;color:var(--muted);font-size:12.5px"><span class="where">club</span> the club shop has it · <span class="where buy">buy</span> worth getting your own</p>' +
+      TOOLS.map(function (g) {
+        return '<div class="tgroup"><h3>' + g[0] + '</h3><div class="rows">' + g[1].map(function (t) {
+          return '<div class="row"><span class="k">' + t[0] + "</span>" + (t[1] ? '<span class="where' + (t[1] === "buy" ? " buy" : "") + '">' + t[1] + "</span>" : "") + "</div>";
+        }).join("") + "</div></div>";
+      }).join("") + "</section></div>";
+    hwEl.innerHTML = h;
+  }
+  hwEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-show]");
+    if (!b) return;
+    setPage("model");
+    if (S.asm) setAsm(false);
+    select(b.getAttribute("data-show"));
+    try { stage.scrollIntoView({ block: "nearest" }); } catch (err) {}
+  });
+
+  var pgModel = document.getElementById("page-model"), pgParts = document.getElementById("page-parts");
+  function setPage(which) {
+    ["model", "parts", "hw"].forEach(function (p) { document.getElementById("pg-" + p).setAttribute("aria-pressed", which === p); });
+    pgModel.hidden = which !== "model"; pgParts.hidden = which !== "parts"; pgHw.hidden = which !== "hw";
+    if (which === "parts") renderParts(); else if (which === "hw") renderHw(); else resize();
+  }
+  document.getElementById("pg-model").addEventListener("click", function () { setPage("model"); });
+  document.getElementById("pg-parts").addEventListener("click", function () { setPage("parts"); });
+  document.getElementById("pg-hw").addEventListener("click", function () { setPage("hw"); });
+
+  // ---------- size + loop ----------
+  var W = 1, H = 1;
+  function resize() {
+    var r = stage.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    renderer.setSize(W, H, false);
+    camera.aspect = W / H;
+    var a = W / H;
+    camera.fov = a < 1.3 ? 2 * Math.atan(Math.tan(17.5 * Math.PI / 180) * 1.3 / a) * 180 / Math.PI : 35;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener("resize", resize);
+  resize();
+
+  var tmp = new THREE.Vector3();
+  function placeLabels() {
+    labels.forEach(function (l) {
+      var show = l.kind === "dim" ? S.dims : S.apps;
+      if (!show) { l.el.hidden = true; return; }
+      tmp.copy(l.p).project(camera);
+      if (tmp.z > 1 || tmp.z < -1) { l.el.hidden = true; return; }
+      l.el.hidden = false;
+      var x = (tmp.x + 1) / 2 * W, y = (1 - tmp.y) / 2 * H;
+      l.el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) translate(-50%,-50%)";
+    });
+  }
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function loop(now) {
+    if (tween) {
+      var k = Math.min(1, (now - tween.t0) / 650), e = ease(k);
+      camera.position.lerpVectors(tween.fp, tween.to.p, e);
+      controls.target.lerpVectors(tween.ft, tween.to.t, e);
+      if (k >= 1) tween = null;
+    }
+    controls.update();
+    renderer.clear();
+    renderer.render(scene, camera);
+    if (fastGroup.visible) { renderer.clearDepth(); renderer.render(fscene, camera); }
+    placeLabels();
+    requestAnimationFrame(loop);
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem("console-units"); } catch (e) {}
+  S.units = saved === "mm" ? "mm" : "in";
+  document.getElementById("u-mm").setAttribute("aria-pressed", S.units === "mm");
+  document.getElementById("u-in").setAttribute("aria-pressed", S.units === "in");
+  if (location.hash === "#pieces") setPage("parts");
+  if (location.hash === "#hardware") setPage("hw");
+  renderSheet();
+  updateLabelText();
+  showInfo(null, 0);
+  if (document.documentElement.classList.contains("embed") && window.innerWidth < 640) setDims(false);
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
