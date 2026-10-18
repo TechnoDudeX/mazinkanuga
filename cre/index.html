@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CRE Access Email Call · Mazin Kanuga</title>
+<meta name="description" content="Transcript of the Oct 16, 2026 call on the CRE roles &amp; API key permissions email.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0a0a0a; --mute:#6c6c6c; --rule:#e6e6e6; --wash:#f7f7f5; --teal:#0b5b63; --red:#E63946;
+    --display:'Archivo','Helvetica Neue',Arial,sans-serif; --sans:'Inter',-apple-system,system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; }
+  *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:var(--wash); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+  button { font:inherit; cursor:pointer; }
+  .bar { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid var(--rule); }
+  .bar-in { max-width:1000px; margin:0 auto; padding:12px 24px; display:flex; align-items:center; gap:12px; }
+  .home { font-family:var(--display); font-weight:900; letter-spacing:-.02em; font-size:18px; text-decoration:none; color:var(--ink); }
+  .home .dot { color:var(--red); }
+  .bar-note { font-size:12px; color:var(--mute); flex:1 1 auto; min-width:0; }
+  .btn { border:1px solid var(--ink); background:var(--ink); color:#fff; border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600; white-space:nowrap; transition:background .15s,color .15s; }
+  .btn:hover { background:#fff; color:var(--ink); }
+  .btn.done,.btn.done:hover { background:var(--teal); border-color:var(--teal); color:#fff; }
+  .page { max-width:1000px; margin:0 auto; padding:36px 24px 96px; }
+  .eyebrow { font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); }
+  h1 { font-family:var(--display); font-weight:900; font-size:clamp(28px,5vw,40px); letter-spacing:-.03em; line-height:1.06; margin:8px 0 10px; }
+  .lede { color:#333; font-size:15px; line-height:1.6; margin-bottom:22px; }
+  .code { background:#0d1117; border-radius:10px; overflow:hidden; border:1px solid #222; }
+  .code-top { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-bottom:1px solid #222; color:#8b949e; font-family:var(--mono); font-size:12px; gap:10px; }
+  .code-top .btn { background:#fff; color:var(--ink); border-color:#fff; }
+  .code-top .btn:hover { background:transparent; color:#fff; }
+  .code-top .btn.done { background:var(--teal); border-color:var(--teal); color:#fff; }
+  pre { margin:0; padding:18px; max-height:70vh; overflow:auto; font-family:var(--mono); font-size:12.5px; line-height:1.6; color:#e6edf3; white-space:pre-wrap; word-break:break-word; }
+  @media (max-width:600px) { .page { padding:24px 16px 72px; } .bar-in { padding:10px 16px; } .bar-note { display:none; } }
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+  <a class="home" href="/">MK<span class="dot">.</span></a>
+  <span class="bar-note">CRE roles &amp; API key permissions email call · Oct 16, 2026</span>
+  <button class="btn copy" type="button">Copy transcript</button>
+</div></div>
+<main class="page">
+  <div class="eyebrow">Meeting transcript</div>
+  <h1>CRE roles &amp; API key permissions email call</h1>
+  <p class="lede">Oct 16, 2026 · ~17 min · Tom Koo, Mazin Kanuga (some lines auto-labelled Speaker 3 / Speaker 4). Consecutive lines from the same speaker are merged.</p>
+  <div class="code">
+    <div class="code-top"><span>transcript.txt · 133 turns</span><button class="btn copy" type="button">Copy transcript</button></div>
+    <pre><code id="src">[00:00:09] Mazin Kanuga: Hey, Tom.
+
+[00:00:13] Tom Koo: Hey.
+
+[00:00:14] Mazin Kanuga: How you doing, man?
+
+[00:00:17] Speaker 3: Doing good.
+
+[00:00:18] Tom Koo: Nice to meet you.
+
+[00:00:19] Mazin Kanuga: Nice to meet you too.
+
+[00:00:23] Speaker 3: Should we start reading Truth? I don&#x27;t think we ever met.
+
+[00:00:25] Mazin Kanuga: Yeah, we haven&#x27;t met yet. Well, what&#x27;s up, man? I&#x27;m Maz and this is like two and a half months here at Chainlink and it feels like two and a half years, but yeah. Alrighty. Super busy week with Cybos and Link NYC happening. So I. Apologies I didn&#x27;t reply to your comment right away, but yeah, thought we&#x27;d talk in the chat. Anyways, how about you?
+
+[00:00:43] Tom Koo: Yeah, no problem. Where do you come from?
+
+[00:00:47] Mazin Kanuga: Before this? I was at Kraken for like three months. Probably the worst three months of ever. That&#x27;s what I was like. You know, people say end of an era, that was like end of an error. Yeah, I didn&#x27;t have a good time at Kraken. People are great. It&#x27;s just the. Yeah, the vision and the mission kind of fell apart for me internally and I wasn&#x27;t resonating, so I thought I&#x27;d try something else. Before that, I was at Solidus Labs, which is like a crypto compliance trade surveillance platform. I was there for like three, four years. Before that, I was marketing at a local Canadian small Canadian exchange. I&#x27;m from Toronto, by the way. So. Yeah, I&#x27;ve been in the crypto space for a really long time. I. Fortunately, I didn&#x27;t make any millions, but yeah, here I am.
+
+[00:01:32] Tom Koo: Maybe in the future.
+
+[00:01:33] Mazin Kanuga: Yeah, we&#x27;ll see.
+
+[00:01:34] Speaker 4: It&#x27;s not today.
+
+[00:01:35] Tom Koo: Yeah.
+
+[00:01:35] Speaker 3: Yeah.
+
+[00:01:37] Tom Koo: Okay. That&#x27;s very cool. I. I actually know somebody. Somebody that I worked with in the past. I think he mentioned that is like someone that he knows or his neighbor is like the. The founder, like the CEO of Kraken or something like that.
+
+[00:01:51] Mazin Kanuga: Oh, really?
+
+[00:01:52] Tom Koo: Yeah.
+
+[00:01:52] Speaker 3: Yeah.
+
+[00:01:52] Speaker 4: Oh, wow.
+
+[00:01:53] Tom Koo: But she said she didn&#x27;t. She said that guy&#x27;s. He didn&#x27;t like that guy.
+
+[00:01:57] Mazin Kanuga: Yeah, no comment.
+
+[00:02:01] Speaker 4: Yeah.
+
+[00:02:02] Tom Koo: Yeah. Okay, that&#x27;s interesting. Yeah. For myself, I haven&#x27;t been in the crypto space for too long. This is my first crypto job, but I did a crypto job before. I did my own crypto startup before, but like way back in like 2018.
+
+[00:02:21] Mazin Kanuga: Oh.
+
+[00:02:22] Tom Koo: And I launched it and I pretty much closed it as soon as I launched it.
+
+[00:02:26] Mazin Kanuga: What was the project?
+
+[00:02:27] Tom Koo: It was a. It&#x27;s a social D, So it&#x27;s kind of like Quora, but you get paid based on the attention that you get and you get paid out of the inflation. So in the plates, it gives you know, some rewards proportionate to the Attention that you got. It&#x27;s built on the. It was built on the Steam blockchain, if you&#x27;ve ever heard of it. It was like getting pretty popular back in like 2018 when we first launched, we. We made a post on the Steam app, which is kind of a blog post website. And then that post got like 1200 or 600 bucks in rewards because, like, people were so excited about the thing. And then we launched it, and then we launched it in like February of 2018. And that was like the peak of that cycle.
+
+[00:03:14] Mazin Kanuga: Yeah.
+
+[00:03:14] Tom Koo: And then a few months later, you know, the same post that would get people like 4 or 5 bucks or 10 bucks became like 6 cents.
+
+[00:03:23] Mazin Kanuga: Oh, man.
+
+[00:03:24] Tom Koo: And then nobody wanted to use it, so kind of filled out.
+
+[00:03:27] Mazin Kanuga: Yeah.
+
+[00:03:27] Tom Koo: I also, I put also my life savings at that point. I was like, pretty young at the time, but I put my life savings into crypto.
+
+[00:03:33] Mazin Kanuga: Yeah.
+
+[00:03:33] Tom Koo: So I ran up. I ran up 7k to 190k.
+
+[00:03:37] Speaker 4: Yeah.
+
+[00:03:37] Speaker 3: On that cycle.
+
+[00:03:38] Tom Koo: But then I ended up with 3K.
+
+[00:03:40] Mazin Kanuga: Oh, that&#x27;s like everybody&#x27;s story, dude. Yeah, we&#x27;ve all been there, you know.
+
+[00:03:45] Tom Koo: And then after that, I just was interested from the outside, do a lot of research. I also didn&#x27;t make millions, but I did make that kind of money back, you know.
+
+[00:03:58] Mazin Kanuga: Yeah.
+
+[00:04:00] Tom Koo: So I, I worked with a couple of the guys here before, like a car, a perva. A pervert just left, but he got, I guess, like fired, I guess. But a purba. The chief product officer I&#x27;ve worked with before, and also Sebastian Werner. So those guys were. Were coming here and you know, I&#x27;ve been interested in crypto restaurants. I meant landed here.
+
+[00:04:25] Mazin Kanuga: Okay, cool. And you&#x27;ve been here for how long?
+
+[00:04:30] Tom Koo: Almost a year. It&#x27;ll be a year next week, actually.
+
+[00:04:32] Mazin Kanuga: Oh, nice, man.
+
+[00:04:34] Speaker 3: Yeah.
+
+[00:04:34] Mazin Kanuga: How&#x27;s the year been for you?
+
+[00:04:37] Tom Koo: It&#x27;s been.
+
+[00:04:38] Speaker 3: It&#x27;s been good. Yeah.
+
+[00:04:41] Tom Koo: It&#x27;s definitely, it&#x27;s definitely hectic. But I, I. My pre. My immediately previous job was at Meta, and that was even more hectic.
+
+[00:04:49] Mazin Kanuga: Oh, really?
+
+[00:04:50] Tom Koo: Yeah, yeah, because there was like, in addition to it being busy, there&#x27;s a lot of like, backstabbing and there&#x27;s every.
+
+[00:04:59] Speaker 3: Month and a half.
+
+[00:05:03] Speaker 4: Yeah.
+
+[00:05:03] Speaker 3: Yeah. Everyone&#x27;s just like backstabbing each other, you know, left and right. So they&#x27;re. It&#x27;s less stressful than Meta for sure, but it&#x27;s definitely the second most stressful job. I probably.
+
+[00:05:15] Speaker 4: Started crashing. My manager got let off, let go of two after I started, and the manager that came in to Replace her also got like let go of two weeks after that and it&#x27;s like, yeah, I did not have a good time.
+
+[00:05:28] Speaker 3: Yeah, yeah. That&#x27;s actually very similar thing happened where pretty much a month after I joined Meta, my manager who was a director and a director at Meta is like extremely high. They&#x27;re making like a million bucks a quarter type of thing. So he&#x27;s a, he was a very respected guy but then the VP demoted him from being a, a manager essentially no way to being an ip. So he&#x27;s like a super high level ip. And then now very American crew. And then you could see our manager and then after that our next manager also got changed up within like a month too. Those advantager change pretty much every month.
+
+[00:06:10] Speaker 4: Yeah, yeah, frustrating. And it&#x27;s like Kraken was like, oh, you will keep cutting the scheme in half, in half until it became 10% of what it was within three months of where I started. It&#x27;s like, oh, don&#x27;t worry, you have unlimited quad token usage, so just like 100 extra work.
+
+[00:06:27] Speaker 3: Yeah, that&#x27;s crazy, man. Well, hopefully King Link is better for you.
+
+[00:06:35] Speaker 4: Yeah, I like it. I like much different, much happier. My wife&#x27;s happy, you know, so yeah, big difference. Yeah. Now I&#x27;m here and I am doing emails and I&#x27;m doing paid marketing and I&#x27;m doing growth marketing and yeah, you want some emails like that, right? What&#x27;s the project?
+
+[00:06:51] Speaker 3: That&#x27;s right. Okay, let me do some background. So last year I think I, I think she was. So last year we launched the smartphone and it was a mad sort of dash percentage fund and it was a, it&#x27;s the first website. CRE was the first product that required email and password login. All of our other products up until that time it was just kind of used for free. Sometimes you have to like log in with your wallet. But you know, by and large you don&#x27;t even have to do that. You just like go on the website, you type in your address. Let&#x27;s say you can see the transaction history for ccip, for Data Seeds. You don&#x27;t need any kind of wallet. You don&#x27;t need even like a transaction that you&#x27;re late. So CRE was the first website that need email and password. We launched it last year. But then we very quickly realized, oh, we have a bunch of other products that also require email and password. Right. And when I first joined all those products were thinking about building their own separate website. And then we said, okay, actually no, no, we probably want this all to be one website so you can log into one time and have access to four or five different products. You can have a unified UI and it&#x27;s easier for customers to land one product and expand and use all our other products. Great for us more revenue. Okay, but the problem was at that time the API key and also the roles that we have for users were all CRA centric. So if you were a like secure eight and you don&#x27;t like how you divided up the permissions for Tre, then you&#x27;re kind of just, you just have to live with it. Right. Or for the API key to cre, they didn&#x27;t need granular permissions for hiking, you could just have an apic. As long as you have it works for everything. Right. But a product like ace, which is sort of meant for financial institutions, they need way more granularity than that. And so the API keys that was every rudimentary didn&#x27;t work in the long run. So now what do you have for starting with roles? For each product you have a role and that role gives you permission. Right. So like ACE will have an admin role, ACE will have an operator role, ACE will have a year role. And all the different products also choose the role that they have. On the API key side, very similar on the APIC side you can choose granularly the permissions that you need. So if you&#x27;re, let&#x27;s say the owner of an organization, you can create hyp. As an owner you have access to all the permissions that we make available. But you could go and say my HIC should only have 10 out of 50 permissions. Right. Because I wanted to do a very specific. So that&#x27;s the overview of RBATH and hiv. So then the email that we want to send out is to inform existing users of the change that&#x27;s coming and for the existing users they actually don&#x27;t have to do anything. It&#x27;s just about, hey, you&#x27;re going to be seeing some changes in the UI just so that we don&#x27;t break substitute. Here&#x27;s what&#x27;s happening and the content of the email I put into the doc.
+
+[00:10:07] Speaker 4: Yeah, so when do you want to see more about?
+
+[00:10:12] Speaker 3: Yeah, so we are thinking about deploying sometime next week or the week after.
+
+[00:10:22] Speaker 4: Okay.
+
+[00:10:23] Speaker 3: And so ideally if you can give me a quick review of the copy and the content, I would love to send it out sometime like mid next week. The email will be going to existing users of apps on Chain Link and.
+
+[00:10:43] Speaker 4: How do I, how do I filter for that in fdr? What is the list, the actual list in your CRM?
+
+[00:10:51] Speaker 3: Right. So I think. That&#x27;s a good question. Did you just. I, the, actually, the reason I found out your name is because I was asking the clerk who&#x27;s our new email person, because our previous person left. He mentioned you, but you mentioned that you worked with you on the Amsterdam update.
+
+[00:11:14] Speaker 4: Okay. Is it a.
+
+[00:11:16] Speaker 3: Did you just. Did you send that out to everybody using that you found in the CRM.
+
+[00:11:22] Speaker 4: After that update was an Ethereum puppet. Right.
+
+[00:11:25] Speaker 3: Yeah.
+
+[00:11:28] Speaker 4: Important that we. Maybe a week or two ago, this is the ethereum upgrade to C4.22. That email went out to everybody. That is. I had to, I had to find a loop call to figure out who would qualify for. In my loop call was that a marketing email gets sent up, sent out to anybody that registers for the platform. Anybody that registers for the CRE platform gets enrolled into a hotspot workflow which sends in the email that says, welcome to the trainers platform. We&#x27;re excited to have you on board.
+
+[00:12:13] Speaker 3: Yeah.
+
+[00:12:13] Speaker 4: My logic was that anybody that involved in this workflow should receive the email.
+
+[00:12:21] Speaker 3: Yeah.
+
+[00:12:21] Speaker 4: So that&#x27;s the logic that I used to execute.
+
+[00:12:24] Speaker 3: Yeah. That should work here too. Because anyone that signs up for changing platform.
+
+[00:12:28] Speaker 4: Yeah.
+
+[00:12:29] Speaker 3: You know, might have been using the API key.
+
+[00:12:32] Speaker 4: Yeah. And that was a list about 14, 000 people. And I&#x27;m like, hey, I, I, I, you know, when I work with them, I was like, does that number sound right to you? He&#x27;s like, yeah, we kind of went from there.
+
+[00:12:44] Speaker 3: Yeah.
+
+[00:12:44] Speaker 4: Does that sound like tv?
+
+[00:12:46] Speaker 3: That sounds right to me. Yeah.
+
+[00:12:48] Speaker 4: Okay. All right. If I said 500, that would be clearly wrong, right? Like, no way this is 500.
+
+[00:12:54] Speaker 3: Yeah.
+
+[00:12:54] Speaker 4: Okay. All right.
+
+[00:12:56] Speaker 3: It should be to everybody that signs up for App Chain Download, which is a chainlink platform.
+
+[00:13:01] Speaker 4: Yeah.
+
+[00:13:01] Speaker 3: Yeah.
+
+[00:13:02] Speaker 4: So, okay, so that part is solved for. And I noticed in the email you have Click here to learn more. But where did that link go?
+
+[00:13:14] Speaker 3: That will go to. I need to provide you the link. I can provide you the link.
+
+[00:13:28] Mazin Kanuga: So this is easy. We just need to confirm the send and stuff like that and just test the email and all that.
+
+[00:13:34] Speaker 3: Okay, cool.
+
+[00:13:36] Tom Koo: Let me. I&#x27;m gonna meet with.
+
+[00:13:38] Speaker 3: How.
+
+[00:13:38] Tom Koo: Have you met a car yet?
+
+[00:13:40] Mazin Kanuga: No.
+
+[00:13:41] Tom Koo: Okay. Yeah. So a car is the VP of product. He&#x27;s kind of like the single threaded leader for CRE and ACE and CRE Connect and things like that from the product side. So essentially like anytime There&#x27;s a change to the customer experience or there&#x27;s things like comms like this. Right. Which is a little bit sensitive because API keys and rules like that. I like to run things by a car. He&#x27;s also my manager. So let me run this content by a car on Monday.
+
+[00:14:15] Mazin Kanuga: Yeah.
+
+[00:14:16] Tom Koo: And then you also give me around the revisions if you think anything needs to be changed.
+
+[00:14:20] Mazin Kanuga: Okay. And we should also budget for a day for legal review.
+
+[00:14:24] Tom Koo: Oh, legal review.
+
+[00:14:26] Mazin Kanuga: Yeah, just for. It&#x27;ll just take maybe a couple hours up to a day. But just in case, once we lock in the copy, let&#x27;s just do that so nothing blocks us when we actually want to send it out.
+
+[00:14:35] Tom Koo: Okay. Do you think you could get the legal review done by Tuesday then?
+
+[00:14:39] Mazin Kanuga: Yeah, whenever we decide on the final copy, I&#x27;ll review it, add my notes and then you can do the thing and then add the link in and then you just submit right away and then we can send whenever.
+
+[00:14:48] Speaker 3: Okay, cool.
+
+[00:14:51] Mazin Kanuga: In the meantime, we&#x27;ll send a test email to all inboxes to actually see how it looks like visually. But yeah.
+
+[00:15:01] Speaker 3: Okay, so.
+
+[00:15:05] Tom Koo: Let me write the next steps up here.
+
+[00:15:15] Speaker 3: Copy.
+
+[00:15:19] Mazin Kanuga: Yeah. And don&#x27;t forget the link for CTA Link, I guess if you want to call it.
+
+[00:15:24] Speaker 3: Yeah, it.
+
+[00:15:55] Tom Koo: Cool. Cool.
+
+[00:16:02] Speaker 3: Yeah. All right, cool.
+
+[00:16:03] Tom Koo: Sounds like a plan.
+
+[00:16:05] Speaker 3: I&#x27;m.
+
+[00:16:06] Tom Koo: You live in Toronto, so. Yeah, let&#x27;s sync.
+
+[00:16:13] Mazin Kanuga: I&#x27;m gonna do this time again on Tuesday if you like or even a little later. I know you&#x27;re. You&#x27;re California.
+
+[00:16:19] Tom Koo: Yeah, I&#x27;m in California.
+
+[00:16:20] Mazin Kanuga: That sucks, dude. Probably for the rest of the team is like everyone&#x27;s ahead of you. Eh?
+
+[00:16:25] Speaker 3: Yeah.
+
+[00:16:27] Mazin Kanuga: Yeah.
+
+[00:16:28] Tom Koo: That is sometimes a challenge.
+
+[00:16:30] Mazin Kanuga: Yeah. When I, you know, when I was working in the marketing team has to work with a Singapore team and that&#x27;s like 12 hours ahead, so I can&#x27;t imagine for you.
+
+[00:16:37] Tom Koo: Oh my God. But I, I&#x27;m gonna grab some time with you actually on Monday because I, I have my call with the car in the early afternoon. So I&#x27;m gonna catch you at 4:30 your time.
+
+[00:16:58] Mazin Kanuga: Okay. Sounds good.
+
+[00:17:00] Speaker 3: Yeah.
+
+[00:17:01] Tom Koo: All right.
+
+[00:17:01] Mazin Kanuga: All right. Thanks.
+
+[00:17:04] Tom Koo: Have a.
+
+[00:17:06] Speaker 4: You too.
+
+[00:17:06] Mazin Kanuga: Take.</code></pre>
+  </div>
+</main>
+<script>
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(document.getElementById('src').textContent).then(function () {
+        document.querySelectorAll('.copy').forEach(function (x) { x.textContent = 'Copied ✓'; x.classList.add('done'); });
+        setTimeout(function () { document.querySelectorAll('.copy').forEach(function (x) { x.textContent = 'Copy transcript'; x.classList.remove('done'); }); }, 1800);
+      });
+    });
+  });
+</script>
+</body>
+</html>
