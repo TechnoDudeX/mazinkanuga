@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closet Build · Mazin Kanuga</title>
+<meta name="description" content="A closet redesign for a friend: a rotatable 3D model, to-scale drawings, cut list, sheet layout, brackets and tools, shopping list, cost and step-by-step install. Double rods on one side, shelves on the other, 73-1/2 x 24 x 96 in.">
+<meta name="author" content="Mazin Kanuga">
+<link rel="canonical" href="https://mazinkanuga.ca/closet/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
+<meta property="og:title" content="Closet Build · Mazin Kanuga">
+<meta property="og:description" content="A closet redesign for a friend: a rotatable 3D model, to-scale drawings, cut list, sheet layout, brackets and tools, shopping list, cost and step-by-step install. Double rods on one side, shelves on the other, 73-1/2 x 24 x 96 in.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mazinkanuga.ca/closet/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-hover: #fafafa;
+    --ink: #0a0a0a;
+    --ink-dim: #404040;
+    --ink-mute: #767676;
+    --rule: #e8e8e8;
+
+    --solidus: #FFC933;
+    --coinsquare: #00D1A4;
+    --kraken: #6B4EFF;
+    --wheat: #E8DCC0;
+    --paprika: #C1440E;
+    --oxblood: #6E1423;
+    --red: #E63946;
+    --berry: #F7B2C1;
+    --cocoa: #4A2C1D;
+    --cilantro: #2E6B34;
+    --accent: #E63946;
+
+    --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --fw-display: 900;
+
+    --s-1: 4px;  --s-2: 8px;  --s-3: 10px; --s-4: 12px;
+    --s-5: 16px; --s-6: 20px; --s-7: 24px; --s-8: 28px;
+    --s-9: 32px; --s-10: 36px; --s-11: 40px; --s-12: 48px;
+    --s-13: 56px; --s-14: 64px;
+
+    --o-high: 0.7;
+    --o-strong: 0.85;
+
+    --pad-section: 64px 56px;
+    --pad-block: 48px 56px;
+    --pad-footer: 88px 56px 48px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--red); color: var(--bg); }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 0; z-index: 100;
+    background: var(--ink); color: var(--bg);
+    padding: 12px 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: top .15s;
+  }
+  .skip-link:focus { top: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .page-title { animation: none !important; }
+  }
+
+  /* ─── nav ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ink);
+    transition: box-shadow .2s;
+  }
+  .nav.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04); }
+  .nav-grid { display: grid; grid-template-columns: 140px 1fr 160px; align-items: stretch; }
+  .nav-burger {
+    display: none;
+    border-left: 1px solid var(--ink);
+    padding: 0 22px;
+    background: var(--bg);
+    align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    gap: var(--s-3);
+  }
+  .nav-burger-icon { display: inline-flex; flex-direction: column; gap: var(--s-1); }
+  .nav-burger-icon span { width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+  .nav.is-open .nav-burger-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav.is-open .nav-burger-icon span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .nav-logo {
+    border-right: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--display); font-size: 26px; font-weight: var(--fw-display); letter-spacing: -1.2px;
+    display: flex; align-items: center; gap: var(--s-2);
+  }
+  .nav-logo .dot { color: var(--accent); }
+  .nav-links { display: flex; }
+  .nav-link {
+    padding: 18px var(--s-7);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--ink);
+    border-right: 1px solid var(--rule);
+    display: flex; align-items: center; gap: var(--s-3);
+    transition: background .15s;
+  }
+  .nav-link:last-child { border-right: none; }
+  .nav-link:hover { background: var(--bg-hover); }
+  .nav-link .num { color: var(--ink-mute); }
+  .nav-link.is-current { background: var(--ink); color: var(--bg); }
+  .nav-link.is-current .num { color: rgba(255,255,255,var(--o-mute, .55)); }
+  .nav-cta {
+    border-left: 1px solid var(--ink);
+    padding: 18px 22px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--bg); background: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+    transition: background .15s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ─── page head ─── */
+  .page-head {
+    padding: var(--pad-section);
+    border-bottom: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr 300px; gap: var(--s-12); align-items: end;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-dim); margin-bottom: var(--s-8);
+    display: inline-flex; align-items: center; gap: var(--s-3);
+  }
+  .eyebrow .bar { width: var(--s-7); height: 1px; background: var(--accent); display: inline-block; }
+  .page-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(64px, 13vw, 168px); letter-spacing: clamp(-4px, -0.6vw, -7px);
+    line-height: 0.84;
+    animation: fadeUp .7s ease both;
+  }
+  .page-title .dot { color: var(--accent); }
+  .page-lede {
+    font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--ink-dim);
+    border-top: 1px solid var(--ink); padding-top: var(--s-6); text-wrap: pretty;
+  }
+
+  /* ─── recipe ─── */
+  .recipe { border-bottom: 1px solid var(--ink); scroll-margin-top: 16px; }
+  .recipe-anchor { color: inherit; text-decoration: none; }
+  .recipe-emoji { font-size: .8em; margin-left: .12em; }
+  .recipe-anchor:hover, .recipe-anchor:focus-visible { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .recipe:last-of-type { border-bottom: none; }
+
+  .recipe-head {
+    padding: var(--pad-block);
+    border-bottom: 1px solid var(--ink);
+    background: var(--solidus);
+  }
+  .recipe-head.c-red { background: var(--red); color: var(--bg); }
+  .recipe-head.c-green { background: var(--coinsquare); color: var(--ink); }
+  .recipe-head.c-purple { background: var(--kraken); color: var(--bg); }
+  .recipe-head.c-ink { background: var(--ink); color: var(--bg); }
+  .recipe-head.c-wheat { background: var(--wheat); color: var(--ink); }
+  .recipe-head.c-paprika { background: var(--paprika); color: var(--bg); }
+  .recipe-head.c-oxblood { background: var(--oxblood); color: var(--bg); }
+  .recipe-head.c-berry { background: var(--berry); color: var(--ink); }
+  .recipe-head.c-cocoa { background: var(--cocoa); color: var(--bg); }
+  .recipe-head.c-cilantro { background: var(--cilantro); color: var(--bg); }
+  .recipe-credit {
+    margin-top: var(--s-5);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: var(--o-high);
+  }
+  .recipe-index {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    opacity: var(--o-strong); margin-bottom: var(--s-6);
+  }
+  .recipe-title {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(38px, 6.5vw, 76px); letter-spacing: clamp(-1.4px, -0.28vw, -3px);
+    line-height: 0.92;
+  }
+  .recipe-note {
+    margin-top: var(--s-6); font-family: var(--sans); font-size: 15px; line-height: 1.6;
+    max-width: 620px; text-wrap: pretty;
+  }
+
+  .recipe-meta { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .meta-cell { padding: var(--s-8) var(--s-10); border-right: 1px solid var(--rule); }
+  .meta-cell:last-child { border-right: none; }
+  .meta-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-3);
+  }
+  .meta-val { font-family: var(--display); font-size: 26px; font-weight: var(--fw-display); letter-spacing: -1px; line-height: 1; }
+
+  .recipe-body { display: grid; grid-template-columns: 380px 1fr; align-items: start; }
+
+  .ingredients { border-right: 1px solid var(--ink); padding: var(--pad-block); position: sticky; top: 90px; }
+  .block-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: var(--s-7);
+  }
+  .ing-list { list-style: none; border-top: 1px solid var(--ink); }
+  .ing-list li {
+    display: grid; grid-template-columns: 1fr auto; gap: var(--s-5); align-items: baseline;
+    padding: var(--s-4) 0; border-bottom: 1px solid var(--rule);
+  }
+  .ing-name { font-family: var(--sans); font-size: 15px; font-weight: 600; }
+  .ing-name .opt { display: block; font-weight: 400; font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .ing-qty {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .5px; color: var(--ink-dim);
+    text-align: right;
+  }
+  .ing-group {
+    display: block; padding: var(--s-6) 0 var(--s-3);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--rule);
+  }
+  .ing-list li.ing-group:first-child { padding-top: var(--s-4); }
+
+  .method { padding: var(--pad-block); }
+  .step {
+    display: grid; grid-template-columns: 64px 1fr; gap: var(--s-7);
+    padding: var(--s-8) 0; border-top: 1px solid var(--rule);
+  }
+  .step:first-of-type { border-top: 1px solid var(--ink); }
+  .step-num {
+    font-family: var(--display); font-size: 44px; font-weight: var(--fw-display);
+    letter-spacing: -2px; line-height: 0.9; color: var(--accent);
+  }
+  .step-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: var(--s-3);
+  }
+  .step-body { font-family: var(--sans); font-size: 17px; line-height: 1.55; color: var(--ink); text-wrap: pretty; }
+
+  .callout {
+    margin-top: var(--s-9);
+    border: 1px solid var(--ink); border-left: 4px solid var(--accent);
+    padding: var(--s-6) var(--s-7);
+  }
+  .callout-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--s-3);
+  }
+  .callout p { font-family: var(--sans); font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+  .callout p + p { margin-top: var(--s-4); }
+
+  /* ─── footer ─── */
+  footer { background: var(--ink); color: var(--bg); }
+  .footer-inner { padding: var(--pad-footer); }
+  .footer-top {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: var(--s-11);
+    margin-bottom: var(--s-13);
+  }
+  .footer-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,var(--o-high)); margin-bottom: var(--s-3); }
+  .footer-hello {
+    font-family: var(--display); font-weight: var(--fw-display);
+    font-size: clamp(64px, 14vw, 148px); letter-spacing: clamp(-3px, -0.6vw, -6px); line-height: 0.86;
+  }
+  .footer-hello .dot { color: var(--accent); }
+  .footer-cta {
+    border: 1px solid var(--bg); padding: var(--s-6) var(--s-8);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    transition: background .15s, color .15s;
+  }
+  .footer-cta:hover { background: var(--bg); color: var(--ink); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.2); padding-top: var(--s-6);
+    display: flex; justify-content: space-between; gap: var(--s-5);
+    font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,.55); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  /* ─── responsive ─── */
+  @media (max-width: 1200px) {
+    :root { --pad-section: 56px 40px; --pad-block: 40px 40px; --pad-footer: 72px 40px 40px; }
+  }
+  @media (max-width: 1024px) {
+    :root { --pad-section: 48px 32px; --pad-block: 36px 32px; --pad-footer: 64px 32px 36px; }
+    .nav-grid { grid-template-columns: 110px 1fr 130px; }
+    .nav-link { padding: var(--s-5) var(--s-5); font-size: 10px; }
+    .nav-link .num { display: none; }
+    .nav-logo { padding: var(--s-5) 18px; font-size: 22px; }
+    .nav-cta { padding: var(--s-5) 14px; font-size: 10px; }
+
+    .page-head { grid-template-columns: 1fr; gap: var(--s-8); align-items: start; }
+    .recipe-body { grid-template-columns: 300px 1fr; }
+    .meta-cell { padding: var(--s-7) var(--s-7); }
+    .meta-val { font-size: 22px; }
+  }
+  @media (max-width: 768px) {
+    :root { --pad-section: 40px 24px; --pad-block: 32px 24px; --pad-footer: 56px 24px 32px; }
+    .nav-grid { display: flex; flex-wrap: wrap; align-items: stretch; }
+    .nav-logo { flex: 1; border-right: none; padding: var(--s-5) var(--s-6); font-size: 22px; }
+    .nav-burger { display: flex; order: 2; }
+    .nav-links {
+      display: none; flex-basis: 100%; order: 3;
+      flex-direction: column; border-top: 1px solid var(--ink);
+    }
+    .nav.is-open .nav-links { display: flex; }
+    .nav-link {
+      border-right: none; border-bottom: 1px solid var(--rule);
+      padding: var(--s-5) 22px; font-size: 12px;
+    }
+    .nav-link:last-child { border-bottom: none; }
+    .nav-link .num { display: inline; }
+    .nav-cta {
+      display: none; flex-basis: 100%; order: 4;
+      border-left: none; border-top: 1px solid var(--ink);
+      padding: var(--s-5) 22px; font-size: 11px;
+    }
+    .nav.is-open .nav-cta { display: flex; }
+
+    .recipe-meta { grid-template-columns: 1fr 1fr; }
+    .meta-cell:nth-child(2) { border-right: none; }
+    .meta-cell:nth-child(1), .meta-cell:nth-child(2) { border-bottom: 1px solid var(--rule); }
+
+    .recipe-body { grid-template-columns: 1fr; }
+    .ingredients { position: static; border-right: none; border-bottom: 1px solid var(--ink); }
+    .step { grid-template-columns: 44px 1fr; gap: var(--s-5); padding: var(--s-7) 0; }
+    .step-num { font-size: 32px; letter-spacing: -1.4px; }
+    .step-body { font-size: 16px; }
+
+    .footer-top { grid-template-columns: 1fr; gap: var(--s-8); margin-bottom: var(--s-10); }
+    .footer-cta { justify-self: start; padding: var(--s-5) var(--s-7); }
+    .footer-bottom { flex-direction: column; gap: var(--s-2); }
+  }
+  @media (max-width: 480px) {
+    :root { --pad-section: 40px 20px; --pad-block: 28px 20px; --pad-footer: 56px 20px 32px; }
+    .recipe-meta { grid-template-columns: 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+    .meta-cell:last-child { border-bottom: none; }
+    .ing-list li { grid-template-columns: 1fr; gap: var(--s-1); }
+    .ing-qty { text-align: left; }
+  }
+
+  @media print {
+    .nav, footer, .skip-link { display: none; }
+    .recipe-head { background: none; border-bottom: 1px solid #000; }
+    .ingredients { position: static; }
+    .recipe-body { grid-template-columns: 280px 1fr; }
+  }
+</style>
+
+<style>
+  main { border-bottom: 1px solid var(--ink); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
+  .stat { padding: var(--s-8) var(--s-10); border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-k { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-mute); margin-bottom: var(--s-3); }
+  .stat-v { font-family: var(--display); font-weight: var(--fw-display); font-size: 28px; letter-spacing: -1px; line-height: 1; }
+  .stat-v small { font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0; color: var(--ink-mute); margin-left: 6px; }
+
+  .sec { padding: var(--pad-block); border-bottom: 1px solid var(--ink); }
+  .sec-last { border-bottom: none; }
+  .sec-head { display: grid; grid-template-columns: 96px 1fr; gap: var(--s-7); margin-bottom: var(--s-10); max-width: 980px; }
+  .sec-num { font-family: var(--display); font-weight: var(--fw-display); font-size: 56px; letter-spacing: -2px; line-height: .85; color: var(--accent); }
+  .sec-title { font-family: var(--display); font-weight: var(--fw-display); font-size: clamp(32px, 4.4vw, 52px); letter-spacing: -1.5px; line-height: .95; margin-bottom: var(--s-5); }
+  .sec-lede { font-size: 17px; line-height: 1.55; color: var(--ink-dim); max-width: 680px; text-wrap: pretty; }
+  .sub { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 600; margin: var(--s-10) 0 var(--s-5); }
+  .body { font-size: 16px; line-height: 1.6; color: var(--ink-dim); max-width: 760px; margin: var(--s-5) 0; }
+  .body b { color: var(--ink); }
+  .fine { font-size: 13px; line-height: 1.55; color: var(--ink-mute); margin-top: var(--s-4); max-width: 640px; }
+
+  .model-frame { border: 1px solid var(--ink); height: min(680px, 78vh); min-height: 460px; background: #f3f3f1; }
+  .model-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-6); }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--s-7); border: 1px solid var(--ink); font-family: var(--mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; transition: background .15s, color .15s; }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn-solid { background: var(--ink); color: var(--bg); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
+
+  .facts { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--rule); }
+  .facts li { padding: var(--s-7); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.55; color: var(--ink-dim); }
+  .facts li b { display: block; color: var(--ink); font-size: 16px; margin-bottom: var(--s-2); }
+
+  .drawing, .sheet { border: 1px solid var(--ink); padding: var(--s-7); background: #fff; }
+  .drawing svg { display: block; width: 100%; max-width: 860px; height: auto; margin: 0 auto; }
+  .sheet svg { display: block; width: 100%; height: auto; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-11); align-items: start; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .tbl caption { text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 600; padding-bottom: var(--s-4); }
+  .tbl th, .tbl td { text-align: left; padding: 12px 10px 12px 0; border-top: 1px solid var(--rule); vertical-align: top; line-height: 1.45; }
+  .tbl tbody tr:first-child th, .tbl tbody tr:first-child td { border-top: 1px solid var(--ink); }
+  .tbl tbody th { font-weight: 600; width: 44%; }
+  .tbl td { color: var(--ink-dim); }
+  .tbl-cols thead th { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; border-top: none; padding-bottom: var(--s-3); white-space: nowrap; }
+  .tbl-cols tbody td:first-child { color: var(--ink); font-weight: 600; }
+  .tbl-cols { min-width: 620px; }
+  .tbl .m { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .tbl-cost td { font-family: var(--mono); font-size: 13px; white-space: nowrap; text-align: right; }
+  .tbl-cost tr.total th, .tbl-cost tr.total td { border-top: 2px solid var(--ink); font-weight: 700; color: var(--ink); }
+
+  .list { list-style: none; border-top: 1px solid var(--ink); }
+  .list li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.5; color: var(--ink-dim); }
+  .list.small li { font-size: 14px; }
+  .list a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .list a:hover { color: var(--accent); }
+  .steps { max-width: 860px; }
+  .steps .sub:first-child { margin-top: 0; }
+
+  @media (max-width: 1024px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .two { grid-template-columns: 1fr; gap: var(--s-9); }
+  }
+  @media (max-width: 768px) {
+    .sec-head { grid-template-columns: 1fr; gap: var(--s-4); margin-bottom: var(--s-8); }
+    .sec-num { font-size: 40px; }
+    .stat { padding: var(--s-6) var(--s-6); }
+    .stat-v { font-size: 22px; }
+    .drawing, .sheet { padding: var(--s-4); }
+    .model-frame { height: 72vh; min-height: 420px; }
+  }
+  @media print { .model-frame, .btn-row { display: none; } }
+  .screws { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--rule); }
+  .screws li { padding: var(--s-7); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: var(--s-2); }
+  .screw-fig { background: #f3f3f1; padding: var(--s-4); margin-bottom: var(--s-2); }
+  .screw-fig svg { display: block; width: 100%; height: auto; max-height: 200px; }
+  .screw-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); font-size: 16px; line-height: 1.35; }
+  .screw-n { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .sdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+  .screw-spec { font-family: var(--mono); font-size: 12.5px; color: var(--ink); line-height: 1.5; }
+  .screws p { font-size: 14px; line-height: 1.5; color: var(--ink-dim); }
+  .tools { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--s-8) var(--s-9); }
+  .tool-group h4 { font-size: 15px; font-weight: 700; padding-bottom: var(--s-2); border-bottom: 1px solid var(--ink); }
+  .tool-group ul { list-style: none; }
+  .tool-group li { font-size: 14px; line-height: 1.45; color: var(--ink-dim); padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .ttag { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; border: 1px solid var(--rule); padding: 1px 5px; margin-left: 6px; color: var(--ink-mute); white-space: nowrap; }
+  .ttag.buy { border-color: var(--accent); color: var(--accent); }
+</style>
+
+</head>
+<body>
+
+<a href="#build" class="skip-link">Skip to content</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-grid">
+    <a href="/" class="nav-logo">MK<span class="dot">.</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#index" class="nav-link"><span class="num">01</span>Index</a>
+      <a href="/#work" class="nav-link"><span class="num">02</span>Work</a>
+      <a href="/#shipped" class="nav-link"><span class="num">03</span>Shipped</a>
+      <a href="/#toolkit" class="nav-link"><span class="num">04</span>Toolkit</a>
+      <a href="/#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
+      <a href="/recipes/" class="nav-link"><span class="num">06</span>Recipes</a>
+    </div>
+    <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-burger-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div>
+    <div class="eyebrow"><span class="bar"></span>Workshop · Build plan</div>
+    <h1 class="page-title">Closet<span class="dot">.</span></h1>
+  </div>
+  <p class="page-lede">A redesign of a friend's sliding-door closet. Two rods for hanging clothes on the left, four shelves on the right, and a top shelf in the hidden space above the doors. Brackets on the studs hold everything, so there is no centre panel. 73-1/2 x 24 x 96 in inside.</p>
+</header>
+
+<main id="build">
+
+<div class="stats">
+  <div class="stat"><div class="stat-k">Inside</div><div class="stat-v">73-1/2 x 24 x 96<small>in</small></div></div>
+  <div class="stat"><div class="stat-k">Wood</div><div class="stat-v">6<small>pieces, 1 sheet</small></div></div>
+  <div class="stat"><div class="stat-k">Brackets</div><div class="stat-v">15<small>all on studs</small></div></div>
+  <div class="stat"><div class="stat-k">Cost</div><div class="stat-v">~$220 to $370<small>CAD</small></div></div>
+</div>
+
+<section class="sec" id="model">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <h2 class="sec-title">The 3D model</h2>
+      <p class="sec-lede">Drag to rotate, scroll or pinch to zoom, tap any part for its size. Turn on <b>Assembly steps</b> for an 8-step install walkthrough, or <b>Sliding panels</b> to see the closet closed.</p>
+    </div>
+  </div>
+  <div class="model-frame">
+    <iframe src="/closet/model.html?embed" title="Rotatable 3D model of the closet" loading="lazy"></iframe>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-solid" href="/closet/model.html">Open the full model →</a>
+    <a class="btn" href="/closet/model.html#pieces">Every wood piece →</a>
+    <a class="btn" href="/closet/model.html#hardware">Brackets and tools →</a>
+  </div>
+  <p class="fine">The full model adds every measurement, a page of every wood piece with the sheet layout, a brackets and tools page, and an inches or cm switch.</p>
+</section>
+
+<section class="sec" id="why">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <h2 class="sec-title">Why it's built this way</h2>
+      <p class="sec-lede">The closet had one shelf and one rod at 64 in, and a lot of empty wall. It holds mostly clothes, and the sliding panels stay as they are.</p>
+    </div>
+  </div>
+  <ul class="facts">
+    <li><b>One half at a time.</b> The two sliding panels are 38 in wide and overlap in the middle, so only half the closet opens at once. Each half gets one job: hanging on the left, shelves on the right.</li>
+    <li><b>Double hang.</b> Two rods, at about 82 and 40 in, double the hanging space. Each holds clothes up to 37 in long on the hanger.</li>
+    <li><b>Shelves for folded clothes.</b> Four 14 in deep shelves, 16 in apart. The bottom one is for shoes.</li>
+    <li><b>The space above the doors.</b> The doors stop at 81 in but the ceiling is at 96. A 12 in deep shelf at 84 in uses that space for light bins.</li>
+    <li><b>No centre panel.</b> Shelf and rod brackets on two studs hold both rods and the top shelf. The upper ones carry the shelf and the rod together. The right shelves sit on L brackets.</li>
+    <li><b>Everything goes into studs.</b> Loaded shelves and rods pull on the wall. Drywall anchors alone are not enough.</li>
+    <li><b>Room to fit.</b> Each shelf is 1/4 in shorter than its space. Walls are rarely square, so the shelves drop in without a fight.</li>
+    <li><b>Fits in a CR-V.</b> The store rips the sheet and cuts each strip at 48 in. The longest finished piece is 36-5/8 in.</li>
+  </ul>
+</section>
+
+<section class="sec" id="drawing">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <h2 class="sec-title">Drawn to scale</h2>
+      <p class="sec-lede">Front view with the sliding panels off, and a section through the hanging side. Dashed red boxes are the space for clothes and bins. In the section, the right shelves are behind and show dashed.</p>
+    </div>
+  </div>
+  <figure class="drawing"><svg viewBox="0 0 760 556" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Front view with the sliding panels off, and a section through the hanging side, both to scale" font-size="13"><defs><marker id="cl-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0a0a0a"></path></marker></defs><path d="M112.9 40L112.9 462.4" stroke="#c4c4c4" stroke-width="1" fill="none" stroke-dasharray="2 4"/><path d="M183.3 40L183.3 462.4" stroke="#c4c4c4" stroke-width="1" fill="none" stroke-dasharray="2 4"/><path d="M253.7 40L253.7 462.4" stroke="#c4c4c4" stroke-width="1" fill="none" stroke-dasharray="2 4"/><path d="M324.1 40L324.1 462.4" stroke="#c4c4c4" stroke-width="1" fill="none" stroke-dasharray="2 4"/><path d="M394.5 40L394.5 462.4" stroke="#c4c4c4" stroke-width="1" fill="none" stroke-dasharray="2 4"/><path d="M92 106L415.4 106" stroke="#8f8f8f" stroke-width="1" fill="none" stroke-dasharray="6 4"/><rect x="98.6" y="101.6" width="149.6" height="162.8" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4" fill-opacity="0.06" rx="4"/><text x="173.4" y="187" text-anchor="middle" font-size="11.5" fill="#0a0a0a">Shirts, jackets</text><rect x="98.6" y="286.4" width="149.6" height="162.8" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4" fill-opacity="0.06" rx="4"/><text x="173.4" y="371.8" text-anchor="middle" font-size="11.5" fill="#0a0a0a">Pants</text><rect x="98.6" y="45.5" width="70.4" height="44" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="4 3" fill-opacity="0.06" rx="3"/><rect x="177.8" y="45.5" width="70.4" height="44" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="4 3" fill-opacity="0.06" rx="3"/><rect x="259.2" y="45.5" width="70.4" height="44" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="4 3" fill-opacity="0.06" rx="3"/><rect x="338.4" y="45.5" width="70.4" height="44" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="4 3" fill-opacity="0.06" rx="3"/><text x="213" y="71.5" text-anchor="middle" font-size="11.5" fill="#0a0a0a">Bins</text><rect x="92.55" y="89.5" width="322.3" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="260.3" y="177.5" width="154" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="260.3" y="247.9" width="154" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="260.3" y="318.3" width="154" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="260.3" y="388.7" width="154" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="321.35" y="180.8" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="391.75" y="180.8" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="321.35" y="251.2" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="391.75" y="251.2" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="321.35" y="321.6" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="391.75" y="321.6" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="321.35" y="392" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="391.75" y="392" width="5.5" height="35.2" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="180.55" y="92.8" width="5.5" height="26.4" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="321.35" y="92.8" width="5.5" height="26.4" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="391.75" y="92.8" width="5.5" height="26.4" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="110.7" y="92.8" width="4.4" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="110.7" y="277.6" width="4.4" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="251.5" y="92.8" width="4.4" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="251.5" y="277.6" width="4.4" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="94.2" y="98.71" width="165" height="5.77" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.75"/><rect x="94.2" y="283.51" width="165" height="5.77" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.75"/><rect x="92" y="40" width="323.4" height="422.4" fill="none" stroke="#0a0a0a" stroke-width="1.5"/><text x="423.4" y="93.8" text-anchor="start" font-size="11.5" fill="#0a0a0a">84 top shelf</text><text x="423.4" y="115" text-anchor="start" font-size="11.5" fill="#767676">81 door top</text><text x="423.4" y="184.8" text-anchor="start" font-size="11.5" fill="#0a0a0a">64 shelf</text><text x="423.4" y="255.2" text-anchor="start" font-size="11.5" fill="#0a0a0a">48 shelf</text><text x="423.4" y="325.6" text-anchor="start" font-size="11.5" fill="#0a0a0a">32 shelf</text><text x="423.4" y="396" text-anchor="start" font-size="11.5" fill="#0a0a0a">16 shelf</text><text x="86" y="105.6" text-anchor="end" font-size="11.5" fill="#0a0a0a">82 rod</text><text x="86" y="290.4" text-anchor="end" font-size="11.5" fill="#0a0a0a">40 rod</text><path d="M34 42L34 460.4" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cl-arrow)" marker-end="url(#cl-arrow)"/><text x="28" y="255.2" text-anchor="end" font-size="13" fill="#0a0a0a">96</text><path d="M94 482.4L413.4 482.4" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cl-arrow)" marker-end="url(#cl-arrow)"/><text x="253.7" y="500.4" text-anchor="middle" font-size="13" fill="#0a0a0a">73-1/2 in inside</text><text x="253.7" y="518.4" text-anchor="middle" font-size="11.5" fill="#767676">Dotted lines: studs, 16 in apart (assumed)</text><text x="253.7" y="542.4" text-anchor="middle" font-size="13" font-weight="600" fill="#0a0a0a">FRONT, PANELS OFF</text><path d="M540 40L540 462.4" stroke="#0a0a0a" stroke-width="2" fill="none"/><path d="M540 462.4L663.2 462.4" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><path d="M540 40L645.6 40" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><rect x="645.6" y="40" width="15.4" height="66" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="633.5" y="106" width="5.5" height="355.3" fill="none" stroke="#8f8f8f" stroke-width="1.25"/><rect x="640.1" y="106" width="5.5" height="355.3" fill="none" stroke="#8f8f8f" stroke-width="1.25"/><rect x="540" y="177.5" width="61.6" height="3.3" fill="none" stroke="#b0b0b0" stroke-width="1" stroke-dasharray="3 3"/><rect x="540" y="247.9" width="61.6" height="3.3" fill="none" stroke="#b0b0b0" stroke-width="1" stroke-dasharray="3 3"/><rect x="540" y="318.3" width="61.6" height="3.3" fill="none" stroke="#b0b0b0" stroke-width="1" stroke-dasharray="3 3"/><rect x="540" y="388.7" width="61.6" height="3.3" fill="none" stroke="#b0b0b0" stroke-width="1" stroke-dasharray="3 3"/><rect x="548.8" y="101.6" width="79.2" height="162.8" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4" fill-opacity="0.06" rx="4"/><rect x="548.8" y="286.4" width="79.2" height="162.8" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="5 4" fill-opacity="0.06" rx="4"/><rect x="542.2" y="45.5" width="48.4" height="44" fill="#E63946" stroke="#E63946" stroke-width="1.25" stroke-dasharray="4 3" fill-opacity="0.06" rx="3"/><rect x="540" y="89.5" width="52.8" height="3.3" fill="#ebebeb" stroke="#8f8f8f" stroke-width="1.25"/><rect x="540" y="92.8" width="1.32" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="540" y="92.8" width="44.88" height="1.32" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><path d="M541.32 132.4L581.36 94.12" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><path d="M583.56 94.12V106H593.24V99.84" fill="none" stroke="#0a0a0a" stroke-width="1.25"/><circle cx="588.4" cy="101.6" r="2.89" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.75"/><rect x="540" y="277.6" width="1.32" height="41.8" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><rect x="540" y="277.6" width="44.88" height="1.32" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.75"/><path d="M541.32 317.2L581.36 278.92" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><path d="M583.56 278.92V290.8H593.24V284.64" fill="none" stroke="#0a0a0a" stroke-width="1.25"/><circle cx="588.4" cy="286.4" r="2.89" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.75"/><path d="M541 28L591.8 28" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cl-arrow)" marker-end="url(#cl-arrow)"/><text x="566.4" y="22" text-anchor="middle" font-size="11.5" fill="#0a0a0a">12</text><path d="M541 270.56L587.4 270.56" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cl-arrow)" marker-end="url(#cl-arrow)"/><text x="591.4" y="274.56" text-anchor="start" font-size="11.5" fill="#0a0a0a">11</text><path d="M542 482.4L643.6 482.4" stroke="#0a0a0a" stroke-width="1" fill="none" marker-start="url(#cl-arrow)" marker-end="url(#cl-arrow)"/><text x="592.8" y="500.4" text-anchor="middle" font-size="13" fill="#0a0a0a">24 in deep</text><text x="669.2" y="66.4" text-anchor="start" font-size="11.5" fill="#767676">Wall above</text><text x="669.2" y="80.4" text-anchor="start" font-size="11.5" fill="#767676">the doors</text><text x="656" y="330.4" text-anchor="start" font-size="11.5" fill="#767676">Sliding</text><text x="656" y="344.4" text-anchor="start" font-size="11.5" fill="#767676">panels</text><text x="601.6" y="542.4" text-anchor="middle" font-size="13" font-weight="600" fill="#0a0a0a">SECTION, LEFT SIDE</text></svg></figure>
+</section>
+
+<section class="sec" id="dimensions">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <h2 class="sec-title">Dimensions</h2>
+      <p class="sec-lede">Shelf heights are to the bottom of each shelf. Rod heights are to the centre of the rod.</p>
+    </div>
+  </div>
+  <div class="two">
+    <table class="tbl">
+      <caption>Heights from the floor</caption>
+      <tbody>
+        <tr><th>Top shelf</th><td>84 to 84-3/4 in</td></tr>
+        <tr><th>Upper rod</th><td>about 82 in, set by the bracket hook</td></tr>
+        <tr><th>Top of the door opening</th><td>81 in</td></tr>
+        <tr><th>Right shelves</th><td>64, 48, 32 and 16 in</td></tr>
+        <tr><th>Lower rod</th><td>40 in</td></tr>
+        <tr><th>Ceiling</th><td>96 in</td></tr>
+      </tbody>
+    </table>
+    <table class="tbl">
+      <caption>Space</caption>
+      <tbody>
+        <tr><th>Between the rods</th><td>42 in</td></tr>
+        <tr><th>Longest hanging clothes</th><td>37 in, on the hanger</td></tr>
+        <tr><th>Between the right shelves</th><td>15-1/4 in clear</td></tr>
+        <tr><th>Above the top shelf</th><td>11-1/4 in</td></tr>
+        <tr><th>Hanging width</th><td>36-3/4 in, left wall to the centre bracket</td></tr>
+        <tr><th>Rods from the back wall</th><td>11 in, the middle of the clear depth</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="measure">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <h2 class="sec-title">Measure first</h2>
+      <p class="sec-lede">The plan uses a few numbers that only the closet can confirm. Check these before buying or cutting.</p>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+  <table class="tbl tbl-cols">
+    <thead><tr><th>Check</th><th>Plan uses</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Width at 16, 48, 64 and 84 in</td><td class="m">73-1/2 in</td><td>Shelf lengths. Use the smallest number.</td></tr>
+      <tr><td>Stud nearest the middle</td><td class="m">36-3/4 in from the left wall</td><td>Both centre brackets go on it. The shelf lengths move with it.</td></tr>
+      <tr><td>Other studs</td><td class="m">16 in apart</td><td>Every bracket needs one, including one near the left wall for the rods.</td></tr>
+      <tr><td>Clear depth, back wall to the inner panel</td><td class="m">about 21 in</td><td>The rods go at the middle of it, so hangers clear the panels.</td></tr>
+      <tr><td>Hook drop on the shelf and rod bracket</td><td class="m">about 2 in</td><td>Sets the upper rod height below the top shelf.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="fine">If the stud nearest the middle is more than 3 in off centre, the two sides become different widths. The plan still works, with new lengths.</p>
+</section>
+
+<section class="sec" id="cuts">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <h2 class="sec-title">Cut list</h2>
+      <p class="sec-lede">6 pieces from one sheet of 3/4 in plywood. Each shelf is 1/4 in shorter than its space so it drops in without a fight.</p>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+  <table class="tbl tbl-cols">
+    <thead><tr><th>Part</th><th>Qty</th><th>Material</th><th>Size (in)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Top shelf halves</td><td class="m">2</td><td>3/4 plywood</td><td class="m">3/4 x 12 x 36-5/8</td><td>Meet on the centre bracket, joined with 2 mending plates</td></tr>
+      <tr><td>Right shelves</td><td class="m">4</td><td>3/4 plywood</td><td class="m">3/4 x 14 x 35</td><td>Start 1-1/2 in right of the centre stud, stop 1/4 in short of the wall</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3 class="sub">Sheet layout</h3>
+  <p class="body">Ask the store to rip the sheet at 14-1/2, 14-1/2 and 12-1/2 in, then cut each strip at 48 in so it fits in the car. Trim to the final sizes at the club.</p>
+  <figure class="sheet"><svg viewBox="0 0 668.8 356.4" style="max-width:760px;margin:0 auto" role="img" aria-label="Cutting layout for the plywood sheet" font-family="Inter, system-ui, sans-serif"><text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="11" fill="#767676">3/4 in plywood, 4 x 8 ft</text><rect x="8" y="22" width="652.8" height="326.4" fill="#fafafa" stroke="#767676" stroke-width="1" stroke-dasharray="5 4"/><rect x="8" y="22" width="238" height="95.2" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="127" y="67.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Right shelf</text><text x="127" y="81.6" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">14 x 35"</text><rect x="334.4" y="22" width="238" height="95.2" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="453.4" y="67.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Right shelf</text><text x="453.4" y="81.6" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">14 x 35"</text><rect x="8" y="118.05" width="238" height="95.2" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="127" y="163.65" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Right shelf</text><text x="127" y="177.65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">14 x 35"</text><rect x="334.4" y="118.05" width="238" height="95.2" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="453.4" y="163.65" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Right shelf</text><text x="453.4" y="177.65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">14 x 35"</text><rect x="8" y="214.1" width="249.05" height="81.6" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="132.52" y="252.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Top shelf half</text><text x="132.52" y="266.9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">12 x 36-5/8"</text><rect x="334.4" y="214.1" width="249.05" height="81.6" fill="#ebebeb" stroke="#0a0a0a" stroke-width="1"/><text x="458.92" y="252.9" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0a0a0a">Top shelf half</text><text x="458.92" y="266.9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#404040">12 x 36-5/8"</text><path d="M334.4 18L334.4 352.4" stroke="#E63946" stroke-width="1" fill="none" stroke-dasharray="5 4"/><text x="340.4" y="340.4" font-family="JetBrains Mono, monospace" font-size="10" fill="#E63946">store cut, 48 in</text></svg></figure>
+</section>
+
+<section class="sec" id="shopping">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div>
+      <h2 class="sec-title">Shopping list and cost</h2>
+      <p class="sec-lede">Plywood from Peacock Lumber (club discount) or a big box store. Brackets, rods and screws from Home Depot or Rona.</p>
+    </div>
+  </div>
+  <div class="two">
+    <div>
+      <table class="tbl">
+        <caption>Materials</caption>
+        <tbody>
+          <tr><th>3/4 in plywood, paint-grade or birch</th><td>1 sheet, 4 x 8</td></tr>
+          <tr><th>Iron-on edge banding, 3/4 in</th><td>25 ft, optional</td></tr>
+        </tbody>
+      </table>
+      <h3 class="sub">Hardware</h3>
+      <ul class="list">
+        <li>4 Everbilt Regular Duty Shelf and Rod Brackets, white</li>
+        <li>8 L shelf brackets, 12 in arm, rated 50 lb or more</li>
+        <li>3 L shelf brackets, 8 in arm</li>
+        <li>2 steel closet rods, 1-5/16 in, 48 in long</li>
+        <li>2 flat mending plates, about 1 x 6 in</li>
+        <li>34 #10 x 2-1/2 in wood screws for the studs (a box of 50)</li>
+        <li>About 30 #8 x 5/8 in pan-head screws, brackets into shelves (a box of 50)</li>
+        <li>Spackle for the old holes. Primer and paint, or wipe-on poly, optional</li>
+      </ul>
+    </div>
+    <div>
+      <table class="tbl tbl-cost">
+        <caption>Rough cost, CAD before tax</caption>
+        <tbody>
+          <tr><th>Plywood sheet</th><td>$75 to $110</td></tr>
+          <tr><th>Shelf and rod brackets</th><td>$24 to $36</td></tr>
+          <tr><th>L brackets</th><td>$49 to $90</td></tr>
+          <tr><th>Rods</th><td>$24 to $40</td></tr>
+          <tr><th>Plates and screws</th><td>$19 to $33</td></tr>
+          <tr><th>Banding, spackle, finish</th><td>$30 to $60</td></tr>
+          <tr class="total"><th>Total</th><td>~$220 to $370</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">Typical prices, not quotes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="hardware">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div>
+      <h2 class="sec-title">Brackets and tools</h2>
+      <p class="sec-lede">15 brackets, 2 rods and 2 plates. Each drawing is a side view, to scale. In the 3D model, tap a bracket for its size and job.</p>
+    </div>
+  </div>
+  <ul class="screws"><li><div class="screw-fig"><svg viewBox="0 0 150 112" role="img" aria-label="Side view: shelf and rod bracket holding the top shelf and the rod"><rect x="4" y="4" width="10" height="104" fill="#ebebeb" stroke="none" stroke-width="0"/><path d="M14 4L14 108" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><rect x="14" y="16" width="84" height="5.25" fill="#DCC7A2" stroke="#8A7350" stroke-width="0.6"/><rect x="14" y="21.25" width="2.1" height="66.5" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><rect x="14" y="21.25" width="71.4" height="2.1" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><path d="M16.1 84.25L79.8 23.35" stroke="#0a0a0a" stroke-width="1.6" fill="none"/><path d="M83.3 23.35V42.25H98.7V32.45" fill="none" stroke="#0a0a0a" stroke-width="1.6"/><circle cx="91" cy="35.25" r="4.59" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.8"/><text x="42" y="12" text-anchor="start" font-size="7.5" fill="#0a0a0a">Top shelf</text><text x="102.1" y="38.25" text-anchor="start" font-size="7.5" fill="#0a0a0a">Rod</text><text x="18" y="106" text-anchor="start" font-size="7.5" fill="#767676">Back wall, into a stud</text></svg></div><div class="screw-head"><b>Shelf and rod brackets</b><span class="screw-n">4x</span></div><p class="screw-spec">Everbilt Regular Duty Shelf and Rod Bracket, white. 12-3/4 in deep, for 10 to 14 in shelves, 500 lb per pair into studs</p><p>2 on the centre stud and 2 on the stud nearest the left wall. The upper pair holds the top shelf and the upper rod. The lower pair holds the lower rod only.</p><p>Upper pair: top arm at 84 in. Lower pair: hook centre at 40 in. 3 #10 x 2-1/2 in screws each, into the stud. Plumb before the last screw.</p></li><li><div class="screw-fig"><svg viewBox="0 0 112 104" role="img" aria-label="Side view: L bracket under a shelf"><rect x="4" y="4" width="10" height="96" fill="#ebebeb" stroke="none" stroke-width="0"/><path d="M14 4L14 100" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><rect x="14" y="16" width="86.8" height="4.65" fill="#DCC7A2" stroke="#8A7350" stroke-width="0.6"/><rect x="14" y="20.65" width="1.24" height="49.6" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><rect x="14" y="20.65" width="74.4" height="1.24" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><path d="M15.24 60.33L73.52 21.89" stroke="#0a0a0a" stroke-width="1.6" fill="none"/><text x="57.4" y="12" text-anchor="middle" font-size="7.5" fill="#0a0a0a">Right shelf</text><text x="54.92" y="56.36" text-anchor="start" font-size="7.5" fill="#767676">12 in arm</text></svg></div><div class="screw-head"><b>L brackets, right side</b><span class="screw-n">8x</span></div><p class="screw-spec">Steel shelf brackets, 12 in arm, rated 50 lb or more each</p><p>2 under each right shelf (64, 48, 32 and 16 in), on 2 different studs.</p><p>2 #10 x 2-1/2 in screws into the stud, 2 #8 x 5/8 in pan-head screws up into the shelf. Level across each pair.</p></li><li><div class="screw-fig"><svg viewBox="0 0 122 104" role="img" aria-label="Side view: L bracket under a shelf"><rect x="4" y="4" width="10" height="96" fill="#ebebeb" stroke="none" stroke-width="0"/><path d="M14 4L14 100" stroke="#0a0a0a" stroke-width="1.25" fill="none"/><rect x="14" y="16" width="96" height="6" fill="#DCC7A2" stroke="#8A7350" stroke-width="0.6"/><rect x="14" y="22" width="1.6" height="48" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><rect x="14" y="22" width="64" height="1.6" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><path d="M15.6 60.4L65.2 23.6" stroke="#0a0a0a" stroke-width="1.6" fill="none"/><text x="62" y="12" text-anchor="middle" font-size="7.5" fill="#0a0a0a">Top shelf</text><text x="49.2" y="56.56" text-anchor="start" font-size="7.5" fill="#767676">8 in arm</text></svg></div><div class="screw-head"><b>L brackets, top shelf</b><span class="screw-n">3x</span></div><p class="screw-spec">Steel shelf brackets, 8 in arm</p><p>Under the top shelf, on the studs between the shelf and rod brackets.</p><p>Keep them short. A 12 in arm can touch the hanger hooks on the upper rod.</p></li><li><div class="screw-fig"><svg viewBox="0 0 166 60" role="img" aria-label="Rod resting in the hooks of 2 shelf and rod brackets"><rect x="8" y="30" width="150" height="8" fill="#b9c0c4" stroke="#0a0a0a" stroke-width="0.8" rx="2"/><path d="M20 26V42H32V36" fill="none" stroke="#0a0a0a" stroke-width="1.6"/><path d="M136 26V42H148V36" fill="none" stroke="#0a0a0a" stroke-width="1.6"/><text x="83" y="20" text-anchor="middle" font-size="7.5" fill="#0a0a0a">1-5/16 in steel, about 37-1/2 in long</text><text x="26" y="54" text-anchor="middle" font-size="7.5" fill="#767676">left hook</text><text x="142" y="54" text-anchor="middle" font-size="7.5" fill="#767676">centre hook</text></svg></div><div class="screw-head"><b>Closet rods</b><span class="screw-n">2x</span></div><p class="screw-spec">Steel closet rods, 1-5/16 in diameter, 48 in, cut to fit</p><p>Each rests in the hooks of 2 shelf and rod brackets.</p><p>Cut each to about 37-1/2 in: 1/2 in off the left wall to 1-1/4 in past the centre hook. File the cut end.</p></li><li><div class="screw-fig"><svg viewBox="0 0 166 62" role="img" aria-label="Mending plate across the joint of the top shelf"><rect x="6" y="28" width="76" height="8" fill="#DCC7A2" stroke="#8A7350" stroke-width="0.6"/><rect x="84" y="28" width="76" height="8" fill="#DCC7A2" stroke="#8A7350" stroke-width="0.6"/><rect x="53" y="24" width="60" height="4" fill="#ffffff" stroke="#0a0a0a" stroke-width="0.8"/><circle cx="58" cy="26" r="1.2" fill="#0a0a0a"/><circle cx="70" cy="26" r="1.2" fill="#0a0a0a"/><circle cx="96" cy="26" r="1.2" fill="#0a0a0a"/><circle cx="108" cy="26" r="1.2" fill="#0a0a0a"/><path d="M83 40L83 50" stroke="#767676" stroke-width="0.8" fill="none"/><text x="83" y="58" text-anchor="middle" font-size="7.5" fill="#767676">joint, over the centre bracket</text><text x="83" y="18" text-anchor="middle" font-size="7.5" fill="#0a0a0a">Plate on top of the shelf</text></svg></div><div class="screw-head"><b>Flat mending plates</b><span class="screw-n">2x</span></div><p class="screw-spec">Flat steel mending plates, about 1 x 6 in, with their short screws</p><p>On top of the top shelf, across the joint of the 2 halves.</p><p>1 near the front and 1 near the back. The joint sits on the centre shelf and rod bracket.</p></li></ul>
+  <h3 class="sub">Tools, by job</h3>
+  <p class="fine" style="margin:0 0 var(--s-6)"><span class="ttag" style="margin-left:0">club</span> the club shop has it &nbsp;·&nbsp; <span class="ttag buy" style="margin-left:0">buy</span> worth getting your own</p>
+  <div class="tools"><div class="tool-group"><h4>Measure and mark</h4><ul><li>Tape measure</li><li>24 in level, or a laser level <span class="ttag buy">buy</span></li><li>Stud finder <span class="ttag buy">buy</span></li><li>Speed square</li><li>Pencil</li></ul></div><div class="tool-group"><h4>Cut</h4><ul><li>Table saw <span class="ttag">club</span></li><li>Hacksaw or pipe cutter, for the rods</li><li>Metal file</li></ul></div><div class="tool-group"><h4>Drill and drive</h4><ul><li>Drill/driver</li><li>1/8" bit, for pilot holes</li><li>#2 square and Phillips bits</li><li>Stubby driver, for screws under the shelves</li></ul></div><div class="tool-group"><h4>Edges, optional</h4><ul><li>Household iron and a banding trimmer</li><li>Sanding block</li></ul></div><div class="tool-group"><h4>Install</h4><ul><li>Step ladder</li><li>A helper, for the top shelf</li></ul></div><div class="tool-group"><h4>Safety</h4><ul><li>Safety glasses</li><li>Dust mask when cutting</li></ul></div></div>
+</section>
+
+<section class="sec" id="steps">
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <div>
+      <h2 class="sec-title">Build steps</h2>
+      <p class="sec-lede">One short session at the club, then an afternoon at the closet.</p>
+    </div>
+  </div>
+  <div class="steps">
+    <h3 class="sub">At the club: the wood</h3>
+    <div class="step"><div class="step-num">01</div><div><div class="step-title">Cut the shelves</div><p class="step-body">Trim the strips to 14, 14 and 12 in on the table saw. Cut 4 right shelves at 35 in and 2 top shelf halves at 36-5/8 in. Check these against your own measurements first.</p></div></div>
+    <div class="step"><div class="step-num">02</div><div><div class="step-title">Edges and finish</div><p class="step-body">Optional. Iron banding onto the front edges and trim it. Sand to 180, then paint or wipe on poly. Let it dry before the install.</p></div></div>
+    <h3 class="sub">At the closet: the install</h3>
+    <div class="step"><div class="step-num">03</div><div><div class="step-title">Clear it out and mark</div><p class="step-body">Lift the 2 sliding panels up and out of the track. Take out the old shelf and rod and fill the holes. Find and mark the studs, then mark 84 in for the top shelf and 64, 48, 32 and 16 in on the right with a level.</p></div></div>
+    <div class="step"><div class="step-num">04</div><div><div class="step-title">Shelf and rod brackets</div><p class="step-body">2 on the stud nearest the middle and 2 on the stud nearest the left wall. Upper pair with the top arm at 84 in, lower pair with the hook centre at 40 in. 3 #10 x 2-1/2" screws each, plumb before the last one.</p></div></div>
+    <div class="step"><div class="step-num">05</div><div><div class="step-title">Top shelf brackets</div><p class="step-body">3 L brackets with 8 in arms: 1 between the upper shelf and rod brackets and 2 on the right. Lay the level across all the arms before you tighten.</p></div></div>
+    <div class="step"><div class="step-num">06</div><div><div class="step-title">Top shelf</div><p class="step-body">Set the 2 halves on the brackets with the joint on the centre bracket. Screw up through the bracket holes, then join the halves on top with the 2 mending plates.</p></div></div>
+    <div class="step"><div class="step-num">07</div><div><div class="step-title">Right side brackets</div><p class="step-body">2 L brackets with 12 in arms under each shelf height, on 2 different studs. Start at 64 in and work down, checking each pair with the level.</p></div></div>
+    <div class="step"><div class="step-num">08</div><div><div class="step-title">Right shelves</div><p class="step-body">Each shelf starts 1-1/2 in right of the centre stud, so the one at 32 in clears the lower bracket. Screw up through the bracket holes with #8 x 5/8" pan-head screws.</p></div></div>
+    <div class="step"><div class="step-num">09</div><div><div class="step-title">Rods</div><p class="step-body">Cut each rod to about 37-1/2 in, from 1/2 in off the left wall to 1-1/4 in past the centre hook. File the cut end and set each rod in its 2 hooks.</p></div></div>
+    <div class="step"><div class="step-num">10</div><div><div class="step-title">Panels back on</div><p class="step-body">Set the sliding panels back on the track and check they slide freely. Load heavy items low. The top shelf is for light bins only.</p></div></div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Before cutting</div>
+    <p>Find the stud nearest the middle of the back wall first. The shelf lengths and the top shelf joint depend on where it is.</p>
+    <p>Keep the club's shop rules: the riving knife on, the blade just above the wood, a push stick, and stand off to the side of the table saw.</p>
+  </div>
+</section>
+
+<section class="sec sec-last" id="sources">
+  <h2 class="sub">Sources</h2>
+  <ul class="list small">
+    <li>Closet measurements, taken on site</li>
+    <li><a href="https://homedepot.ca/product/everbilt-10-3-4-inch-shelf-and-rod-bracket-in-white/1000676076" target="_blank" rel="noopener">Everbilt Regular Duty Shelf and Rod Bracket, Home Depot Canada</a></li>
+    <li><a href="https://www.autoroamer.com/posts/honda-crv-cargo-dimensions-for-sleeping.html" target="_blank" rel="noopener">Honda CR-V cargo floor, owner measurements</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-label">§ Workshop · Closet</div>
+        <h3 class="footer-hello">Build<span class="dot">.</span></h3>
+      </div>
+      <a href="/" class="footer-cta">← Back to portfolio</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mazin Kanuga</span>
+      <span>Marketing · Crypto · Burgers</span>
+      <span>Toronto, CA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('nav');
+    var burger = document.getElementById('nav-burger');
+    window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+    var close = function () { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); };
+    burger.addEventListener('click', function () { var open = nav.classList.toggle('is-open'); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+    nav.querySelectorAll('.nav-link, .nav-cta').forEach(function (a) { a.addEventListener('click', close); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
+  })();
+</script>
+
+</body>
+</html>
