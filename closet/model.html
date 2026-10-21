@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Closet 3D Model · Mazin Kanuga</title>
-<meta name="description" content="Rotatable 3D model of a closet redesign for a friend: four shelves, double rods and a top shelf over the doors, all on brackets. Every measurement, an install walkthrough, a page of every wood piece and a brackets and tools list.">
+<meta name="description" content="Rotatable 3D model of a closet redesign for a friend: four melamine shelves on rails, double hang and a top shelf over the doors. Every measurement, an install walkthrough, a page of every shelf and a brackets and tools list.">
 <meta name="author" content="Mazin Kanuga">
 <link rel="canonical" href="https://mazinkanuga.ca/closet/model.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='62' font-family='Archivo,Arial,sans-serif' font-size='52' font-weight='900' fill='%23fff' text-anchor='middle'%3EMK%3C/text%3E%3Ccircle cx='86' cy='66' r='6' fill='%23E63946'/%3E%3C/svg%3E">
@@ -151,12 +151,12 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     <div>
       <a class="back" href="/closet/">← The build write-up</a>
       <h1>Closet</h1>
-      <p class="sub">73-1/2 x 24 x 96 in inside · 4 shelves on the left · double rods on the right · top shelf over the doors · no centre panel</p>
+      <p class="sub">73-1/2 x 24 x 96 in inside · 4 melamine shelves on rails, left · double hang, right · top shelf over the doors</p>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
     <div class="seg" role="group" aria-label="Page">
       <button type="button" id="pg-model" aria-pressed="true">3D model</button>
-      <button type="button" id="pg-parts" aria-pressed="false">Wood pieces</button>
+      <button type="button" id="pg-parts" aria-pressed="false">Shelves</button>
       <button type="button" id="pg-hw" aria-pressed="false">Brackets &amp; tools</button>
     </div>
     <div class="seg" role="group" aria-label="Units">
@@ -217,71 +217,91 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   // x from the left wall, y from the floor, z from the back wall (front is +z). Drawn centred on the closet.
   var IN = 25.4;
   function M(v) { return v * IN; }
-  var CW = 73.5, CD = 24, CH = 96, OPEN = 81, T = 0.75;
-  var CS = 36.75, RS = CS + 32;                 // centre stud and the stud nearest the right wall (studs 16 in apart)
-  var SL = 0.25, SR = CS - 1.5, SHL = SR - SL, SHD = 14;
-  var TOPY = 84, TOPD = 12, TOPL = CS - 0.125;
+  var CW = 73.5, CD = 24, CH = 96, OPEN = 81, T = 0.625;
+  var CS = 33, RS = 65, LST = 17, MST = 49;          // studs found at 17 and 33 in; 49 and 65 assumed (16 in apart)
+  var SL = 0.25, SR = 33.25, SHL = SR - SL, SHD = 11.75;
+  var TOPY = 84, TOPD = 11.75, TOPLL = CS - 0.25, TOPLR = CW - 0.25 - CS;
   var SHELVES = [64, 48, 32, 16];
   var ROD_UP = 82, ROD_LO = 40, RODZ = 11, ROD0 = CS - 1.25, ROD1 = CW - 0.5, HANG = 37;
+  var DH0 = CS + 2, DH1 = CW - 3, RAIL0 = 5, RAIL1 = 73;
   var DOORZ = 21.25;
   function X(x) { return (x - CW / 2) * IN; }
   function Y(y) { return y * IN; }
   function Z(z) { return (z - CD / 2) * IN; }
   var APPS = [
     { id: "hu", name: "Hanging, upper rod", short: "Shirts, jackets", box: [[CS + 1.25, CW - 1.5], [ROD_UP - HANG, ROD_UP], [2, 20]], note: "Up to 37 in long on the hanger" },
-    { id: "hl", name: "Hanging, lower rod", short: "Pants", box: [[CS + 1.25, CW - 1.5], [ROD_LO - HANG, ROD_LO], [2, 20]], note: "Up to 37 in long on the hanger" },
-    { id: "bins", name: "Bins on the top shelf", short: "Bins", boxes: [[1.5, 17.5], [19.5, 35.5], [38, 54], [56, 72]], y: [TOPY + T, TOPY + T + 10], z: [0.5, 11.5], note: "11 deep x 10 tall at most" }
+    { id: "hl", name: "Hanging, lower rod", short: "Pants", box: [[DH0, DH1], [ROD_LO - HANG, ROD_LO], [2, 20]], note: "Up to 37 in long on the hanger" },
+    { id: "bins", name: "Bins on the top shelf", short: "Bins", boxes: [[1, 16], [17, 32], [35, 52], [54, 71]], y: [TOPY + T, TOPY + T + 10], z: [0.5, 11], note: "About 15 x 10-1/2 x 10 in each. Light items only" }
   ];
 
   // ---------- hardware ----------
   var HW = {
-    srb: { n: 4, title: "Shelf and rod brackets", short: "Everbilt Regular Duty, white",
+    rails: { n: 2, title: "Vertical rails", short: "68 in, on the studs at 17 and 33 in",
+      spec: "Everbilt vertical rails (standards), 68 in. Check the package: 50 lb or more per shelf",
+      where: "1 on each stud, from about " + RAIL0 + " to " + RAIL1 + " in from the floor",
+      how: function () { return "#10 x 2-1/2 in screws into the stud at every hole. Both bottoms at the same height, each rail plumb"; } },
+    rb: { n: 8, title: "Rail brackets", short: "8 in, same brand as the rails",
+      spec: "Shelf brackets made for the same rails, 8 in",
+      where: "2 under each side shelf, 1 on each rail, at 64, 48, 32 and 16 in",
+      how: function () { return "Clip each pair into the same slot height. If the bracket has holes, #8 x 1/2 in pan-head screws up into the shelf"; } },
+    srb: { n: 2, title: "Shelf and rod brackets", short: "Everbilt Regular Duty, white",
       spec: "Everbilt Regular Duty Shelf and Rod Bracket, white. 12-3/4 in deep, for 10 to 14 in shelves, 500 lb per pair into studs",
-      where: "2 on the centre stud and 2 on the stud nearest the right wall. The upper pair holds the top shelf and the upper rod. The lower pair holds the lower rod only",
-      how: function () { return "Upper pair: top arm at " + f(M(TOPY)) + ". Lower pair: hook centre at " + f(M(ROD_LO)) + ". 3 #10 x 2-1/2 in screws each, into the stud. Plumb before the last screw"; } },
-    lb12: { n: 8, title: "L brackets, left side", short: "12 in arm, rated 50 lb or more",
-      spec: "Steel shelf brackets with a 12 in arm, rated 50 lb or more each",
-      where: "2 under each left shelf (64, 48, 32 and 16 in), on 2 different studs",
-      how: function () { return "2 #10 x 2-1/2 in screws into the stud, 2 #8 x 5/8 in pan-head screws up into the shelf. Level across each pair"; } },
-    lb8: { n: 3, title: "L brackets, top shelf", short: "8 in arm",
-      spec: "Steel shelf brackets with an 8 in arm",
-      where: "Under the top shelf, on the studs between the shelf and rod brackets",
-      how: function () { return "Keep them short. A 12 in arm can touch the hanger hooks on the upper rod. Top of the arm at " + f(M(TOPY)); } },
-    rods: { n: 2, title: "Closet rods", short: "Steel, 1-5/16 in", spec: "Steel closet rods, 1-5/16 in diameter, 48 in long, cut to fit",
-      where: "Each rests in the hooks of 2 shelf and rod brackets",
-      how: function () { return "Cut each rod to about " + f(M(ROD1 - ROD0)) + ": from about " + f(M(CS - ROD0)) + " past the centre hook to " + f(M(CW - ROD1)) + " off the right wall. File the cut end"; } },
+      where: "On the studs at 33 and 65 in. They hold the top shelf and the upper rod",
+      how: function () { return "Top arm at " + f(M(TOPY)) + ". 3 #10 x 2-1/2 in screws each, into the stud. Plumb before the last screw"; } },
+    lb8: { n: 2, title: "L brackets, top shelf", short: "8 in arm, on the studs at 17 and 49 in",
+      spec: "Steel shelf brackets with an 8 in arm, rated 50 lb or more",
+      where: "Under the top shelf, on the studs at 17 and 49 in",
+      how: function () { return "Top of the arm at " + f(M(TOPY)) + ", level with the shelf and rod brackets. Short, so they clear the hanger hooks"; } },
+    cleats: { n: 5, title: "Wall cleats", short: "1x2, about 10 in",
+      spec: "1x2 pine, cut to about 10 in",
+      where: "On the left wall, under the left end of each side shelf and of the top shelf",
+      how: function () { return "Top of each cleat at the bottom of its shelf. Into the corner stud, or metal anchors: the load is down along the wall"; } },
+    strips: { n: 4, title: "Front strips", short: "1x2 on edge, about 31 in",
+      spec: "1x2 pine on edge, about 31 in, painted white if you want",
+      where: "Under the front edge of each side shelf, between the wall cleat and the right end",
+      how: function () { return "Glue, then #8 x 1-1/4 in screws down through the shelf into the strip, with white screw caps. It stops the 5/8 in melamine from bending"; } },
+    rods: { n: 1, title: "Upper rod", short: "Steel, 1-5/16 in",
+      spec: "Steel closet rod, 1-5/16 in, 48 in, cut to fit",
+      where: "Rests in the hooks of the 2 shelf and rod brackets",
+      how: function () { return "Cut to about " + f(M(ROD1 - ROD0)) + ": " + f(M(CS - ROD0)) + " past the left hook to " + f(M(CW - ROD1)) + " off the right wall. 1 #8 x 1/2 in sheet metal set screw through each hook"; } },
+    dhr: { n: 1, title: "Double hang rod", short: "Hangs from the upper rod",
+      spec: "Adjustable double hang closet rod",
+      where: "Hooks over the upper rod, so the lower rod needs no wall brackets",
+      how: function () { return "Adjust the hangers until the lower rod is level at about " + f(M(ROD_LO)); } },
     plates: { n: 2, title: "Flat mending plates", short: "About 1 x 6 in", spec: "Flat steel mending plates, about 1 x 6 in, with their short screws",
-      where: "On top of the top shelf, across the joint of the 2 halves",
-      how: function () { return "1 near the front and 1 near the back. The joint sits on the centre shelf and rod bracket"; } }
+      where: "On top of the top shelf, across the joint of the 2 pieces",
+      how: function () { return "1 near the front and 1 near the back. The joint sits on the shelf and rod bracket at 33 in"; } }
   };
-  var HORDER = ["srb", "lb12", "lb8", "rods", "plates"];
-  var FIG = {"srb": "<svg viewBox=\"0 0 150 112\" role=\"img\" aria-label=\"Side view: shelf and rod bracket holding the top shelf and the rod\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"104\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 108\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"16\" width=\"84\" height=\"5.25\" fill=\"#DCC7A2\" stroke=\"#8A7350\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"21.25\" width=\"2.1\" height=\"66.5\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"14\" y=\"21.25\" width=\"71.4\" height=\"2.1\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M16.1 84.25L79.8 23.35\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M83.3 23.35V42.25H98.7V32.45\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><circle cx=\"91\" cy=\"35.25\" r=\"4.59\" fill=\"#b9c0c4\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><text x=\"42\" y=\"12\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#0a0a0a\">Top shelf</text><text x=\"102.1\" y=\"38.25\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#0a0a0a\">Rod</text><text x=\"18\" y=\"106\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">Back wall, into a stud</text></svg>", "lb12": "<svg viewBox=\"0 0 112 104\" role=\"img\" aria-label=\"Side view: L bracket under a shelf\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"96\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 100\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"16\" width=\"86.8\" height=\"4.65\" fill=\"#DCC7A2\" stroke=\"#8A7350\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"20.65\" width=\"1.24\" height=\"49.6\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"14\" y=\"20.65\" width=\"74.4\" height=\"1.24\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M15.24 60.33L73.52 21.89\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><text x=\"57.4\" y=\"12\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Left shelf</text><text x=\"54.92\" y=\"56.36\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">12 in arm</text></svg>", "lb8": "<svg viewBox=\"0 0 122 104\" role=\"img\" aria-label=\"Side view: L bracket under a shelf\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"96\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 100\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"16\" width=\"96\" height=\"6\" fill=\"#DCC7A2\" stroke=\"#8A7350\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"22\" width=\"1.6\" height=\"48\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"14\" y=\"22\" width=\"64\" height=\"1.6\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M15.6 60.4L65.2 23.6\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><text x=\"62\" y=\"12\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Top shelf</text><text x=\"49.2\" y=\"56.56\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">8 in arm</text></svg>", "rods": "<svg viewBox=\"0 0 166 60\" role=\"img\" aria-label=\"Rod resting in the hooks of 2 shelf and rod brackets\"><rect x=\"8\" y=\"30\" width=\"150\" height=\"8\" fill=\"#b9c0c4\" stroke=\"#0a0a0a\" stroke-width=\"0.8\" rx=\"2\"/><path d=\"M20 26V42H32V36\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><path d=\"M136 26V42H148V36\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><text x=\"83\" y=\"20\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">1-5/16 in steel, about 37-1/2 in long</text><text x=\"26\" y=\"54\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#767676\">centre hook</text><text x=\"142\" y=\"54\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#767676\">right hook</text></svg>", "plates": "<svg viewBox=\"0 0 166 62\" role=\"img\" aria-label=\"Mending plate across the joint of the top shelf\"><rect x=\"6\" y=\"28\" width=\"76\" height=\"8\" fill=\"#DCC7A2\" stroke=\"#8A7350\" stroke-width=\"0.6\"/><rect x=\"84\" y=\"28\" width=\"76\" height=\"8\" fill=\"#DCC7A2\" stroke=\"#8A7350\" stroke-width=\"0.6\"/><rect x=\"53\" y=\"24\" width=\"60\" height=\"4\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><circle cx=\"58\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"70\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"96\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"108\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><path d=\"M83 40L83 50\" stroke=\"#767676\" stroke-width=\"0.8\" fill=\"none\"/><text x=\"83\" y=\"58\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#767676\">joint, over the centre bracket</text><text x=\"83\" y=\"18\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Plate on top of the shelf</text></svg>"};
+  var HORDER = ["rails", "rb", "srb", "lb8", "cleats", "strips", "rods", "dhr", "plates"];
+  var FIG = {"srb": "<svg viewBox=\"0 0 150 112\" role=\"img\" aria-label=\"Side view: shelf and rod bracket holding the top shelf and the rod\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"104\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 108\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"16\" width=\"82.25\" height=\"4.38\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"20.38\" width=\"2.1\" height=\"66.5\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"14\" y=\"20.38\" width=\"71.4\" height=\"2.1\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M16.1 83.2L79.8 22.51\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><path d=\"M83.3 22.51V41.41H98.7V31.61\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><circle cx=\"91\" cy=\"34.41\" r=\"4.59\" fill=\"#b9c0c4\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><text x=\"42\" y=\"12\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#0a0a0a\">Top shelf</text><text x=\"102.1\" y=\"37.41\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#0a0a0a\">Rod</text><text x=\"18\" y=\"106\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">Back wall, into a stud</text></svg>", "rails": "<svg viewBox=\"0 0 120 104\" role=\"img\" aria-label=\"Side view: bracket under a shelf\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"96\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 100\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"4\" width=\"3.2\" height=\"96\" fill=\"#d9d9d4\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"16\" width=\"94\" height=\"5\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"17.2\" y=\"21\" width=\"1.6\" height=\"48\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"17.2\" y=\"21\" width=\"64\" height=\"1.6\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M18.8 59.4L68.4 22.6\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><text x=\"61\" y=\"12\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Side shelf</text><text x=\"49.2\" y=\"55.56\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">8 in</text><text x=\"20.2\" y=\"96\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">rail</text></svg>", "rb": "<svg viewBox=\"0 0 120 104\" role=\"img\" aria-label=\"Side view: bracket under a shelf\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"96\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 100\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"4\" width=\"3.2\" height=\"96\" fill=\"#d9d9d4\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"16\" width=\"94\" height=\"5\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"17.2\" y=\"21\" width=\"1.6\" height=\"48\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"17.2\" y=\"21\" width=\"64\" height=\"1.6\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M18.8 59.4L68.4 22.6\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><text x=\"61\" y=\"12\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Side shelf</text><text x=\"49.2\" y=\"55.56\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">8 in</text><text x=\"20.2\" y=\"96\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">rail</text></svg>", "lb8": "<svg viewBox=\"0 0 120 104\" role=\"img\" aria-label=\"Side view: bracket under a shelf\"><rect x=\"4\" y=\"4\" width=\"10\" height=\"96\" fill=\"#ebebeb\" stroke=\"none\" stroke-width=\"0\"/><path d=\"M14 4L14 100\" stroke=\"#0a0a0a\" stroke-width=\"1.25\" fill=\"none\"/><rect x=\"14\" y=\"16\" width=\"94\" height=\"5\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"14\" y=\"21\" width=\"1.6\" height=\"48\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><rect x=\"14\" y=\"21\" width=\"64\" height=\"1.6\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><path d=\"M15.6 59.4L65.2 22.6\" stroke=\"#0a0a0a\" stroke-width=\"1.6\" fill=\"none\"/><text x=\"61\" y=\"12\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Top shelf</text><text x=\"49.2\" y=\"55.56\" text-anchor=\"start\" font-size=\"7.5\" fill=\"#767676\">8 in</text></svg>", "rods": "<svg viewBox=\"0 0 166 118\" role=\"img\" aria-label=\"Upper rod in 2 bracket hooks, with a double hang rod below it\"><rect x=\"8\" y=\"56\" width=\"150\" height=\"8\" fill=\"#b9c0c4\" stroke=\"#0a0a0a\" stroke-width=\"0.8\" rx=\"2\"/><path d=\"M14 52V68H26V62\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><path d=\"M140 52V68H152V62\" fill=\"none\" stroke=\"#0a0a0a\" stroke-width=\"1.6\"/><rect x=\"30\" y=\"92\" width=\"106\" height=\"7\" fill=\"#b9c0c4\" stroke=\"#0a0a0a\" stroke-width=\"0.8\" rx=\"2\"/><path d=\"M40 58L40 95\" stroke=\"#0a0a0a\" stroke-width=\"1.4\" fill=\"none\"/><path d=\"M126 58L126 95\" stroke=\"#0a0a0a\" stroke-width=\"1.4\" fill=\"none\"/><text x=\"83\" y=\"46\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Upper rod on 2 shelf and rod brackets</text><text x=\"83\" y=\"112\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#767676\">Double hang rod, hooked over it</text></svg>", "plates": "<svg viewBox=\"0 0 166 62\" role=\"img\" aria-label=\"Mending plate across the joint of the top shelf\"><rect x=\"6\" y=\"28\" width=\"76\" height=\"6\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"84\" y=\"28\" width=\"76\" height=\"6\" fill=\"#f6f6f3\" stroke=\"#0a0a0a\" stroke-width=\"0.6\"/><rect x=\"53\" y=\"24\" width=\"60\" height=\"4\" fill=\"#ffffff\" stroke=\"#0a0a0a\" stroke-width=\"0.8\"/><circle cx=\"58\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"70\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"96\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><circle cx=\"108\" cy=\"26\" r=\"1.2\" fill=\"#0a0a0a\"/><path d=\"M83 38L83 50\" stroke=\"#767676\" stroke-width=\"0.8\" fill=\"none\"/><text x=\"83\" y=\"58\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#767676\">joint, over the bracket at 33 in</text><text x=\"83\" y=\"18\" text-anchor=\"middle\" font-size=\"7.5\" fill=\"#0a0a0a\">Plate on top of the shelf</text></svg>"};
 
   // ---------- what each part is ----------
   var META = {
-    top: { title: "Top shelf", size: function () { return "2 halves, " + L([M(T), M(TOPD), M(TOPL)]); },
-      lines: function () { return ["Bottom at " + f(M(TOPY)) + ", " + f(M(TOPY - OPEN)) + " above the top of the door opening.", f(M(CH - TOPY - T)) + " clear above it for light bins.", "The halves meet on the centre shelf and rod bracket, joined with 2 mending plates."]; } },
-    shelves: { title: "Left shelves", size: function () { return "4 pieces, " + L([M(T), M(SHD), M(SHL)]); },
-      lines: function () { return ["Bottoms at 64, 48, 32 and 16 in. " + f(M(16 - T)) + " clear between them.", "Each sits on 2 L brackets. The right end stops " + f(M(CS - SR)) + " left of the centre stud, clear of the lower bracket."]; } },
-    srb: { title: "Shelf and rod brackets", size: function () { return "4 brackets, " + f(M(12.75)) + " deep"; }, lines: function () { return [HW.srb.where + ".", HW.srb.how() + "."]; } },
-    srCU: { title: "Shelf and rod bracket, centre, upper", size: function () { return "Top arm at " + f(M(TOPY)) + ", on the centre stud"; }, lines: function () { return ["Holds the joint of the top shelf and the left end of the upper rod.", "Hook about " + f(M(TOPY - ROD_UP)) + " below the shelf. Measure yours."]; } },
-    srRU: { title: "Shelf and rod bracket, right, upper", size: function () { return "Top arm at " + f(M(TOPY)) + ", " + f(M(CW - RS)) + " from the right wall"; }, lines: function () { return ["Holds the right end of the top shelf and the right end of the upper rod.", "Goes on the stud nearest the right wall."]; } },
-    srCL: { title: "Shelf and rod bracket, centre, lower", size: function () { return "Hook centre at " + f(M(ROD_LO)) + ", on the centre stud"; }, lines: function () { return ["Holds the left end of the lower rod. Nothing sits on its top arm.", "The shelf at 32 in stops " + f(M(CS - SR)) + " to its left."]; } },
-    srRL: { title: "Shelf and rod bracket, right, lower", size: function () { return "Hook centre at " + f(M(ROD_LO)) + ", " + f(M(CW - RS)) + " from the right wall"; }, lines: function () { return ["Holds the right end of the lower rod."]; } },
-    lb12: { title: "L brackets, left side", size: function () { return "8 brackets, " + f(M(12)) + " arm"; }, lines: function () { return [HW.lb12.where + ".", HW.lb12.how() + "."]; } },
-    lb8: { title: "L brackets, top shelf", size: function () { return "3 brackets, " + f(M(8)) + " arm"; }, lines: function () { return [HW.lb8.where + ".", HW.lb8.how() + "."]; } },
-    rods: { title: "Closet rods", size: function () { return "2 rods, 1-5/16 in, about " + f(M(ROD1 - ROD0)) + " long"; }, lines: function () { return ["Upper at about " + f(M(ROD_UP)) + ", lower at " + f(M(ROD_LO)) + ", " + f(M(RODZ)) + " from the back wall.", HW.rods.how() + "."]; } },
-    rodUpper: { title: "Upper rod", size: function () { return "Centre at about " + f(M(ROD_UP)); }, lines: function () { return ["Shirts and jackets up to " + f(M(HANG)) + " long on the hanger.", "The bracket hook sets this height. Measure yours."]; } },
-    rodLower: { title: "Lower rod", size: function () { return "Centre at " + f(M(ROD_LO)); }, lines: function () { return ["Pants and short items up to " + f(M(HANG)) + " long on the hanger.", f(M(ROD_UP - ROD_LO)) + " below the upper rod."]; } },
+    top: { title: "Top shelf", size: function () { return "2 pieces, " + L([M(T), M(TOPD)]) + " x " + f(M(TOPLL)) + " and " + f(M(TOPLR)); },
+      lines: function () { return ["Bottom at " + f(M(TOPY)) + ", " + f(M(TOPY - OPEN)) + " above the top of the door opening.", f(M(CH - TOPY - T)) + " clear above it for light bins.", "The 2 pieces meet on the shelf and rod bracket at 33 in, joined with 2 mending plates."]; } },
+    shelves: { title: "Side shelves", size: function () { return "4 pieces, " + L([M(T), M(SHD), M(SHL)]); },
+      lines: function () { return ["Bottoms at 64, 48, 32 and 16 in. " + f(M(16 - T)) + " clear between them.", "Each sits on 2 rail brackets, a wall cleat at the left end, and a 1x2 strip under the front edge."]; } },
+    rails: { title: "Vertical rails", size: function () { return "2 rails, 68 in, from " + f(M(RAIL0)) + " to " + f(M(RAIL1)); }, lines: function () { return [HW.rails.where + ", on the studs at 17 and 33 in.", HW.rails.how() + "."]; } },
+    rb: { title: "Rail brackets", size: function () { return "8 brackets, " + f(M(8)); }, lines: function () { return [HW.rb.where + ".", HW.rb.how() + "."]; } },
+    srb: { title: "Shelf and rod brackets", size: function () { return "2 brackets, " + f(M(12.75)) + " deep"; }, lines: function () { return [HW.srb.where + ".", HW.srb.how() + "."]; } },
+    srC: { title: "Shelf and rod bracket at 33 in", size: function () { return "Top arm at " + f(M(TOPY)) + ", on the stud at 33 in"; }, lines: function () { return ["Holds the joint of the top shelf and the left end of the upper rod.", "Hook about " + f(M(TOPY - ROD_UP)) + " below the shelf. Measure yours.", "The rail on this stud stops at " + f(M(RAIL1)) + ", below it."]; } },
+    srR: { title: "Shelf and rod bracket at 65 in", size: function () { return "Top arm at " + f(M(TOPY)) + ", " + f(M(CW - RS)) + " from the right wall"; }, lines: function () { return ["Holds the right end of the top shelf and the right end of the upper rod.", "Stud assumed. Check it."]; } },
+    lb8: { title: "L brackets, top shelf", size: function () { return "2 brackets, " + f(M(8)) + " arm"; }, lines: function () { return [HW.lb8.where + ".", HW.lb8.how() + "."]; } },
+    cleats: { title: "Wall cleats", size: function () { return "5 pieces, 1x2, about " + f(M(10)); }, lines: function () { return [HW.cleats.where + ".", HW.cleats.how() + "."]; } },
+    strips: { title: "Front strips", size: function () { return "4 pieces, 1x2, about " + f(M(31)); }, lines: function () { return [HW.strips.where + ".", HW.strips.how() + "."]; } },
+    rodUpper: { title: "Upper rod", size: function () { return "Centre at about " + f(M(ROD_UP)) + ", about " + f(M(ROD1 - ROD0)) + " long"; }, lines: function () { return ["Shirts and jackets up to " + f(M(HANG)) + " long on the hanger.", "The bracket hook sets this height. Measure yours.", HW.rods.how() + "."]; } },
+    rods: { title: "Upper rod", size: function () { return "1-5/16 in, about " + f(M(ROD1 - ROD0)) + " long"; }, lines: function () { return [HW.rods.where + ".", HW.rods.how() + "."]; } },
+    rodLower: { title: "Double hang rod", size: function () { return "Lower rod at about " + f(M(ROD_LO)); }, lines: function () { return ["Hooks over the upper rod. No wall brackets.", "Pants and short items up to " + f(M(HANG)) + " long on the hanger."]; } },
+    dhr: { title: "Double hang rod", size: function () { return "Lower rod at about " + f(M(ROD_LO)); }, lines: function () { return [HW.dhr.where + ".", HW.dhr.how() + "."]; } },
     plates: { title: "Mending plates", size: function () { return "2 plates, about 1 x 6 in"; }, lines: function () { return [HW.plates.where + ".", HW.plates.how() + "."]; } },
     doors: { title: "Sliding panels", size: function () { return "2 panels, " + L([M(38), M(81)]); }, lines: function () { return ["Existing, not changed. They overlap in the middle, so one half of the closet opens at a time.", "Lift them off the track before you start."]; } }
   };
   SHELVES.forEach(function (h) {
-    META["shelf" + h] = { title: "Shelf at " + h + " in", size: function () { return L([M(T), M(SHD), M(SHL)]) + ", bottom at " + f(M(h)); },
-      lines: function () { return [h === 16 ? "The bottom shelf. Good for shoes." : f(M(16 - T)) + " clear above it to the next shelf.", "Sits on 2 L brackets."]; } };
+    META["shelf" + h] = { title: "Side shelf at " + h + " in", size: function () { return L([M(T), M(SHD), M(SHL)]) + ", bottom at " + f(M(h)); },
+      lines: function () { return [h === 16 ? "The bottom shelf. Good for shoes." : f(M(16 - T)) + " clear above it to the next shelf.", "Sits on 2 rail brackets and a wall cleat, with a 1x2 strip under the front edge."]; } };
   });
   APPS.forEach(function (a) {
-    META["app-" + a.id] = { title: a.name, size: function () { return a.boxes ? L([M(16), M(11), M(10)]) + " each" : "From " + f(M(a.box[1][0])) + " to " + f(M(a.box[1][1])); }, lines: function () { return [a.note + "."]; } };
+    META["app-" + a.id] = { title: a.name, size: function () { return a.boxes ? "4 bins" : "From " + f(M(a.box[1][0])) + " to " + f(M(a.box[1][1])); }, lines: function () { return [a.note + "."]; } };
   });
 
   // ---------- measurement sheet ----------
@@ -293,32 +313,37 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       row("Inside, W x D x H", L([M(CW), M(CD), M(CH)])) +
       row("Top of the door opening", f(M(OPEN))) +
       btn("doors", "Sliding panels<small>2, overlapping in the middle</small>", L([M(38), M(81)])) +
-      row("Centre stud<small>assumed, from the left wall</small>", f(M(CS))) +
+      row("Studs found<small>from the left wall</small>", f(M(LST)) + " and " + f(M(CS))) +
+      row("Studs assumed<small>16 in apart, check them</small>", f(M(MST)) + " and " + f(M(RS))) +
       row("Rods from the back wall<small>middle of the clear depth</small>", f(M(RODZ))) +
       "</div></section>";
 
     h += '<section><h2>Heights from the floor</h2><p class="hint">Bottom of each shelf, centre of each rod. Tap a row to see it in the model.</p><div class="rows">' +
       btn("top", "Top shelf", R(M(TOPY), M(TOPY + T))) +
       btn("rodUpper", "Upper rod<small>set by the bracket hook</small>", "about " + f(M(ROD_UP))) +
-      SHELVES.map(function (s) { return btn("shelf" + s, "Shelf, left side", f(M(s))); }).join("") +
-      btn("rodLower", "Lower rod", f(M(ROD_LO))) +
+      btn("rails", "Rails", R(M(RAIL0), M(RAIL1))) +
+      SHELVES.map(function (s) { return btn("shelf" + s, "Side shelf", f(M(s))); }).join("") +
+      btn("rodLower", "Lower rod<small>double hang rod</small>", "about " + f(M(ROD_LO))) +
       "</div></section>";
 
     h += '<section><h2>Space</h2><div class="rows">' +
       btn("app-hu", "Between the rods", f(M(ROD_UP - ROD_LO))) +
       btn("app-hu", "Hanging clothes<small>longest, on the hanger</small>", f(M(HANG))) +
-      btn("shelves", "Between the left shelves<small>clear</small>", f(M(16 - T))) +
+      btn("shelves", "Between the side shelves<small>clear</small>", f(M(16 - T))) +
       btn("app-bins", "Above the top shelf", f(M(CH - TOPY - T))) +
-      row("Hanging width<small>centre bracket to the right wall</small>", f(M(CW - CS))) +
+      row("Hanging width<small>stud at 33 in to the right wall</small>", f(M(CW - CS))) +
       "</div></section>";
 
-    h += '<section><h2>Wood</h2><p class="hint">3/4 in plywood. Thickness x width x length.</p><div class="rows">' +
-      btn("top", "Top shelf halves", '<span class="q">2x</span>' + L([M(T), M(TOPD), M(TOPL)])) +
-      btn("shelves", "Left shelves", '<span class="q">4x</span>' + L([M(T), M(SHD), M(SHL)])) +
+    h += '<section><h2>Shelves</h2><p class="hint">5/8 in white melamine, 11-3/4 in deep. Thickness x depth x length.</p><div class="rows">' +
+      btn("top", "Top shelf, left piece", '<span class="q">1x</span>' + L([M(T), M(TOPD), M(TOPLL)])) +
+      btn("top", "Top shelf, right piece", '<span class="q">1x</span>' + L([M(T), M(TOPD), M(TOPLR)])) +
+      btn("shelves", "Side shelves", '<span class="q">4x</span>' + L([M(T), M(SHD), M(SHL)])) +
+      btn("strips", "Front strips<small>1x2 on edge</small>", '<span class="q">4x</span>about ' + f(M(31))) +
+      btn("cleats", "Wall cleats<small>1x2</small>", '<span class="q">5x</span>about ' + f(M(10))) +
       "</div></section>";
 
-    h += '<section><h2>Brackets and rods</h2><p class="hint">Every bracket goes into a stud.</p><div class="rows">';
-    HORDER.forEach(function (k) { h += btn(k, HW[k].title + "<small>" + HW[k].short + "</small>", String(HW[k].n)); });
+    h += '<section><h2>Rails, brackets and rods</h2><p class="hint">Every rail and bracket goes into a stud.</p><div class="rows">';
+    HORDER.forEach(function (k) { if (k === "cleats" || k === "strips") return; h += btn(k, HW[k].title + "<small>" + HW[k].short + "</small>", String(HW[k].n)); });
     h += '</div><button type="button" class="linkrow" id="go-hw">Full list: every bracket, screw and tool</button></section>';
     sheet.innerHTML = h;
     markActive();
@@ -432,6 +457,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     var matH = new THREE.MeshStandardMaterial({ color: new THREE.Color(css("--wood") || "#DCC7A2"), map: tex(), roughness: 0.82, metalness: 0 });
     var steelMat = new THREE.MeshStandardMaterial({ color: 0xf3f3f0, roughness: 0.45, metalness: 0.1 });
     var rodMat = new THREE.MeshStandardMaterial({ color: 0xb9c0c4, roughness: 0.3, metalness: 0.6 });
+    var melMat = new THREE.MeshStandardMaterial({ color: 0xf6f6f3, roughness: 0.55, metalness: 0 });
     var doorMat = new THREE.MeshStandardMaterial({ color: 0xf7f7f4, roughness: 0.6, transparent: true, opacity: 0.55, depthWrite: false });
     var hlCache = new Map();
     function hlFor(m) {
@@ -487,40 +513,48 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     // ---------- the build ----------
     var tags = {};
     function ud(group, kind) { return { group: group, kind: kind }; }
-    bx(0.125, CS, TOPY, TOPY + T, 0, TOPD, matH, ud("top", "top"));
-    bx(CS, CW - 0.125, TOPY, TOPY + T, 0, TOPD, matH, ud("top", "top"));
-    SHELVES.forEach(function (h) { bx(SL, SR, h, h + T, 0, SHD, matH, ud("shelf" + h, "shelves")); });
+    bx(0.25, CS, TOPY, TOPY + T, 0, TOPD, melMat, ud("top", "top"), steelEdge);
+    bx(CS, CW - 0.25, TOPY, TOPY + T, 0, TOPD, melMat, ud("top", "top"), steelEdge);
+    SHELVES.forEach(function (h) { bx(SL, SR, h, h + T, 0, SHD, melMat, ud("shelf" + h, "shelves"), steelEdge); });
 
     function shelfRod(x, top, rodY, group) {
-      var w = 0.95, t = 0.3, hz = RODZ, u = ud(group, "srb");
-      bx(x - w / 2, x + w / 2, top - 9.5, top, 0, t, steelMat, u, steelEdge);
+      var w = 0.95, t = 0.3, hz = RODZ;
+      bx(x - w / 2, x + w / 2, top - 9.5, top, 0, t, steelMat, ud(group, "srb"), steelEdge);
       bx(x - w / 2, x + w / 2, top - t, top, t, hz - 0.8, steelMat, ud(group, "srb"), steelEdge);
       strut(x, w * 0.8, t, t, top - 9.0, hz - 1.6, top - t, ud(group, "srb"));
       bx(x - w / 2, x + w / 2, rodY - 1.0, top - t, hz - 1.1, hz - 0.8, steelMat, ud(group, "srb"), steelEdge);
       bx(x - w / 2, x + w / 2, rodY - 1.0, rodY - 0.7, hz - 1.1, hz + 1.1, steelMat, ud(group, "srb"), steelEdge);
       bx(x - w / 2, x + w / 2, rodY - 1.0, rodY + 0.4, hz + 0.8, hz + 1.1, steelMat, ud(group, "srb"), steelEdge);
     }
-    shelfRod(CS, TOPY, ROD_UP, "srCU");
-    shelfRod(RS, TOPY, ROD_UP, "srRU");
-    shelfRod(CS, ROD_LO + 2, ROD_LO, "srCL");
-    shelfRod(RS, ROD_LO + 2, ROD_LO, "srRL");
+    shelfRod(CS, TOPY, ROD_UP, "srC");
+    shelfRod(RS, TOPY, ROD_UP, "srR");
 
-    function lBracket(x, top, arm, leg, kind) {
-      var w = 1.25, t = 0.2;
-      bx(x - w / 2, x + w / 2, top - leg, top, 0, t, steelMat, ud(kind, kind), steelEdge);
-      bx(x - w / 2, x + w / 2, top - t, top, t, arm, steelMat, ud(kind, kind), steelEdge);
-      strut(x, w * 0.7, t, t, top - leg * 0.8, arm * 0.8, top - t, ud(kind, kind));
+    function lBracket(x, top, arm, leg, kind, z0) {
+      var w = 1.25, t = 0.2; z0 = z0 || 0;
+      bx(x - w / 2, x + w / 2, top - leg, top, z0, z0 + t, steelMat, ud(kind, kind), steelEdge);
+      bx(x - w / 2, x + w / 2, top - t, top, z0 + t, z0 + arm, steelMat, ud(kind, kind), steelEdge);
+      strut(x, w * 0.7, t, z0 + t, top - leg * 0.8, z0 + arm * 0.8, top - t, ud(kind, kind));
     }
-    SHELVES.forEach(function (h) { [CS - 16, CS - 32].forEach(function (x) { lBracket(x, h, 12, 8, "lb12"); }); });
-    [CS + 16, CS - 16, CS - 32].forEach(function (x) { lBracket(x, TOPY, 8, 6, "lb8"); });
+    [LST, CS].forEach(function (x) { bx(x - 0.5, x + 0.5, RAIL0, RAIL1, 0, 0.4, steelMat, ud("rails", "rails"), steelEdge); });
+    SHELVES.forEach(function (h) { [LST, CS].forEach(function (x) { lBracket(x, h, 8, 6, "rb", 0.4); }); });
+    [LST, MST].forEach(function (x) { lBracket(x, TOPY, 8, 6, "lb8"); });
+
+    SHELVES.concat([TOPY]).forEach(function (h) { bx(0, 0.75, h - 1.5, h, 0.75, 10.75, matH, ud("cleats", "cleats")); });
+    SHELVES.forEach(function (h) { bx(1, SR - 1.25, h - 1.5, h, SHD - 1.0, SHD - 0.25, matH, ud("strips", "strips")); });
 
     bx(CS - 3, CS + 3, TOPY + T, TOPY + T + 0.12, 1.5, 2.5, steelMat, ud("plates", "plates"), steelEdge);
     bx(CS - 3, CS + 3, TOPY + T, TOPY + T + 0.12, 9, 10, steelMat, ud("plates", "plates"), steelEdge);
 
-    [[ROD_UP, "rodUpper"], [ROD_LO, "rodLower"]].forEach(function (r) {
-      var g = new THREE.CylinderGeometry(M(0.656), M(0.656), M(ROD1 - ROD0), 28);
+    function rod(x0, x1, y, group, kind) {
+      var g = new THREE.CylinderGeometry(M(0.656), M(0.656), M(x1 - x0), 28);
       g.rotateZ(Math.PI / 2);
-      addMesh(g, rodMat, [X((ROD0 + ROD1) / 2), Y(r[0]), Z(RODZ)], ud(r[1], "rods"), steelEdge);
+      addMesh(g, rodMat, [X((x0 + x1) / 2), Y(y), Z(RODZ)], ud(group, kind), steelEdge);
+    }
+    rod(ROD0, ROD1, ROD_UP, "rodUpper", "rods");
+    rod(DH0, DH1, ROD_LO, "rodLower", "dhr");
+    [DH0 + 2, DH1 - 2].forEach(function (x) {
+      bx(x - 0.3, x + 0.3, ROD_LO, ROD_UP + 0.9, RODZ - 0.12, RODZ + 0.12, steelMat, ud("rodLower", "dhr"), steelEdge);
+      bx(x - 0.3, x + 0.3, ROD_UP + 0.7, ROD_UP + 1.0, RODZ - 0.9, RODZ + 0.9, steelMat, ud("rodLower", "dhr"), steelEdge);
     });
 
     var doorMeshes = [
@@ -618,35 +652,35 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     { t: "Clear it out and mark", show: [], hl: [], view: "front",
       tools: "Screwdriver, stud finder, 24 in level, tape measure, pencil, spackle",
       hw: "none",
-      d: function () { return ["Lift the 2 sliding panels up and out of the track. Take out the old shelf and rod, and fill the old holes.", "Find the studs on the back wall and mark them. The plan uses the stud nearest the middle (" + f(M(CS)) + " from the left wall) and the one nearest the right wall. Mark the heights with the level: " + f(M(TOPY)) + " for the top shelf, then 64, 48, 32 and 16 in on the left."]; } },
-    { t: "Shelf and rod brackets", show: ["srb"], hl: ["srb"], view: "iso",
-      tools: "Drill, 1/8 in bit for pilot holes, #2 square bit, level",
-      hw: "4 shelf and rod brackets, 12 #10 x 2-1/2 in screws",
-      d: function () { return ["2 on the centre stud and 2 on the stud nearest the right wall. Top arm of the upper pair at " + f(M(TOPY)) + ".", "Lower pair with the hook centre at " + f(M(ROD_LO)) + ". Check each bracket is plumb before the last screw."]; } },
-    { t: "Top shelf brackets", show: ["srb", "lb8"], hl: ["lb8"], view: "iso",
+      d: function () { return ["Lift the 2 sliding panels up and out of the track. Take out the old shelf and rod, and fill the old holes.", "Mark the studs at 17 and 33 in, and check for studs at 49 and 65 in. With the level, mark " + f(M(TOPY)) + " for the top shelf and " + f(M(RAIL0)) + " for the bottom of both rails."]; } },
+    { t: "Rails", show: ["rails"], hl: ["rails"], view: "left",
+      tools: "Drill, 1/8 in bit, #2 square bit, level",
+      hw: "2 rails, 68 in; #10 x 2-1/2 in screws at every hole",
+      d: function () { return ["1 rail on the stud at 17 in and 1 on the stud at 33 in. Both bottoms at " + f(M(RAIL0)) + ".", "Put in the top screw, make the rail plumb, then put in the rest."]; } },
+    { t: "Top shelf brackets", show: ["rails", "srb", "lb8"], hl: ["srb", "lb8"], view: "iso",
       tools: "Drill, level",
-      hw: "3 L brackets with 8 in arms, 6 #10 x 2-1/2 in screws",
-      d: function () { return ["1 between the 2 upper shelf and rod brackets, and 2 on the left side. Top of each arm at " + f(M(TOPY)) + ".", "Lay the level across all the arms before you tighten the screws."]; } },
-    { t: "Top shelf", show: ["srb", "lb8", "top", "plates"], hl: ["top", "plates"], view: "iso",
+      hw: "2 shelf and rod brackets (studs at 33 and 65 in), 2 L brackets with 8 in arms (studs at 17 and 49 in), #10 x 2-1/2 in screws",
+      d: function () { return ["All 4 top arms at " + f(M(TOPY)) + ". The shelf and rod bracket at 33 in sits above the rail.", "Lay the level across all the arms before you tighten the screws."]; } },
+    { t: "Wall cleats", show: ["rails", "srb", "lb8", "cleats"], hl: ["cleats"], view: "iso",
+      tools: "Drill, level, saw",
+      hw: "5 cleats, 1x2 x 10 in; screws into the corner stud, or metal anchors",
+      d: function () { return ["On the left wall. The top of each cleat is at the bottom of its shelf: 84, 64, 48, 32 and 16 in.", "Level each cleat with the matching rail slot."]; } },
+    { t: "Top shelf", show: ["rails", "srb", "lb8", "cleats", "top", "plates"], hl: ["top", "plates"], view: "iso",
       tools: "Drill, #2 square bit, a helper",
-      hw: "2 mending plates, #8 x 5/8 in pan-head screws",
-      d: function () { return ["Set the 2 halves on the brackets. The joint sits on the top arm of the centre shelf and rod bracket.", "Screw up through the bracket holes into the shelf. Join the halves on top with the 2 mending plates."]; } },
-    { t: "Left side brackets", show: ["srb", "lb8", "top", "plates", "lb12"], hl: ["lb12"], view: "left",
-      tools: "Drill, level, tape measure",
-      hw: "8 L brackets with 12 in arms, 16 #10 x 2-1/2 in screws",
-      d: function () { return ["2 brackets under each shelf height: 64, 48, 32 and 16 in. Use 2 different studs, left of the centre stud.", "Start at 64 and work down. Check each pair with the level."]; } },
-    { t: "Left shelves", show: ["srb", "lb8", "top", "plates", "lb12", "shelves"], hl: ["shelves"], view: "left",
-      tools: "Drill, #2 square bit",
-      hw: "#8 x 5/8 in pan-head screws, 2 per bracket",
-      d: function () { return ["Each shelf stops " + f(M(CS - SR)) + " left of the centre stud, so the shelf at 32 in clears the lower bracket. Its left end is " + f(M(SL)) + " from the wall.", "Screw up through the bracket holes into each shelf."]; } },
-    { t: "Rods", show: ["srb", "lb8", "top", "plates", "lb12", "shelves", "rods"], hl: ["rods"], view: "right",
-      tools: "Hacksaw or pipe cutter, metal file, tape measure",
-      hw: "2 steel rods, 1-5/16 in",
-      d: function () { return ["Cut each rod to about " + f(M(ROD1 - ROD0)) + ", from " + f(M(CS - ROD0)) + " past the centre hook to " + f(M(CW - ROD1)) + " off the right wall. File the cut end.", "Set each rod in the hooks of its 2 brackets."]; } },
-    { t: "Put the panels back", show: ["srb", "lb8", "top", "plates", "lb12", "shelves", "rods", "doors"], hl: [], view: "front",
+      hw: "2 mending plates, #8 x 1/2 in pan-head screws",
+      d: function () { return ["Set the left piece (" + f(M(TOPLL)) + ") and the right piece (" + f(M(TOPLR)) + ") on the brackets. The joint sits on the shelf and rod bracket at 33 in.", "Screw up through the bracket holes, then join the pieces on top with the 2 mending plates."]; } },
+    { t: "Side shelves", show: ["rails", "srb", "lb8", "cleats", "top", "plates", "rb", "shelves", "strips"], hl: ["rb", "shelves", "strips"], view: "left",
+      tools: "Drill, #2 square bit, glue",
+      hw: "8 rail brackets, 4 front strips, #8 x 1-1/4 in screws and white screw caps",
+      d: function () { return ["First glue and screw a 1x2 strip under the front edge of each shelf.", "Clip 2 brackets into the rails at each height, then set each shelf on its brackets and its wall cleat."]; } },
+    { t: "Rods", show: ["rails", "srb", "lb8", "cleats", "top", "plates", "rb", "shelves", "strips", "rods", "dhr"], hl: ["rods", "dhr"], view: "right",
+      tools: "Hacksaw or pipe cutter, metal file, drill",
+      hw: "1 rod, 2 #8 x 1/2 in sheet metal set screws, 1 double hang rod",
+      d: function () { return ["Cut the rod to about " + f(M(ROD1 - ROD0)) + ", set it in the 2 hooks, and put a set screw through each hook.", "Hook the double hang rod over the upper rod and adjust it until the lower rod is level at about " + f(M(ROD_LO)) + "."]; } },
+    { t: "Put the panels back", show: ["rails", "srb", "lb8", "cleats", "top", "plates", "rb", "shelves", "strips", "rods", "dhr", "doors"], hl: [], view: "front",
       tools: "None",
       hw: "none",
-      d: function () { return ["Set the 2 sliding panels back on the track and check that they slide freely.", "Load heavy items low. The top shelf is for light bins only."]; } }
+      d: function () { return ["Set the 2 sliding panels back on the track and check that they slide freely.", "Load heavy items low and to the back of the side shelves. The top shelf is for light bins only."]; } }
   ];
   var saveApps = true, saveDims = true, saveDoors = false;
   function applyStep() {
@@ -730,10 +764,12 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
   // ---------- wood pieces page ----------
   var PARTS = [
-    { id: "top", name: "Top shelf halves", qty: 2, l: M(TOPL), w: M(TOPD), t: M(T), from: "Strip 3 (12 in)",
-      notes: function () { return ["Meet on the centre shelf and rod bracket", "Joined on top with 2 mending plates", "Band the front edge (optional)"]; } },
-    { id: "shelves", name: "Left shelves", qty: 4, l: M(SHL), w: M(SHD), t: M(T), from: "Strips 1 and 2 (14 in)",
-      notes: function () { return ["Bottoms at 64, 48, 32 and 16 in", f(M(CS - SR)) + " left of the centre stud, " + f(M(SL)) + " short of the left wall", "Band the front edge (optional)"]; } }
+    { id: "shelves", name: "Side shelves", qty: 4, l: M(SHL), w: M(SHD), t: M(T), from: "Boards 1 and 2",
+      notes: function () { return ["Bottoms at 64, 48, 32 and 16 in", "On 2 rail brackets and a wall cleat", "1x2 strip under the front edge"]; } },
+    { id: "topL", name: "Top shelf, left piece", qty: 1, l: M(TOPLL), w: M(TOPD), t: M(T), from: "Board 3",
+      notes: function () { return ["From the left wall to the bracket at 33 in", "On a wall cleat, an L bracket and the shelf and rod bracket"]; } },
+    { id: "topR", name: "Top shelf, right piece", qty: 1, l: M(TOPLR), w: M(TOPD), t: M(T), from: "Board 3",
+      notes: function () { return ["From the bracket at 33 in to the right wall", "On 2 shelf and rod brackets and an L bracket", "Joined to the left piece with 2 mending plates"]; } }
   ];
   var thumbs = {};
   if (renderer) (function makeThumbs() {
@@ -744,8 +780,8 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     ts.add(new THREE.HemisphereLight(0xffffff, 0x9a968c, 0.9));
     var dl = new THREE.DirectionalLight(0xffffff, 0.6); dl.position.set(1, 2, 1.4); ts.add(dl);
     var cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -5000, 5000);
-    var tm = new THREE.MeshStandardMaterial({ color: 0xDCC7A2, map: window.__closetTex(), roughness: 0.82 });
-    var lineMat = new THREE.LineBasicMaterial({ color: 0x6b5a3e });
+    var tm = new THREE.MeshStandardMaterial({ color: 0xf6f6f3, roughness: 0.55 });
+    var lineMat = new THREE.LineBasicMaterial({ color: 0x8a8a84 });
     PARTS.forEach(function (p) {
       var g = new THREE.BoxGeometry(p.l, p.t, p.w);
       g.computeBoundingBox();
@@ -774,69 +810,78 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
   var partsEl = document.getElementById("parts");
   function sheetSvg() {
-    // one 4 x 8 sheet, to scale: rips 14, 14 and 12 in, each strip cut at 48 in by the store
-    var k = 6.8, x0 = 8, y0 = 22, rows = [[14, [[SHL, "Left shelf"], [SHL, "Left shelf"]]], [14, [[SHL, "Left shelf"], [SHL, "Left shelf"]]], [12, [[TOPL, "Top shelf half"], [TOPL, "Top shelf half"]]]];
-    var out = '<text x="' + x0 + '" y="14" font-family="var(--mono)" font-size="11" fill="var(--muted)">3/4 in plywood, 4 x 8 ft</text>';
-    out += '<rect x="' + x0 + '" y="' + y0 + '" width="' + 96 * k + '" height="' + 48 * k + '" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>';
-    var y = y0;
-    rows.forEach(function (r) {
-      var h = r[0] * k;
-      r[1].forEach(function (c, i) {
-        var x = x0 + i * 48 * k, w = c[0] * k;
-        out += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="var(--wood)" stroke="var(--wood-edge)"/>';
+    // three 97 in melamine boards, to scale along their length
+    var k = 6.8, x0 = 8, y = 6, B = [
+      ["Board 1, 97 in", [[SHL, "Side shelf"], [SHL, "Side shelf"]]],
+      ["Board 2, 97 in", [[SHL, "Side shelf"], [SHL, "Side shelf"]]],
+      ["Board 3, 97 in", [[TOPLR, "Top, right"], [TOPLL, "Top, left"]]]
+    ], out = "";
+    B.forEach(function (b) {
+      out += '<text x="' + x0 + '" y="' + (y + 11) + '" font-family="var(--mono)" font-size="11" fill="var(--muted)">' + b[0] + "</text>";
+      y += 16;
+      var h = SHD * k * 0.6;
+      out += '<rect x="' + x0 + '" y="' + y + '" width="' + 97 * k + '" height="' + h + '" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>';
+      var x = x0;
+      b[1].forEach(function (c) {
+        var w = c[0] * k;
+        out += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#f6f6f3" stroke="#8a8a84"/>';
         out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 - 2) + '" text-anchor="middle" font-family="var(--display)" font-weight="600" font-size="11" fill="#1D2320">' + c[1] + "</text>";
-        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 11) + '" text-anchor="middle" font-family="var(--mono)" font-size="9.5" fill="#1D2320">' + L([M(r[0]), M(c[0])]) + "</text>";
+        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 11) + '" text-anchor="middle" font-family="var(--mono)" font-size="9.5" fill="#1D2320">' + f(M(c[0])) + "</text>";
+        x += w + 0.125 * k;
       });
-      y += h + 0.125 * k;
+      y += h + 12;
     });
-    out += '<line x1="' + (x0 + 48 * k) + '" y1="' + (y0 - 4) + '" x2="' + (x0 + 48 * k) + '" y2="' + (y0 + 48 * k + 4) + '" stroke="var(--accent)" stroke-dasharray="5 4"/>';
-    out += '<text x="' + (x0 + 48 * k + 6) + '" y="' + (y0 + 48 * k - 6) + '" font-family="var(--mono)" font-size="10" fill="var(--accent)">store cut, 48 in</text>';
-    return '<svg viewBox="0 0 ' + (96 * k + 16) + " " + (y0 + 48 * k + 8) + '" role="img" aria-label="Sheet cutting layout" style="width:100%;height:auto;display:block">' + out + "</svg>";
+    return '<svg viewBox="0 0 ' + (97 * k + 16) + " " + y + '" role="img" aria-label="Board cutting layout" style="width:100%;height:auto;display:block">' + out + "</svg>";
   }
   function renderParts() {
-    var h = '<div class="parts-head"><div><h2 class="ph">Every wood piece</h2><p class="hint">6 pieces in 2 shapes, all from one sheet. Thumbnails are not to the same scale. Sizes are length x width x thickness.</p></div></div><div class="parts-grid">';
+    var h = '<div class="parts-head"><div><h2 class="ph">Every shelf</h2><p class="hint">6 pieces from 3 melamine boards. Thumbnails are not to the same scale. Sizes are length x depth x thickness.</p></div></div><div class="parts-grid">';
     PARTS.forEach(function (p) {
       h += '<article class="pcard">' + (thumbs[p.id] ? '<img src="' + thumbs[p.id] + '" alt="' + p.name + '">' : '<div class="noimg"></div>') +
         '<div class="pbody"><h3>' + p.name + '<span class="qty">' + p.qty + "x</span></h3>" +
         '<p class="size">' + L([p.l, p.w, p.t]) + "</p>" +
-        '<p class="meta">3/4 in plywood · from ' + p.from + "</p><ul>" + p.notes().map(function (n) { return "<li>" + n + "</li>"; }).join("") + "</ul></div></article>";
+        '<p class="meta">5/8 in white melamine · from ' + p.from + "</p><ul>" + p.notes().map(function (n) { return "<li>" + n + "</li>"; }).join("") + "</ul></div></article>";
     });
     h += "</div>";
-    h += '<div class="parts-cols"><section><h2 class="ph">Sheet layout</h2><p class="hint">Ask the store to rip the sheet at 14-1/2, 14-1/2 and 12-1/2 in, then cut each strip at 48 in so it fits in the car. Trim to final size at the club.</p>' + sheetSvg() + "</section>" +
+    h += '<div class="parts-cols"><section><h2 class="ph">Board layout</h2><p class="hint">Ask the store to make the cuts, so the pieces fit in the car. Put painter\'s tape on the cut line to stop chips.</p>' + sheetSvg() + "</section>" +
       '<section><h2 class="ph">To buy</h2><div class="rows">' +
-      '<div class="row"><span class="k">3/4 in plywood, 4 x 8 (1)</span><span class="v" style="white-space:normal">Paint-grade or birch</span></div>' +
-      '<div class="row"><span class="k">Iron-on edge banding, 3/4 in</span><span class="v" style="white-space:normal">25 ft roll, optional</span></div>' +
+      '<div class="row"><span class="k">Melamine shelf boards, 5/8 x 11-3/4 x 97 in</span><span class="v">3</span></div>' +
+      '<div class="row"><span class="k">1x2 pine, 8 ft<small>4 front strips and 5 wall cleats</small></span><span class="v">2</span></div>' +
+      '<div class="row"><span class="k">Iron-on white edge banding or end caps<small>for cut ends that show</small></span><span class="v">1</span></div>' +
       "</div></section></div>";
     partsEl.innerHTML = h;
   }
 
   // ---------- brackets and tools page ----------
   var HWLIST = [
-    ["Everbilt Regular Duty Shelf and Rod Bracket, white", "4"],
-    ["L shelf brackets, 12 in arm, rated 50 lb or more", "8"],
-    ["L shelf brackets, 8 in arm", "3"],
-    ["Steel closet rods, 1-5/16 in, 48 in", "2"],
+    ["Everbilt vertical rails, 68 in (check: 50 lb or more per shelf)", "2"],
+    ["Rail brackets, 8 in, same brand as the rails", "8"],
+    ["Everbilt Regular Duty Shelf and Rod Bracket, white", "2"],
+    ["L shelf brackets, 8 in arm, rated 50 lb or more", "2"],
+    ["Steel closet rod, 1-5/16 in, 48 in", "1"],
+    ["Adjustable double hang closet rod", "1"],
     ["Flat mending plates, about 1 x 6 in", "2"],
-    ["#10 x 2-1/2 in wood screws, for the studs", "34, so a box of 50"],
-    ["#8 x 5/8 in pan-head screws, brackets into shelves", "about 30, so a box of 50"]
+    ["#10 x 2-1/2 in wood screws, for the studs", "about 40, so a box of 50"],
+    ["#8 x 1/2 in pan-head screws, brackets into shelves", "a small box"],
+    ["#8 x 1/2 in pan-head sheet metal screws, rod set screws", "2"],
+    ["#8 x 1-1/4 in wood screws and white screw caps, for the strips", "about 16"],
+    ["Metal self-drilling anchors, for the cleats if there is no stud", "about 10"]
   ];
   var SUPPLIES = [
-    ["Spackle, for the old holes", "1 small tub"],
-    ["Iron-on edge banding, optional", "25 ft"],
-    ["Primer and paint, or wipe-on poly, optional", "1 can"],
-    ["Sandpaper, 120 and 180", "a few sheets"]
+    ["Wood glue", "1 small bottle"],
+    ["Painter's tape, for clean melamine cuts", "1 roll"],
+    ["White paint for the 1x2s, optional", "1 small can"],
+    ["Spackle, for the old holes", "1 small tub"]
   ];
   var TOOLS = [
-    ["Measure and mark", [["Tape measure"], ["24 in level, or a laser level", "buy"], ["Stud finder", "buy"], ["Speed square"], ["Pencil"]]],
-    ["Cut", [["Table saw", "club"], ["Hacksaw or pipe cutter, for the rods"], ["Metal file"]]],
-    ["Drill and drive", [["Drill/driver"], ["1/8 in bit, for pilot holes"], ["#2 square and Phillips bits"], ["Stubby driver, for screws under the shelves"]]],
-    ["Edges, optional", [["Household iron and a banding trimmer"], ["Sanding block"]]],
+    ["Measure and mark", [["Tape measure"], ["24 in level, or a laser level", "buy"], ["Stud finder", "buy"], ["Pencil"]]],
+    ["Cut", [["The store's panel saw, or a saw at the club", "club"], ["Hacksaw or pipe cutter, for the rod"], ["Metal file"]]],
+    ["Drill and drive", [["Drill/driver"], ["1/8 in bit, for pilot holes"], ["Countersink bit, for the strip screws"], ["#2 square and Phillips bits"], ["Stubby driver, for screws under the shelves"]]],
     ["Install", [["Step ladder"], ["A helper, for the top shelf"]]],
     ["Safety", [["Safety glasses"], ["Dust mask when cutting"]]]
   ];
   var pgHw = document.getElementById("page-hw"), hwEl = document.getElementById("hw");
   function renderHw() {
-    var h = '<div class="parts-head"><h2 class="ph">Brackets and rods</h2><p class="hint">15 brackets, 2 rods and 2 plates. Every bracket goes into a stud.</p></div><div class="hw-grid">';
+    var h = '<div class="parts-head"><h2 class="ph">Brackets and rods</h2><p class="hint">2 rails, 12 brackets, 1 rod and a double hang rod. Every rail and bracket goes into a stud.</p></div><div class="hw-grid">';
     HORDER.forEach(function (k) {
       var c = HW[k];
       h += '<article class="scard">' + (FIG && FIG[k] ? '<div class="joint">' + FIG[k] + "</div>" : "") + '<h3><span>' + c.title + '</span><span class="qty">' + c.n + "x</span></h3>" +
