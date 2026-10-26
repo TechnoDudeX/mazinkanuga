@@ -150,7 +150,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     <div>
       <a class="back" href="/console/">← The build write-up</a>
       <h1>Console table</h1>
-      <p class="sub">48 x 14 x 30 in (draft) · glued 2x8 top · splayed 2x4 legs · low basket shelf · dark stain</p>
+      <p class="sub">40 x 10 x 32 in · glued 2x6 top · splayed 2x4 legs · low basket shelf · dark stain</p>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
     <div class="seg" role="group" aria-label="Page">
@@ -214,28 +214,30 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
   // ---------- data (designed in inches, drawn in mm) ----------
   // x = length, y = height, z = depth (front is +z). Centred on x = 0, z = 0.
-  // Lumber is 2x stock (1-1/2 in thick), legs and rails ripped to 2-1/2 in. Draft sizes.
+  // Lumber is 2x stock (1-1/2 in thick), legs and rails ripped to 2-1/2 in. Final sizes: 40 x 10 x 32 in.
   var IN = 25.4;
   function M(v) { return v * IN; }
-  var LW = 48, DW = 14, HW = 30, SHF = 8, SPLAY = 8;
-  var tT = 1.5, cT = 1.5, cW = 3.5, lW = 2.5, lT = 1.5, sH = 2.5, shT = 0.75, ovZ = 0.75, proj = 0.5, ovX = 3.75;
+  var LW = 40, DW = 10, HW = 32, SHF = 8, SPLAY = 8;
+  var tT = 1.5, cT = 1.5, cW = 3.5, lW = 2.5, lT = 1.5, sH = 2.5, shT = 0.75, ovZ = 0.75, proj = 0.5, ovX = 4;
   var TN = Math.tan(SPLAY * Math.PI / 180), CS = Math.cos(SPLAY * Math.PI / 180);
   var HLEG = HW - tT - cT, LEGEDGE = HLEG / CS, KICK = HLEG * TN;
-  var SPAN = DW - 2 * ovZ, SHELFW = SPAN - 2 * lT, CLEATL = SPAN + 2 * proj;
+  var SPAN = DW - 2 * ovZ, SHELFW = SPAN - 2 * lT, SHELFD = SPAN, CLEATL = SPAN + 2 * proj;
   var XT = ovX + cW / 2;
   function cx(y) { return XT - (HLEG - y) * TN; }
   var YS = SHF - shT, YM = YS - sH / 2, XS = cx(YM);
   var RAILL = LW - 2 * XS - 1.5, SHELFL = RAILL + 3, CLEAR = HW - tT - SHF;
   var FOOT = cx(0) - lW / 2, FOOTSPAN = LW - 2 * FOOT;
+  // the shelf runs out to the outside faces of the legs, notched around them at each corner
+  var NL = Math.ceil(((cx(SHF) + lW / 2) - (XS - 0.75)) * 8 + 0.5) / 8;
   function X(x) { return (x - LW / 2) * IN; }
   function Y(y) { return y * IN; }
   function Z(z) { return (z - DW / 2) * IN; }
   var ZB = ovZ + lT / 2, ZF = DW - ovZ - lT / 2;                 // leg centres, back and front
   var RZB = ovZ + lT + 0.75, RZF = DW - ovZ - lT - 0.75;          // rail centres
   var APPS = [
-    { id: "b1", name: "Basket, left", short: "Basket", w: M(13), d: M(9), h: M(10), x: M(-14.4), z: 0, base: M(SHF), where: "Shelf" },
-    { id: "b2", name: "Basket, middle", short: "Basket", w: M(13), d: M(9), h: M(10), x: 0, z: 0, base: M(SHF), where: "Shelf" },
-    { id: "b3", name: "Basket, right", short: "Basket", w: M(13), d: M(9), h: M(10), x: M(14.4), z: 0, base: M(SHF), where: "Shelf" }
+    { id: "b1", name: "Basket, left", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(-9.9), z: 0, base: M(SHF), where: "Shelf" },
+    { id: "b2", name: "Basket, middle", short: "Basket", w: M(9), d: M(8), h: M(9), x: 0, z: 0, base: M(SHF), where: "Shelf" },
+    { id: "b3", name: "Basket, right", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(9.9), z: 0, base: M(SHF), where: "Shelf" }
   ];
 
   // ---------- screws (mm) ----------
@@ -336,12 +338,12 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   }
 
   var META = {
-    top: { title: "Top", size: function () { return L([M(tT), M(DW), M(LW)]); }, lines: function () { return ["Two 2x8s ripped to " + f(M(7)) + " and glued edge to edge", R(M(HW - tT), M(HW)) + " from the floor", f(M(ovX)) + " past the cleats at each end, " + f(M(ovZ)) + " past the legs front and back", "Screwed up through the cleats, no glue, so it can move"]; } },
+    top: { title: "Top", size: function () { return L([M(tT), M(DW), M(LW)]); }, lines: function () { return ["Two 2x6s ripped to " + f(M(5)) + " and glued edge to edge", R(M(HW - tT), M(HW)) + " from the floor", f(M(ovX)) + " past the cleats at each end, " + f(M(ovZ)) + " past the legs front and back", "Screwed up through the cleats, no glue, so it can move"]; } },
     cleats: { title: "Cleats", size: function () { return L([M(cT), M(cW), M(CLEATL)]); }, lines: function () { return ["2x4 laid flat, full " + f(M(cW)) + " wide", R(M(HLEG), M(HLEG + cT)) + " from the floor", f(M(ovX)) + " in from each end of the top", "3 holes each: middle round, outer 2 slotted front to back"]; } },
     legs: { title: "Legs", size: function () { return L([M(lT), M(lW), M(LEGEDGE)]) + " on the long edge"; }, lines: function () { return ["2x4 ripped to " + f(M(lW)) + ". Both ends cut at " + SPLAY + "°, parallel", "They lean out along the length only. Each foot sits " + f(M(KICK)) + " further out than the top of its leg", "Feet end " + f(M(FOOT)) + " in from the ends of the top", "Pocket-screwed up into the cleats"]; } },
     stretchers: { title: "End stretchers", size: function () { return L([M(1.5), M(sH), M(SHELFW)]); }, lines: function () { return ["2x4 ripped to " + f(M(sH)) + ", square ends", R(M(YS - sH), M(YS)) + " from the floor", "Between the front and back legs at each end", "Hold the shelf ends"]; } },
     rails: { title: "Shelf rails", size: function () { return L([M(1.5), M(sH), M(RAILL)]); }, lines: function () { return ["2x4 ripped to " + f(M(sH)) + ", square ends", R(M(YS - sH), M(YS)) + " from the floor", "Front and back, between the stretchers, tops flush", "They tie the two ends together and stop it racking"]; } },
-    shelf: { title: "Shelf", size: function () { return L([M(shT), M(SHELFW), M(SHELFL)]); }, lines: function () { return ["1x12 pine ripped to " + f(M(SHELFW)), R(M(YS), M(SHF)) + " from the floor", "Ends flush with the outside of the stretchers", f(M(CLEAR)) + " clear above it, to the underside of the top"]; } }
+    shelf: { title: "Shelf", size: function () { return L([M(shT), M(SHELFD), M(SHELFL)]); }, lines: function () { return ["1x10 pine ripped to " + f(M(SHELFD)) + ", out to the outside of the legs", "A " + L([M(lT), M(NL)]) + " notch at each corner, around the legs", R(M(YS), M(SHF)) + " from the floor", f(M(CLEAR)) + " clear above it, to the underside of the top"]; } }
   };
   Object.keys(SCR).forEach(function (k) {
     var c = SCR[k];
@@ -351,7 +353,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     META["app-" + a.id] = {
       title: a.name,
       size: function () { return L([a.w, a.d, a.h]) + " (W x D x H), example"; },
-      lines: function () { return ["An example basket. Measure yours before you settle the depth and shelf height", f(M(CLEAR) - a.h) + " above it to the underside of the top", "The shelf is " + f(M(SHELFW)) + " deep and " + f(M(SHELFL)) + " long"]; }
+      lines: function () { return ["An example basket. Keep baskets inside the legs, which lean in as they go up", f(M(CLEAR) - a.h) + " above it to the underside of the top", "The shelf is " + f(M(SHELFD)) + " deep and " + f(M(SHELFL)) + " long"]; }
     };
   });
 
@@ -360,7 +362,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   function v(text) { return '<span class="v">' + text + "</span>"; }
   function renderSheet() {
     var h = "";
-    h += '<section><h2>Overall</h2><p class="hint">Draft sizes, to be settled before cutting.</p><div class="rows">' +
+    h += '<section><h2>Overall</h2><p class="hint">Final sizes.</p><div class="rows">' +
       row("Top", L([M(LW), M(DW), M(tT)])) +
       row("Overall height", f(M(HW))) +
       row("Leg splay<small>along the length only</small>", SPLAY + "°") +
@@ -381,18 +383,18 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
     h += '<section><h2>Shelf space</h2><div class="rows">' +
       btn("shelf", "Length<small>outside of one stretcher to the other</small>", f(M(SHELFL))) +
-      btn("shelf", "Depth", f(M(SHELFW))) +
+      btn("shelf", "Depth<small>to the outside of the legs</small>", f(M(SHELFD))) +
       btn("shelf", "Height<small>shelf to the underside of the top</small>", f(M(CLEAR))) +
       row("Clear under the rails", f(M(YS - sH))) +
       "</div></section>";
 
     h += '<section><h2>Parts</h2><p class="hint">Thickness x width x length.</p><div class="rows">' +
-      btn("top", "Top<small>two 2x8s, glued</small>", '<span class="q">1x</span>' + L([M(tT), M(DW), M(LW)])) +
+      btn("top", "Top<small>two 2x6s, glued</small>", '<span class="q">1x</span>' + L([M(tT), M(DW), M(LW)])) +
       btn("legs", "Legs<small>2x4 ripped, ends at " + SPLAY + "°</small>", '<span class="q">4x</span>' + L([M(lT), M(lW), M(LEGEDGE)])) +
       btn("cleats", "Cleats<small>2x4</small>", '<span class="q">2x</span>' + L([M(cT), M(cW), M(CLEATL)])) +
       btn("stretchers", "End stretchers<small>2x4 ripped</small>", '<span class="q">2x</span>' + L([M(1.5), M(sH), M(SHELFW)])) +
       btn("rails", "Shelf rails<small>2x4 ripped</small>", '<span class="q">2x</span>' + L([M(1.5), M(sH), M(RAILL)])) +
-      btn("shelf", "Shelf<small>1x12 pine, ripped</small>", '<span class="q">1x</span>' + L([M(shT), M(SHELFW), M(SHELFL)])) +
+      btn("shelf", "Shelf<small>1x10 pine, ripped, notched</small>", '<span class="q">1x</span>' + L([M(shT), M(SHELFD), M(SHELFL)])) +
       "</div></section>";
 
     h += '<section><h2>Screws</h2><p class="hint">Tap a row to zoom in on that joint. The wood turns see-through and each screw is drawn at its real size and angle.</p><div class="rows">';
@@ -537,6 +539,14 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     return m;
   }
   function box(size, mat, pos, ud) { return addMesh(new THREE.BoxGeometry(size[0], size[1], size[2]), mat, pos, ud); }
+  function shelfGeo() {
+    var a = M(SHELFL) / 2, b = M(SHELFD) / 2, n = M(NL), s2 = M(lT), sh = new THREE.Shape();
+    [[-a + n, -b], [a - n, -b], [a - n, -b + s2], [a, -b + s2], [a, b - s2], [a - n, b - s2], [a - n, b], [-a + n, b], [-a + n, b - s2], [-a, b - s2], [-a, -b + s2], [-a + n, -b + s2]]
+      .forEach(function (q, i) { if (i) sh.lineTo(q[0], q[1]); else sh.moveTo(q[0], q[1]); });
+    var g = new THREE.ExtrudeGeometry(sh, { depth: M(shT), bevelEnabled: false });
+    g.rotateX(-Math.PI / 2); g.translate(0, -M(shT) / 2, 0);
+    return g;
+  }
   function legGeo(lean) {
     // a leg with level ends: a box sheared along x so the top sits over the cleat and the foot kicks out
     var g = new THREE.BoxGeometry(M(lW), M(HLEG), M(lT)), pa = g.attributes.position;
@@ -556,7 +566,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     box([M(1.5), M(sH), M(SHELFW)], matH, [mx(XS), Y(YS - sH / 2), 0], { group: "stretchers", kind: "stretchers" });
   });
   [RZB, RZF].forEach(function (z) { box([M(RAILL), M(sH), M(1.5)], matH, [0, Y(YS - sH / 2), Z(z)], { group: "rails", kind: "rails" }); });
-  box([M(SHELFL), M(shT), M(SHELFW)], matH, [0, Y(SHF - shT / 2), 0], { group: "shelf", kind: "shelf" });
+  addMesh(shelfGeo(), matH, [0, Y(SHF - shT / 2), 0], { group: "shelf", kind: "shelf" });
 
   // baskets
   var appMeshes = [];
@@ -804,7 +814,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var STEPS = [
     { t: "Glue up the top", show: ["top"], hl: ["top"], view: "iso",
       tools: "Table saw, 4 bar clamps that open past 16 in, glue, the planer or a sander",
-      d: function () { return ["Rip about " + f(3.2) + " off each edge of the two 2x8s to take off the round corners, so each is " + f(M(7)) + " wide.", "Glue them edge to edge and clamp every " + f(M(10)) + ", clamps over and under. Next day, flatten it and cut it to " + L([M(LW), M(DW)]) + "."]; } },
+      d: function () { return ["Rip about " + f(6.35) + " off each edge of the two 2x6s to take off the round corners, so each is " + f(M(5)) + " wide.", "Glue them edge to edge and clamp every " + f(M(10)) + ", clamps over and under. Next day, flatten it and cut it to " + L([M(LW), M(DW)]) + "."]; } },
     { t: "Cut the legs", show: ["legs"], hl: ["legs"], view: "iso",
       tools: "Table saw to rip the 2x4s to 2-1/2 in, miter saw set to " + SPLAY + "°, a stop block",
       d: function () { return ["Rip the 2x4s for the legs, stretchers and rails to " + f(M(lW)) + " wide. Keep the cleat stock at full width.", "Cut one end of a leg at " + SPLAY + "°. Slide the board along without flipping it and cut the other end at the same setting, so the ends are parallel. Set a stop block at " + f(M(LEGEDGE)) + " on the long edge and cut all 4."]; } },
@@ -818,8 +828,8 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       tools: JIG + ", 2 clamps, tape measure",
       d: function () { return ["2 pocket holes in each end of both rails, on the inside face.", "Stand both ends up. Glue and screw the rails between the stretchers, tops flush. Measure both diagonals of the base and push it until they match."]; } },
     { t: "Put the shelf on", show: BASE, hl: ["shelf"], fast: ["fShelf"], view: "iso", scr: ["fShelf"],
-      tools: "#8 countersink bit, drill, #2 square bit, stainable wood filler",
-      d: function () { return ["Set the shelf on the rails and stretchers. Its ends line up with the outside of the stretchers.", "2 screws into each stretcher and 2 into each rail, countersunk just below the surface. Fill the holes; the baskets hide them."]; } },
+      tools: "Jigsaw or hand saw for the notches, #8 countersink bit, drill, #2 square bit, stainable wood filler",
+      d: function () { return ["Cut a " + L([M(lT), M(NL)]) + " notch at each corner so the shelf fits around the legs. Mark them from the base itself, then test the fit. Its front and back edges line up with the legs.", "2 screws into each stretcher and 2 into each rail, countersunk just below the surface. Fill the holes; the baskets hide them."]; } },
     { t: "Sand and stain", show: BASE.concat(["top"]), hl: [], paint: true, view: "iso",
       tools: "Random orbit sander with 120, 180 and 220, pre-stain conditioner, stain, wipe-on poly, rags, gloves",
       d: function () { return ["Sand every part to 180, then 220. Ease the sharp edges.", "Pre-stain conditioner, then the stain. Test on an offcut first. Then 3 coats of wipe-on poly, on the underside of the top too, so it stays flat."]; } },
@@ -902,18 +912,18 @@ button.row:hover, .row.active { background: var(--accent-soft); }
 
   // ---------- parts page ----------
   var PARTS = [
-    { id: "top", name: "Top", qty: 1, l: M(LW), w: M(DW), t: M(tT), geo: [M(LW), M(tT), M(DW)], mat: "Two 2x8s, glued", from: "2x8 x 10 ft",
-      notes: function () { return ["Rip each 2x8 to " + f(M(7)) + ", glue edge to edge, trim to size", "Best faces up, alternate the growth rings", "Screwed to the cleats, no glue"]; } },
+    { id: "top", name: "Top", qty: 1, l: M(LW), w: M(DW), t: M(tT), geo: [M(LW), M(tT), M(DW)], mat: "Two 2x6s, glued", from: "2x6 x 8 ft",
+      notes: function () { return ["Rip each 2x6 to " + f(M(5)) + ", glue edge to edge, trim to size", "Best faces up, alternate the growth rings", "Screwed to the cleats, no glue"]; } },
     { id: "legs", name: "Legs", qty: 4, l: M(LEGEDGE), w: M(lW), t: M(lT), lean: true, mat: "2x4, ripped", from: "2x4 boards 2 and 3",
       notes: function () { return ["Both ends at " + SPLAY + "°, parallel", "Length is on the long edge", "2 pocket holes on the inside face, near the top"]; } },
     { id: "cleats", name: "Cleats", qty: 2, l: M(CLEATL), w: M(cW), t: M(cT), geo: [M(cW), M(cT), M(CLEATL)], mat: "2x4, full width", from: "2x4 board 3",
       notes: function () { return ["Laid flat under each end of the top", "3 holes: middle round, outer 2 slotted " + f(12.7)]; } },
-    { id: "stretchers", name: "End stretchers", qty: 2, l: M(SHELFW), w: M(sH), t: M(1.5), geo: [M(1.5), M(sH), M(SHELFW)], mat: "2x4, ripped", from: "2x4 board 3",
+    { id: "stretchers", name: "End stretchers", qty: 2, l: M(SHELFW), w: M(sH), t: M(1.5), geo: [M(1.5), M(sH), M(SHELFW)], mat: "2x4, ripped", from: "2x4 board 1",
       notes: function () { return ["Square ends", "2 pocket holes in each end, on the inner face"]; } },
     { id: "rails", name: "Shelf rails", qty: 2, l: M(RAILL), w: M(sH), t: M(1.5), geo: [M(RAILL), M(sH), M(1.5)], mat: "2x4, ripped", from: "2x4 board 1",
       notes: function () { return ["Square ends. Cut long, then trim to fit between the stretchers", "2 pocket holes in each end, on the inside face"]; } },
-    { id: "shelf", name: "Shelf", qty: 1, l: M(SHELFL), w: M(SHELFW), t: M(shT), geo: [M(SHELFL), M(shT), M(SHELFW)], mat: "1x12 pine, ripped", from: "1x12 x 4 ft",
-      notes: function () { return ["Rip to " + f(M(SHELFW)) + " wide", "Ends flush with the outside of the stretchers"]; } }
+    { id: "shelf", name: "Shelf", qty: 1, l: M(SHELFL), w: M(SHELFD), t: M(shT), notch: true, mat: "1x10 pine, ripped", from: "1x10 x 4 ft",
+      notes: function () { return ["Rip to " + f(M(SHELFD)) + " wide", "A " + L([M(lT), M(NL)]) + " notch at each corner, around the legs", "Mark the notches from the built base"]; } }
   ];
   var thumbs = {};
   (function makeThumbs() {
@@ -928,7 +938,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     var wood = color("--wood", "#DCC7A2"); tH.color.copy(wood); tV.color.copy(wood);
     var lineMat = new THREE.LineBasicMaterial({ color: 0x6b5a3e });
     PARTS.forEach(function (p) {
-      var g = p.lean ? legGeo(1) : new THREE.BoxGeometry(p.geo[0], p.geo[1], p.geo[2]);
+      var g = p.lean ? legGeo(1) : p.notch ? shelfGeo() : new THREE.BoxGeometry(p.geo[0], p.geo[1], p.geo[2]);
       g.computeBoundingBox();
       var bb = g.boundingBox;
       var m = new THREE.Mesh(g, p.lean ? tV : tH);
@@ -956,14 +966,14 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var partsEl = document.getElementById("parts");
   function boardSvg() {
     // each board drawn to scale along its length; cuts include a little extra for trimming
-    var k = 5.6, x0 = 8, y = 8, BOARDS = [
-      ["2x8 x 10 ft", 120, 7.25, [[LW + 3, "Top board"], [LW + 3, "Top board"]]],
-      ["2x4 x 8 ft, board 1", 96, 3.5, [[RAILL + 1, "Rail"], [RAILL + 1, "Rail"]]],
+    var k = 6.8, x0 = 8, y = 8, BOARDS = [
+      ["2x6 x 8 ft", 96, 5.5, [[LW + 3, "Top board"], [LW + 3, "Top board"]]],
+      ["2x4 x 8 ft, board 1", 96, 3.5, [[RAILL + 1, "Rail"], [RAILL + 1, "Rail"], [SHELFW + 1, "Stretcher"], [SHELFW + 1, "Stretcher"]]],
       ["2x4 x 8 ft, board 2", 96, 3.5, [[LEGEDGE + 1, "Leg"], [LEGEDGE + 1, "Leg"], [LEGEDGE + 1, "Leg"]]],
-      ["2x4 x 8 ft, board 3", 96, 3.5, [[CLEATL + 1, "Cleat"], [CLEATL + 1, "Cleat"], [LEGEDGE + 1, "Leg"], [SHELFW + 1, "Stretcher"], [SHELFW + 1, "Stretcher"]]],
-      ["1x12 x 4 ft", 48, 11.25, [[SHELFL + 1, "Shelf"]]]
+      ["2x4 x 8 ft, board 3", 96, 3.5, [[CLEATL + 1, "Cleat"], [CLEATL + 1, "Cleat"], [LEGEDGE + 1, "Leg"]]],
+      ["1x10 x 4 ft", 48, 9.25, [[SHELFL + 1, "Shelf"]]]
     ];
-    var W = 120 * k + 16, out = "";
+    var W = 96 * k + 16, out = "";
     BOARDS.forEach(function (b) {
       var h = Math.max(30, b[2] * k * 0.9);
       out += '<text x="' + x0 + '" y="' + (y + 11) + '" font-family="var(--mono)" font-size="11" fill="var(--muted)">' + b[0] + "</text>";
@@ -973,7 +983,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
       b[3].forEach(function (c) {
         var w = c[0] * k;
         out += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="var(--wood)" stroke="var(--wood-edge)"/>';
-        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 - 2) + '" text-anchor="middle" font-family="var(--display)" font-weight="600" font-size="11" fill="#1D2320">' + c[1] + "</text>";
+        out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 - 2) + '" text-anchor="middle" font-family="var(--display)" font-weight="600" font-size="' + (w < 70 ? 8.5 : 11) + '" fill="#1D2320">' + c[1] + "</text>";
         out += '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 11) + '" text-anchor="middle" font-family="var(--mono)" font-size="9.5" fill="#1D2320">' + f(M(c[0])) + "</text>";
         x += w + 0.25 * k;
       });
@@ -982,7 +992,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
     return '<svg viewBox="0 0 ' + W + " " + y + '" role="img" aria-label="Board cutting layout" style="width:100%;height:auto;display:block">' + out + "</svg>";
   }
   function lumberRows() {
-    var B = [["2x8 x 10 ft (1)", "2 top boards, ripped to " + f(M(7)) + " and glued"], ["2x4 x 8 ft (3, plus 1 spare)", "Legs, cleats, stretchers and rails"], ["1x12 pine x 4 ft (1)", "Shelf, ripped to " + f(M(SHELFW))]];
+    var B = [["2x6 x 8 ft (1)", "2 top boards, ripped to " + f(M(5)) + " and glued"], ["2x4 x 8 ft (3, plus 1 spare)", "Legs, cleats, stretchers and rails"], ["1x10 pine x 4 ft (1)", "Shelf, ripped to " + f(M(SHELFD))]];
     return B.map(function (b) { return '<div class="row"><span class="k">' + b[0] + '</span><span class="v" style="white-space:normal">' + b[1] + "</span></div>"; }).join("");
   }
   function renderParts() {
@@ -1017,7 +1027,7 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   ];
   var TOOLS = [
     ["Measure and mark", [["Tape measure"], ["Combination square"], ["Sliding bevel, set to " + SPLAY + "°"], ["Pencil"]]],
-    ["Cut", [["Table saw", "club"], ["Miter saw, with a stop block", "club"], ["Jointer and planer, to flatten the top boards if free", "club"]]],
+    ["Cut", [["Table saw", "club"], ["Miter saw, with a stop block", "club"], ["Jigsaw, for the shelf notches", "club"], ["Jointer and planer, to flatten the top boards if free", "club"]]],
     ["Pocket holes", [["Kreg pocket hole jig, set for 1-1/2 in stock", "buy"], ["Stepped drill bit with its stop collar, and a 6 in #2 square driver bit (both come with the jig)"], ["Face clamp, to hold each joint flush while you drive"]]],
     ["Drill and drive", [["Drill/driver, plus an impact driver if you have one"], ["#8 countersink bit with a 1/8 in pilot"], ["3/16 in drill bit, for the cleat holes"], ["6 in bit extension"], ["#2 square (Robertson) bits"]]],
     ["Clamp", [["4 bar or pipe clamps that open past 16 in, for the top"], ["4 quick clamps or F-clamps"], ["Scrap blocks, one cut to " + f(M(YS - sH)) + " to hold the stretchers"]]],
