@@ -217,8 +217,8 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   // Lumber is 2x stock (1-1/2 in thick), legs and rails ripped to 2-1/2 in. Final sizes: 40 x 10 x 32 in.
   var IN = 25.4;
   function M(v) { return v * IN; }
-  var LW = 40, DW = 10, HW = 32, SHF = 8, SPLAY = 8;
-  var tT = 1.5, cT = 1.5, cW = 3.5, lW = 2.5, lT = 1.5, sH = 2.5, shT = 0.75, ovZ = 0.75, proj = 0.5, ovX = 4;
+  var LW = 40, DW = 10, HW = 32, SHF = 8, SPLAY = 10;
+  var tT = 1.5, cT = 1.5, cW = 3.5, lW = 2.5, lT = 1.5, sH = 2.5, shT = 0.75, ovZ = 0.75, proj = 0.5, ovX = 5;
   var TN = Math.tan(SPLAY * Math.PI / 180), CS = Math.cos(SPLAY * Math.PI / 180);
   var HLEG = HW - tT - cT, LEGEDGE = HLEG / CS, KICK = HLEG * TN;
   var SPAN = DW - 2 * ovZ, SHELFW = SPAN - 2 * lT, SHELFD = SPAN, CLEATL = SPAN + 2 * proj;
@@ -235,9 +235,9 @@ button.row:hover, .row.active { background: var(--accent-soft); }
   var ZB = ovZ + lT / 2, ZF = DW - ovZ - lT / 2;                 // leg centres, back and front
   var RZB = ovZ + lT + 0.75, RZF = DW - ovZ - lT - 0.75;          // rail centres
   var APPS = [
-    { id: "b1", name: "Basket, left", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(-9.9), z: 0, base: M(SHF), where: "Shelf" },
+    { id: "b1", name: "Basket, left", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(-9.4), z: 0, base: M(SHF), where: "Shelf" },
     { id: "b2", name: "Basket, middle", short: "Basket", w: M(9), d: M(8), h: M(9), x: 0, z: 0, base: M(SHF), where: "Shelf" },
-    { id: "b3", name: "Basket, right", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(9.9), z: 0, base: M(SHF), where: "Shelf" }
+    { id: "b3", name: "Basket, right", short: "Basket", w: M(9), d: M(8), h: M(9), x: M(9.4), z: 0, base: M(SHF), where: "Shelf" }
   ];
 
   // ---------- screws (mm) ----------
