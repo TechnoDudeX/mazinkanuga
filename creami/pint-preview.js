@@ -47,17 +47,17 @@
   function visualWeight(name, amount) {
     const grams = amount.match(/(\d+(?:\.\d+)?)\s*(?:g|ml)\b/i);
     if (grams) return Number(grams[1]);
-    if (/wafer/i.test(name)) return 8;
     const spoon = amount.replace('1½', '1.5').replace('½', '0.5').replace('⅛', '0.125').replace('1/16', '0.0625');
-    const quantity = parseFloat(spoon) || .1;
+    const quantity = window.CreamiPints?.parseAmount(amount) || parseFloat(spoon) || .1;
+    if (/wafer/i.test(name)) return quantity * 4;
     if (/allulose/i.test(name)) return quantity * (/tbsp/.test(spoon) ? 12 : 4);
     if (/vanilla/i.test(name)) return quantity * 4;
     if (/xanthan/i.test(name)) return quantity * 3.2;
     if (/lemon/i.test(name)) return quantity * 5;
-    return .1;
+    return /pinch/i.test(amount) ? Math.max(.1, quantity * .1) : .1;
   }
 
-  const recipes = [...document.querySelectorAll('details.recipe')].filter(el => palettes[el.id]).map((el, index) => {
+  function readRecipe(el, index) {
     const groups = {};
     el.querySelectorAll('.ingredients label').forEach(label => {
       const name = label.querySelector('.ingredient-name').firstChild.textContent.trim();
@@ -74,7 +74,8 @@
       servings: el.querySelector('.recipe-quick span').textContent,
       macros, groups, ...palettes[el.id]
     };
-  });
+  }
+  const recipes = [...document.querySelectorAll('details.recipe')].filter(el => palettes[el.id]).map(readRecipe);
   if (!recipes.length) return;
   const byId = new Map(recipes.map(recipe => [recipe.id, recipe]));
   const layerNodes = new Map();
@@ -136,17 +137,20 @@
     choice.addEventListener('click', () => select(recipe.id));
   });
 
-  function select(id) {
+  function select(id, { force = false } = {}) {
     const next = byId.get(id);
-    if (!next || next === selected) return;
+    if (!next || (next === selected && !force)) return;
     const previous = selected;
     selected = next;
     root.dataset.recipe = id;
+    const container = window.CreamiPints?.getState() || { size: 'original', label: 'Original', ounces: 16 };
+    root.dataset.pintSize = container.size;
     root.style.setProperty('--preview-lid', next.lid);
     root.style.setProperty('--preview-tint', next.tint);
     picker.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.recipe === id)));
     $('.preview-edition').textContent = `${String(next.index + 1).padStart(2, '0')} / ${next.label}`;
-    $('.preview-kicker').textContent = `${next.label} · 24 hr freeze`;
+    $('.preview-stage-top span:last-child').textContent = `${container.label} · ${container.ounces} fl oz`;
+    $('.preview-kicker').textContent = `${next.label} · ${container.label} size · 24 hr freeze`;
     $('#preview-name').textContent = next.name;
     $('.preview-description').textContent = next.description;
     $('.preview-servings').textContent = `${next.servings} · ${id === 'banana-pudding-ice-cream' ? 'estimates exclude optional wafers' : 'nutrition estimates for the whole batch'}`;
@@ -156,7 +160,7 @@
       value.append(make('b', '', next.macros[index]), document.createTextNode(label));
       return value;
     }));
-    pint.setAttribute('aria-label', `${next.name}: an illustrated cutaway of the ingredients listed alongside it.`);
+    pint.setAttribute('aria-label', `${next.name}, ${container.label} ${container.ounces} fl oz container: an illustrated cutaway of the ingredients listed alongside it.`);
 
     const visible = Object.keys(kinds).filter(key => next.groups[key]);
     const total = visible.reduce((sum, key) => sum + next.groups[key].weight, 0);
@@ -228,4 +232,8 @@
   fromHash();
   root.hidden = false;
   window.addEventListener('hashchange', fromHash);
+  window.addEventListener('creami:pint-size-change', () => {
+    recipes.forEach(recipe => Object.assign(recipe, readRecipe(document.getElementById(recipe.id), recipe.index)));
+    select(selected.id, { force: true });
+  });
 })();

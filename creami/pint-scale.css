@@ -1,0 +1,27 @@
+.pint-size-control[hidden], .pint-size-note[hidden] { display: none; }
+.pint-size-control { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 24px; padding: 18px 20px; border: 1px solid var(--ink); background: var(--paper); }
+.pint-size-label { font: 10px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.pint-size-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+.pint-size-button { display: flex; flex-direction: column; gap: 4px; min-width: 145px; min-height: 54px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 0; background: transparent; text-align: left; transition: background-color .2s, color .2s; }
+.pint-size-button b { font: 600 12px/1.3 var(--sans); }
+.pint-size-button small { font: 9px/1.5 var(--mono); opacity: .7; }
+.pint-size-button:hover { border-color: var(--ink); }
+.pint-size-button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.pint-size-note { font: 10px/1.8 var(--sans); color: var(--muted); margin: 12px 0 22px; max-width: 82ch; }
+.recipe .pint-size-control { margin-bottom: 26px; padding: 14px 16px; border-color: var(--line); }
+.recipe .pint-size-button { min-width: 125px; padding: 8px 13px; }
+.glass-pint { transition: width .75s cubic-bezier(.22, 1, .36, 1); }
+.pint-preview[data-pint-size="deluxe"] .glass-pint { width: min(84%, 320px); }
+@media (max-width: 800px) {
+  .pint-size-control { padding: 16px; gap: 12px; }
+  .pint-size-buttons { width: 100%; flex-wrap: nowrap; }
+  .pint-size-button, .recipe .pint-size-button { flex: 1; min-width: 0; padding-inline: 12px; }
+  .recipe .pint-size-control { padding: 14px; }
+  .pint-preview[data-pint-size="deluxe"] .glass-pint { width: min(84%, 278px); }
+}
+@media (prefers-reduced-motion: reduce) { .glass-pint { transition: none; } }
+@media print {
+  .pint-size-control { border: 0; padding: 0 !important; margin: 0 0 15px !important; }
+  .pint-size-label, .pint-size-button[aria-pressed="false"] { display: none; }
+  .pint-size-button[aria-pressed="true"] { min-height: 0; padding: 0; border: 0; background: none; color: black; }
+}

@@ -19,6 +19,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/creami/creami.css">
 <link rel="stylesheet" href="/creami/pint-preview.css">
+<link rel="stylesheet" href="/creami/pint-scale.css">
+<script src="/creami/pint-scale.js" defer></script>
 <script src="/creami/pint-preview.js" defer></script>
 <script src="/creami/creami.js" defer></script>
 <script type="application/ld+json">
@@ -458,6 +460,8 @@
 <main>
   <section class="lineup" id="lineup" aria-labelledby="lineup-title">
     <div class="section-heading"><h2 id="lineup-title">Inside the pint.</h2><p>Pick a flavour. Watch it take shape.</p></div>
+    <div class="pint-size-control" id="pint-size-toolbar" data-pint-size-control hidden></div>
+    <p class="pint-size-note" id="pint-size-note" hidden>Deluxe uses 1½× the listed recipe. Batches may sit below the MAX FILL line; never fill past it. <a href="https://www.sharkninja.com/kitchen/frozen-treat-makers/ice-cream-makers" target="_blank" rel="noopener">Container sizes ↗</a></p>
     <div class="pint-preview" id="pint-preview" hidden>
       <div class="preview-picker" role="group" aria-label="Choose a pint flavour"></div>
       <div class="preview-layout">
@@ -503,13 +507,13 @@
 <li><label><input type="checkbox" data-check="chikoo-banana:6"><span class="ingredient-name">Vanilla extract</span><span class="ingredient-amount">1 tsp</span></label></li>
 <li><label><input type="checkbox" data-check="chikoo-banana:7"><span class="ingredient-name">Xanthan gum<small>Half of a level ⅛ tsp</small></span><span class="ingredient-amount">1/16 tsp</span></label></li>
 <li class="mix-in-label">After spinning · mix-in</li><li><label><input type="checkbox" data-check="chikoo-banana:8"><span class="ingredient-name">Parle-G biscuits<small>Break into large pieces; add after spinning</small></span><span class="ingredient-amount">2 · 11 g</span></label></li>
-    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. For 1/16 tsp gum, use half of a level ⅛ tsp.</p></section>
+    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. Use the listed xanthan measure; keep spoonfuls level.</p></section>
     <section aria-label="Method"><h3>02 / The method</h3><ol class="steps"><li><h4>Weigh the base</h4><p>Add the milk, peeled and seeded chikoo, banana, whey, dry banana mix, allulose, and vanilla to a blender. Sprinkle the xanthan onto the dry powders before blending.</p></li>
 <li><h4>Blend until completely smooth</h4><p>Blend for 60 seconds. Scrape down the sides, then blend for 15 seconds more. There should be no fruit pieces or powder pockets left.</p></li>
 <li><h4>Fill, label, and freeze for 24 hours</h4><p>Pour into your CREAMi container immediately, keeping below its MAX FILL line. Use the matching lid and label the container body too. Freeze upright on a level shelf for at least 24 hours.</p></li>
 <li><h4>LITE ICE CREAM, then re-spin if needed</h4><p>Remove the storage lid and assemble your machine according to its guide. Run LITE ICE CREAM. If the result is powdery, add 10 g of milk and run RE-SPIN. Stop when smooth.</p></li>
-<li><h4>MIX-IN the Parle-G</h4><p>Make a hole down the centre. Add 2 Parle-G biscuits (11 g), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>Use fully ripe chikoo.</strong> It should give to gentle pressure. Peel it and remove every seed before weighing the flesh. Blend thoroughly for a smooth base.</p>
-<p><strong>Less allulose in this one.</strong> Start with 1½ tsp because the chikoo and banana already bring sweetness. Taste the liquid base before adjusting.</p></div></section></div>
+<li><h4>MIX-IN the Parle-G</h4><p>Make a hole down the centre. Add <span data-scale-amount>2</span> Parle-G biscuits (<span data-scale-amount>11 g</span>), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>Use fully ripe chikoo.</strong> It should give to gentle pressure. Peel it and remove every seed before weighing the flesh. Blend thoroughly for a smooth base.</p>
+<p><strong>Less allulose in this one.</strong> Start with <span data-scale-amount>1½ tsp</span> because the chikoo and banana already bring sweetness. Taste the liquid base before adjusting.</p></div></section></div>
     <div class="macro-summary"><div><b>519</b><span>Calories ≈</span></div><div><b>47.1 g</b><span>Protein ≈</span></div><div><b>62.6 g</b><span>Carbs ≈</span></div><div><b>12.3 g</b><span>Fat ≈</span></div><div><b>30.7 g</b><span>Sugar ≈</span></div></div><p class="macro-caption">Estimate for the entire batch, including the listed biscuits. Extra milk and toppings excluded.</p>
     <details class="nutrition-detail"><summary>Ingredient-by-ingredient nutrition</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Chikoo Banana nutrition breakdown"><table>
       <caption>Approximate amounts for the entire batch, including the listed mix-in.</caption>
@@ -537,12 +541,12 @@
 <li><label><input type="checkbox" data-check="chocolate-biscoff:4"><span class="ingredient-name">Vanilla extract</span><span class="ingredient-amount">1 tsp</span></label></li>
 <li><label><input type="checkbox" data-check="chocolate-biscoff:5"><span class="ingredient-name">Xanthan gum<small>Half of a level ⅛ tsp</small></span><span class="ingredient-amount">1/16 tsp</span></label></li>
 <li class="mix-in-label">After spinning · mix-in</li><li><label><input type="checkbox" data-check="chocolate-biscoff:6"><span class="ingredient-name">Lotus Biscoff biscuits<small>Break into large pieces; add after spinning</small></span><span class="ingredient-amount">2 · 15 g</span></label></li>
-    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. For 1/16 tsp gum, use half of a level ⅛ tsp.</p></section>
+    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. Use the listed xanthan measure; keep spoonfuls level.</p></section>
     <section aria-label="Method"><h3>02 / The method</h3><ol class="steps"><li><h4>Weigh the base</h4><p>Add the milk, whey, dry chocolate pudding mix, allulose, and vanilla to a blender. Sprinkle the xanthan onto the dry powders before blending.</p></li>
 <li><h4>Blend until completely smooth</h4><p>Blend for 60 seconds. Scrape down the sides, then blend for 15 seconds more. There should be no fruit pieces or powder pockets left.</p></li>
 <li><h4>Fill, label, and freeze for 24 hours</h4><p>Pour into your CREAMi container immediately, keeping below its MAX FILL line. Use the matching lid and label the container body too. Freeze upright on a level shelf for at least 24 hours.</p></li>
 <li><h4>LITE ICE CREAM, then re-spin if needed</h4><p>Remove the storage lid and assemble your machine according to its guide. Run LITE ICE CREAM. If the result is powdery, add 10 g of milk and run RE-SPIN. Stop when smooth.</p></li>
-<li><h4>MIX-IN the Biscoff</h4><p>Make a hole down the centre. Add 2 Lotus Biscoff biscuits (15 g), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>Want more chocolate?</strong> The optional variation from my notes is 5 g cocoa powder plus about 1 tsp more allulose. The nutrition below covers the listed base only.</p>
+<li><h4>MIX-IN the Biscoff</h4><p>Make a hole down the centre. Add <span data-scale-amount>2</span> Lotus Biscoff biscuits (<span data-scale-amount>15 g</span>), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>Want more chocolate?</strong> The optional variation from my notes is <span data-scale-amount>5 g</span> cocoa powder plus about <span data-scale-amount>1 tsp</span> more allulose. The nutrition below covers the listed base only.</p>
 <p><strong>Skip the extra salt.</strong> The pudding mix already brings sodium. Keep the biscuits out of the blender and add them after the spin.</p></div></section></div>
     <div class="macro-summary"><div><b>466</b><span>Calories ≈</span></div><div><b>46.8 g</b><span>Protein ≈</span></div><div><b>45.4 g</b><span>Carbs ≈</span></div><div><b>12.9 g</b><span>Fat ≈</span></div><div><b>17.3 g</b><span>Sugar ≈</span></div></div><p class="macro-caption">Estimate for the entire batch, including the listed biscuits. Extra milk and toppings excluded.</p>
     <details class="nutrition-detail"><summary>Ingredient-by-ingredient nutrition</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Chocolate Biscoff nutrition breakdown"><table>
@@ -571,13 +575,13 @@
 <li><label><input type="checkbox" data-check="strawberry:6"><span class="ingredient-name">Lemon juice<small>About 5 g</small></span><span class="ingredient-amount">1 tsp</span></label></li>
 <li><label><input type="checkbox" data-check="strawberry:7"><span class="ingredient-name">Xanthan gum<small>Half of a level ⅛ tsp</small></span><span class="ingredient-amount">1/16 tsp</span></label></li>
 
-    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. For 1/16 tsp gum, use half of a level ⅛ tsp.</p></section>
+    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. Use the listed xanthan measure; keep spoonfuls level.</p></section>
     <section aria-label="Method"><h3>02 / The method</h3><ol class="steps"><li><h4>Weigh the base</h4><p>Add the milk, hulled strawberries, whey, dry strawberry mix, allulose, vanilla, and lemon juice to a blender. Sprinkle the xanthan onto the dry powders before blending.</p></li>
 <li><h4>Blend until completely smooth</h4><p>Blend for 60 seconds. Scrape down the sides, then blend for 15 seconds more. There should be no fruit pieces or powder pockets left.</p></li>
 <li><h4>Fill, label, and freeze for 24 hours</h4><p>Pour into your CREAMi container immediately, keeping below its MAX FILL line. Use the matching lid and label the container body too. Freeze upright on a level shelf for at least 24 hours.</p></li>
 <li><h4>LITE ICE CREAM, then re-spin if needed</h4><p>Remove the storage lid and assemble your machine according to its guide. Run LITE ICE CREAM. If the result is powdery, add 10 g of milk and run RE-SPIN. Stop when smooth.</p></li>
 <li><h4>Serve as it is</h4><p>No biscuit mix-in for this pint. Serve immediately, with fresh strawberry pieces on top if you like. Extra toppings are not included in the nutrition estimate.</p></li></ol><div class="recipe-notes"><p><strong>Fresh or frozen berries.</strong> Use ripe, flavourful berries. If using frozen strawberries, thaw and drain them before weighing.</p>
-<p><strong>Keep the lemon.</strong> The 1 tsp of lemon juice brightens the strawberry flavour. Visible strawberry seeds are normal.</p></div></section></div>
+<p><strong>Keep the lemon.</strong> The <span data-scale-amount>1 tsp</span> of lemon juice brightens the strawberry flavour. Visible strawberry seeds are normal.</p></div></section></div>
     <div class="macro-summary"><div><b>402</b><span>Calories ≈</span></div><div><b>46.3 g</b><span>Protein ≈</span></div><div><b>43.3 g</b><span>Carbs ≈</span></div><div><b>9.8 g</b><span>Fat ≈</span></div><div><b>17.7 g</b><span>Sugar ≈</span></div></div><p class="macro-caption">Estimate for the entire batch, including the listed biscuits. Extra milk and toppings excluded.</p>
     <details class="nutrition-detail"><summary>Ingredient-by-ingredient nutrition</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Strawberry nutrition breakdown"><table>
       <caption>Approximate amounts for the entire batch, including the listed mix-in.</caption>
@@ -605,13 +609,13 @@
 <li><label><input type="checkbox" data-check="biscoff-cheesecake:5"><span class="ingredient-name">Vanilla extract</span><span class="ingredient-amount">1 tsp</span></label></li>
 <li><label><input type="checkbox" data-check="biscoff-cheesecake:6"><span class="ingredient-name">Xanthan gum<small>Half of a level ⅛ tsp</small></span><span class="ingredient-amount">1/16 tsp</span></label></li>
 <li class="mix-in-label">After spinning · mix-in</li><li><label><input type="checkbox" data-check="biscoff-cheesecake:7"><span class="ingredient-name">Lotus Biscoff biscuits<small>Break into large pieces; add after spinning</small></span><span class="ingredient-amount">2 · 15 g</span></label></li>
-    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. For 1/16 tsp gum, use half of a level ⅛ tsp.</p></section>
+    </ul><p class="ingredients-note">Keep the scale for milk, fruit, whey, and pudding mix. Use the listed xanthan measure; keep spoonfuls level.</p></section>
     <section aria-label="Method"><h3>02 / The method</h3><ol class="steps"><li><h4>Weigh the base</h4><p>Add the milk, whey, dry cheesecake pudding mix, allulose, lemon juice, and vanilla to a blender. Sprinkle the xanthan onto the dry powders before blending.</p></li>
 <li><h4>Blend until completely smooth</h4><p>Blend for 60 seconds. Scrape down the sides, then blend for 15 seconds more. There should be no fruit pieces or powder pockets left.</p></li>
-<li><h4>Taste the tang</h4><p>Taste the blended base before freezing. Start with the listed 1 tsp of lemon juice; the cheesecake flavour should have a little tang.</p></li>
+<li><h4>Taste the tang</h4><p>Taste the blended base before freezing. Start with the listed <span data-scale-amount>1 tsp</span> of lemon juice; the cheesecake flavour should have a little tang.</p></li>
 <li><h4>Fill, label, and freeze for 24 hours</h4><p>Pour into your CREAMi container immediately, keeping below its MAX FILL line. Use the matching lid and label the container body too. Freeze upright on a level shelf for at least 24 hours.</p></li>
 <li><h4>LITE ICE CREAM, then re-spin if needed</h4><p>Remove the storage lid and assemble your machine according to its guide. Run LITE ICE CREAM. If the result is powdery, add 10 g of milk and run RE-SPIN. Stop when smooth.</p></li>
-<li><h4>MIX-IN the Biscoff crust</h4><p>Make a hole down the centre. Add 2 Lotus Biscoff biscuits (15 g), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>The biscuit is the crust.</strong> Keep the Biscoff in large pieces and add it after spinning, rather than blending it into the base.</p>
+<li><h4>MIX-IN the Biscoff crust</h4><p>Make a hole down the centre. Add <span data-scale-amount>2</span> Lotus Biscoff biscuits (<span data-scale-amount>15 g</span>), broken into large pieces. Run MIX-IN once and serve immediately.</p></li></ol><div class="recipe-notes"><p><strong>The biscuit is the crust.</strong> Keep the Biscoff in large pieces and add it after spinning, rather than blending it into the base.</p>
 <p><strong>No cream cheese in this version.</strong> The cheesecake pudding and lemon give the flavour. Expect a lighter result than a traditional cream-cheese base.</p></div></section></div>
     <div class="macro-summary"><div><b>467</b><span>Calories ≈</span></div><div><b>46.8 g</b><span>Protein ≈</span></div><div><b>45.8 g</b><span>Carbs ≈</span></div><div><b>12.7 g</b><span>Fat ≈</span></div><div><b>17.3 g</b><span>Sugar ≈</span></div></div><p class="macro-caption">Estimate for the entire batch, including the listed biscuits. Extra milk and toppings excluded.</p>
     <details class="nutrition-detail"><summary>Ingredient-by-ingredient nutrition</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Biscoff Cheesecake nutrition breakdown"><table>
@@ -678,9 +682,9 @@
 <li><h4>Spin on LITE ICE CREAM</h4><p>Freezer to machine, no detours — don&#x27;t let the pint start softening on the counter.</p></li>
 <li><h4>Re-spin</h4><p>Dry or in pieces? Add 10 ml of milk and RE-SPIN, again if it needs it. Two cycles is standard with whey. Stop when the surface is smooth.</p></li>
 <li><h4>Serve immediately</h4><p>For mix-ins, hole down the center, mix-ins in, MIX-IN once. One cycle only.</p></li></ol><div class="recipe-notes"><p><strong>No extra salt.</strong> The mix brings 330 mg sodium per 10 g · that&#x27;s enough</p>
-<p><strong>Xanthan gum.</strong> It&#x27;s a sixteenth of a teaspoon on purpose. The pudding mix already has xanthan in it and the banana adds starch. If the pint comes out elastic or stringy, use none in the next one.</p>
-<p><strong>More banana.</strong> Chocolate is dominant and banana sits in the background. Go up to 80 g of banana for more of it — don&#x27;t increase the mix.</p>
-<p><strong>Without the whey.</strong> Drop the protein powder and use 290 ml of milk. About 255 calories and 17 g of protein.</p></div></section></div>
+<p><strong>Xanthan gum.</strong> Keep the xanthan gum to the scaled amount listed above. The pudding mix already has xanthan in it and the banana adds starch. If the pint comes out elastic or stringy, use none in the next one.</p>
+<p><strong>More banana.</strong> Chocolate is dominant and banana sits in the background. Go up to <span data-scale-amount>80 g</span> of banana for more of it — don&#x27;t increase the mix.</p>
+<p><strong>Without the whey.</strong> Drop the protein powder and use <span data-scale-amount>290 ml</span> of milk. About <span data-scale-decimal>255</span> calories and <span data-scale-decimal>17 g</span> of protein.</p></div></section></div>
     <div class="macro-summary"><div><b>395</b><span>Calories ≈</span></div><div><b>41 g</b><span>Protein ≈</span></div><div><b>45 g</b><span>Carbs ≈</span></div><div><b>10 g</b><span>Fat ≈</span></div><div><b>16 g</b><span>Sugar ≈</span></div></div><p class="macro-caption">Estimate for the whole listed batch. Optional mix-ins and extra re-spin milk are excluded.</p>
 
   </div>
