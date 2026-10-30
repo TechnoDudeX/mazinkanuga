@@ -79,7 +79,7 @@
   const controls = [...document.querySelectorAll('[data-pint-size-control]')];
   controls.forEach(control => {
     const label = document.createElement('span');
-    label.className = 'pint-size-label'; label.textContent = 'Your pint size';
+    label.className = 'pint-size-label'; label.textContent = 'Your pint size 🍦';
     const group = document.createElement('div');
     group.className = 'pint-size-buttons'; group.setAttribute('role', 'group'); group.setAttribute('aria-label', 'Pint container size');
     Object.entries(SIZES).forEach(([key, config]) => {

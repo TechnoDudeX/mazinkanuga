@@ -10,22 +10,22 @@
   const readout = $('.preview-layer-readout');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const kinds = {
-    milk:       { name: 'Milk', colour: '#f1eadb' },
-    chikoo:     { name: 'Chikoo', colour: '#b78359' },
-    banana:     { name: 'Banana', colour: '#e5c86e' },
-    strawberry: { name: 'Strawberries', colour: '#d77d92' },
-    whey:       { name: 'Vanilla whey', colour: '#d7bd94' },
-    pudding:    { name: 'Pudding mix', colour: '#e7cd83' },
-    extras:     { name: 'Sweetener & extras', colour: '#e4dfc9' },
-    mixins:     { name: 'Biscuit mix-in', colour: '#b88958' }
+    milk:       { emoji: '🥛', name: 'Milk', colour: '#f1eadb' },
+    chikoo:     { emoji: '🤎', name: 'Chikoo', colour: '#b78359' },
+    banana:     { emoji: '🍌', name: 'Banana', colour: '#e5c86e' },
+    strawberry: { emoji: '🍓', name: 'Strawberries', colour: '#d77d92' },
+    whey:       { emoji: '💪', name: 'Vanilla whey', colour: '#d7bd94' },
+    pudding:    { emoji: '🍮', name: 'Pudding mix', colour: '#e7cd83' },
+    extras:     { emoji: '✨', name: 'Sweetener & extras', colour: '#e4dfc9' },
+    mixins:     { emoji: '🍪', name: 'Biscuit mix-in', colour: '#b88958' }
   };
   const palettes = {
-    'chikoo-banana': { lid: '#b7cf82', tint: '#edf0e3', pudding: '#e7cd83', label: 'Green lid' },
-    'chocolate-biscoff': { lid: '#c7cbc8', tint: '#e9e9e3', pudding: '#80503d', label: 'Grey lid' },
-    strawberry: { lid: '#edb7c4', tint: '#f5e8e9', pudding: '#e7a4b3', label: 'Pink lid' },
-    'biscoff-cheesecake': { lid: '#84c4ba', tint: '#e5eeea', pudding: '#e8d1a7', label: 'Teal lid' },
-    'banana-pudding-ice-cream': { lid: '#e2ce9c', tint: '#f1ecdf', pudding: '#e8d59a', label: 'Fairlife 2%' },
-    'chocolate-banana-ice-cream': { lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Fairlife 2%' }
+    'chikoo-banana': { emoji: '🤎🍌', lid: '#b7cf82', tint: '#edf0e3', pudding: '#e7cd83', label: 'Green lid' },
+    'chocolate-biscoff': { emoji: '🍫🍪', lid: '#c7cbc8', tint: '#e9e9e3', pudding: '#80503d', label: 'Grey lid' },
+    strawberry: { emoji: '🍓', lid: '#edb7c4', tint: '#f5e8e9', pudding: '#e7a4b3', label: 'Pink lid' },
+    'biscoff-cheesecake': { emoji: '🍰🍪', lid: '#84c4ba', tint: '#e5eeea', pudding: '#e8d1a7', label: 'Teal lid' },
+    'banana-pudding-ice-cream': { emoji: '🍌🍮', lid: '#e2ce9c', tint: '#f1ecdf', pudding: '#e8d59a', label: 'Fairlife 2%' },
+    'chocolate-banana-ice-cream': { emoji: '🍫🍌', lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Fairlife 2%' }
   };
   const make = (tag, className, text) => {
     const el = document.createElement(tag);
@@ -98,7 +98,7 @@
     const layer = make('button', 'glass-layer');
     layer.type = 'button'; layer.tabIndex = -1; layer.dataset.layer = key;
     layer.setAttribute('aria-hidden', 'true');
-    layer.append(make('span', '', kind.name));
+    layer.append(make('span', '', `${kind.emoji} ${kind.name}`));
     fill.append(layer);
     layerNodes.set(key, layer);
 
@@ -107,7 +107,7 @@
     const shell = make('div', '');
     const button = make('button', '');
     button.type = 'button';
-    const dot = make('span', 'preview-ingredient-dot');
+    const dot = make('span', 'preview-ingredient-dot', kind.emoji);
     dot.setAttribute('aria-hidden', 'true');
     button.append(dot, make('span', 'preview-ingredient-name'), make('span', 'preview-ingredient-amount'));
     shell.append(button); row.append(shell); ledger.append(row);
@@ -129,7 +129,7 @@
     choice.setAttribute('aria-pressed', 'false');
     choice.setAttribute('aria-controls', 'preview-name');
     choice.style.setProperty('--choice-colour', recipe.lid);
-    const dot = make('span', 'preview-choice-dot');
+    const dot = make('span', 'preview-choice-emoji', recipe.emoji);
     dot.setAttribute('aria-hidden', 'true');
     const text = make('span', '');
     text.append(make('b', '', recipe.name.replace(' with Parle-G', '')), make('small', '', recipe.label));
@@ -152,6 +152,8 @@
     $('.preview-stage-top span:last-child').textContent = `${container.label} · ${container.ounces} fl oz`;
     $('.preview-kicker').textContent = `${next.label} · ${container.label} size · 24 hr freeze`;
     $('#preview-name').textContent = next.name;
+    $('#preview-name').classList.add('has-emoji');
+    $('#preview-name').dataset.emoji = next.emoji;
     $('.preview-description').textContent = next.description;
     $('.preview-servings').textContent = `${next.servings} · ${id === 'banana-pudding-ice-cream' ? 'estimates exclude optional wafers' : 'nutrition estimates for the whole batch'}`;
     $('.preview-recipe-link').href = '#' + id;
