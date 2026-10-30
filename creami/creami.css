@@ -147,7 +147,7 @@ tfoot { font-weight: 700; }
 .batch-average { margin: 18px 0 0; font: 11px/1.7 var(--mono); }
 .nutrition-note { margin: 0; padding-block: 0 40px; max-width: 1050px; font-size: 11px; color: var(--muted); }
 .archive { border-top: 1px solid var(--ink); padding-block: 40px 45px; }
-.archive-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.archive-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .archive-links a { display: flex; justify-content: space-between; gap: 12px; padding: 16px 0; border-block: 1px solid var(--line); text-decoration: none; font-size: 12px; }
 .archive-links a:hover { text-decoration: underline; }
 footer { padding: 24px var(--gutter); display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--ink); font: 10px/1.7 var(--mono); color: var(--muted); }

@@ -2,6 +2,8 @@
 (() => {
   const recipes = [...document.querySelectorAll('details.recipe')];
   const byId = new Map(recipes.map(recipe => [recipe.id, recipe]));
+  // Older shared strawberry links open the current pink-lid recipe.
+  byId.set('strawberry-ice-cream', byId.get('strawberry'));
   const status = document.getElementById('recipe-status');
   const storageKey = 'creami-ingredient-checks';
   let checks = {};
