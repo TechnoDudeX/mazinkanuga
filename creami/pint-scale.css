@@ -8,6 +8,7 @@
 .pint-size-button:hover { border-color: var(--ink); }
 .pint-size-button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .pint-size-note { font: 10px/1.8 var(--sans); color: var(--muted); margin: 12px 0 22px; max-width: 82ch; }
+.pint-size-note a { white-space: nowrap; }
 .recipe .pint-size-control { margin-bottom: 26px; padding: 14px 16px; border-color: var(--line); }
 .recipe .pint-size-button { min-width: 125px; padding: 8px 13px; }
 .glass-pint { transition: width .75s cubic-bezier(.22, 1, .36, 1); }
