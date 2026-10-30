@@ -168,8 +168,7 @@ footer a { color: var(--ink); }
 @media (max-width: 800px) {
   .site-nav { min-height: 65px; gap: 12px; }
   .breadcrumb { margin-left: 12px; gap: 10px; font-size: 9px; }
-  .nav-back { font-size: 0; }
-  .nav-back::after { content: 'All recipes ↗'; font-size: 9px; }
+  .nav-back { font-size: 9px; }
   .hero { grid-template-columns: 1fr; padding-block: 39px 32px; gap: 30px; }
   h1 { font-size: clamp(78px, 20vw, 130px); }
   .hero-aside { max-width: none; }
