@@ -24,8 +24,8 @@
     'chocolate-biscoff': { lid: '#c7cbc8', tint: '#e9e9e3', pudding: '#80503d', label: 'Grey lid' },
     strawberry: { lid: '#edb7c4', tint: '#f5e8e9', pudding: '#e7a4b3', label: 'Pink lid' },
     'biscoff-cheesecake': { lid: '#84c4ba', tint: '#e5eeea', pudding: '#e8d1a7', label: 'Teal lid' },
-    'banana-pudding-ice-cream': { lid: '#e2ce9c', tint: '#f1ecdf', pudding: '#e8d59a', label: 'Original recipe' },
-    'chocolate-banana-ice-cream': { lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Original recipe' }
+    'banana-pudding-ice-cream': { lid: '#e2ce9c', tint: '#f1ecdf', pudding: '#e8d59a', label: 'Fairlife 2%' },
+    'chocolate-banana-ice-cream': { lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Fairlife 2%' }
   };
   const make = (tag, className, text) => {
     const el = document.createElement(tag);
