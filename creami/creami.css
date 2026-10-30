@@ -53,6 +53,9 @@ main > section, .nutrition-note { padding-inline: var(--gutter); }
 [data-lid="grey"] { --lid: var(--grey); }
 [data-lid="pink"] { --lid: var(--pink); }
 [data-lid="teal"] { --lid: var(--teal); }
+[data-lid="rose"] { --lid: #d67790; }
+[data-lid="mango"] { --lid: #edbb59; }
+[data-lid="pistachio"] { --lid: #aec28b; }
 .recipe-section { padding-block: 0 56px; }
 .recipe { scroll-margin-top: 24px; border: 1px solid var(--ink); margin-top: -1px; }
 .recipe summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 60px minmax(0, 1fr) auto 25px; gap: 22px; align-items: center; padding: 24px 28px; }

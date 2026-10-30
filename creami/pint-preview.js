@@ -14,6 +14,9 @@
     chikoo:     { emoji: '🤎', name: 'Chikoo', colour: '#b78359' },
     banana:     { emoji: '🍌', name: 'Banana', colour: '#e5c86e' },
     strawberry: { emoji: '🍓', name: 'Strawberries', colour: '#d77d92' },
+    rose:       { emoji: '🌹', name: 'Rose syrup', colour: '#d77b97' },
+    mango:      { emoji: '🥭', name: 'Mango', colour: '#edb64b' },
+    pistachio:  { emoji: '💚', name: 'Pistachio', colour: '#acc17f' },
     whey:       { emoji: '💪', name: 'Vanilla whey', colour: '#d7bd94' },
     pudding:    { emoji: '🍮', name: 'Pudding mix', colour: '#e7cd83' },
     extras:     { emoji: '✨', name: 'Sweetener & extras', colour: '#e4dfc9' },
@@ -25,7 +28,10 @@
     strawberry: { emoji: '🍓', lid: '#edb7c4', tint: '#f5e8e9', pudding: '#e7a4b3', label: 'Pink lid' },
     'biscoff-cheesecake': { emoji: '🍰🍪', lid: '#84c4ba', tint: '#e5eeea', pudding: '#e8d1a7', label: 'Teal lid' },
     'banana-pudding-ice-cream': { emoji: '🍌🍮', lid: '#e2ce9c', tint: '#f1ecdf', pudding: '#e8d59a', label: 'Fairlife 2%' },
-    'chocolate-banana-ice-cream': { emoji: '🍫🍌', lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Fairlife 2%' }
+    'chocolate-banana-ice-cream': { emoji: '🍫🍌', lid: '#c1a18b', tint: '#eee7df', pudding: '#80503d', label: 'Fairlife 2%' },
+    'rooh-afza-rose': { emoji: '🌹🥛', lid: '#d67790', tint: '#f6e4e9', pudding: '#e9d4ad', label: 'Cheesecake base' },
+    'mango-cream': { emoji: '🥭🍦', lid: '#edbb59', tint: '#f7eedb', pudding: '#e9d4ad', label: 'Cheesecake base' },
+    'pistachio-cream': { emoji: '💚🍨', lid: '#aec28b', tint: '#edf0e3', pudding: '#e9d4ad', label: 'Cheesecake base' }
   };
   const make = (tag, className, text) => {
     const el = document.createElement(tag);
@@ -40,6 +46,9 @@
     if (/chikoo/i.test(name)) return 'chikoo';
     if (/banana/i.test(name)) return 'banana';
     if (/strawberr/i.test(name)) return 'strawberry';
+    if (/rooh\s*afza|rose syrup/i.test(name)) return 'rose';
+    if (/mango/i.test(name)) return 'mango';
+    if (/pistachio/i.test(name)) return 'pistachio';
     if (/biscuit|wafer|biscoff|parle/i.test(name)) return 'mixins';
     return 'extras';
   };
@@ -137,12 +146,25 @@
     choice.addEventListener('click', () => select(recipe.id));
   });
 
+  const mobilePicker = make('label', 'preview-mobile-picker', 'Choose your flavour 🍦');
+  const flavourSelect = make('select', 'preview-flavour-select');
+  flavourSelect.setAttribute('aria-label', 'Choose a pint flavour');
+  recipes.forEach(recipe => {
+    const option = make('option', '', `${recipe.emoji} ${recipe.name}`);
+    option.value = recipe.id;
+    flavourSelect.append(option);
+  });
+  mobilePicker.append(flavourSelect);
+  picker.before(mobilePicker);
+  flavourSelect.addEventListener('change', () => select(flavourSelect.value));
+
   function select(id, { force = false } = {}) {
     const next = byId.get(id);
     if (!next || (next === selected && !force)) return;
     const previous = selected;
     selected = next;
     root.dataset.recipe = id;
+    flavourSelect.value = id;
     const container = window.CreamiPints?.getState() || { size: 'original', label: 'Original', ounces: 16 };
     root.dataset.pintSize = container.size;
     root.style.setProperty('--preview-lid', next.lid);

@@ -1,9 +1,11 @@
 /* The same glass, with ingredient bands that settle into each new recipe. */
 .pint-preview { --preview-lid: #b7cf82; --preview-tint: #edf0e3; --preview-ease: cubic-bezier(.22, 1, .36, 1); }
 .pint-preview[hidden] { display: none; }
-.preview-picker { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--ink); border-bottom: 0; }
+.preview-mobile-picker { display: none; }
+.preview-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ink); border-bottom: 0; }
 .preview-choice { display: flex; align-items: center; gap: 9px; min-height: 76px; padding: 16px 14px; border: 0; border-right: 1px solid var(--line); background: transparent; text-align: left; transition: background-color .25s, color .25s; }
-.preview-choice:last-child { border-right: 0; }
+.preview-choice:nth-child(3n) { border-right: 0; }
+.preview-choice:nth-child(n+4) { border-top: 1px solid var(--line); }
 .preview-choice:hover { background: #eaece2; }
 .preview-choice[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .preview-choice-emoji { flex-shrink: 0; width: 36px; text-align: center; font: 18px/1.3 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; }
@@ -60,17 +62,18 @@
 @media (max-width: 1150px) {
   .preview-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .preview-choice { min-height: 64px; }
-  .preview-choice:nth-child(3) { border-right: 0; }
-  .preview-choice:nth-child(n+4) { border-top: 1px solid var(--line); }
   .preview-info { padding: 26px 24px; }
   .preview-stage { padding-inline: 22px; }
 }
 @media (max-width: 800px) {
-  .preview-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .preview-picker { display: none; }
+  .preview-mobile-picker { display: block; padding: 15px; border: 1px solid var(--ink); border-bottom: 0; font: 9px/1.5 var(--mono); text-transform: uppercase; }
+  .preview-flavour-select { display: block; width: 100%; min-height: 46px; margin-top: 9px; padding: 10px 12px; border: 1px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink); font: 600 13px/1.5 var(--sans); }
   .preview-choice { min-height: 62px; padding: 12px; }
-  .preview-choice:nth-child(3) { border-right: 1px solid var(--line); }
+  .preview-choice:nth-child(3n) { border-right: 1px solid var(--line); }
   .preview-choice:nth-child(even) { border-right: 0; }
   .preview-choice:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .preview-choice:last-child:nth-child(odd) { grid-column: 1 / -1; border-right: 0; }
   .preview-layout { grid-template-columns: 1fr; }
   .preview-stage { border-right: 0; border-bottom: 1px solid var(--ink); padding: 20px 18px; }
   .preview-scene { min-height: 425px; }

@@ -36,7 +36,9 @@
     return text.replace(TOKEN, (...args) => {
       const token = args[0];
       const offset = args[args.length - 2];
-      const unit = text.slice(offset + token.length).match(/^\s*(g|mg|ml|cal|kcal|calories)\b/i);
+      const suffix = text.slice(offset + token.length);
+      if (/^\s*%/.test(suffix)) return token;
+      const unit = suffix.match(/^\s*(g|mg|ml|cal|kcal|calories)\b/i);
       const value = parseAmount(token) * factor;
       return fractions && !unit ? fraction(value) : decimal(value);
     }).replace(/([\d¼½¾⅛⅜⅝⅞⅓⅔]) scoop\b/g, '$1 scoops');
