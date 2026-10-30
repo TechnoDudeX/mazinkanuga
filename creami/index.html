@@ -18,6 +18,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/creami/creami.css">
+<link rel="stylesheet" href="/creami/pint-preview.css">
+<script src="/creami/pint-preview.js" defer></script>
 <script src="/creami/creami.js" defer></script>
 <script type="application/ld+json">
 {
@@ -455,47 +457,35 @@
 <div class="formula" aria-label="This week’s base"><span>This week’s base</span><span><b>309 g</b> Natrel Plus 2%</span><span><b>33 g</b> vanilla whey</span><span><b>24 hr</b> freeze · LITE ICE CREAM</span></div>
 <main>
   <section class="lineup" id="lineup" aria-labelledby="lineup-title">
-    <div class="section-heading"><h2>This week’s line-up</h2><p>Four lids. Four different flavours.</p></div>
-    <div class="pint-grid"><a class="pint-card" data-lid="green" href="#chikoo-banana">
-  <div class="pint-art" aria-hidden="true">
-    <span class="pint-number">01</span><span class="lid-caption">green lid</span>
-    <div class="pint"><div class="pint-body"></div><div class="pint-label">MK.<small>FREEZER NOTES</small></div><div class="pint-lid"></div></div>
-  </div>
-  <div class="card-copy"><h3>Chikoo<br>Banana</h3><p>Parle-G mix-in</p>
-    <div class="card-stats"><span>≈ <b>519</b> cal</span><span><b>47 g</b> protein</span></div>
-    <div class="card-footer"><span>View recipe</span><span aria-hidden="true">↗</span></div>
-  </div>
-</a>
-<a class="pint-card" data-lid="grey" href="#chocolate-biscoff">
-  <div class="pint-art" aria-hidden="true">
-    <span class="pint-number">02</span><span class="lid-caption">grey lid</span>
-    <div class="pint"><div class="pint-body"></div><div class="pint-label">MK.<small>FREEZER NOTES</small></div><div class="pint-lid"></div></div>
-  </div>
-  <div class="card-copy"><h3>Chocolate<br>Biscoff</h3><p>Biscoff mix-in</p>
-    <div class="card-stats"><span>≈ <b>466</b> cal</span><span><b>47 g</b> protein</span></div>
-    <div class="card-footer"><span>View recipe</span><span aria-hidden="true">↗</span></div>
-  </div>
-</a>
-<a class="pint-card" data-lid="pink" href="#strawberry">
-  <div class="pint-art" aria-hidden="true">
-    <span class="pint-number">03</span><span class="lid-caption">pink lid</span>
-    <div class="pint"><div class="pint-body"></div><div class="pint-label">MK.<small>FREEZER NOTES</small></div><div class="pint-lid"></div></div>
-  </div>
-  <div class="card-copy"><h3>Strawberry</h3><p>No biscuit · fruit only</p>
-    <div class="card-stats"><span>≈ <b>402</b> cal</span><span><b>46 g</b> protein</span></div>
-    <div class="card-footer"><span>View recipe</span><span aria-hidden="true">↗</span></div>
-  </div>
-</a>
-<a class="pint-card" data-lid="teal" href="#biscoff-cheesecake">
-  <div class="pint-art" aria-hidden="true">
-    <span class="pint-number">04</span><span class="lid-caption">teal lid</span>
-    <div class="pint"><div class="pint-body"></div><div class="pint-label">MK.<small>FREEZER NOTES</small></div><div class="pint-lid"></div></div>
-  </div>
-  <div class="card-copy"><h3>Biscoff<br>Cheesecake</h3><p>Biscoff mix-in</p>
-    <div class="card-stats"><span>≈ <b>467</b> cal</span><span><b>47 g</b> protein</span></div>
-    <div class="card-footer"><span>View recipe</span><span aria-hidden="true">↗</span></div>
-  </div>
-</a></div>
+    <div class="section-heading"><h2 id="lineup-title">Inside the pint.</h2><p>Pick a flavour. Watch it take shape.</p></div>
+    <div class="pint-preview" id="pint-preview" hidden>
+      <div class="preview-picker" role="group" aria-label="Choose a pint flavour"></div>
+      <div class="preview-layout">
+        <div class="preview-stage">
+          <div class="preview-stage-top"><span class="preview-edition"></span><span>Ingredient cutaway</span></div>
+          <div class="preview-scene">
+            <span class="preview-orbit" aria-hidden="true"></span>
+            <div class="glass-pint" role="img" aria-label="Illustrated pint ingredients">
+              <div class="glass-fill"></div>
+              <svg class="glass-outline" viewBox="0 0 300 390" aria-hidden="true"><defs><linearGradient id="glass-shine"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient></defs><path d="M24 66H276L242 350Q241 360 230 360H70Q59 360 58 350Z" fill="url(#glass-shine)" stroke="currentColor" stroke-width="1.7"/><path d="M37 78L69 345M263 78L232 345" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/><path d="M72 363H228" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/></svg>
+              <div class="glass-lid" aria-hidden="true"><span></span><b>MK.</b></div>
+            </div>
+            <div class="preview-layer-readout" aria-live="polite"><span>Tap an ingredient</span><b>Take a closer look.</b></div>
+          </div>
+          <p class="preview-stage-note">Illustrated layers, adjusted for visibility.<br>Blend the base smooth. Biscuits go in after spinning.</p>
+        </div>
+        <div class="preview-info" aria-labelledby="preview-name">
+          <div class="preview-recipe-meta"><p class="preview-kicker"></p><h3 id="preview-name"></h3><p class="preview-description"></p></div>
+          <div class="preview-nutrition" aria-label="Estimated nutrition for the whole batch"></div>
+          <div class="preview-ledger-heading"><span>What goes in</span><span>Tap to highlight ↓</span></div>
+          <ul class="preview-ledger" aria-label="Ingredient layers"></ul>
+          <a class="button-link preview-recipe-link" href="#chikoo-banana">Make this pint <span aria-hidden="true">↗</span></a>
+          <p class="preview-servings"></p>
+        </div>
+      </div>
+      <p class="sr-only preview-announcement" role="status" aria-live="polite"></p>
+    </div>
+    <noscript><nav class="archive-links" aria-label="Creami recipes"><a href="#chikoo-banana">Chikoo Banana</a><a href="#chocolate-biscoff">Chocolate Biscoff</a><a href="#strawberry">Strawberry</a><a href="#biscoff-cheesecake">Biscoff Cheesecake</a><a href="#banana-pudding-ice-cream">Banana Pudding</a><a href="#chocolate-banana-ice-cream">Chocolate Banana</a></nav></noscript>
   </section>
   <section class="archive" aria-labelledby="originals-title">
     <div class="section-heading"><h2>The originals</h2><p>Two favourites from the recipe book.</p></div><div class="archive-links"><a href="#banana-pudding-ice-cream"><span>Banana Pudding</span><span aria-hidden="true">↗</span></a>
