@@ -105,7 +105,10 @@
       bands.append(band);
       return { key, band };
     });
-    function draw() {
+    const visual = hero.querySelector('.hero-pint-visual');
+    let transition;
+    let revision = 0;
+    function render() {
       const recipe = recipes[index];
       hero.style.setProperty('--hero-lid', recipe.lid);
       hero.style.setProperty('--hero-tint', recipe.tint);
@@ -119,23 +122,43 @@
       name.textContent = recipe.name;
       name.href = `#${recipe.id}`;
     }
+    async function draw(animate = true) {
+      const current = ++revision;
+      transition?.cancel();
+      if (!animate || reducedMotion.matches) {
+        render();
+        return;
+      }
+      // Swap the entire illustration and caption together, while invisible.
+      // Cancelling an interrupted fade always leaves the latest flavour in charge.
+      transition = visual.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 180, easing: 'ease-out', fill: 'forwards'
+      });
+      try { await transition.finished; } catch { return; }
+      if (current !== revision) return;
+      render();
+      transition.cancel();
+      transition = visual.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 360, easing: 'ease-in-out'
+      });
+    }
     function schedule() {
       clearTimeout(timer);
       play.textContent = paused ? 'Play animation' : 'Pause animation';
       if (!paused && visible && !hovering && !focused && !document.hidden) {
-        timer = setTimeout(() => { index = (index + 1) % recipes.length; draw(); schedule(); }, 3800);
+        timer = setTimeout(() => { index = (index + 1) % recipes.length; draw(); schedule(); }, 5000);
       }
     }
     play.addEventListener('click', () => { paused = !paused; schedule(); });
     hero.querySelector('.hero-pint-next').addEventListener('click', () => { index = (index + 1) % recipes.length; draw(); schedule(); });
-    hero.addEventListener('mouseenter', () => { hovering = true; schedule(); });
-    hero.addEventListener('mouseleave', () => { hovering = false; schedule(); });
-    hero.addEventListener('focusin', () => { focused = true; schedule(); });
-    hero.addEventListener('focusout', event => { focused = hero.contains(event.relatedTarget); schedule(); });
+    name.addEventListener('mouseenter', () => { hovering = true; schedule(); });
+    name.addEventListener('mouseleave', () => { hovering = false; schedule(); });
+    name.addEventListener('focus', () => { focused = true; schedule(); });
+    name.addEventListener('blur', () => { focused = false; schedule(); });
     document.addEventListener('visibilitychange', schedule);
-    reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; schedule(); });
+    reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; draw(false); schedule(); });
     hero.hidden = false;
-    draw();
+    draw(false);
     new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .2 }).observe(hero);
   }
 
