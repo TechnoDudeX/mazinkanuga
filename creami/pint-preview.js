@@ -87,6 +87,58 @@
   const recipes = [...document.querySelectorAll('details.recipe')].filter(el => palettes[el.id]).map(readRecipe);
   if (!recipes.length) return;
   const byId = new Map(recipes.map(recipe => [recipe.id, recipe]));
+
+  // The header shares the recipe data and colours with the interactive cutaway.
+  const hero = document.querySelector('.hero-pint');
+  if (hero) {
+    const bands = hero.querySelector('.hero-pint-bands');
+    const name = hero.querySelector('.hero-pint-name');
+    const play = hero.querySelector('.hero-pint-play');
+    let index = 0;
+    let paused = reducedMotion.matches;
+    let visible = false;
+    let hovering = false;
+    let focused = false;
+    let timer;
+    const bandNodes = Object.keys(kinds).map(key => {
+      const band = make('span', 'hero-pint-band');
+      bands.append(band);
+      return { key, band };
+    });
+    function draw() {
+      const recipe = recipes[index];
+      hero.style.setProperty('--hero-lid', recipe.lid);
+      hero.style.setProperty('--hero-tint', recipe.tint);
+      const total = Object.values(recipe.groups).reduce((sum, group) => sum + group.weight, 0);
+      bandNodes.forEach(({ key, band }) => {
+        band.style.height = `${(recipe.groups[key]?.weight || 0) / total * 100}%`;
+        band.style.backgroundColor = key === 'pudding' ? recipe.pudding : kinds[key].colour;
+      });
+      hero.querySelector('.hero-pint-emoji').textContent = recipe.emoji;
+      hero.querySelector('.hero-pint-count').textContent = `${String(index + 1).padStart(2, '0')} / ${String(recipes.length).padStart(2, '0')}`;
+      name.textContent = recipe.name;
+      name.href = `#${recipe.id}`;
+    }
+    function schedule() {
+      clearTimeout(timer);
+      play.textContent = paused ? 'Play animation' : 'Pause animation';
+      if (!paused && visible && !hovering && !focused && !document.hidden) {
+        timer = setTimeout(() => { index = (index + 1) % recipes.length; draw(); schedule(); }, 3800);
+      }
+    }
+    play.addEventListener('click', () => { paused = !paused; schedule(); });
+    hero.querySelector('.hero-pint-next').addEventListener('click', () => { index = (index + 1) % recipes.length; draw(); schedule(); });
+    hero.addEventListener('mouseenter', () => { hovering = true; schedule(); });
+    hero.addEventListener('mouseleave', () => { hovering = false; schedule(); });
+    hero.addEventListener('focusin', () => { focused = true; schedule(); });
+    hero.addEventListener('focusout', event => { focused = hero.contains(event.relatedTarget); schedule(); });
+    document.addEventListener('visibilitychange', schedule);
+    reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; schedule(); });
+    hero.hidden = false;
+    draw();
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .2 }).observe(hero);
+  }
+
   const layerNodes = new Map();
   const rowNodes = new Map();
   let selected = null;
