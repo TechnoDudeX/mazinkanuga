@@ -681,6 +681,12 @@
     .tab-hero-watermark { font-size: 160px; }
     .beyond-watermark { font-size: 160px; }
   }
+
+  .ticker { display: flex; align-items: center; gap: 16px; }
+  .ticker-window { overflow: hidden; flex: 1; min-width: 0; }
+  .ticker-copy { display: inline-flex; flex-shrink: 0; }
+  .ticker-toggle { flex-shrink: 0; margin-right: 20px; padding: 8px 12px; border: 1px solid #ffffff80; background: transparent; color: white; font: 10px/1.5 var(--mono); cursor: pointer; }
+  .ticker-toggle:focus-visible { outline-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -697,6 +703,7 @@
       <a href="#toolkit" class="nav-link"><span class="num">04</span>Toolkit</a>
       <a href="#beyond" class="nav-link"><span class="num">05</span>Beyond</a>
       <a href="/recipes/" class="nav-link"><span class="num">06</span>Recipes</a>
+      <a href="/woodworking/" class="nav-link"><span class="num">07</span>Woodwork</a>
     </div>
     <a href="https://www.linkedin.com/in/mazinkanuga/" target="_blank" rel="noopener" class="nav-cta">Contact →</a>
     <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
@@ -758,7 +765,8 @@
 </section>
 
 <div class="ticker">
-  <div class="ticker-track" id="ticker-track"></div>
+  <div class="ticker-window"><div class="ticker-track" id="ticker-track"></div></div>
+  <button class="ticker-toggle" type="button" aria-pressed="false" aria-controls="ticker-track">Pause ticker</button>
 </div>
 
 <section class="about" id="index">
@@ -1079,7 +1087,19 @@
         return '<span class="ticker-item"><span class="diamond">◆</span>' + x + '</span>';
       }).join('');
     };
-    track.innerHTML = build() + build();
+    track.innerHTML = '<span class="ticker-copy">' + build() + '</span><span class="ticker-copy" aria-hidden="true">' + build() + '</span>';
+    var toggle = document.querySelector('.ticker-toggle');
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    var paused = reduced.matches;
+    function syncTicker() {
+      track.style.animationPlayState = paused ? 'paused' : 'running';
+      toggle.hidden = reduced.matches;
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.textContent = paused ? 'Resume ticker' : 'Pause ticker';
+    }
+    toggle.addEventListener('click', function () { paused = !paused; syncTicker(); });
+    reduced.addEventListener('change', function () { paused = reduced.matches; syncTicker(); });
+    syncTicker();
   })();
 
   // Positions tabs
